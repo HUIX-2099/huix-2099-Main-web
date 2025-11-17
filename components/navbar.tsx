@@ -1,0 +1,369 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { ThemeSwitcher } from "./theme-switcher"
+import { ChevronDown, Menu, X, Wifi, Smartphone, Search, Usb } from "lucide-react"
+import { useTheme } from "./theme-provider"
+import { motion } from "framer-motion"
+
+export function Navbar() {
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [deviceType, setDeviceType] = useState("desktop")
+  const [online, setOnline] = useState(true)
+  const [showSearch, setShowSearch] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [usbConnected, setUsbConnected] = useState(false)
+  const { theme } = useTheme()
+
+  useEffect(() => {
+    const handleOnline = () => setOnline(true)
+    const handleOffline = () => setOnline(false)
+    window.addEventListener("online", handleOnline)
+    window.addEventListener("offline", handleOffline)
+
+    const handleUSBConnect = () => setUsbConnected(true)
+    const handleUSBDisconnect = () => setUsbConnected(false)
+    window.addEventListener("connect", handleUSBConnect)
+    window.addEventListener("disconnect", handleUSBDisconnect)
+
+    const ua = navigator.userAgent
+    if (/mobile/i.test(ua)) setDeviceType("mobile")
+    else if (/tablet/i.test(ua)) setDeviceType("tablet")
+
+    return () => {
+      window.removeEventListener("online", handleOnline)
+      window.removeEventListener("offline", handleOffline)
+      window.removeEventListener("connect", handleUSBConnect)
+      window.removeEventListener("disconnect", handleUSBDisconnect)
+    }
+  }, [])
+
+  const dropdowns = {
+    home: ["FAQ", "Why Choose Us", "Documentation"],
+    projects: ["Gallery", "Case Studies", "Technologies"],
+    about: ["Our Story", "Team", "Mission & Values"],
+  }
+
+  const searchResults = searchQuery.toLowerCase().trim()
+    ? [
+        { name: "HUIX-HORIZEN", url: "/huix-horizen" },
+        { name: "Virtual Past Liberia", url: "/virtual-past-liberia" },
+      ].filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    : []
+
+  return (
+    <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="text-xl  tracking-widest" style={{ fontFamily: 'Mohican, sans-serif', color: theme === 'dark' ? '#e5e5e5' : '#333333' }}>H U I X - 2 0 9 9</div>
+          </Link>
+
+          {/* Desktop Nav Links */}
+          <div className="hidden md:flex items-center gap-8">
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenDropdown("home")}
+              onMouseLeave={() => setOpenDropdown(null)}
+            >
+              <button className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors">
+                Home
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${openDropdown === "home" ? "rotate-180" : ""}`}
+                />
+              </button>
+              {openDropdown === "home" && (
+                <div className="absolute left-0 mt-0 w-56 bg-background border-l border-r border-b border-border py-3 px-4 shadow-lg">
+                  {dropdowns.home.map((item) => (
+                    <motion.div
+                      key={item}
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Link
+                        href={`/#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                        className="block px-3 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors"
+                      >
+                        {item}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenDropdown("about")}
+              onMouseLeave={() => setOpenDropdown(null)}
+            >
+              <button className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors">
+                About Us
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${openDropdown === "about" ? "rotate-180" : ""}`}
+                />
+              </button>
+              {openDropdown === "about" && (
+                <div className="absolute left-0 mt-0 w-56 bg-background border-l border-r border-b border-border py-3 px-4 shadow-lg">
+                  {dropdowns.about.map((item) => (
+                    <motion.div
+                      key={item}
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Link
+                        href={`/about#${item.toLowerCase().replace(/\s+/g, "-").replace("&", "and")}`}
+                        className="block px-3 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors"
+                      >
+                        {item}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenDropdown("projects")}
+              onMouseLeave={() => setOpenDropdown(null)}
+            >
+              <button className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors">
+                Projects
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${openDropdown === "projects" ? "rotate-180" : ""}`}
+                />
+              </button>
+              {openDropdown === "projects" && (
+                <div className="absolute left-0 mt-0 w-56 bg-background border-l border-r border-b border-border py-3 px-4 shadow-lg">
+                  <Link
+                    href="/huix-horizen"
+                    className="block px-3 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors font-semibold border-b border-border pb-2 mb-2"
+                  >
+                    ✦ HUIX-HORIZEN
+                  </Link>
+                  <Link
+                    href="/virtual-past-liberia"
+                    className="block px-3 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors font-semibold border-b border-border pb-2 mb-2"
+                  >
+                    ✦ Virtual Past Liberia
+                  </Link>
+                  <Link
+                    href="/prototypes"
+                    className="block px-3 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors font-semibold border-b border-border pb-2 mb-2"
+                  >
+                    🚀 Prototypes Showcase
+                  </Link>
+                  {dropdowns.projects.map((item) => (
+                    <motion.div
+                      key={item}
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Link
+                        href={`/projects?type=${item.toLowerCase().replace(/\s+/g, "-")}`}
+                        className="block px-3 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors"
+                      >
+                        {item}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <Link
+              href="/contact"
+              className="text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
+            >
+              Contact
+            </Link>
+
+            <Link
+              href="/huix-assistant"
+              className="text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
+            >
+              HUIX Assistant
+            </Link>
+            <div className="w-px h-6 bg-border"></div>
+            <Link
+              href="/prototypes"
+              className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
+            >
+              Prototypes
+            </Link>
+          </div>
+
+          {/* Right Section */}
+          <div className="flex items-center gap-4">
+            <div className="relative">
+              <button
+                onClick={() => setShowSearch(!showSearch)}
+                className="p-2 hover:bg-secondary rounded-lg transition-colors"
+              >
+                <Search className="h-5 w-5" />
+              </button>
+              {showSearch && (
+                <div className="absolute right-0 mt-2 w-64 bg-background border border-border rounded-lg shadow-lg p-3">
+                  <input
+                    type="text"
+                    placeholder="Search projects..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    autoFocus
+                    className="w-full px-3 py-2 bg-card border border-border rounded text-foreground placeholder-muted-foreground focus:outline-none focus:border-foreground/50"
+                  />
+                  {searchResults.length > 0 && (
+                    <div className="mt-3 space-y-2 max-h-48 overflow-y-auto">
+                      {searchResults.map((result) => (
+                        <Link
+                          key={result.url}
+                          href={result.url}
+                          className="block px-3 py-2 text-sm text-foreground hover:bg-secondary rounded transition-colors"
+                          onClick={() => setShowSearch(false)}
+                        >
+                          {result.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            <div className="hidden lg:flex items-center gap-2 text-xs text-muted-foreground border border-border rounded-full px-3 py-1.5">
+              <Smartphone className="h-3.5 w-3.5" />
+              <span className="capitalize">{deviceType}</span>
+              <div className="w-px h-3 bg-border" />
+              <Wifi className={`h-3.5 w-3.5 ${online ? "text-green-500" : "text-red-500"}`} />
+              {usbConnected && (
+                <>
+                  <div className="w-px h-3 bg-border" />
+                  <Usb className="h-3.5 w-3.5 text-blue-500" title="USB Connected" />
+                </>
+              )}
+            </div>
+
+            <div className="flex md:hidden items-center gap-2 text-xs text-muted-foreground border border-border rounded-full px-2 py-1">
+              <Smartphone className="h-3 w-3" />
+              <span className="capitalize">{deviceType.charAt(0)}</span>
+              <Wifi className={`h-3 w-3 ${online ? "text-green-500" : "text-red-500"}`} />
+              {usbConnected && <Usb className="h-3 w-3 text-blue-500" />}
+            </div>
+
+            <div suppressHydrationWarning>
+              <ThemeSwitcher />
+            </div>
+
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden p-2 hover:bg-secondary rounded-lg transition-colors"
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+
+        {mobileOpen && (
+          <div className="md:hidden pb-4 space-y-2 border-t border-border">
+            <div className="pt-4 space-y-1">
+              <Link
+                href="/"
+                className="block px-4 py-2 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
+              >
+                Home
+              </Link>
+              
+              {/* Mobile About Dropdown */}
+              <div>
+                <button
+                  onClick={() => setOpenDropdown(openDropdown === "about" ? null : "about")}
+                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors w-full"
+                >
+                  About Us
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${openDropdown === "about" ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {openDropdown === "about" && (
+                  <div className="pl-8 space-y-1">
+                    {dropdowns.about.map((item) => (
+                      <Link
+                        key={item}
+                        href={`/about#${item.toLowerCase().replace(/\s+/g, "-").replace("&", "and")}`}
+                        className="block px-4 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors"
+                      >
+                        {item}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+              
+              {/* Mobile Projects Dropdown */}
+              <div>
+                <button
+                  onClick={() => setOpenDropdown(openDropdown === "projects" ? null : "projects")}
+                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors w-full"
+                >
+                  Projects
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${openDropdown === "projects" ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {openDropdown === "projects" && (
+                  <div className="pl-8 space-y-1">
+                    <Link
+                      href="/virtual-past-liberia"
+                      className="block px-4 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors font-semibold"
+                    >
+                      ✦ Virtual Past Liberia
+                    </Link>
+                    <Link
+                      href="/prototypes"
+                      className="block px-4 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors font-semibold"
+                    >
+                      🚀 Prototypes Showcase
+                    </Link>
+                    {dropdowns.projects.map((item) => (
+                      <Link
+                        key={item}
+                        href={`/projects?type=${item.toLowerCase().replace(/\s+/g, "-")}`}
+                        className="block px-4 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors"
+                      >
+                        {item}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+              
+              <Link
+                href="/huix-assistant"
+                className="block px-4 py-2 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
+              >
+                HUIX Assistant
+              </Link>
+              
+              <Link
+                href="/prototypes"
+                className="block px-4 py-2 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
+              >
+                Prototypes
+              </Link>
+              
+              <Link
+                href="/contact"
+                className="block px-4 py-2 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
+              >
+                Contact
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  )
+}
