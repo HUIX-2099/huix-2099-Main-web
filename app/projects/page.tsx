@@ -4,153 +4,207 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { Eye, Search, Share2 } from "lucide-react"
+import { Search } from "lucide-react"
 import Link from "next/link"
 
 export default function ProjectsPage() {
   const projects = [
     {
-      id: "huix-ai-solutions",
-      title: "AI & Machine Learning Solutions",
-      category: "Artificial Intelligence",
-      desc: "Intelligent systems for enterprise automation and data analysis",
+      id: "gold-tower-premium-liberia-properties",
+      title: "Gold Tower - Premium Liberia Properties",
+      category: "Real Estate",
+      type: "Major",
+      relation: "Related",
+      desc: "Flagship premium mixed‑use development opportunity in Liberia.",
       details:
-        "Cutting-edge AI solutions leveraging transformer models for intelligent automation, predictive analytics, and enterprise optimization across industries.",
-      technologies: ["TensorFlow", "Python", "GPU Computing", "Node.js"],
-      image: "/ai-machine-learning.jpg",
+        "A premier real estate initiative focused on luxury residential, commercial, and hospitality spaces located in Liberia.",
+      technologies: ["Architecture", "Engineering", "Sustainability"],
+      image: "/images/architech.jpg",
+      imageLight: "/images/architech.jpg",
+      imageDark: "/images/architech.jpg",
     },
     {
-      id: "3d-visualization-engine",
-      title: "3D Visualization Engine",
-      category: "3D Rendering",
-      desc: "Real-time 3D rendering and visualization for web and desktop applications",
-      details:
-        "Advanced 3D rendering engine capable of processing complex geometric data with real-time performance optimization for architectural and engineering visualization.",
-      technologies: ["WebGL", "Three.js", "GLSL", "WebAssembly"],
-      image: "/3d-visualization-engine.jpg",
+      id: "huix-horizen",
+      title: "HUIX-HORIZEN",
+      category: "Company Property",
+      type: "Major",
+      relation: "Related",
+      desc: "Immersive AR/VR visualization platform for enterprise experiences.",
+      details: "Flagship visualization stack showcasing interactive 3D, VR walkthroughs, and real-time rendering.",
+      technologies: ["Unity", "WebGL", "VR"],
+      image: "/images/h-20-20u-20-20i-20-20x-20-20horizen-20black-20version.jpg",
+      imageLight: "/images/h-20-20u-20-20i-20-20x-20-20horizen-20white-20version.jpg",
+      imageDark: "/images/h-20-20u-20-20i-20-20x-20-20horizen-20black-20version.jpg",
+      href: "/huix-horizen",
+    },
+    {
+      id: "virtual-past-liberia",
+      title: "Virtual Past Liberia Museum",
+      category: "Company Property",
+      type: "Major",
+      relation: "Related",
+      desc: "Digital cultural heritage experience preserving Liberia’s past in immersive form.",
+      details: "A museum-grade interactive narrative platform blending archives and 3D storytelling.",
+      technologies: ["Three.js", "Story Systems", "Curation"],
+      image: "/images/virtual-20past-20liberia-20dark-20main-20version.jpg",
+      imageLight: "/images/virtual-20past-20liberia-20white-20main-20version.jpg",
+      imageDark: "/images/virtual-20past-20liberia-20dark-20main-20version.jpg",
+      href: "/virtual-past-liberia",
     },
   ]
 
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
+  const [selectedType, setSelectedType] = useState<string>("all")
+  const [selectedRelation, setSelectedRelation] = useState<string>("all")
 
   const filteredProjects = projects.filter((project) => {
     const matchesSearch =
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.desc.toLowerCase().includes(searchQuery.toLowerCase())
     const matchesCategory = selectedCategory === "all" || project.category === selectedCategory
-    return matchesSearch && matchesCategory
+    const matchesType = selectedType === "all" || (project as any).type === selectedType
+    const matchesRelation = selectedRelation === "all" || (project as any).relation === selectedRelation
+    return matchesSearch && matchesCategory && matchesType && matchesRelation
   })
 
   const categories = ["all", ...new Set(projects.map((p) => p.category))]
-
-  const handleShare = (projectId: string) => {
-    const url = `${window.location.origin}/projects/${projectId}`
-    navigator.clipboard.writeText(url)
-  }
+  const types = ["all", ...new Set((projects as any[]).map((p) => (p as any).type))]
+  const relations = ["all", ...new Set((projects as any[]).map((p) => (p as any).relation))]
 
   return (
     <>
       <Navbar />
 
-      <section className="py-20 px-4 lg:px-8 bg-background">
+      <section className="py-16 md:py-24 px-4 lg:px-8 bg-background">
         <div className="max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-12">
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-4">Our Projects</h1>
-            <p className="text-xl text-muted-foreground">
-              Explore our innovative solutions and transformative technologies. For HUIX-HORIZEN, visit our flagship
-              platform page.
-            </p>
+          {/* Doc-style header */}
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-10 md:mb-14">
+            <div className="flex items-end justify-between gap-6 border-b border-border pb-4">
+              <div className="flex items-center gap-6">
+                <div className="text-5xl md:text-7xl font-bold leading-none tracking-tight">01</div>
+                <div>
+                  <h1 className="text-2xl md:text-4xl font-bold tracking-tight">Projects Index</h1>
+                  <p className="text-sm md:text-base text-muted-foreground">Serious, modular, document-forward layout</p>
+                </div>
+              </div>
+              <div className="hidden md:block text-xs text-muted-foreground uppercase tracking-widest">Series / 01 · v1</div>
+            </div>
           </motion.div>
 
-          <div className="mb-12 space-y-6">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+          {/* Controls */}
+          <div className="mb-10 md:mb-14 grid md:grid-cols-3 gap-4">
+            <div className="relative md:col-span-2">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
                 type="text"
-                placeholder="Search projects..."
+                placeholder="Search projects"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-secondary border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors"
+                className="w-full pl-10 pr-3 py-2 bg-secondary border border-border rounded-md text-foreground placeholder-muted-foreground focus:outline-none focus:ring-0 focus:border-foreground/50"
               />
             </div>
-
-            <div className="flex gap-3 flex-wrap">
+            <div className="flex gap-2 flex-wrap">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+                  className={`px-3 py-2 rounded-md text-sm font-medium border ${
                     selectedCategory === cat
-                      ? "bg-foreground text-background"
-                      : "bg-secondary border border-border text-foreground hover:border-foreground/30"
+                      ? "bg-foreground text-background border-foreground"
+                      : "bg-secondary text-foreground border-border hover:border-foreground/30"
                   }`}
                 >
-                  {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                  {cat}
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Type and Relation filters */}
+          <div className="mb-10 md:mb-14 grid md:grid-cols-3 gap-4">
+            <div className="flex gap-2 flex-wrap">
+              {types.map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setSelectedType(t)}
+                  className={`px-3 py-2 rounded-md text-sm font-medium border ${
+                    selectedType === t
+                      ? "bg-foreground text-background border-foreground"
+                      : "bg-secondary text-foreground border-border hover:border-foreground/30"
+                  }`}
+                >
+                  {t === "all" ? "All Types" : t}
+                </button>
+              ))}
+            </div>
+            <div className="flex gap-2 flex-wrap md:col-span-2">
+              {relations.map((r) => (
+                <button
+                  key={r}
+                  onClick={() => setSelectedRelation(r)}
+                  className={`px-3 py-2 rounded-md text-sm font-medium border ${
+                    selectedRelation === r
+                      ? "bg-foreground text-background border-foreground"
+                      : "bg-secondary text-foreground border-border hover:border-foreground/30"
+                  }`}
+                >
+                  {r === "all" ? "All Relations" : r}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Horizontal cards row */}
+          <div className="grid grid-flow-col auto-cols-[minmax(320px,420px)] gap-6 overflow-x-auto pb-4">
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="group rounded-lg bg-card border border-border overflow-hidden hover:border-foreground/30 transition-all hover:shadow-lg cursor-pointer"
+                transition={{ delay: index * 0.06 }}
+                className="group bg-card border border-border rounded-lg overflow-hidden"
               >
-                <div className="relative h-48 bg-secondary overflow-hidden">
-                  <img
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-
-                <div className="p-8">
-                  <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">
-                    {project.category}
+                <Link href={(project as any).href || `/projects/${project.id}`} className="block">
+                  <div className="relative h-48 bg-secondary overflow-hidden">
+                    {/* Light mode image */}
+                    <img
+                      src={(project as any).imageLight || project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 dark:hidden"
+                    />
+                    {/* Dark mode image */}
+                    <img
+                      src={(project as any).imageDark || (project as any).imageLight || project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      className="hidden dark:block w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute top-3 left-3 text-xs font-semibold px-2 py-1 bg-background/80 border border-border rounded">
+                      {project.category}
+                    </div>
                   </div>
-                  <h2 className="text-2xl font-bold text-foreground mb-3">{project.title}</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{project.desc}</p>
 
-                  <div className="space-y-4">
-                    <div className="flex flex-wrap gap-2">
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs uppercase tracking-widest text-muted-foreground">Project</span>
+                      <span className="text-3xl font-bold leading-none">{String(index + 1).padStart(2, "0")}</span>
+                    </div>
+                    <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-2">{project.title}</h2>
+                    <p className="text-sm text-muted-foreground line-clamp-3">{project.desc}</p>
+
+                    <div className="mt-4 flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="text-xs px-3 py-1 bg-secondary border border-border rounded-full text-muted-foreground"
+                          className="text-[11px] px-2 py-1 bg-secondary border border-border rounded-full text-muted-foreground"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
-
-                    <div className="flex gap-3 pt-4 border-t border-border">
-                      <Link href={`/projects/${project.id}`} className="flex-1">
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="w-full px-4 py-2 bg-foreground text-background rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
-                        >
-                          <Eye className="h-4 w-4" />
-                          View Details
-                        </motion.button>
-                      </Link>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => handleShare(project.id)}
-                        className="px-4 py-2 border border-border text-foreground rounded-lg font-semibold text-sm hover:bg-secondary transition-colors flex items-center gap-2"
-                      >
-                        <Share2 className="h-4 w-4" />
-                      </motion.button>
-                    </div>
                   </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>
