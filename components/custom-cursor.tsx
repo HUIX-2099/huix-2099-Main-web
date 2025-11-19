@@ -6,8 +6,15 @@ export function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+  const [isCoarsePointer, setIsCoarsePointer] = useState(false)
 
   useEffect(() => {
+    // Detect coarse pointer (touch devices) and small viewports
+    const mql = window.matchMedia("(pointer: coarse)")
+    const updatePointerType = () => setIsCoarsePointer(mql.matches || window.innerWidth < 768)
+    updatePointerType()
+    const handleResize = () => updatePointerType()
+
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY })
       setIsVisible(true)
@@ -25,12 +32,16 @@ export function CustomCursor() {
       }
     }
 
+    mql.addEventListener?.("change", updatePointerType)
+    window.addEventListener("resize", handleResize)
     window.addEventListener("mousemove", handleMouseMove)
     window.addEventListener("mouseenter", handleMouseEnter)
     window.addEventListener("mouseleave", handleMouseLeave)
     window.addEventListener("mouseover", handleMouseOver)
 
     return () => {
+      mql.removeEventListener?.("change", updatePointerType)
+      window.removeEventListener("resize", handleResize)
       window.removeEventListener("mousemove", handleMouseMove)
       window.removeEventListener("mouseenter", handleMouseEnter)
       window.removeEventListener("mouseleave", handleMouseLeave)
@@ -38,7 +49,8 @@ export function CustomCursor() {
     }
   }, [])
 
-  if (!isVisible) return null
+  // Hide on mobile/coarse pointers
+  if (isCoarsePointer || !isVisible) return null
 
   return (
     <>

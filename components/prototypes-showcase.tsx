@@ -40,6 +40,17 @@ const prototypes: Prototype[] = [
     technologies: ["2D Design", "UI/UX", "Figma", "Prototyping"],
     status: "completed",
     projectUrl: "/virtual-past-liberia"
+  },
+  {
+    id: "museum-building",
+    title: "The Ancestral Grid — Museum Building",
+    description: "Architecture by Amanda Anderson — A fusion of art, science, and symbolism. Early 3D wireframe concept.",
+    type: "image",
+    mediaSrc: "/WhatsApp%20Image%202025-10-30%20at%2020.22.09_b72f70f2.jpg",
+    category: "Virtual Heritage",
+    technologies: ["Revit", "3D Modeling", "Architecture"],
+    status: "prototype",
+    projectUrl: "/virtual-past-liberia"
   }
 ]
 

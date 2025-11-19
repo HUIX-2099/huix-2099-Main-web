@@ -17,37 +17,44 @@ export default function AboutPage() {
 
       <section className="py-20 px-4 lg:px-8 bg-background">
         <div className="max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="mb-20">
-            <div className="flex items-center justify-center mb-12">
-              <img src={logoUrl || "/placeholder.svg"} alt="HUIX-2099" className="h-64 w-auto object-contain" />
-            </div>
-
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center">
-              <div className="text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-4">About Us</div>
-              <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">HUIX-2099</h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                At HUIX-2099, we believe technology is not just a tool — it's an evolving language of human creativity
-                and expression. We build digital futures where innovation meets imagination.
-              </p>
-            </motion.div>
-          </motion.div>
-
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="mb-20 rounded-lg overflow-hidden border border-border shadow-sm"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.22 }}
+            className="mb-16 border-b border-border/70"
           >
-            <img
-              src="/images/dan-20lehman-20-20qrs-20creative.jpg"
-              alt="HUIX-2099 Innovation Lab"
-              className="w-full h-96 object-cover"
-            />
+            <div className="flex items-end justify-between pb-8">
+              <div className="flex items-center gap-6">
+                <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
+                <div>
+                  <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2">About Us</div>
+                  <h1 className="text-4xl md:text-5xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>A b o u t  &nbsp;&nbsp;  H U I X - 2 0 9 9</h1>
+                </div>
+              </div>
+              <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">
+                Series / 01 · v1
+              </div>
+            </div>
+            <div className="flex items-center justify-center mb-10">
+              <img src={logoUrl || "/placeholder.svg"} alt="HUIX-2099" className="h-48 md:h-56 w-auto object-contain" />
+            </div>
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+              className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed pb-8"
+            >
+              At HUIX-2099, we believe technology is not just a tool — it's an evolving language of human creativity and
+              expression. We build digital futures where innovation meets imagination.
+            </motion.p>
           </motion.div>
+
+         
 
           {/* Section 01: Our Story */}
-          <div className="mb-20 grid lg:grid-cols-2 gap-16 items-start">
+          <div id="our-story" className="pt-16 mb-20 grid lg:grid-cols-2 gap-16 items-start border-t border-border/60">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}>
-              <div className="text-6xl font-bold text-muted-foreground/40 mb-4">01</div>
+              <div className="text-8xl lg:text-9xl font-bold text-foreground/10 mb-4" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
               <h2 className="text-3xl font-bold text-foreground mb-6">Our Story</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 Founded in 2024, HUIX-2099 started as a vision to revolutionize how Africa approaches technology and
@@ -62,8 +69,9 @@ export default function AboutPage() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.22 }}
               className="rounded-lg bg-card border border-border overflow-hidden"
             >
               <img src="/images/gallary1.png" alt="HUIX-2099 Engineering Lab" className="w-full h-80 object-cover" />
@@ -71,10 +79,10 @@ export default function AboutPage() {
           </div>
 
           {/* Section 02: Core Values */}
-          <div className="mb-20">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}>
-              <div className="text-6xl font-bold text-muted-foreground/40 mb-4">02</div>
-              <h2 className="text-3xl font-bold text-foreground mb-12">Core Values</h2>
+          <div id="mission-and-values" className="pt-16 mb-20 border-t border-border/60">
+            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
+              <div className="text-8xl lg:text-9xl font-bold text-foreground/10 mb-4" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
+              <h2 className="text-3xl font-bold text-foreground mb-12">Mission & Values</h2>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -97,7 +105,7 @@ export default function AboutPage() {
               ].map((value, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 14 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   className="p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all"
@@ -110,9 +118,9 @@ export default function AboutPage() {
           </div>
 
           {/* Section 03: Founder */}
-          <div className="mb-20 grid lg:grid-cols-2 gap-16 items-start">
+          <div className="pt-16 mb-20 grid lg:grid-cols-2 gap-16 items-start border-t border-border/60">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}>
-              <div className="text-6xl font-bold text-muted-foreground/40 mb-4">03</div>
+              <div className="text-8xl lg:text-9xl font-bold text-foreground/10 mb-4" style={{ fontFamily: 'Mohican, sans-serif' }}>03</div>
               <h2 className="text-3xl font-bold text-foreground mb-6">Founder & Vision</h2>
               <h3 className="text-2xl font-semibold text-foreground mb-2">Victor Edet Coleman</h3>
               <p className="text-sm font-semibold text-muted-foreground uppercase mb-2">Founder & CEO</p>
@@ -134,8 +142,9 @@ export default function AboutPage() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.22 }}
               className="p-8 rounded-lg bg-card border border-border space-y-6"
             >
               <div className="w-full h-64 rounded-lg bg-secondary border border-border overflow-hidden">
@@ -153,6 +162,25 @@ export default function AboutPage() {
                 </p>
               </div>
             </motion.div>
+          </div>
+
+          {/* Team Section to align with nav anchors */}
+          <div id="team" className="pt-16 mb-8 border-t border-border/60">
+            <motion.div initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
+              <div className="text-8xl lg:text-9xl font-bold text-foreground/10 mb-4" style={{ fontFamily: 'Mohican, sans-serif' }}>04</div>
+              <h2 className="text-3xl font-bold text-foreground mb-6">Team</h2>
+            </motion.div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[{ name: "Core Team", role: "Engineering & Operations" }].map((m) => (
+                <div key={m.name} className="p-6 rounded-lg bg-card border border-border">
+                  <div className="w-full h-40 mb-4 rounded bg-secondary border border-border overflow-hidden">
+                    <img src="/placeholder.svg" alt={m.name} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="text-sm font-semibold text-muted-foreground uppercase tracking-widest">{m.role}</div>
+                  <div className="text-lg font-semibold text-foreground">{m.name}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

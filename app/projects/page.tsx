@@ -22,6 +22,7 @@ export default function ProjectsPage() {
       image: "/images/architech.jpg",
       imageLight: "/images/architech.jpg",
       imageDark: "/images/architech.jpg",
+      href: "https://gold-tower-liberia-property-website.vercel.app/",
     },
     {
       id: "huix-horizen",

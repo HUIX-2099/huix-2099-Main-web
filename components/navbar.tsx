@@ -58,7 +58,7 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2">
-            <div className="text-xl  tracking-widest" style={{ fontFamily: 'Mohican, sans-serif', color: theme === 'dark' ? '#e5e5e5' : '#333333' }}>H U I X - 2 0 9 9</div>
+            <div className="text-base sm:text-lg md:text-xl tracking-widest" style={{ fontFamily: 'Mohican, sans-serif', color: theme === 'dark' ? '#e5e5e5' : '#333333' }}>H U I X - 2 0 9 9</div>
           </Link>
 
           {/* Desktop Nav Links */}
@@ -76,7 +76,7 @@ export function Navbar() {
               </button>
               {openDropdown === "home" && (
                 <div className="absolute left-0 mt-0 w-56 bg-background border-l border-r border-b border-border py-3 px-4 shadow-lg">
-                  {dropdowns.home.map((item) => (
+                  {dropdowns.home.map((item, idx) => (
                     <motion.div
                       key={item}
                       whileHover={{ x: 5 }}
@@ -84,9 +84,9 @@ export function Navbar() {
                     >
                       <Link
                         href={`/#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="block px-3 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors"
+                        className="block px-3 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors"
                       >
-                        {item}
+                        {`${String(idx + 1).padStart(2, "0")} · ${item}`}
                       </Link>
                     </motion.div>
                   ))}
@@ -107,7 +107,7 @@ export function Navbar() {
               </button>
               {openDropdown === "about" && (
                 <div className="absolute left-0 mt-0 w-56 bg-background border-l border-r border-b border-border py-3 px-4 shadow-lg">
-                  {dropdowns.about.map((item) => (
+                  {dropdowns.about.map((item, idx) => (
                     <motion.div
                       key={item}
                       whileHover={{ x: 5 }}
@@ -115,9 +115,9 @@ export function Navbar() {
                     >
                       <Link
                         href={`/about#${item.toLowerCase().replace(/\s+/g, "-").replace("&", "and")}`}
-                        className="block px-3 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors"
+                        className="block px-3 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors"
                       >
-                        {item}
+                        {`${String(idx + 1).padStart(2, "0")} · ${item}`}
                       </Link>
                     </motion.div>
                   ))}
@@ -139,22 +139,34 @@ export function Navbar() {
               {openDropdown === "projects" && (
                 <div className="absolute left-0 mt-0 w-56 bg-background border-l border-r border-b border-border py-3 px-4 shadow-lg">
                   <Link
-                    href="/huix-horizen"
-                    className="block px-3 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors font-semibold border-b border-border pb-2 mb-2"
+                    href="/projects"
+                    className="block px-3 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors border-b border-border pb-2 mb-2"
                   >
-                    ✦ HUIX-HORIZEN
+                    01 · Projects
+                  </Link>
+                  <Link
+                    href="/huix-horizen"
+                    className="block px-3 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors border-b border-border pb-2 mb-2"
+                  >
+                    02 · HUIX-HORIZEN
                   </Link>
                   <Link
                     href="/virtual-past-liberia"
-                    className="block px-3 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors font-semibold border-b border-border pb-2 mb-2"
+                    className="block px-3 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors border-b border-border pb-2 mb-2"
                   >
-                    ✦ Virtual Past Liberia
+                    03 · Virtual Past Liberia
                   </Link>
                   <Link
                     href="/prototypes"
-                    className="block px-3 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors font-semibold border-b border-border pb-2 mb-2"
+                    className="block px-3 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors border-b border-border pb-2 mb-2"
                   >
-                    🚀 Prototypes Showcase
+                    04 · Prototypes
+                  </Link>
+                  <Link
+                    href="http://localhost:3000/gallery"
+                    className="block px-3 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors border-b border-border pb-2 mb-2"
+                  >
+                    05 · Gallery
                   </Link>
                   {dropdowns.projects.map((item) => (
                     <motion.div
@@ -164,7 +176,7 @@ export function Navbar() {
                     >
                       <Link
                         href={`/projects?type=${item.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="block px-3 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors"
+                        className="block px-3 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors"
                       >
                         {item}
                       </Link>
@@ -289,13 +301,13 @@ export function Navbar() {
                 </button>
                 {openDropdown === "about" && (
                   <div className="pl-8 space-y-1">
-                    {dropdowns.about.map((item) => (
+                    {dropdowns.about.map((item, idx) => (
                       <Link
                         key={item}
                         href={`/about#${item.toLowerCase().replace(/\s+/g, "-").replace("&", "and")}`}
-                        className="block px-4 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors"
+                        className="block px-4 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors"
                       >
-                        {item}
+                        {`${String(idx + 1).padStart(2, "0")} · ${item}`}
                       </Link>
                     ))}
                   </div>
@@ -316,22 +328,34 @@ export function Navbar() {
                 {openDropdown === "projects" && (
                   <div className="pl-8 space-y-1">
                     <Link
-                      href="/virtual-past-liberia"
-                      className="block px-4 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors font-semibold"
+                      href="/projects"
+                      className="block px-4 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors"
                     >
-                      ✦ Virtual Past Liberia
+                      01 · Projects
+                    </Link>
+                    <Link
+                      href="/virtual-past-liberia"
+                      className="block px-4 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors"
+                    >
+                      02 · Virtual Past Liberia
                     </Link>
                     <Link
                       href="/prototypes"
-                      className="block px-4 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors font-semibold"
+                      className="block px-4 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors"
                     >
-                      🚀 Prototypes Showcase
+                      03 · Prototypes
+                    </Link>
+                    <Link
+                      href="http://localhost:3000/gallery"
+                      className="block px-4 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors"
+                    >
+                      04 · Gallery
                     </Link>
                     {dropdowns.projects.map((item) => (
                       <Link
                         key={item}
                         href={`/projects?type=${item.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="block px-4 py-2 text-sm text-foreground hover:text-muted-foreground transition-colors"
+                        className="block px-4 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors"
                       >
                         {item}
                       </Link>
