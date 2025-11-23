@@ -77,3 +77,32 @@ A concise style reference for the project: serious, document-forward, modular. I
 
 ---
 This guide encodes the aesthetic you liked: numbered editorial systems, industrial signage cues, and clean monochrome UI. Adjust tokens and scales as the library matures.
+
+## Additional Inspiration (Industrial Label Aesthetic)
+- **Oversized display glyphs**: Use very large, blocky display letters or numerals as background anchors for sections (opacity 5–12%).
+- **Mono metadata blocks**: Left or right aligned columns with monospaced text for specs like `TYPE`, `CAT NO`, `VOLUME`, `DATE`, `INDEX`.
+- **Arrow and code marks**: Sparse directional arrows or short codes (e.g., `DE ➜`, `RK‑2`) to guide scanning; keep subtle and functional.
+- **Tables/indices**: Compact lists with bracketed indices like `[01]`, `[02]` and right‑aligned page/route refs (e.g., `p. 12`).
+- **Barcode/ID block (optional)**: A small, low‑contrast rectangle with faux barcode/UPC and short ID strings for a technical vibe.
+- **Dot/diacritic accents**: Rare, geometric accents in headlines to echo industrial signage; do not reduce legibility.
+- **Material feel**: Neutral paper‑like backgrounds with hairline rules; avoid heavy boxes.
+
+## Practical UI Patterns To Add
+- **Spec Panel**: A bordered mono block listing contact and system info.
+  - Labels in uppercase mono, values in regular mono.
+  - Example rows: `EMAIL`, `PHONE`, `LOCATION`, `HOURS`, `CAT NO`, `REV`.
+- **Index List**: A two‑column compact list using bracketed indices and right‑aligned refs.
+  - Ideal for site maps, FAQs, or quick jumps.
+- **ID Footer Strip**: A thin bottom strip featuring year, site code, short hash, and a tiny arrow.
+
+## Micro‑Typography Specs
+- **Mono sizes**: 12–14px for metadata; 10–11px for footnotes.
+- **Letter‑spacing**: +0.06em to +0.12em for uppercase labels.
+- **Rules**: 1px hairlines; 2–4px spacing offset above/below for rhythm.
+- **Big numerals**: 10–16rem depending on breakpoint; opacity 0.05–0.12.
+- **Grids**: Use 12‑col with 1–3 col spans for metadata rails.
+
+## Where To Apply Next
+- **Contact page**: Add a Spec Panel with mono labels and values; optional small arrow marker and ID footer strip.
+- **FAQ**: Use an Index List with `[01]…[07]` styling for the questions overview.
+- **Projects**: Add a tiny barcode/ID block on detail pages; keep contrast low.

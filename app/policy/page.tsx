@@ -10,9 +10,18 @@ export default function PolicyPage() {
 
       <section className="py-20 px-4 bg-background">
         <div className="max-w-3xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-12">
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">Privacy Policy</h1>
-          </motion.div>
+          <div className="mb-12 border-b border-border/70">
+            <div className="flex items-end justify-between pb-6">
+              <div className="flex items-center gap-6">
+                <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>05</div>
+                <div>
+                  <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2">Policy</div>
+                  <h1 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>P R I V A C Y  ·  P O L I C Y</h1>
+                </div>
+              </div>
+              <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 05 · v1</div>
+            </div>
+          </div>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="space-y-6">
             <div>
@@ -56,7 +65,7 @@ export default function PolicyPage() {
             <div>
               <h2 className="text-2xl font-bold text-foreground mb-4">5. Contact Us</h2>
               <p className="text-muted-foreground leading-relaxed">
-                If you have questions or comments about this Privacy Policy, please contact us at: contact@huix2099.com
+                If you have questions or comments about this Privacy Policy, please contact us at: huixtech2099@gmail.com
               </p>
             </div>
           </motion.div>

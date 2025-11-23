@@ -107,6 +107,12 @@ export function Navbar() {
               </button>
               {openDropdown === "about" && (
                 <div className="absolute left-0 mt-0 w-56 bg-background border-l border-r border-b border-border py-3 px-4 shadow-lg">
+                  <Link
+                    href="/team"
+                    className="block px-3 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors border-b border-border pb-2 mb-2"
+                  >
+                    00 · Team
+                  </Link>
                   {dropdowns.about.map((item, idx) => (
                     <motion.div
                       key={item}
@@ -253,7 +259,7 @@ export function Navbar() {
               {usbConnected && (
                 <>
                   <div className="w-px h-3 bg-border" />
-                  <Usb className="h-3.5 w-3.5 text-blue-500" title="USB Connected" />
+                  <Usb className="h-3.5 w-3.5 text-blue-500" aria-label="USB Connected" />
                 </>
               )}
             </div>
@@ -301,6 +307,12 @@ export function Navbar() {
                 </button>
                 {openDropdown === "about" && (
                   <div className="pl-8 space-y-1">
+                    <Link
+                      href="/team"
+                      className="block px-4 py-2 text-xs text-foreground hover:text-muted-foreground transition-colors"
+                    >
+                      00 · Team
+                    </Link>
                     {dropdowns.about.map((item, idx) => (
                       <Link
                         key={item}

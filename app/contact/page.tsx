@@ -27,6 +27,18 @@ export default function ContactPage() {
 
       <section className="min-h-screen bg-background flex items-center">
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-8 py-20">
+          <div className="mb-12 border-b border-border/70">
+            <div className="flex items-end justify-between pb-6">
+              <div className="flex items-center gap-6">
+                <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>04</div>
+                <div>
+                  <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2">Contact</div>
+                  <h1 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>G E T  ·  I N  ·  T O U C H</h1>
+                </div>
+              </div>
+              <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 04 · v1</div>
+            </div>
+          </div>
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Left: Logo & Company Info */}
             <motion.div
@@ -48,7 +60,12 @@ export default function ContactPage() {
                 <div className="space-y-4">
                   <div>
                     <h3 className="text-sm font-semibold text-muted-foreground uppercase mb-1">Email</h3>
-                    <p className="text-foreground">2099Huixtech@gmail.com</p>
+                    <p className="text-foreground">huixtech2099@gmail.com</p>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-muted-foreground uppercase mb-1">Phone</h3>
+                    <p className="text-foreground">+231776800064</p>
+                    <p className="text-foreground">+231770499140</p>
                   </div>
                   <div>
                     <h3 className="text-sm font-semibold text-muted-foreground uppercase mb-1">Location</h3>

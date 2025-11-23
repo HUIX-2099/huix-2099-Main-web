@@ -23,7 +23,7 @@ export default function FAQPage() {
     {
       question: "How do I get started with a project?",
       answer:
-        "Contact us through our contact form or email contact@huix2099.com with your project requirements. Our team will schedule a consultation to understand your vision and create a tailored solution.",
+        "Contact us through our contact form or email huixtech2099@gmail.com with your project requirements. Our team will schedule a consultation to understand your vision and create a tailored solution.",
     },
     {
       question: "What is your typical project timeline?",

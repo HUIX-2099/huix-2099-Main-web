@@ -93,27 +93,34 @@ export default function VirtualPastLiberiaPage() {
 
       {/* Hero Section */}
       <section
-        className="relative h-screen w-full overflow-hidden bg-background flex items-center justify-center"
+        className="relative min-h-[70vh] md:h-screen w-full overflow-hidden bg-background flex items-center justify-center"
         style={{
           backgroundImage: `url('${
             theme === "dark"
               ? "/images/virtual-20past-20liberia-20dark-20main-20version.jpg"
               : "/images/virtual-20past-20liberia-20white-20main-20version.jpg"
           }')`,
-          backgroundSize: "60%",
+          backgroundSize: "contain",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
         }}
       >
         <div className={`absolute inset-0 ${theme === "dark" ? "bg-black/50" : "bg-white/40"}`} />
 
-        {/* Left text */}
+        {/* Mobile centered copy */}
+        <div className="md:hidden relative z-10 px-4 text-center max-w-md mx-auto">
+          <p className="text-base text-muted-foreground leading-relaxed font-semibold">
+            A digital time bridge reviving Liberia's cultural heritage through immersive virtual reality and AI-powered storytelling
+            <DevBadge text="UNDER DEVELOPMENT" />
+          </p>
+        </div>
+
+        {/* Left text (desktop) */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="absolute left-4 lg:left-12 top-1/2 -translate-y-1/2 z-10 max-w-sm"
+          className="hidden md:block absolute left-4 lg:left-12 top-1/2 -translate-y-1/2 z-10 max-w-sm"
         >
           <p className="text-base lg:text-lg text-muted-foreground leading-relaxed font-semibold">
             A digital time bridge reviving Liberia's cultural heritage through immersive virtual reality and AI-powered
@@ -122,12 +129,12 @@ export default function VirtualPastLiberiaPage() {
           </p>
         </motion.div>
 
-        {/* Right text - 16 Tribes info */}
+        {/* Right text - 16 Tribes info (desktop) */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="absolute right-4 lg:right-12 top-1/2 -translate-y-1/2 z-10 max-w-sm"
+          className="hidden md:block absolute right-4 lg:right-12 top-1/2 -translate-y-1/2 z-10 max-w-sm"
         >
           <div className="text-sm lg:text-base text-muted-foreground space-y-3">
             <p className="font-semibold text-foreground mb-4">The 16 Tribes of Liberia</p>
@@ -153,6 +160,82 @@ export default function VirtualPastLiberiaPage() {
         </motion.div>
       </section>
 
+      {/* Series Header */}
+      <section className="px-4 lg:px-8 pt-10 pb-6 bg-background border-b border-border">
+        <div className="max-w-6xl mx-auto flex items-end justify-between">
+          <div>
+            <div className="text-7xl md:text-8xl font-bold text-foreground/30 leading-none">01</div>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mt-2">Virtual Past Liberia</h1>
+          </div>
+          <div className="hidden md:block text-xs uppercase tracking-wide text-muted-foreground">
+            <span className="font-mono">Series / 01 · v1</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Funding status under header */}
+      <section className="px-4 lg:px-8 bg-background">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground py-2 border-b border-border/70">
+            Concept · Development Stage · 0 Funding
+          </div>
+        </div>
+      </section>
+
+      {/* Series 02: Media Preview (Video) */}
+      <section className="px-4 lg:px-8 pt-12 pb-10 bg-background">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-8 border-b border-border/70 pb-4 flex items-end justify-between">
+            <div className="flex items-center gap-6">
+              <div className="text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
+              <div>
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-1">Media Preview</div>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif' }}>V I D E O  ·  P R E V I E W</h2>
+              </div>
+            </div>
+            <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="rounded-lg overflow-hidden border border-border bg-card"
+            >
+              <video
+                src="/Hailuo_Video_MAKE ALL THE MASK TO COME TOGE_447303804190720009.mp4"
+                autoPlay
+                muted
+                loop
+                controls
+                playsInline
+                className="w-full h-auto"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-4"
+            >
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif' }}>
+                M a s k &nbsp;  A s s e m b l y  &nbsp;  · &nbsp;  P r e v i e w
+              </h3>
+              <div className="h-px w-full bg-border" />
+              <p className="text-muted-foreground leading-relaxed">
+                A glimpse into the Mask Building sequence from Virtual Past Liberia. This short cut captures the
+                convergence of traditional artistry and digital reconstruction inside the Ancestral Grid.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                For best results, view with sound on. The clip will autoplay silently—use the controls to enable audio.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Document Sections */}
       <section className="py-20 px-4 lg:px-8 bg-background">
         <div className="max-w-6xl mx-auto space-y-24">
@@ -162,20 +245,22 @@ export default function VirtualPastLiberiaPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="grid md:grid-cols-2 gap-12 items-start"
+              className="grid md:grid-cols-2 gap-12 items-start pt-12 border-t border-border"
             >
               {/* Left: Number and Title */}
               <div className={index % 2 === 0 ? "order-1" : "order-2"}>
                 <div className="mb-8">
-                  <div className="text-7xl md:text-8xl font-bold text-foreground/30 mb-4">{section.number}</div>
-                  <h2 className="text-4xl font-bold text-foreground mb-4">{section.title}</h2>
-                  <p className="text-lg text-muted-foreground">{section.description}</p>
+                  <div className="text-7xl md:text-8xl font-bold text-foreground/30 mb-4 leading-none">{section.number}</div>
+                  <h2 className="text-4xl font-bold text-foreground mb-2 tracking-tight">{section.title}</h2>
+                  <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-mono">Section {section.number}</p>
+                  <p className="text-lg text-muted-foreground mt-4">{section.description}</p>
                 </div>
               </div>
 
               {/* Right: Content */}
               <div className={index % 2 === 0 ? "order-2" : "order-1"}>
                 <div className="bg-card border border-border rounded-lg p-8 space-y-4">
+                  <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground">Concept · Development Stage · 0 Funding</div>
                   <p className="text-foreground leading-relaxed whitespace-pre-line">{section.content}</p>
                   {section.image && (
                     <img
@@ -190,6 +275,7 @@ export default function VirtualPastLiberiaPage() {
           ))}
         </div>
       </section>
+
 
       {/* Floor Plans Section - 4 Column Grid */}
       <section className="py-20 px-4 lg:px-8 bg-card border-y border-border">

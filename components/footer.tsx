@@ -113,6 +113,14 @@ export function Footer() {
         </div>
         <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
           <p>&copy; 2025 HUIX-2099. All rights reserved. | Designed & Built in Monrovia, Liberia</p>
+          <p className="mt-1">Designed and Engineered by Victor E. Coleman</p>
+          <p className="mt-1">
+            <a href="mailto:huixtech2099@gmail.com" className="underline hover:text-foreground">huixtech2099@gmail.com</a>
+            {" · "}
+            <a href="tel:+231776800064" className="underline hover:text-foreground">+231776800064</a>
+            {" · "}
+            <a href="tel:+231770499140" className="underline hover:text-foreground">+231770499140</a>
+          </p>
         </div>
       </div>
     </footer>

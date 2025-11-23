@@ -47,27 +47,34 @@ export default function HUIXHorizenPage() {
 
       {/* Hero Section */}
       <section
-        className="relative h-screen w-full overflow-hidden bg-background flex items-center justify-center"
+        className="relative min-h-[70vh] md:h-screen w-full overflow-hidden bg-background flex items-center justify-center"
         style={{
           backgroundImage: `url('${
             theme === "dark"
               ? "/images/h-20-20u-20-20i-20-20x-20-20horizen-20black-20version.jpg"
               : "/images/h-20-20u-20-20i-20-20x-20-20horizen-20white-20version.jpg"
           }')`,
-          backgroundSize: "60%",
+          backgroundSize: "contain",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
         }}
       >
         <div className={`absolute inset-0 ${theme === "dark" ? "bg-black/50" : "bg-white/40"}`} />
 
-        {/* Left text */}
+        {/* Mobile centered copy */}
+        <div className="md:hidden relative z-10 px-4 text-center max-w-md mx-auto">
+          <p className="text-base text-muted-foreground leading-relaxed font-semibold">
+            Immersive AR and VR visualization platform transforming architectural and design projects into interactive 3D experiences
+            <DevBadge text="COMING SOON" />
+          </p>
+        </div>
+
+        {/* Left text (desktop) */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="absolute left-4 lg:left-12 top-1/2 -translate-y-1/2 z-10 max-w-sm"
+          className="hidden md:block absolute left-4 lg:left-12 top-1/2 -translate-y-1/2 z-10 max-w-sm"
         >
           <p className="text-base lg:text-lg text-muted-foreground leading-relaxed font-semibold">
             Immersive AR and VR visualization platform transforming architectural and design projects into interactive
@@ -76,12 +83,12 @@ export default function HUIXHorizenPage() {
           </p>
         </motion.div>
 
-        {/* Right text */}
+        {/* Right text (desktop) */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="absolute right-4 lg:right-12 top-1/2 -translate-y-1/2 z-10 max-w-sm"
+          className="hidden md:block absolute right-4 lg:right-12 top-1/2 -translate-y-1/2 z-10 max-w-sm"
         >
           <div className="text-sm lg:text-base text-muted-foreground space-y-4">
             <div>
@@ -105,6 +112,73 @@ export default function HUIXHorizenPage() {
         </motion.div>
       </section>
 
+      {/* Series Header */}
+      <section className="px-4 lg:px-8 pt-10 pb-6 bg-background border-b border-border">
+        <div className="max-w-6xl mx-auto flex items-end justify-between">
+          <div>
+            <div className="text-7xl md:text-8xl font-bold text-foreground/30 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mt-2" style={{ fontFamily: 'Mohican, sans-serif' }}>H U I X  -  H O R I Z E N</h1>
+          </div>
+          <div className="hidden md:block text-xs uppercase tracking-wide text-muted-foreground">
+            <span className="font-mono">Series / 01 · v1</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Funding status under header */}
+      <section className="px-4 lg:px-8 bg-background">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground py-2 border-b border-border/70">
+            Funding · Concept Stage · Experimental
+          </div>
+        </div>
+      </section>
+
+      {/* Series 02: Mission & Values */}
+      <section className="px-4 lg:px-8 pt-12 pb-10 bg-background">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-8 border-b border-border/70 pb-4 flex items-end justify-between">
+            <div className="flex items-center gap-6">
+              <div className="text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
+              <div>
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-1">Mission & Values</div>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif' }}>M I S S I O N  ·  V A L U E S</h2>
+              </div>
+            </div>
+            <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: 'I n n o v a t i o n', desc: 'Pushing the limits of real‑time AR/VR to visualize architecture and cities for Liberia and beyond.' },
+              { title: 'C r e a t i v i t y', desc: 'Blending design, storytelling, and engineering to make complex spaces clear and inspiring.' },
+              { title: 'I n t e g r i t y', desc: 'Transparent process, accurate models, and responsible data in every engagement.' },
+              { title: 'C o l l a b o r a t i o n', desc: 'Co‑creating with architects, communities, and partners across disciplines.' },
+              { title: 'E x c e l l e n c e', desc: 'High‑fidelity visualization, performance, and rigorous QA on every build.' },
+              { title: 'E m p o w e r m e n t', desc: 'Tools and training that enable Liberian creators—and the region—to build the future.' },
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.06 }}
+                className="group relative p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Value</div>
+                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+                </div>
+                <div className="h-px w-full bg-border mb-4" />
+                <h3 className="text-xl font-bold text-foreground mb-2" style={{ fontFamily: 'Mohican, sans-serif' }}>{item.title}</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Document Sections */}
       <section className="py-20 px-4 lg:px-8 bg-background">
         <div className="max-w-6xl mx-auto space-y-24">
@@ -114,20 +188,22 @@ export default function HUIXHorizenPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="grid md:grid-cols-2 gap-12 items-start"
+              className="grid md:grid-cols-2 gap-12 items-start pt-12 border-t border-border"
             >
               {/* Left: Number and Title */}
               <div className={index % 2 === 0 ? "order-1" : "order-2"}>
                 <div className="mb-8">
-                  <div className="text-7xl md:text-8xl font-bold text-foreground/30 mb-4">{section.number}</div>
-                  <h2 className="text-4xl font-bold text-foreground mb-4">{section.title}</h2>
-                  <p className="text-lg text-muted-foreground">{section.description}</p>
+                  <div className="text-7xl md:text-8xl font-bold text-foreground/30 mb-4 leading-none">{section.number}</div>
+                  <h2 className="text-4xl font-bold text-foreground mb-2 tracking-tight">{section.title}</h2>
+                  <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-mono">Section {section.number}</p>
+                  <p className="text-lg text-muted-foreground mt-4">{section.description}</p>
                 </div>
               </div>
 
               {/* Right: Content */}
               <div className={index % 2 === 0 ? "order-2" : "order-1"}>
                 <div className="bg-card border border-border rounded-lg p-8">
+                  <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-3">Funding · Concept Stage · Experimental</div>
                   <p className="text-foreground leading-relaxed whitespace-pre-line">{section.content}</p>
                 </div>
               </div>
@@ -158,3 +234,4 @@ export default function HUIXHorizenPage() {
     </>
   )
 }
+

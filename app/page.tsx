@@ -41,8 +41,8 @@ export default function Home() {
               <p className="text-sm text-muted-foreground mt-2">The studio and engineering company delivering advanced XR, AI and 3D software.</p>
             </div>
 
-            {/* Animated Wire (Desktop) */}
-            <div className="hidden md:flex items-center justify-center">
+            {/* Center Column (Desktop): Wire + Map + Counties */}
+            <div className="hidden md:flex flex-col items-center justify-center gap-2 -mt-6">
               <motion.svg
                 width="120"
                 height="8"
@@ -79,6 +79,16 @@ export default function Home() {
                   transition={{ duration: 0.7, ease: "easeOut" }}
                 />
               </motion.svg>
+              <div className="w-full flex justify-center py-2">
+                <video
+                  src="/ready.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-80 h-auto rounded-md"
+                />
+              </div>
             </div>
 
             {/* Node 2 */}
@@ -87,13 +97,14 @@ export default function Home() {
                 <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">System</div>
                 <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
               </div>
-              <div className="h-px w-full bg-border mb-4" />
+              <div className="h-px w-full bg-border mb-2" />
+              <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Funding · Concept Stage · Experimental</div>
               <div className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>H U I X - H O R I Z E N</div>
               <p className="text-sm text-muted-foreground mt-2">Our modular platform architecture and tools powering immersive products.</p>
             </div>
 
-            {/* Animated Wire (Mobile) */}
-            <div className="md:hidden flex items-center justify-center">
+            {/* Connector + Map + Counties (Mobile) */}
+            <div className="md:hidden flex flex-col items-center justify-center gap-2 -mt-4">
               <motion.svg
                 width="8"
                 height="36"
@@ -129,6 +140,16 @@ export default function Home() {
                   transition={{ duration: 0.7, ease: "easeOut" }}
                 />
               </motion.svg>
+              <div className="w-full flex justify-center py-2">
+                <video
+                  src="/ready.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-56 h-auto rounded-md"
+                />
+              </div>
             </div>
 
             {/* Node 3 */}
@@ -137,7 +158,8 @@ export default function Home() {
                 <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Product</div>
                 <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>03</div>
               </div>
-              <div className="h-px w-full bg-border mb-4" />
+              <div className="h-px w-full bg-border mb-2" />
+              <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Concept · Development Stage · 0 Funding</div>
               <div className="text-xl font-bold">Virtual Past Liberia</div>
               <p className="text-sm text-muted-foreground mt-2">A flagship immersive heritage experience built on HUIX-HORIZEN.</p>
             </div>
@@ -145,7 +167,50 @@ export default function Home() {
         </div>
       </section>
 
-      
+      {/* Series 02: Mission & Values (Home) */}
+      <section className="px-4 lg:px-8 pt-12 pb-10 bg-background">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-8 border-b border-border/70 pb-4 flex items-end justify-between">
+            <div className="flex items-center gap-6">
+              <div className="text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
+              <div>
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-1">Mission & Values</div>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif' }}>M I S S I O N  ·  V A L U E S</h2>
+              </div>
+            </div>
+            <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[/* eslint-disable @typescript-eslint/no-unused-vars */
+              { title: 'I n n o v a t i o n', desc: "Constantly challenging the boundaries of what's possible in technology" },
+              { title: 'C r e a t i v i t y', desc: 'Where art and science coexist in perfect harmony for extraordinary solutions' },
+              { title: 'I n t e g r i t y', desc: 'Operating with honesty, responsibility, and transparency always' },
+              { title: 'C o l l a b o r a t i o n', desc: 'True innovation happens through collective intelligence and teamwork' },
+              { title: 'E x c e l l e n c e', desc: 'Continuous improvement and technical mastery in every project' },
+              { title: 'E m p o w e r m e n t', desc: 'Inspiring the next generation of African innovators and leaders' },
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.06 }}
+                className="group relative p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Value</div>
+                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+                </div>
+                <div className="h-px w-full bg-border mb-4" />
+                <h3 className="text-xl font-bold text-foreground mb-2" style={{ fontFamily: 'Mohican, sans-serif' }}>{item.title}</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* About Section */}
       <section className="py-20 px-4 lg:px-8 bg-background">
