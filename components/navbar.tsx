@@ -58,7 +58,12 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2">
-            <div className="text-base sm:text-lg md:text-xl tracking-widest" style={{ fontFamily: 'Mohican, sans-serif', color: theme === 'dark' ? '#e5e5e5' : '#333333' }}>H U I X - 2 0 9 9</div>
+            <div
+              className="whitespace-nowrap flex-shrink-0 leading-none text-sm sm:text-base md:text-lg tracking-[0.18em] sm:tracking-[0.24em]"
+              style={{ fontFamily: 'Mohican, sans-serif', color: theme === 'dark' ? '#e5e5e5' : '#333333' }}
+            >
+              H U I X - 2 0 9 9
+            </div>
           </Link>
 
           {/* Desktop Nav Links */}

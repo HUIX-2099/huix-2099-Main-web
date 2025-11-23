@@ -47,69 +47,80 @@ export default function HUIXHorizenPage() {
 
       {/* Hero Section */}
       <section
-        className="relative min-h-[70vh] md:h-screen w-full overflow-hidden bg-background flex items-center justify-center"
+        className="relative min-h-[80vh] md:h-screen w-full overflow-hidden flex items-center justify-center"
         style={{
           backgroundImage: `url('${
             theme === "dark"
               ? "/images/h-20-20u-20-20i-20-20x-20-20horizen-20black-20version.jpg"
               : "/images/h-20-20u-20-20i-20-20x-20-20horizen-20white-20version.jpg"
           }')`,
-          backgroundSize: "contain",
+          backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className={`absolute inset-0 ${theme === "dark" ? "bg-black/50" : "bg-white/40"}`} />
+        <div className={`absolute inset-0 ${theme === "dark" ? "bg-black/65" : "bg-white/55"}`} />
 
-        {/* Mobile centered copy */}
-        <div className="md:hidden relative z-10 px-4 text-center max-w-md mx-auto">
-          <p className="text-base text-muted-foreground leading-relaxed font-semibold">
-            Immersive AR and VR visualization platform transforming architectural and design projects into interactive 3D experiences
-            <DevBadge text="COMING SOON" />
-          </p>
-        </div>
-
-        {/* Left text (desktop) */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="hidden md:block absolute left-4 lg:left-12 top-1/2 -translate-y-1/2 z-10 max-w-sm"
-        >
-          <p className="text-base lg:text-lg text-muted-foreground leading-relaxed font-semibold">
-            Immersive AR and VR visualization platform transforming architectural and design projects into interactive
-            3D experiences
-            <DevBadge text="COMING SOON" />
-          </p>
-        </motion.div>
-
-        {/* Right text (desktop) */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="hidden md:block absolute right-4 lg:right-12 top-1/2 -translate-y-1/2 z-10 max-w-sm"
-        >
-          <div className="text-sm lg:text-base text-muted-foreground space-y-4">
-            <div>
-              <p className="font-semibold text-foreground mb-3">Key Capabilities</p>
-              <ul className="space-y-2 text-xs">
-                <li className="flex items-start gap-2">
-                  <span className="text-foreground">→</span> Real-time 3D Rendering
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-foreground">→</span> Multi-user Collaboration
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-foreground">→</span> Advanced Asset Library
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-foreground">→</span> Cross-platform Support
-                </li>
-              </ul>
+        <div className="relative z-10 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="rounded-3xl bg-background/95 shadow-xl overflow-hidden px-7 py-8 md:px-10 md:py-10 lg:px-14 lg:py-12"
+          >
+            <div className="flex items-center justify-between gap-4 mb-8">
+              <div>
+                <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground">
+                  HUIX-HORIZEN · Platform
+                </p>
+                <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground/80 mt-1">
+                  Immersive AR / VR visualization
+                </p>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-24 h-12 sm:w-32 sm:h-16 md:w-40 md:h-20 rounded-2xl overflow-hidden bg-black/60">
+                  <img
+                    src={
+                      theme === "dark"
+                        ? "/images/h-20-20u-20-20i-20-20x-20-20horizen-20black-20version.jpg"
+                        : "/images/h-20-20u-20-20i-20-20x-20-20horizen-20white-20version.jpg"
+                    }
+                    alt="HUIX-HORIZEN hero preview"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="text-xs font-semibold text-muted-foreground flex items-center gap-2">
+                  <span>Status</span>
+                  <DevBadge text="COMING SOON" />
+                </div>
+              </div>
             </div>
-          </div>
-        </motion.div>
+
+            <div className="grid gap-10 md:gap-16 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] items-start">
+              {/* Left meta / description */}
+              <div className="space-y-6 max-w-sm text-sm text-muted-foreground">
+                <p className="leading-relaxed">
+                  HUIX-HORIZEN transforms architectural, design, and spatial projects into interactive AR and VR
+                  experiences, bridging the gap between concepts, 3D models, and real-world execution.
+                </p>
+                <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground/80">
+                  Built for architects, designers, and immersive teams.
+                </p>
+              </div>
+
+              {/* Right main title */}
+              <div className="space-y-4">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+                  Immersive visualization for the spaces and cities of tomorrow.
+                </h1>
+                <p className="text-sm sm:text-base text-muted-foreground max-w-xl">
+                  Real-time 3D rendering, multi-user collaboration, advanced asset libraries, and cross-platform support
+                  — all inside a single HUIX-2099 visualization layer.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Series Header */}
@@ -209,6 +220,30 @@ export default function HUIXHorizenPage() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* Orange Session-style Section */}
+      <section
+        className="py-20 px-4 lg:px-12"
+        style={{ backgroundColor: "#ff5a00" }}
+      >
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-10 text-black">
+          <div className="space-y-6">
+            <div className="text-3xl md:text-4xl font-semibold tracking-tight">01</div>
+            <div className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">
+              Before, during, and after
+              <br />
+              the HUIX-HORIZEN session.
+            </div>
+          </div>
+
+          <div className="text-sm md:text-base space-y-3 md:text-right max-w-xs md:max-w-sm text-black/80">
+            <p className="font-semibold text-black">Visualization Guidelines</p>
+            <p>
+              How teams prepare, collaborate, and review immersive AR/VR visualizations inside HUIX-HORIZEN.
+            </p>
+          </div>
         </div>
       </section>
 

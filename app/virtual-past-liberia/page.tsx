@@ -93,71 +93,92 @@ export default function VirtualPastLiberiaPage() {
 
       {/* Hero Section */}
       <section
-        className="relative min-h-[70vh] md:h-screen w-full overflow-hidden bg-background flex items-center justify-center"
+        className="relative min-h-[80vh] md:h-screen w-full overflow-hidden flex items-center justify-center"
         style={{
           backgroundImage: `url('${
             theme === "dark"
               ? "/images/virtual-20past-20liberia-20dark-20main-20version.jpg"
               : "/images/virtual-20past-20liberia-20white-20main-20version.jpg"
           }')`,
-          backgroundSize: "contain",
+          backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className={`absolute inset-0 ${theme === "dark" ? "bg-black/50" : "bg-white/40"}`} />
+        <div className={`absolute inset-0 ${theme === "dark" ? "bg-black/65" : "bg-white/55"}`} />
 
-        {/* Mobile centered copy */}
-        <div className="md:hidden relative z-10 px-4 text-center max-w-md mx-auto">
-          <p className="text-base text-muted-foreground leading-relaxed font-semibold">
-            A digital time bridge reviving Liberia's cultural heritage through immersive virtual reality and AI-powered storytelling
-            <DevBadge text="UNDER DEVELOPMENT" />
-          </p>
-        </div>
-
-        {/* Left text (desktop) */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="hidden md:block absolute left-4 lg:left-12 top-1/2 -translate-y-1/2 z-10 max-w-sm"
-        >
-          <p className="text-base lg:text-lg text-muted-foreground leading-relaxed font-semibold">
-            A digital time bridge reviving Liberia's cultural heritage through immersive virtual reality and AI-powered
-            storytelling
-            <DevBadge text="UNDER DEVELOPMENT" />
-          </p>
-        </motion.div>
-
-        {/* Right text - 16 Tribes info (desktop) */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="hidden md:block absolute right-4 lg:right-12 top-1/2 -translate-y-1/2 z-10 max-w-sm"
-        >
-          <div className="text-sm lg:text-base text-muted-foreground space-y-3">
-            <p className="font-semibold text-foreground mb-4">The 16 Tribes of Liberia</p>
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <span>• Kpelle</span>
-              <span>• Bassa</span>
-              <span>• Gola</span>
-              <span>• Kru</span>
-              <span>• Grebo</span>
-              <span>• Mandingo</span>
-              <span>• Vai</span>
-              <span>• Mende</span>
-              <span>• Kissi</span>
-              <span>• Fulani</span>
-              <span>• Dei</span>
-              <span>• Geh</span>
-              <span>• Gio</span>
-              <span>• Mano</span>
-              <span>• Lorma</span>
-              <span>• Belleh</span>
+        <div className="relative z-10 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="rounded-3xl bg-background/95 shadow-xl overflow-hidden px-6 py-8 md:px-10 md:py-12 lg:px-16 lg:py-14"
+          >
+            {/* Top row with label and small image thumbnail */}
+            <div className="flex items-center justify-between gap-4 mb-8">
+              <div>
+                <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground">
+                  Virtual Past Liberia · Project
+                </p>
+                <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground/80 mt-1">
+                  Last updated — 2025
+                </p>
+              </div>
+              <div className="w-24 h-12 sm:w-32 sm:h-16 md:w-40 md:h-20 rounded-2xl overflow-hidden bg-black/60">
+                <img
+                  src={
+                    theme === "dark"
+                      ? "/images/virtual-20past-20liberia-20dark-20main-20version.jpg"
+                      : "/images/virtual-20past-20liberia-20white-20main-20version.jpg"
+                  }
+                  alt="Virtual Past Liberia hero preview"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
-          </div>
-        </motion.div>
+
+            <div className="grid gap-10 md:gap-16 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] items-start">
+              {/* Left meta / description */}
+              <div className="space-y-6 max-w-sm text-sm text-muted-foreground">
+                <p className="leading-relaxed">
+                  A digital time bridge reviving Liberia's cultural heritage through immersive virtual reality, 3D
+                  visualization, and AI-powered storytelling.
+                  <span className="inline-block ml-2 align-middle">
+                    <DevBadge text="UNDER DEVELOPMENT" />
+                  </span>
+                </p>
+                <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground/80">
+                  Featuring The Ancestral Grid and the 16 tribes of Liberia.
+                </p>
+              </div>
+
+              {/* Right main title */}
+              <div className="space-y-4">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+                  Virtual Past Liberia is a living archive of ancestral memory in immersive space.
+                </h1>
+                <p className="text-sm sm:text-base text-muted-foreground max-w-xl">
+                  Walk through reconstructed cultural spaces, encounter the 16 tribes, and experience Liberia's stories as
+                  if you were there — past, present, and speculative futures woven together.
+                </p>
+              </div>
+            </div>
+
+            {/* Bottom preview image, echoing the sliding card in the reference */}
+            <div className="mt-10">
+              <div className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground mb-3">
+                01 · Visual frame from The Ancestral Grid
+              </div>
+              <div className="rounded-3xl overflow-hidden bg-black/80">
+                <img
+                  src="/images/generated-20image-20november-2006-2c-202025-20-206-17pm.png"
+                  alt="Virtual Past Liberia visual frame"
+                  className="w-full h-52 sm:h-64 md:h-72 object-cover"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Series Header */}
@@ -395,6 +416,30 @@ export default function VirtualPastLiberiaPage() {
             <p className="text-foreground leading-relaxed">
               "The Ancestral Grid represents the fusion of ancestral wisdom and digital innovation, preserving Liberia's
               cultural heritage through immersive technology for generations to come."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Orange Session-style Section */}
+      <section
+        className="py-20 px-4 lg:px-12"
+        style={{ backgroundColor: "#ff5a00" }}
+      >
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-10 text-black">
+          <div className="space-y-6">
+            <div className="text-3xl md:text-4xl font-semibold tracking-tight">01</div>
+            <div className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">
+              Before, during, and after
+              <br />
+              the virtual session.
+            </div>
+          </div>
+
+          <div className="text-sm md:text-base space-y-3 md:text-right max-w-xs md:max-w-sm text-black/80">
+            <p className="font-semibold text-black">Session Guidelines</p>
+            <p>
+              How visitors prepare, experience, and reflect on Virtual Past Liberia inside The Ancestral Grid.
             </p>
           </div>
         </div>
