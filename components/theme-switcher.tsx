@@ -1,26 +1,56 @@
 "use client"
 
 import { useTheme } from "./theme-provider"
-import { Moon, Sun } from "lucide-react"
+import { Moon, Sun, Monitor } from "lucide-react"
 
 export function ThemeSwitcher() {
-  const { theme, toggleTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
 
   return (
-    <button
-      onClick={toggleTheme}
-      className="relative inline-flex h-8 w-14 items-center rounded-full bg-muted transition-colors hover:bg-muted/80"
-      aria-label="Toggle theme"
-      suppressHydrationWarning
+    <div
+      className="relative inline-flex h-8 items-center rounded-full bg-muted p-1 gap-0.5"
+      role="radiogroup"
+      aria-label="Theme selector"
     >
-      <span
-        className="inline-flex h-7 w-7 transform items-center justify-center rounded-full bg-foreground text-background transition-transform"
-        style={{
-          transform: theme === "dark" ? "translateX(1.75rem)" : "translateX(0.25rem)",
-        }}
+      <button
+        onClick={() => setTheme("light")}
+        className={`inline-flex h-6 w-6 items-center justify-center rounded-full transition-all ${
+          theme === "light" 
+            ? "bg-foreground text-background" 
+            : "text-muted-foreground hover:text-foreground"
+        }`}
+        aria-label="Light theme"
+        aria-checked={theme === "light"}
+        role="radio"
       >
-        {theme === "dark" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-      </span>
-    </button>
+        <Sun className="h-3.5 w-3.5" />
+      </button>
+      <button
+        onClick={() => setTheme("system")}
+        className={`inline-flex h-6 w-6 items-center justify-center rounded-full transition-all ${
+          theme === "system" 
+            ? "bg-foreground text-background" 
+            : "text-muted-foreground hover:text-foreground"
+        }`}
+        aria-label="System theme"
+        aria-checked={theme === "system"}
+        role="radio"
+      >
+        <Monitor className="h-3.5 w-3.5" />
+      </button>
+      <button
+        onClick={() => setTheme("dark")}
+        className={`inline-flex h-6 w-6 items-center justify-center rounded-full transition-all ${
+          theme === "dark" 
+            ? "bg-foreground text-background" 
+            : "text-muted-foreground hover:text-foreground"
+        }`}
+        aria-label="Dark theme"
+        aria-checked={theme === "dark"}
+        role="radio"
+      >
+        <Moon className="h-3.5 w-3.5" />
+      </button>
+    </div>
   )
 }

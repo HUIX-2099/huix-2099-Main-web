@@ -19,12 +19,12 @@ export function HeroPrototype({
   className = "", 
   children 
 }: HeroPrototypeProps) {
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const [hasVideoError, setHasVideoError] = useState(false)
 
   const defaultImageSrc = 
-    theme === "dark"
+    resolvedTheme === "dark"
       ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HUIX%202099%20dark%20logo%20jpg-hsTGc84LzW8UXZuWwFFWi2KEDNl22K.jpg"
       : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HUIX%202099%20white%20logo%20jpg-l8PO2vmS2QGLye3u4EgPMgyDDxU3jy.jpg"
 
@@ -59,7 +59,7 @@ export function HeroPrototype({
                 onLoad={handleVideoLoad}
                 onError={handleVideoError}
               />
-              <div className={`absolute inset-0 ${theme === "dark" ? "bg-black/40" : "bg-white/30"}`} />
+              <div className={`absolute inset-0 ${resolvedTheme === "dark" ? "bg-black/40" : "bg-white/30"}`} />
             </>
           ) : (
             <>
@@ -75,7 +75,7 @@ export function HeroPrototype({
                 <source src={finalSrc} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <div className={`absolute inset-0 ${theme === "dark" ? "bg-black/40" : "bg-white/30"}`} />
+              <div className={`absolute inset-0 ${resolvedTheme === "dark" ? "bg-black/40" : "bg-white/30"}`} />
             </>
           )}
           {/* Fade in effect when video loads */}
@@ -95,7 +95,7 @@ export function HeroPrototype({
               backgroundImage: `url('${hasVideoError ? finalFallbackSrc : finalSrc}')`,
             }}
           />
-          <div className={`absolute inset-0 ${theme === "dark" ? "bg-black/30" : "bg-white/20"}`} />
+          <div className={`absolute inset-0 ${resolvedTheme === "dark" ? "bg-black/30" : "bg-white/20"}`} />
         </>
       )}
 

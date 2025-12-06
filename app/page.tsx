@@ -6,6 +6,7 @@ import { HeroSection } from "@/components/hero-section";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { CustomCursor } from "@/components/custom-cursor";
+import { ParallaxReveal, ParallaxImage, ParallaxText, ParallaxFloat, ParallaxStagger, ParallaxStaggerItem } from "@/components/parallax";
  
 
 export default function Home() {
@@ -18,28 +19,34 @@ export default function Home() {
       {/* Flow Diagram: Company -> System -> Product */}
       <section className="py-12 px-4 lg:px-8 bg-background">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8 border-b border-border/70 pb-4 flex items-end justify-between">
-            <div className="flex items-center gap-6">
-              <div className="text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
-              <div>
-                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-1">Overview</div>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground">System Flow</h2>
+          <ParallaxReveal direction="up">
+            <div className="mb-8 border-b border-border/70 pb-4 flex items-end justify-between">
+              <div className="flex items-center gap-6">
+                <ParallaxText speed={0.2} direction="up">
+                  <div className="text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
+                </ParallaxText>
+                <div>
+                  <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-1">Overview</div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">System Flow</h2>
+                </div>
               </div>
+              <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
             </div>
-            <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
-          </div>
+          </ParallaxReveal>
 
           <div className="relative grid grid-cols-1 md:grid-cols-3 items-start gap-6">
             {/* Node 1 */}
-            <div className="p-6 rounded-lg bg-card border border-border">
-              <div className="flex items-center justify-between mb-3">
-                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Company</div>
-                <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
+            <ParallaxReveal direction="left" delay={0}>
+              <div className="p-6 rounded-lg bg-card border border-border">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Company</div>
+                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
+                </div>
+                <div className="h-px w-full bg-border mb-4" />
+                <div className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>H U I X - 2 0 9 9</div>
+                <p className="text-sm text-muted-foreground mt-2">The studio and engineering company delivering advanced XR, AI and 3D software.</p>
               </div>
-              <div className="h-px w-full bg-border mb-4" />
-              <div className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>H U I X - 2 0 9 9</div>
-              <p className="text-sm text-muted-foreground mt-2">The studio and engineering company delivering advanced XR, AI and 3D software.</p>
-            </div>
+            </ParallaxReveal>
 
             {/* Center Column (Desktop): Wire + Map + Counties */}
             <div className="hidden md:flex flex-col items-center justify-center gap-2 -mt-6">
@@ -92,16 +99,18 @@ export default function Home() {
             </div>
 
             {/* Node 2 */}
-            <div className="p-6 rounded-lg bg-card border border-border">
-              <div className="flex items-center justify-between mb-3">
-                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">System</div>
-                <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
+            <ParallaxReveal direction="up" delay={0.1}>
+              <div className="p-6 rounded-lg bg-card border border-border">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">System</div>
+                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
+                </div>
+                <div className="h-px w-full bg-border mb-2" />
+                <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Funding · Concept Stage · Experimental</div>
+                <div className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>H U I X - H O R I Z E N</div>
+                <p className="text-sm text-muted-foreground mt-2">Our modular platform architecture and tools powering immersive products.</p>
               </div>
-              <div className="h-px w-full bg-border mb-2" />
-              <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Funding · Concept Stage · Experimental</div>
-              <div className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>H U I X - H O R I Z E N</div>
-              <p className="text-sm text-muted-foreground mt-2">Our modular platform architecture and tools powering immersive products.</p>
-            </div>
+            </ParallaxReveal>
 
             {/* Connector + Map + Counties (Mobile) */}
             <div className="md:hidden flex flex-col items-center justify-center gap-2 -mt-4">
@@ -153,16 +162,18 @@ export default function Home() {
             </div>
 
             {/* Node 3 */}
-            <div className="p-6 rounded-lg bg-card border border-border md:col-start-3">
-              <div className="flex items-center justify-between mb-3">
-                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Product</div>
-                <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>03</div>
+            <ParallaxReveal direction="right" delay={0.2} className="md:col-start-3">
+              <div className="p-6 rounded-lg bg-card border border-border">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Product</div>
+                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>03</div>
+                </div>
+                <div className="h-px w-full bg-border mb-2" />
+                <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Concept · Development Stage · 0 Funding</div>
+                <div className="text-xl font-bold">Virtual Past Liberia</div>
+                <p className="text-sm text-muted-foreground mt-2">A flagship immersive heritage experience built on HUIX-HORIZEN.</p>
               </div>
-              <div className="h-px w-full bg-border mb-2" />
-              <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Concept · Development Stage · 0 Funding</div>
-              <div className="text-xl font-bold">Virtual Past Liberia</div>
-              <p className="text-sm text-muted-foreground mt-2">A flagship immersive heritage experience built on HUIX-HORIZEN.</p>
-            </div>
+            </ParallaxReveal>
           </div>
         </div>
       </section>
@@ -170,18 +181,22 @@ export default function Home() {
       {/* Series 02: Mission & Values (Home) */}
       <section className="px-4 lg:px-8 pt-12 pb-10 bg-background">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8 border-b border-border/70 pb-4 flex items-end justify-between">
-            <div className="flex items-center gap-6">
-              <div className="text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
-              <div>
-                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-1">Mission & Values</div>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif' }}>M I S S I O N  ·  V A L U E S</h2>
+          <ParallaxReveal direction="up">
+            <div className="mb-8 border-b border-border/70 pb-4 flex items-end justify-between">
+              <div className="flex items-center gap-6">
+                <ParallaxText speed={0.2} direction="up">
+                  <div className="text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
+                </ParallaxText>
+                <div>
+                  <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-1">Mission & Values</div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif' }}>M I S S I O N  ·  V A L U E S</h2>
+                </div>
               </div>
+              <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
             </div>
-            <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
-          </div>
+          </ParallaxReveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ParallaxStagger className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[/* eslint-disable @typescript-eslint/no-unused-vars */
               { title: 'I n n o v a t i o n', desc: "Constantly challenging the boundaries of what's possible in technology" },
               { title: 'C r e a t i v i t y', desc: 'Where art and science coexist in perfect harmony for extraordinary solutions' },
@@ -190,81 +205,79 @@ export default function Home() {
               { title: 'E x c e l l e n c e', desc: 'Continuous improvement and technical mastery in every project' },
               { title: 'E m p o w e r m e n t', desc: 'Inspiring the next generation of African innovators and leaders' },
             ].map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.06 }}
-                className="group relative p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Value</div>
-                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>
-                    {String(index + 1).padStart(2, '0')}
+              <ParallaxStaggerItem key={item.title}>
+                <motion.div
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                  className="group relative p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all h-full"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Value</div>
+                    <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
                   </div>
-                </div>
-                <div className="h-px w-full bg-border mb-4" />
-                <h3 className="text-xl font-bold text-foreground mb-2" style={{ fontFamily: 'Mohican, sans-serif' }}>{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm">{item.desc}</p>
-              </motion.div>
+                  <div className="h-px w-full bg-border mb-4" />
+                  <h3 className="text-xl font-bold text-foreground mb-2" style={{ fontFamily: 'Mohican, sans-serif' }}>{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm">{item.desc}</p>
+                </motion.div>
+              </ParallaxStaggerItem>
             ))}
-          </div>
+          </ParallaxStagger>
         </div>
       </section>
 
       {/* About Section */}
       <section className="py-20 px-4 lg:px-8 bg-background">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="mb-12 grid lg:grid-cols-2 gap-12 items-center"
-          >
+          <div className="mb-12 grid lg:grid-cols-2 gap-12 items-center">
             {/* Left: Futuristic Number */}
-            <div className="text-8xl lg:text-9xl font-bold text-foreground/10">
-              01
-            </div>
+            <ParallaxText speed={0.4} direction="up">
+              <div className="text-8xl lg:text-9xl font-bold text-foreground/10">
+                01
+              </div>
+            </ParallaxText>
             
             {/* Right: Title and Description */}
-            <div className="relative">
-              <div className="relative inline-block">
-                <h2 
-                  className="text-4xl md:text-5xl font-bold text-foreground mb-6 cursor-pointer" 
-                  style={{ fontFamily: 'Mohican, sans-serif' }}
-                >
-                  A b o u t  &nbsp;&nbsp; H U I X - 2 0 9 9
-                </h2>
-                
-                {/* Hover Tooltip */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileHover={{ opacity: 1, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute left-0 top-full mt-2 text-sm text-muted-foreground whitespace-nowrap pointer-events-none"
-                >
-                  You should try click the about us button to learn more
-                </motion.div>
+            <ParallaxReveal direction="right" delay={0.1}>
+              <div className="relative">
+                <div className="relative inline-block">
+                  <h2 
+                    className="text-4xl md:text-5xl font-bold text-foreground mb-6 cursor-pointer" 
+                    style={{ fontFamily: 'Mohican, sans-serif' }}
+                  >
+                    A b o u t  &nbsp;&nbsp; H U I X - 2 0 9 9
+                  </h2>
+                  
+                  {/* Hover Tooltip */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    whileHover={{ opacity: 1, y: -5 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute left-0 top-full mt-2 text-sm text-muted-foreground whitespace-nowrap pointer-events-none"
+                  >
+                    You should try click the about us button to learn more
+                  </motion.div>
+                </div>
+                <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed mb-8">
+                  Founded in 2024, HUIX-2099 is a Liberia-based next-generation technology company pioneering the future of
+                  software development, 3D prototyping, and immersive digital engineering. We operate at the intersection of
+                  imagination and technology — where creative vision evolves into real-world innovation.
+                </p>
+                <Link href="/about">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-3 bg-foreground text-background rounded-lg font-semibold"
+                  >
+                    Learn More About Us
+                  </motion.button>
+                </Link>
               </div>
-              <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed mb-8">
-                Founded in 2024, HUIX-2099 is a Liberia-based next-generation technology company pioneering the future of
-                software development, 3D prototyping, and immersive digital engineering. We operate at the intersection of
-                imagination and technology — where creative vision evolves into real-world innovation.
-              </p>
-              <Link href="/about">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-3 bg-foreground text-background rounded-lg font-semibold"
-                >
-                  Learn More About Us
-                </motion.button>
-              </Link>
-            </div>
-          </motion.div>
+            </ParallaxReveal>
+          </div>
 
           {/* Services Grid - Document style with numbering */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ParallaxStagger className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { title: "Virtual Reality", desc: "Immersive digital environments for exploration and training" },
               { title: "AI & Machine Learning", desc: "Intelligent systems that learn and adapt" },
@@ -273,28 +286,26 @@ export default function Home() {
               { title: "3D Modeling", desc: "Stunning 3D models and visualizations" },
               { title: "UI/UX Design", desc: "Beautiful and intuitive user interfaces" },
             ].map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-                whileHover={{ y: -2 }}
-                className="group relative p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all"
-              >
-                {/* Meta row */}
-                <div className="flex items-center justify-between mb-3">
-                  <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Service</div>
-                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>
-                    {String(index + 1).padStart(2, '0')}
+              <ParallaxStaggerItem key={service.title}>
+                <motion.div
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                  className="group relative p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all h-full"
+                >
+                  {/* Meta row */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Service</div>
+                    <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
                   </div>
-                </div>
-                <div className="h-px w-full bg-border mb-4" />
-                <h3 className="text-xl font-bold text-foreground mb-2">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm">{service.desc}</p>
-                <div className="mt-4 text-xs text-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity">Read more →</div>
-              </motion.div>
+                  <div className="h-px w-full bg-border mb-4" />
+                  <h3 className="text-xl font-bold text-foreground mb-2">{service.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm">{service.desc}</p>
+                  <div className="mt-4 text-xs text-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity">Read more →</div>
+                </motion.div>
+              </ParallaxStaggerItem>
             ))}
-          </div>
+          </ParallaxStagger>
         </div>
       </section>
 

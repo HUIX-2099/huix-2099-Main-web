@@ -61,7 +61,7 @@ const statusColors = {
 }
 
 export function PrototypesShowcase() {
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const [selectedPrototype, setSelectedPrototype] = useState<Prototype | null>(null)
   const [filter, setFilter] = useState<string>("all")
   const [showModal, setShowModal] = useState(false)

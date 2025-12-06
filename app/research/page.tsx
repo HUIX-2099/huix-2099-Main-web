@@ -12,16 +12,33 @@ export default function ResearchPage() {
       <section className="py-20 px-4 bg-background">
         <div className="max-w-6xl mx-auto">
           {/* Series Header */}
-          <div className="mb-12 border-b border-border/70">
-            <div className="flex items-end justify-between pb-6">
+          <div className="mb-12">
+            <div className="h-[2px] w-24 bg-orange-500 mb-4" />
+            <div className="flex items-end justify-between pb-5 border-b border-border/70">
               <div className="flex items-center gap-6">
                 <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
                 <div>
-                  <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-2">Research</div>
+                  <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-[0.14em] mb-2">[01] Research · Doc</div>
                   <h1 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif' }}>R E S E A R C H</h1>
                 </div>
               </div>
-              <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 01 · v1</div>
+              <div className="hidden md:flex flex-col items-end gap-1">
+                <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-muted-foreground">Series / 01 · v1</div>
+                <div className="flex items-center gap-2 text-[10px] text-muted-foreground font-mono">
+                  <span>REV A</span>
+                  <span className="inline-block h-[1px] w-8 bg-border" />
+                  <span>CAT NO · RCH-01</span>
+                </div>
+              </div>
+            </div>
+            {/* Dot-matrix accent */}
+            <div className="mt-4 flex items-center gap-4">
+              <div className="grid grid-cols-8 gap-1">
+                {Array.from({ length: 24 }).map((_, i) => (
+                  <div key={i} className="h-1.5 w-1.5 rounded-full bg-foreground/20" />
+                ))}
+              </div>
+              <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-muted-foreground">Index · R‑01</div>
             </div>
           </div>
 
@@ -74,6 +91,105 @@ export default function ResearchPage() {
                 <p className="text-muted-foreground leading-relaxed text-sm">{item.desc}</p>
               </motion.a>
             ))}
+          </div>
+
+          {/* Medical Implications — Virtual Past Liberia */}
+          <div className="mt-16">
+            <div className="flex items-center justify-between mb-3">
+              <motion.h2 initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif' }}>
+                V i r t u a l  ·  P a s t  ·  L i b e r i a — Medical Implications
+              </motion.h2>
+              <div className="hidden md:block text-[10px] font-mono uppercase tracking-[0.12em] text-orange-500">[02] Health · Review</div>
+            </div>
+            <div className="h-[1px] w-full bg-border mb-6" />
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="border border-border rounded-lg p-5 bg-card">
+                <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">[+ ] Positives</div>
+                <ul className="list-disc pl-5 text-sm text-foreground space-y-2">
+                  <li>Health education via culturally grounded, immersive storytelling to improve retention.</li>
+                  <li>Remote wellness outreach using low-bandwidth XR modules for clinics and schools.</li>
+                  <li>Stress-reduction and mental health support through restorative historical spaces.</li>
+                  <li>Training scenarios for public-health responses and emergency drills.</li>
+                </ul>
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.08 }} className="border border-border rounded-lg p-5 bg-card">
+                <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">[− ] Negatives / Risks</div>
+                <ul className="list-disc pl-5 text-sm text-foreground space-y-2">
+                  <li>Motion sickness/eye strain from prolonged XR use without guidance.</li>
+                  <li>Access inequity if devices and connectivity are limited in rural areas.</li>
+                  <li>Potential cultural misinterpretation if historical content lacks community review.</li>
+                  <li>Data privacy concerns for user biometrics or learning analytics.</li>
+                </ul>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Two Key Impacts on Liberia */}
+          <div className="mt-12">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif' }}>Two Key Impacts on Liberia</h2>
+              <div className="hidden md:block text-[10px] font-mono uppercase tracking-[0.12em] text-orange-500">[03] Impact · Brief</div>
+            </div>
+            <div className="h-[1px] w-full bg-border mb-6" />
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="border border-border rounded-lg p-5 bg-card">
+                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif' }}>Economic & Creative Industries</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Catalyze local jobs in 3D, XR, and cultural content production. Enable micro-entrepreneurship
+                  around digital heritage, experiential tourism, and education partnerships.
+                </p>
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.08 }} className="border border-border rounded-lg p-5 bg-card">
+                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif' }}>Cultural Preservation & Education</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Preserve artifacts, architecture, and oral histories in accessible formats. Augment classrooms
+                  with interactive lessons that connect youth to heritage and STEM pathways.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Platform Perspectives */}
+          <div className="mt-12">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif' }}>Platform Perspectives</h2>
+              <div className="hidden md:block text-[10px] font-mono uppercase tracking-[0.12em] text-orange-500">[04] Platforms · Spec</div>
+            </div>
+            <div className="h-[1px] w-full bg-border mb-6" />
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="border border-border rounded-lg p-5 bg-card">
+                <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Platform</div>
+                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif' }}>H U I X  -  H O R I Z E N</h3>
+                <ul className="list-disc pl-5 text-sm text-foreground space-y-2">
+                  <li>Scalable modules for 3D scenes, avatars, and multi-user sessions.</li>
+                  <li>Supports research dashboards, consent flows, and privacy-first telemetry.</li>
+                  <li>Integrations for education partners and local content pipelines.</li>
+                </ul>
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.08 }} className="border border-border rounded-lg p-5 bg-card">
+                <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Program</div>
+                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif' }}>Virtual · Past · Liberia</h3>
+                <ul className="list-disc pl-5 text-sm text-foreground space-y-2">
+                  <li>Focus on historical reconstruction, community curation, and storytelling.</li>
+                  <li>Field-ready experiences optimized for low-spec devices and offline modes.</li>
+                  <li>Partnership model with museums, schools, and cultural custodians.</li>
+                </ul>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* ID Footer Strip */}
+          <div className="mt-16 border-t border-border pt-3 text-[10px] font-mono text-muted-foreground flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span> {new Date().getFullYear()}</span>
+              <span className="inline-block h-[1px] w-6 bg-border" />
+              <span>HUIX‑2099 · RCH</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span>IDX · 01–04</span>
+              <span className="inline-block h-[1px] w-6 bg-border" />
+              <span>REV A</span>
+            </div>
           </div>
         </div>
       </section>

@@ -6,13 +6,14 @@ import { useTheme } from "@/components/theme-provider"
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { Twitter, Instagram, Facebook, Youtube } from "lucide-react"
+import { ParallaxReveal, ParallaxText, ParallaxFloat } from "@/components/parallax"
 
 export default function ContactPage() {
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const [formData, setFormData] = useState({ name: "", email: "", message: "" })
 
   const logoUrl =
-    theme === "dark" ? "/images/huix-202099-20dark-20logo-20jpg.jpg" : "/images/huix-202099-20white-20logo-20jpg.jpg"
+    resolvedTheme === "dark" ? "/images/huix-202099-20dark-20logo-20jpg.jpg" : "/images/huix-202099-20white-20logo-20jpg.jpg"
 
   const socialLinks = [
     { icon: Twitter, url: "https://x.com/Huix2099", label: "Twitter" },
@@ -27,27 +28,28 @@ export default function ContactPage() {
 
       <section className="min-h-screen bg-background flex items-center">
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-8 py-20">
-          <div className="mb-12 border-b border-border/70">
-            <div className="flex items-end justify-between pb-6">
-              <div className="flex items-center gap-6">
-                <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>04</div>
-                <div>
-                  <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2">Contact</div>
-                  <h1 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>G E T  ·  I N  ·  T O U C H</h1>
+          <ParallaxReveal direction="up">
+            <div className="mb-12 border-b border-border/70">
+              <div className="flex items-end justify-between pb-6">
+                <div className="flex items-center gap-6">
+                  <ParallaxText speed={0.3} direction="up">
+                    <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>04</div>
+                  </ParallaxText>
+                  <div>
+                    <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2">Contact</div>
+                    <h1 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>G E T  ·  I N  ·  T O U C H</h1>
+                  </div>
                 </div>
+                <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 04 · v1</div>
               </div>
-              <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 04 · v1</div>
             </div>
-          </div>
+          </ParallaxReveal>
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Left: Logo & Company Info */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-col justify-center"
-            >
-              <img src={logoUrl || "/placeholder.svg"} alt="HUIX-2099" className="h-48 w-auto mb-8 object-contain" />
+            <ParallaxReveal direction="left">
+              <ParallaxFloat intensity={15}>
+                <img src={logoUrl || "/placeholder.svg"} alt="HUIX-2099" className="h-48 w-auto mb-8 object-contain" />
+              </ParallaxFloat>
               <div className="space-y-6">
                 <div>
                   <h2 className="text-3xl font-bold text-foreground mb-2">Get in Touch</h2>
@@ -94,15 +96,12 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </ParallaxReveal>
 
             {/* Right: Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-card border border-border rounded-lg p-8"
-            >
+            <ParallaxReveal direction="right" delay={0.1}>
+              <ParallaxFloat intensity={8}>
+                <div className="bg-card border border-border rounded-lg p-8">
               <form className="space-y-6">
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">Full Name</label>
@@ -155,7 +154,9 @@ export default function ContactPage() {
                   Send Message
                 </motion.button>
               </form>
-            </motion.div>
+                </div>
+              </ParallaxFloat>
+            </ParallaxReveal>
           </div>
         </div>
       </section>
