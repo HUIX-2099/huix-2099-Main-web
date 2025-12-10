@@ -5,158 +5,568 @@ import { Footer } from "@/components/footer"
 import { useTheme } from "@/components/theme-provider"
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { Twitter, Instagram, Facebook, Youtube } from "lucide-react"
-import { ParallaxReveal, ParallaxText, ParallaxFloat } from "@/components/parallax"
+import { Twitter, Instagram, Facebook, Youtube, Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle, ArrowUpRight } from "lucide-react"
+
+const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
 
 export default function ContactPage() {
   const { resolvedTheme } = useTheme()
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" })
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [isCardHovered, setIsCardHovered] = useState(false)
 
   const logoUrl =
     resolvedTheme === "dark" ? "/images/huix-202099-20dark-20logo-20jpg.jpg" : "/images/huix-202099-20white-20logo-20jpg.jpg"
 
   const socialLinks = [
-    { icon: Twitter, url: "https://x.com/Huix2099", label: "Twitter" },
+    { icon: Twitter, url: "https://x.com/Huix2099", label: "X / Twitter" },
     { icon: Instagram, url: "https://www.instagram.com/huix.2099/", label: "Instagram" },
     { icon: Facebook, url: "https://www.facebook.com/profile.php?id=61572485499528", label: "Facebook" },
     { icon: Youtube, url: "https://www.youtube.com/@HUIX-2099", label: "YouTube" },
   ]
 
+  const contactInfo = [
+    { icon: Mail, label: "Email", value: "huixtech2099@gmail.com", href: "mailto:huixtech2099@gmail.com" },
+    { icon: Phone, label: "Phone", value: "+231 776 800 064", href: "tel:+231776800064" },
+    { icon: Phone, label: "Alt Phone", value: "+231 770 499 140", href: "tel:+231770499140" },
+    { icon: MapPin, label: "Location", value: "Monrovia, Liberia", href: null },
+    { icon: Clock, label: "Hours", value: "Mon-Fri, 9AM-6PM WAT", href: null },
+  ]
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (response.ok && result.success) {
+        setSubmitStatus('success')
+        setFormData({ name: "", email: "", subject: "", message: "" })
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <>
       <Navbar />
 
-      <section className="min-h-screen bg-background flex items-center">
-        <div className="w-full max-w-7xl mx-auto px-4 lg:px-8 py-20">
-          <ParallaxReveal direction="up">
-            <div className="mb-12 border-b border-border/70">
-              <div className="flex items-end justify-between pb-6">
-                <div className="flex items-center gap-6">
-                  <ParallaxText speed={0.3} direction="up">
-                    <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>04</div>
-                  </ParallaxText>
-                  <div>
-                    <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2">Contact</div>
-                    <h1 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>G E T  ·  I N  ·  T O U C H</h1>
+      {/* Hero Section */}
+      <section className="border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+          {/* Top Meta Strip */}
+          <div 
+            className="flex items-center justify-between py-4 border-b border-border/50 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50"
+            style={{ fontFamily: monoFont }}
+          >
+            <div className="flex items-center gap-3">
+              <span>HUIX-2099</span>
+              <span className="h-px w-4 bg-border/50" />
+              <span>CONTACT</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span>CAT NO · CNT-001</span>
+              <span className="h-px w-4 bg-border/50" />
+              <span>CONNECT</span>
+            </div>
+          </div>
+
+          {/* Main Hero */}
+          <div className="py-12 lg:py-20">
+            <div className="grid lg:grid-cols-[280px_1fr] gap-12 items-start">
+              {/* Left - Large Letter */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-[160px] lg:text-[220px] font-bold leading-[0.75] text-foreground/[0.04] select-none"
+                style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}
+              >
+                C
+              </motion.div>
+
+              {/* Right - Content */}
+              <div className="flex flex-col justify-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                >
+                  <div 
+                    className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-4"
+                    style={{ fontFamily: monoFont }}
+                  >
+                    [04] GET IN TOUCH
                   </div>
-                </div>
-                <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 04 · v1</div>
+                  <h1 
+                    className="text-4xl lg:text-5xl font-bold mb-6"
+                    style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                  >
+                    CONTACT
+                  </h1>
+                  <div className="h-px w-20 bg-foreground/20 mb-6" />
+                  <p className="text-base text-muted-foreground leading-relaxed max-w-lg">
+                    Have a project in mind? Let's collaborate and bring your vision to life 
+                    with cutting-edge technology and innovative solutions.
+                  </p>
+                </motion.div>
               </div>
             </div>
-          </ParallaxReveal>
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Left: Logo & Company Info */}
-            <ParallaxReveal direction="left">
-              <ParallaxFloat intensity={15}>
-                <img src={logoUrl || "/placeholder.svg"} alt="HUIX-2099" className="h-48 w-auto mb-8 object-contain" />
-              </ParallaxFloat>
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-3xl font-bold text-foreground mb-2">Get in Touch</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Have a project in mind? Let's collaborate and bring your vision to life with cutting-edge technology
-                    and innovative solutions.
-                  </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Cardholder Section */}
+      <section className="py-12 bg-[#202020]">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            {/* Card Design */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="cursor-pointer"
+              onMouseEnter={() => setIsCardHovered(true)}
+              onMouseLeave={() => setIsCardHovered(false)}
+            >
+              <div className="relative w-full max-w-[360px] h-[280px] mx-auto">
+                {/* Hidden Info */}
+                <div className={`absolute inset-x-3 top-0 bottom-6 rounded-xl bg-neutral-950 p-4 transition-opacity duration-300 ${isCardHovered ? 'opacity-100' : 'opacity-0'}`}>
+                  <div className="text-[9px] text-neutral-500 uppercase tracking-wider mb-3" style={{ fontFamily: monoFont }}>
+                    Contact Info
+                  </div>
+                  <div className="space-y-2 text-[10px] text-neutral-400" style={{ fontFamily: monoFont }}>
+                    <div className="flex justify-between"><span>Email</span><span className="text-neutral-300">huixtech2099@gmail.com</span></div>
+                    <div className="flex justify-between"><span>Phone</span><span className="text-neutral-300">+231 776 800 064</span></div>
+                    <div className="flex justify-between"><span>Location</span><span className="text-neutral-300">Monrovia, LBR</span></div>
+                    <div className="flex justify-between"><span>Response</span><span className="text-green-400">24-48 hrs</span></div>
+                    <div className="flex justify-between"><span>Status</span><span className="text-green-400">Open</span></div>
+                  </div>
+                  <div className="absolute bottom-4 left-4 right-4 pt-3 border-t border-neutral-800">
+                    <div className="text-[8px] text-neutral-600" style={{ fontFamily: monoFont }}>
+                      HUIX-2099 · Contact Center
+                    </div>
+                  </div>
                 </div>
 
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-sm font-semibold text-muted-foreground uppercase mb-1">Email</h3>
-                    <p className="text-foreground">huixtech2099@gmail.com</p>
+                {/* Wallet Body */}
+                <div 
+                  className={`absolute inset-0 rounded-xl transition-transform duration-300 ${isCardHovered ? '-translate-y-4' : ''}`}
+                  style={{ backgroundColor: '#1a1a1a', boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }}
+                />
+
+                {/* Gray Card */}
+                <div 
+                  className={`absolute -top-6 left-3 right-3 h-20 rounded-lg transition-transform duration-300 ${isCardHovered ? '-translate-y-6' : ''}`}
+                  style={{ backgroundColor: '#2a2a2a' }}
+                >
+                  <div className="absolute top-2 left-3 text-[8px] text-neutral-500" style={{ fontFamily: monoFont }}>
+                    <div>SN-CNT-2024</div>
+                    <div>REV-A1</div>
+                    <div>COM-LBR-001</div>
                   </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-muted-foreground uppercase mb-1">Phone</h3>
-                    <p className="text-foreground">+231776800064</p>
-                    <p className="text-foreground">+231770499140</p>
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 text-[8px] text-neutral-500" style={{ fontFamily: monoFont }}>
+                    ○ OPEN
                   </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-muted-foreground uppercase mb-1">Location</h3>
-                    <p className="text-foreground">Monrovia, Liberia</p>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-muted-foreground uppercase mb-1">Business Hours</h3>
-                    <p className="text-foreground">Monday - Friday, 9AM - 6PM WAT</p>
+                  <div className="absolute top-1 right-3 text-right" style={{ fontFamily: monoFont }}>
+                    <div className="text-lg font-bold text-neutral-400">24</div>
+                    <div className="text-lg font-bold text-neutral-500">HRS</div>
                   </div>
                 </div>
 
-                <div className="space-y-2 pt-6 border-t border-border">
-                  <h3 className="text-sm font-semibold text-muted-foreground uppercase mb-3">Follow Us</h3>
-                  <div className="flex gap-4">
+                {/* Green Accent Card */}
+                <div 
+                  className={`absolute top-3 left-3 right-3 bottom-6 rounded-lg transition-transform duration-300 ${isCardHovered ? '-translate-y-5' : ''}`}
+                  style={{ backgroundColor: '#22c55e' }}
+                >
+                  <div 
+                    className="absolute -bottom-px left-1/2 -translate-x-1/2 w-20 h-10 rounded-t-full"
+                    style={{ backgroundColor: '#1a1a1a' }}
+                  />
+                  <div className="relative p-4">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-black/40" />
+                      <span className="text-[7px] text-black/50" style={{ fontFamily: monoFont }}>© HUIX 2025</span>
+                    </div>
+                    <div className="text-4xl font-bold text-black leading-none tracking-[0.1em]" style={{ fontFamily: 'Mohican, sans-serif' }}>
+                      GET IN
+                    </div>
+                    <div className="text-3xl font-bold text-black leading-none tracking-[0.08em]" style={{ fontFamily: 'Mohican, sans-serif' }}>
+                      TOUCH
+                    </div>
+                    <div className="absolute top-4 right-4 text-right text-[7px] text-black/60" style={{ fontFamily: monoFont }}>
+                      <div>EMAIL · CALL</div>
+                      <div>CONNECT</div>
+                      <div className="mt-1">v1.0</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Accent Tab */}
+                <div 
+                  className={`absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-10 rounded-r-sm transition-transform duration-300 ${isCardHovered ? '-translate-y-8' : '-translate-y-1/2'}`}
+                  style={{ backgroundColor: '#22c55e' }} 
+                />
+
+                {/* Keychain */}
+                <div className={`absolute -right-12 top-1/3 transition-transform duration-300 ${isCardHovered ? '-translate-y-3' : ''}`}>
+                  <div className="w-3 h-6 bg-neutral-700 rounded-sm" />
+                  <div className="w-2 h-12 bg-neutral-800 rounded-sm mx-auto" />
+                  <div className="w-6 h-6 border-[3px] border-neutral-600 rounded-full mx-auto -mt-1" />
+                </div>
+              </div>
+              <div className="text-center mt-4">
+                <span className="text-[9px] text-neutral-500 uppercase tracking-wider" style={{ fontFamily: monoFont }}>
+                  {isCardHovered ? 'Release to close' : 'Hover to reveal'}
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Info */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-white"
+            >
+              <div className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-3" style={{ fontFamily: monoFont }}>
+                Connect · Collaborate
+              </div>
+              <h2 
+                className="text-3xl lg:text-4xl font-bold mb-4 tracking-wide"
+                style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+              >
+                LET'S TALK
+              </h2>
+              <p className="text-neutral-400 text-sm leading-relaxed mb-6 max-w-md">
+                Ready to start your next project? We're here to help bring your ideas to life. 
+                Reach out and let's create something extraordinary together.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { label: "RESPONSE", value: "24-48h" },
+                  { label: "TIMEZONE", value: "WAT" },
+                  { label: "STATUS", value: "OPEN" },
+                ].map((stat) => (
+                  <div key={stat.label} className="px-3 py-2 bg-neutral-800/50 border border-neutral-700 text-[10px]" style={{ fontFamily: monoFont }}>
+                    <span className="text-neutral-500">{stat.label}:</span>{' '}
+                    <span className="text-green-400">{stat.value}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Contact Section */}
+      <section className="py-16 lg:py-24 px-4 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="flex items-center gap-6 mb-12">
+            <div 
+              className="text-[100px] lg:text-[140px] font-bold leading-none text-foreground/[0.03]"
+              style={{ fontFamily: 'Mohican, sans-serif' }}
+            >
+              02
+            </div>
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-2" style={{ fontFamily: monoFont }}>
+                REACH OUT
+              </div>
+              <h2 
+                className="text-2xl lg:text-3xl font-bold"
+                style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+              >
+                SEND A MESSAGE
+              </h2>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-[1fr_400px] gap-12 lg:gap-16">
+            {/* Left: Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-card border border-border p-6 lg:p-8">
+                <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground" style={{ fontFamily: monoFont }}>
+                    Contact Form
+                  </div>
+                  <div className="text-[9px] text-muted-foreground/50" style={{ fontFamily: monoFont }}>
+                    * Required fields
+                  </div>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label 
+                        className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-2"
+                        style={{ fontFamily: monoFont }}
+                      >
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Your name"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder-muted-foreground/50 focus:outline-none focus:border-foreground/50 transition-colors text-sm"
+                        style={{ fontFamily: monoFont }}
+                      />
+                    </div>
+
+                    <div>
+                      <label 
+                        className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-2"
+                        style={{ fontFamily: monoFont }}
+                      >
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="your@email.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder-muted-foreground/50 focus:outline-none focus:border-foreground/50 transition-colors text-sm"
+                        style={{ fontFamily: monoFont }}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label 
+                      className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-2"
+                      style={{ fontFamily: monoFont }}
+                    >
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Project inquiry, collaboration, etc."
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder-muted-foreground/50 focus:outline-none focus:border-foreground/50 transition-colors text-sm"
+                      style={{ fontFamily: monoFont }}
+                    />
+                  </div>
+
+                  <div>
+                    <label 
+                      className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-2"
+                      style={{ fontFamily: monoFont }}
+                    >
+                      Message *
+                    </label>
+                    <textarea
+                      required
+                      placeholder="Tell us about your project, idea, or question..."
+                      rows={6}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder-muted-foreground/50 focus:outline-none focus:border-foreground/50 transition-colors resize-none text-sm"
+                      style={{ fontFamily: monoFont }}
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="flex items-center justify-between pt-4">
+                    <div className="text-[9px] text-muted-foreground/50" style={{ fontFamily: monoFont }}>
+                      Sends directly to HUIX
+                    </div>
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="group px-6 py-3 bg-foreground text-background text-[11px] uppercase tracking-wider flex items-center gap-3 hover:bg-foreground/90 transition-all disabled:opacity-50"
+                      style={{ fontFamily: monoFont }}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <Send className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                        </>
+                      )}
+                    </motion.button>
+                  </div>
+
+                  {/* Status Messages */}
+                  {submitStatus === 'success' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-2 p-4 bg-green-500/10 border border-green-500/30 text-green-600"
+                    >
+                      <CheckCircle className="w-5 h-5" />
+                      <span className="text-sm">Message sent successfully! We'll get back to you within 24-48 hours.</span>
+                    </motion.div>
+                  )}
+
+                  {submitStatus === 'error' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-2 p-4 bg-red-500/10 border border-red-500/30 text-red-600"
+                    >
+                      <AlertCircle className="w-5 h-5" />
+                      <span className="text-sm">Something went wrong. Please try again or email us directly.</span>
+                    </motion.div>
+                  )}
+                </form>
+              </div>
+            </motion.div>
+
+            {/* Right: Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              {/* Contact Details */}
+              <div className="border border-border">
+                <div className="px-5 py-3 bg-card/50 border-b border-border">
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground" style={{ fontFamily: monoFont }}>
+                    Contact Details
+                  </div>
+                </div>
+                <div className="divide-y divide-border/50">
+                  {contactInfo.map((item, index) => (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: index * 0.05 }}
+                      viewport={{ once: true }}
+                      className="p-4 hover:bg-card/30 transition-colors"
+                    >
+                      {item.href ? (
+                        <a href={item.href} className="flex items-start gap-3 group">
+                          <item.icon className="w-4 h-4 text-muted-foreground/50 mt-0.5" />
+                          <div className="flex-1">
+                            <div className="text-[9px] uppercase tracking-wider text-muted-foreground/50 mb-1" style={{ fontFamily: monoFont }}>
+                              {item.label}
+                            </div>
+                            <div className="text-sm text-foreground group-hover:text-foreground/80 transition-colors">
+                              {item.value}
+                            </div>
+                          </div>
+                          <ArrowUpRight className="w-3 h-3 text-muted-foreground/30 group-hover:text-foreground transition-colors" />
+                        </a>
+                      ) : (
+                        <div className="flex items-start gap-3">
+                          <item.icon className="w-4 h-4 text-muted-foreground/50 mt-0.5" />
+                          <div className="flex-1">
+                            <div className="text-[9px] uppercase tracking-wider text-muted-foreground/50 mb-1" style={{ fontFamily: monoFont }}>
+                              {item.label}
+                            </div>
+                            <div className="text-sm text-foreground">
+                              {item.value}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Social Links */}
+              <div className="border border-border">
+                <div className="px-5 py-3 bg-card/50 border-b border-border">
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground" style={{ fontFamily: monoFont }}>
+                    Follow Us
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="grid grid-cols-2 gap-3">
                     {socialLinks.map((social) => (
                       <a
                         key={social.label}
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 hover:bg-secondary rounded-lg transition-colors"
+                        className="group flex items-center gap-3 p-3 border border-border/50 hover:border-foreground/30 hover:bg-card/50 transition-all"
                       >
-                        <social.icon className="h-5 w-5" />
+                        <social.icon className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground group-hover:text-foreground transition-colors" style={{ fontFamily: monoFont }}>
+                          {social.label}
+                        </span>
                       </a>
                     ))}
                   </div>
                 </div>
               </div>
-            </ParallaxReveal>
 
-            {/* Right: Contact Form */}
-            <ParallaxReveal direction="right" delay={0.1}>
-              <ParallaxFloat intensity={8}>
-                <div className="bg-card border border-border rounded-lg p-8">
-              <form className="space-y-6">
-                <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Full Name</label>
-                  <input
-                    type="text"
-                    placeholder="Your name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors"
-                  />
+              {/* Quick Response */}
+              <div className="border border-border p-5 bg-card/30">
+                <div className="flex items-start gap-3 mb-4">
+                  <div className="w-2 h-2 rounded-full bg-green-500 mt-1.5 animate-pulse" />
+                  <div>
+                    <div className="text-sm font-medium mb-1">Quick Response</div>
+                    <div className="text-[10px] text-muted-foreground" style={{ fontFamily: monoFont }}>
+                      We typically respond within 24-48 hours
+                    </div>
+                  </div>
                 </div>
+                <div className="h-px bg-border mb-4" />
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  For urgent inquiries, feel free to call us directly during business hours.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
-                <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Email Address</label>
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Subject</label>
-                  <input
-                    type="text"
-                    placeholder="Project inquiry"
-                    className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Message</label>
-                  <textarea
-                    placeholder="Tell us about your project..."
-                    rows={6}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors resize-none"
-                  />
-                </div>
-
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  className="w-full px-6 py-3 bg-foreground text-background rounded-lg font-semibold hover:opacity-90 transition-opacity"
-                >
-                  Send Message
-                </motion.button>
-              </form>
-                </div>
-              </ParallaxFloat>
-            </ParallaxReveal>
+      {/* Bottom Meta Strip */}
+      <section className="border-t border-border py-6 px-4 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between text-[9px] uppercase tracking-[0.15em] text-muted-foreground/40" style={{ fontFamily: monoFont }}>
+            <div className="flex items-center gap-6">
+              <span>HUIX-2099</span>
+              <span className="inline-block h-px w-6 bg-border" />
+              <span>CAT NO · CNT-001</span>
+            </div>
+            <div className="flex items-center gap-6">
+              <span>REV A</span>
+              <span className="inline-block h-px w-6 bg-border" />
+              <span>2025</span>
+              <span className="inline-block h-px w-6 bg-border" />
+              <span>CONTACT</span>
+            </div>
           </div>
         </div>
       </section>

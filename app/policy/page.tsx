@@ -13,10 +13,10 @@ export default function PolicyPage() {
           <div className="mb-12 border-b border-border/70">
             <div className="flex items-end justify-between pb-6">
               <div className="flex items-center gap-6">
-                <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>05</div>
+                <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>05</div>
                 <div>
                   <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2">Policy</div>
-                  <h1 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>P R I V A C Y  ·  P O L I C Y</h1>
+                  <h1 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.2em' }}>PRIVACY · POLICY</h1>
                 </div>
               </div>
               <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 05 · v1</div>

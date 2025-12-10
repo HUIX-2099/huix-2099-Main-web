@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Mohican display font - only use for uppercase display text */
 @font-face {
   font-family: 'Mohican';
   src: url('/font/Mohican.ttf') format('truetype');
@@ -12,39 +13,39 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
-  --card: #f8f8f8;
-  --card-foreground: #000000;
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+  --card: #f5f5f5;
+  --card-foreground: #0a0a0a;
   --popover: #ffffff;
-  --popover-foreground: #000000;
-  --primary: #000000;
-  --primary-foreground: #ffffff;
-  --secondary: #f0f0f0;
-  --secondary-foreground: #000000;
-  --muted: #e5e5e5;
-  --muted-foreground: #666666;
+  --popover-foreground: #0a0a0a;
+  --primary: #0a0a0a;
+  --primary-foreground: #fafafa;
+  --secondary: #ebebeb;
+  --secondary-foreground: #0a0a0a;
+  --muted: #e0e0e0;
+  --muted-foreground: #404040;
   --accent: #0a0a0a;
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: #e0e0e0;
+  --accent-foreground: #fafafa;
+  --destructive: #dc2626;
+  --destructive-foreground: #fafafa;
+  --border: #d4d4d4;
   --input: #ffffff;
-  --ring: #000000;
-  --chart-1: #000000;
-  --chart-2: #333333;
-  --chart-3: #666666;
-  --chart-4: #999999;
-  --chart-5: #cccccc;
+  --ring: #0a0a0a;
+  --chart-1: #0a0a0a;
+  --chart-2: #262626;
+  --chart-3: #525252;
+  --chart-4: #737373;
+  --chart-5: #a3a3a3;
   --radius: 0.625rem;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #000000;
-  --sidebar-primary: #000000;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f0f0f0;
-  --sidebar-accent-foreground: #000000;
-  --sidebar-border: #e0e0e0;
-  --sidebar-ring: #000000;
+  --sidebar: #fafafa;
+  --sidebar-foreground: #0a0a0a;
+  --sidebar-primary: #0a0a0a;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #ebebeb;
+  --sidebar-accent-foreground: #0a0a0a;
+  --sidebar-border: #d4d4d4;
+  --sidebar-ring: #0a0a0a;
 }
 
 .dark {
@@ -83,8 +84,8 @@
 }
 
 @theme inline {
-  --font-sans: "Inter", "Inter Fallback", system-ui, -apple-system;
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -129,7 +130,13 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
   }
+  /* Ensure all text elements use system fonts by default */
+  p, span, a, li, td, th, label, input, textarea, button, h1, h2, h3, h4, h5, h6, div {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  /* Only apply Mohican when explicitly set via inline style */
 }
 
 /* Smooth scroll */

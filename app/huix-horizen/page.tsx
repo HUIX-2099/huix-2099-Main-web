@@ -8,6 +8,7 @@ import { useTheme } from "@/components/theme-provider"
 import { ParallaxReveal, ParallaxText } from "@/components/parallax"
 import { ArrowRight, ArrowUpRight, ArrowDown } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function HUIXHorizenPage() {
   const { resolvedTheme } = useTheme()
@@ -22,12 +23,12 @@ export default function HUIXHorizenPage() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   const features = [
-    { id: "01", title: "Real-time Rendering", desc: "60fps visualization with dynamic lighting", meta: "RTX-ON" },
-    { id: "02", title: "Multi-layer Design", desc: "Stack architectural layers for views", meta: "LAYER-∞" },
-    { id: "03", title: "Collaborative VR", desc: "Multiple users in shared spaces", meta: "SYNC-MU" },
-    { id: "04", title: "Edge Computing", desc: "Low-latency instant feedback", meta: "EDGE-01" },
-    { id: "05", title: "Cross-platform", desc: "Quest, Vive, PSVR, mobile AR", meta: "XR-ALL" },
-    { id: "06", title: "Instant Deploy", desc: "One-click publishing", meta: "DEPLOY" },
+    { id: "01", title: "Real-time Rendering", desc: "60fps architectural walkthroughs with physically based lighting so teams and clients see design intent exactly as modeled.", meta: "RTX-ON" },
+    { id: "02", title: "Multi-layer Design", desc: "Toggle structure, MEP, interiors, and landscape as independent layers to review coordination without exporting new sets.", meta: "LAYER-∞" },
+    { id: "03", title: "Collaborative VR", desc: "Architects, consultants, and clients join the same room—voice, pointers, markups, and saved viewpoints stay in sync.", meta: "SYNC-MU" },
+    { id: "04", title: "Edge Computing", desc: "Adaptive streaming keeps fidelity high while phones and headsets stay responsive during design reviews on-site.", meta: "EDGE-01" },
+    { id: "05", title: "Cross-platform", desc: "Quest, Vive, PSVR, desktop, tablet, and mobile WebXR so every client can experience the project on the device they already have.", meta: "XR-ALL" },
+    { id: "06", title: "Instant Deploy", desc: "Publish a build from HUIX-HORIZEN with one click—share a link, pin a QR, or hand off to field teams for live feedback.", meta: "DEPLOY" },
   ]
 
   const specs = [
@@ -86,7 +87,7 @@ export default function HUIXHorizenPage() {
           <div className="max-w-7xl mx-auto px-4 lg:px-8">
             <div className="flex items-center justify-between h-12 text-[9px] uppercase tracking-[0.2em] text-muted-foreground/60" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
               <div className="flex items-center gap-4">
-                <span>HUIX-HORIZEN</span>
+                <span className="tracking-[0.3em]">HUIX-HORIZEN</span>
                 <span className="hidden sm:inline-block h-px w-6 bg-border/50" />
                 <span className="hidden sm:inline">AR/VR PLATFORM</span>
               </div>
@@ -105,7 +106,7 @@ export default function HUIXHorizenPage() {
           style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "40%"]), opacity: heroOpacity }}
         >
           <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center py-24">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center py-24">
               
               {/* Left Panel */}
               <motion.div
@@ -117,7 +118,7 @@ export default function HUIXHorizenPage() {
                 <div className="flex items-start gap-4">
                   <div 
                     className="text-[80px] md:text-[100px] font-bold leading-none text-foreground/[0.08]"
-                    style={{ fontFamily: 'Mohican, sans-serif' }}
+                    style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
                   >
                     01
                   </div>
@@ -129,7 +130,7 @@ export default function HUIXHorizenPage() {
                   </div>
                   <h1 
                     className="text-3xl md:text-4xl font-bold text-foreground"
-                    style={{ fontFamily: 'Mohican, sans-serif' }}
+                    style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.15em' }}
                   >
                     HUIX-<br />HORIZEN
                   </h1>
@@ -147,26 +148,6 @@ export default function HUIXHorizenPage() {
                 </div>
               </motion.div>
 
-              {/* Center */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2, duration: 1 }}
-                className="hidden lg:flex items-center justify-center relative"
-              >
-                <div className="absolute top-0 left-0 w-16 h-16 border-l border-t border-foreground/10" />
-                <div className="absolute top-0 right-0 w-16 h-16 border-r border-t border-foreground/10" />
-                <div className="absolute bottom-0 left-0 w-16 h-16 border-l border-b border-foreground/10" />
-                <div className="absolute bottom-0 right-0 w-16 h-16 border-r border-b border-foreground/10" />
-                
-                <div className="text-center">
-                  <div className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground/30 mb-2" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
-                    HUIX-HORIZEN
-                  </div>
-                  <div className="w-24 h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
-                </div>
-              </motion.div>
-
               {/* Right Panel */}
               <motion.div
                 initial={{ opacity: 0, x: 40 }}
@@ -177,7 +158,7 @@ export default function HUIXHorizenPage() {
                 <div className="flex items-start justify-end gap-4">
                   <div 
                     className="text-[80px] md:text-[100px] font-bold leading-none text-foreground/[0.08]"
-                    style={{ fontFamily: 'Mohican, sans-serif' }}
+                    style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
                   >
                     02
                   </div>
@@ -249,7 +230,7 @@ export default function HUIXHorizenPage() {
               </motion.div>
 
               <div className="hidden md:flex items-center gap-4 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/40" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
-                <span>HUIX-HORIZEN</span>
+                <span>H UIX-HORIZEN</span>
                 <span className="h-px w-6 bg-border/30" />
                 <span>p. 01</span>
               </div>
@@ -291,7 +272,7 @@ export default function HUIXHorizenPage() {
               <ParallaxText speed={0.15} direction="up">
                 <div 
                   className="text-[140px] md:text-[180px] font-bold leading-[0.8] text-foreground/[0.06]"
-                  style={{ fontFamily: 'Mohican, sans-serif' }}
+                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
                 >
                   02
                 </div>
@@ -302,7 +283,7 @@ export default function HUIXHorizenPage() {
                 <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
                   CAPABILITIES
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: 'Mohican, sans-serif' }}>
+                <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>
                   Features
                 </h2>
               </div>
@@ -313,98 +294,197 @@ export default function HUIXHorizenPage() {
           </div>
 
           {/* Features Index */}
-          <div className="grid lg:grid-cols-[300px_1fr] gap-16">
-            <div />
-            <div className="space-y-0">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={feature.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                  className="grid grid-cols-[50px_1fr_100px] gap-6 py-5 border-b border-border/50 hover:bg-card/30 transition-colors group"
-                >
-                  <div className="text-[11px] text-muted-foreground/40" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
-                    [{feature.id}]
-                  </div>
-                  <div>
-                    <div className="font-medium mb-1">{feature.title}</div>
-                    <div className="text-sm text-muted-foreground">{feature.desc}</div>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-[9px] uppercase tracking-[0.1em] text-muted-foreground/50 group-hover:text-muted-foreground transition-colors" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
-                      {feature.meta}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
+          <div className="grid lg:grid-cols-[260px_1fr] gap-12">
+            <div className="space-y-4">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                Document · Capabilities
+              </div>
+              <div className="border-l-2 border-foreground/20 pl-5 space-y-2">
+                <div className="text-[32px] font-bold leading-none text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.3em' }}>
+                  HUIX · HORIZEN
+                </div>
+                <div className="text-sm text-muted-foreground leading-relaxed">
+                  How architects and urban designers move from model to client-ready XR. HUIX-HORIZEN keeps the design source alive while pushing to VR headsets and mobile WebXR so every stakeholder can step inside the work without installs.
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center justify-between border-b border-border pb-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                <span>02 · Capabilities</span>
+                <span>Features · 6 items</span>
+              </div>
+
+              <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+                <p>
+                  HUIX-HORIZEN is built for architects who need to walk clients through spatial ideas fast. Start with your design file, layer structure and interiors, and deploy an interactive scene that plays on a headset in the studio or a phone in the field. Clients tap a link or scan a QR to join—no installs, no friction—while your team controls views, layers, and markups in real time.
+                </p>
+                <p>
+                  The platform keeps rendering quality high through adaptive streaming and edge compute, so every perspective, sun study, and material swap lands with intent. Collaboration is native: invite consultants, capture notes, and keep a running trail of decisions anchored to the model. When you are ready to share, publish once and reuse across reviews, pitches, and site walks.
+                </p>
+              </div>
+
+              <div className="border border-border/60 bg-card/40 divide-y divide-border/60">
+                {features.map((feature, index) => (
+                  <motion.div
+                    key={feature.id}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.06 }}
+                    viewport={{ once: true }}
+                    className="grid grid-cols-[70px_1fr_140px] gap-6 px-5 py-4 hover:bg-background/60 transition-colors"
+                  >
+                    <div className="text-[11px] text-muted-foreground/50" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                      [{feature.id}]
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-base font-semibold tracking-tight">{feature.title}</div>
+                      <div className="text-sm text-muted-foreground leading-relaxed">{feature.desc}</div>
+                    </div>
+                    <div className="flex items-center justify-end">
+                      <span className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/60 border border-border px-3 py-1 rounded-full" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                        {feature.meta}
+                      </span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Orange Accent Section - "Before During After" Style */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: "#ff5a00" }}>
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 py-24 lg:py-32">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24">
-            {/* Left - Big Number + Title */}
-            <div className="text-black">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                <div 
-                  className="text-[100px] md:text-[140px] lg:text-[180px] font-bold leading-[0.85] opacity-30"
-                  style={{ fontFamily: 'Mohican, sans-serif' }}
-                >
-                  01
+      {/* Cardholder Design Section */}
+      <section className="relative py-8 bg-[#202020]">
+        <div className="flex items-center justify-center">
+          {/* Cardholder Visual */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="relative w-[420px] h-[340px] group cursor-pointer"
+          >
+            {/* Hidden Info - Revealed on hover */}
+            <div className="absolute inset-x-4 top-0 bottom-8 rounded-xl bg-neutral-950 p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="text-[10px] text-neutral-500 uppercase tracking-wider mb-3" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                HUIX-HORIZEN · System Info
+              </div>
+              <div className="space-y-2 text-[11px] text-neutral-400" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                <div className="flex justify-between"><span>Platform</span><span className="text-neutral-300">XR Visualization</span></div>
+                <div className="flex justify-between"><span>Version</span><span className="text-neutral-300">2.0.99</span></div>
+                <div className="flex justify-between"><span>Render Engine</span><span className="text-neutral-300">WebGL 2.0</span></div>
+                <div className="flex justify-between"><span>Max FPS</span><span className="text-neutral-300">90Hz</span></div>
+                <div className="flex justify-between"><span>Spatial Audio</span><span className="text-[#ff5a00]">Enabled</span></div>
+                <div className="flex justify-between"><span>Hand Tracking</span><span className="text-[#ff5a00]">Active</span></div>
+              </div>
+              <div className="absolute bottom-5 left-5 right-5 pt-3 border-t border-neutral-800">
+                <div className="text-[9px] text-neutral-600" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                  Licensed to HUIX-2099 TECH · Monrovia, Liberia
                 </div>
-                <h2 
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] -mt-8"
-                  style={{ fontFamily: 'Mohican, sans-serif' }}
-                >
-                  the<br />session
-                </h2>
-              </motion.div>
+              </div>
             </div>
 
-            {/* Right - Before/During/After */}
-            <div className="flex flex-col justify-center">
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="space-y-2 text-right"
-              >
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-black" style={{ fontFamily: 'Mohican, sans-serif' }}>
-                  Before
-                </div>
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-black/40" style={{ fontFamily: 'Mohican, sans-serif' }}>
-                  During
-                </div>
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-black/40" style={{ fontFamily: 'Mohican, sans-serif' }}>
-                  After
-                </div>
-              </motion.div>
-            </div>
-          </div>
+            {/* Main Wallet Body */}
+            <motion.div 
+              initial={{ scale: 0.95 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="absolute inset-0 rounded-xl transition-transform duration-300 group-hover:-translate-y-4"
+              style={{ 
+                backgroundColor: '#1a1a1a',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.6)'
+              }}
+            />
 
-          {/* Bottom Row */}
-          <div className="mt-16 pt-6 border-t border-black/20 flex items-center justify-between text-black" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
-            <div className="text-[10px] uppercase tracking-[0.15em] opacity-60">
-              Visualization Guidelines
+            {/* Gray Card - Peeking from top */}
+            <motion.div 
+              initial={{ y: -20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="absolute -top-8 left-4 right-4 h-28 rounded-lg transition-transform duration-300 group-hover:-translate-y-8"
+              style={{ backgroundColor: '#2a2a2a' }}
+            >
+              <div className="absolute top-3 left-4 text-[9px] text-neutral-500" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                <div>SN-HRZ-2099</div>
+                <div>REV-A3</div>
+                <div className="mt-1">LIC 53698-LBR</div>
+              </div>
+              <div className="absolute top-3 left-1/2 -translate-x-1/2 text-[9px] text-neutral-500" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                ○ XR READY
+              </div>
+              <div className="absolute top-2 right-4 text-right" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                <div className="text-2xl font-bold text-neutral-400 tracking-wider">2099</div>
+                <div className="text-2xl font-bold text-neutral-500 tracking-wide">HORIZEN</div>
+              </div>
+            </motion.div>
+
+            {/* Orange Card */}
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="absolute top-4 left-4 right-4 bottom-8 rounded-lg transition-transform duration-300 group-hover:-translate-y-6"
+              style={{ backgroundColor: '#ff5a00' }}
+            >
+              {/* Semi-circular cutout */}
+              <div 
+                className="absolute -bottom-px left-1/2 -translate-x-1/2 w-28 h-14 rounded-t-full"
+                style={{ backgroundColor: '#1a1a1a' }}
+              />
+              
+              <div className="relative p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-2 h-2 rounded-full bg-black/40" />
+                  <span className="text-[9px] text-black/50" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                    © HUIX 2025
+                  </span>
+                </div>
+                <div className="text-5xl font-bold text-black leading-none tracking-[0.15em]" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>
+                  HUIX
+                </div>
+                <div className="text-4xl font-bold text-black leading-none tracking-[0.1em]" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>
+                  HORIZEN
+                </div>
+                <div className="absolute top-5 right-5 text-right text-[9px] text-black/60" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                  <div>VR · AR · XR</div>
+                  <div>ARCH-VIZ</div>
+                  <div className="mt-1">v2.0</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Orange Tab */}
+            <motion.div 
+              initial={{ x: -10, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-12 rounded-r-sm transition-transform duration-300 group-hover:-translate-y-6" 
+              style={{ backgroundColor: '#ff5a00' }} 
+            />
+
+            {/* Keychain */}
+            <motion.div 
+              initial={{ x: 20, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              viewport={{ once: true }}
+              className="absolute -right-16 top-1/3 transition-transform duration-300 group-hover:-translate-y-4"
+            >
+              <div className="w-4 h-8 bg-neutral-700 rounded-sm" />
+              <div className="w-3 h-16 bg-neutral-800 rounded-sm mx-auto" />
+              <div className="w-8 h-8 border-4 border-neutral-600 rounded-full mx-auto -mt-1" />
+            </motion.div>
+
+            {/* Hover hint */}
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-[9px] text-neutral-600 opacity-60 group-hover:opacity-0 transition-opacity" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+              Hover to reveal
             </div>
-            <div className="flex items-center gap-6">
-              <span className="text-[10px] uppercase tracking-[0.15em] opacity-60 border border-black/30 px-3 py-1">
-                Table of contents
-              </span>
-              <span className="text-[10px] uppercase tracking-[0.15em] opacity-60">
-                9
-              </span>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -417,14 +497,14 @@ export default function HUIXHorizenPage() {
               <ParallaxText speed={0.15} direction="up">
                 <div 
                   className="text-[140px] md:text-[180px] font-bold leading-[0.8] text-foreground/[0.06]"
-                  style={{ fontFamily: 'Mohican, sans-serif' }}
+                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
                 >
                   03
                 </div>
               </ParallaxText>
               <div className="mt-8" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
                 <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">INFRASTRUCTURE</div>
-                <h2 className="text-2xl font-bold" style={{ fontFamily: 'Mohican, sans-serif' }}>
+                <h2 className="text-2xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>
                   Tech Stack
                 </h2>
               </div>
@@ -481,7 +561,7 @@ export default function HUIXHorizenPage() {
               <ParallaxText speed={0.15} direction="up">
                 <div 
                   className="text-[140px] md:text-[180px] font-bold leading-[0.8] text-foreground/[0.06]"
-                  style={{ fontFamily: 'Mohican, sans-serif' }}
+                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
                 >
                   04
                 </div>
@@ -491,7 +571,7 @@ export default function HUIXHorizenPage() {
               <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
                 APPLICATIONS
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-8" style={{ fontFamily: 'Mohican, sans-serif' }}>
+              <h2 className="text-3xl md:text-4xl font-bold mb-8" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>
                 Use Cases
               </h2>
               
@@ -534,14 +614,14 @@ export default function HUIXHorizenPage() {
             <div>
               <div 
                 className="text-[80px] md:text-[100px] font-bold leading-[0.8] text-foreground/[0.06]"
-                style={{ fontFamily: 'Mohican, sans-serif' }}
+                style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
               >
                 →
               </div>
             </div>
             <div>
               <ParallaxReveal direction="up">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'Mohican, sans-serif' }}>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>
                   Hello.
                 </h2>
                 <p className="text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed">

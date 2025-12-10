@@ -16,10 +16,10 @@ export default function ResearchPage() {
             <div className="h-[2px] w-24 bg-orange-500 mb-4" />
             <div className="flex items-end justify-between pb-5 border-b border-border/70">
               <div className="flex items-center gap-6">
-                <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
+                <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>01</div>
                 <div>
                   <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-[0.14em] mb-2">[01] Research · Doc</div>
-                  <h1 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif' }}>R E S E A R C H</h1>
+                  <h1 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.25em' }}>RESEARCH</h1>
                 </div>
               </div>
               <div className="hidden md:flex flex-col items-end gap-1">
@@ -45,7 +45,7 @@ export default function ResearchPage() {
           {/* Overview */}
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-              <h2 className="text-xl font-bold mb-2" style={{ fontFamily: 'Mohican, sans-serif' }}>Mission</h2>
+              <h2 className="text-xl font-bold mb-2" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>Mission</h2>
               <p className="text-muted-foreground leading-relaxed">
                 We conduct research in 3D technology and invention—advancing real‑time visualization, spatial computing,
                 and interactive systems that empower creators across Liberia and beyond.
@@ -67,7 +67,7 @@ export default function ResearchPage() {
           {/* Projects/Initiatives */}
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { title: 'H U I X  -  H O R I Z E N', meta: 'Platform · Experimental', desc: 'Modular XR platform for spatial visualization and collaboration.', href: '/huix-horizen' },
+              { title: 'HUIX-HORIZEN', meta: 'Platform · Experimental', desc: 'Modular XR platform for spatial visualization and collaboration.', href: '/huix-horizen' },
               { title: 'V i r t u a l  ·  P a s t  ·  L i b e r i a', meta: 'Concept · 0 Funding', desc: 'Immersive cultural reconstruction and architectural storytelling.', href: '/virtual-past-liberia' },
               { title: 'P r o t o t y p e s', meta: 'R&D', desc: 'Explorations in 3D interaction, shaders, and tools.', href: '/prototypes' },
             ].map((item, index) => (
@@ -81,12 +81,12 @@ export default function ResearchPage() {
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Initiative</div>
-                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>
+                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>
                     {String(index + 1).padStart(2, '0')}
                   </div>
                 </div>
                 <div className="h-px w-full bg-border mb-4" />
-                <h3 className="text-xl font-bold text-foreground mb-1" style={{ fontFamily: 'Mohican, sans-serif' }}>{item.title}</h3>
+                <h3 className="text-xl font-bold text-foreground mb-1" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>{item.title}</h3>
                 <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">{item.meta}</div>
                 <p className="text-muted-foreground leading-relaxed text-sm">{item.desc}</p>
               </motion.a>
@@ -96,7 +96,7 @@ export default function ResearchPage() {
           {/* Medical Implications — Virtual Past Liberia */}
           <div className="mt-16">
             <div className="flex items-center justify-between mb-3">
-              <motion.h2 initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif' }}>
+              <motion.h2 initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>
                 V i r t u a l  ·  P a s t  ·  L i b e r i a — Medical Implications
               </motion.h2>
               <div className="hidden md:block text-[10px] font-mono uppercase tracking-[0.12em] text-orange-500">[02] Health · Review</div>
@@ -127,20 +127,20 @@ export default function ResearchPage() {
           {/* Two Key Impacts on Liberia */}
           <div className="mt-12">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif' }}>Two Key Impacts on Liberia</h2>
+              <h2 className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>Two Key Impacts on Liberia</h2>
               <div className="hidden md:block text-[10px] font-mono uppercase tracking-[0.12em] text-orange-500">[03] Impact · Brief</div>
             </div>
             <div className="h-[1px] w-full bg-border mb-6" />
             <div className="grid md:grid-cols-2 gap-6">
               <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="border border-border rounded-lg p-5 bg-card">
-                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif' }}>Economic & Creative Industries</h3>
+                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>Economic & Creative Industries</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Catalyze local jobs in 3D, XR, and cultural content production. Enable micro-entrepreneurship
                   around digital heritage, experiential tourism, and education partnerships.
                 </p>
               </motion.div>
               <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.08 }} className="border border-border rounded-lg p-5 bg-card">
-                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif' }}>Cultural Preservation & Education</h3>
+                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>Cultural Preservation & Education</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Preserve artifacts, architecture, and oral histories in accessible formats. Augment classrooms
                   with interactive lessons that connect youth to heritage and STEM pathways.
@@ -152,14 +152,14 @@ export default function ResearchPage() {
           {/* Platform Perspectives */}
           <div className="mt-12">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif' }}>Platform Perspectives</h2>
+              <h2 className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>Platform Perspectives</h2>
               <div className="hidden md:block text-[10px] font-mono uppercase tracking-[0.12em] text-orange-500">[04] Platforms · Spec</div>
             </div>
             <div className="h-[1px] w-full bg-border mb-6" />
             <div className="grid md:grid-cols-2 gap-6">
               <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="border border-border rounded-lg p-5 bg-card">
                 <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Platform</div>
-                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif' }}>H U I X  -  H O R I Z E N</h3>
+                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.15em' }}>HUIX-HORIZEN</h3>
                 <ul className="list-disc pl-5 text-sm text-foreground space-y-2">
                   <li>Scalable modules for 3D scenes, avatars, and multi-user sessions.</li>
                   <li>Supports research dashboards, consent flows, and privacy-first telemetry.</li>
@@ -168,7 +168,7 @@ export default function ResearchPage() {
               </motion.div>
               <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.08 }} className="border border-border rounded-lg p-5 bg-card">
                 <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Program</div>
-                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif' }}>Virtual · Past · Liberia</h3>
+                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>Virtual · Past · Liberia</h3>
                 <ul className="list-disc pl-5 text-sm text-foreground space-y-2">
                   <li>Focus on historical reconstruction, community curation, and storytelling.</li>
                   <li>Field-ready experiences optimized for low-spec devices and offline modes.</li>

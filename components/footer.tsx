@@ -15,8 +15,11 @@ export function Footer() {
     { icon: Youtube, url: "https://www.youtube.com/@HUIX-2099", label: "YouTube" },
   ]
 
+  const sansFont = 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
+
   return (
-    <footer className="py-16 px-4 lg:px-8 bg-card border-t border-border">
+    <footer className="py-16 px-4 lg:px-8 bg-card border-t border-border" style={{ fontFamily: sansFont }}>
       <div className="max-w-7xl mx-auto">
         {/* Series Header */}
         <ParallaxReveal direction="up">
@@ -24,7 +27,7 @@ export function Footer() {
             <div className="flex items-end justify-between pb-6">
               <div className="flex items-center gap-6">
                 <ParallaxText speed={0.2} direction="up">
-                  <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
+                  <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>01</div>
                 </ParallaxText>
                 <div>
                   <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2">Footer</div>

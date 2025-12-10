@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 import { useTheme } from "./theme-provider"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
@@ -9,23 +9,30 @@ import { ArrowRight, ArrowDown } from "lucide-react"
 export function HeroSection() {
   const { resolvedTheme } = useTheme()
   const sectionRef = useRef<HTMLElement>(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"]
   })
 
+  // Use a stable default for SSR, then switch to actual theme on client
+  const isDark = mounted ? resolvedTheme === "dark" : false
+
   // Parallax transforms
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15])
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [resolvedTheme === "dark" ? 0.2 : 0.1, 0.8])
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [isDark ? 0.2 : 0.1, 0.8])
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"])
   const contentOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0])
 
-  const bgImage =
-    resolvedTheme === "dark"
-      ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HUIX%202099%20dark%20logo%20jpg-hsTGc84LzW8UXZuWwFFWi2KEDNl22K.jpg"
-      : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HUIX%202099%20white%20logo%20jpg-l8PO2vmS2QGLye3u4EgPMgyDDxU3jy.jpg"
+  const bgImage = isDark
+    ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HUIX%202099%20dark%20logo%20jpg-hsTGc84LzW8UXZuWwFFWi2KEDNl22K.jpg"
+    : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HUIX%202099%20white%20logo%20jpg-l8PO2vmS2QGLye3u4EgPMgyDDxU3jy.jpg"
 
   const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
 
@@ -38,7 +45,7 @@ export function HeroSection() {
       <div 
         className="absolute inset-0 opacity-[0.02] z-[1]"
         style={{
-          backgroundImage: `linear-gradient(${resolvedTheme === 'dark' ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)'} 1px, transparent 1px), linear-gradient(90deg, ${resolvedTheme === 'dark' ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)'} 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(${isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)'} 1px, transparent 1px), linear-gradient(90deg, ${isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)'} 1px, transparent 1px)`,
           backgroundSize: '80px 80px'
         }}
       />
@@ -58,7 +65,7 @@ export function HeroSection() {
       
       {/* Gradient Overlay */}
       <motion.div 
-        className={`absolute inset-0 z-[3] ${resolvedTheme === "dark" ? "bg-black" : "bg-white"}`}
+        className={`absolute inset-0 z-[3] ${isDark ? "bg-black" : "bg-white"}`}
         style={{ opacity: overlayOpacity }}
       />
 
@@ -104,9 +111,9 @@ export function HeroSection() {
               <div className="flex items-start gap-4">
                 <div 
                   className="text-[80px] md:text-[100px] font-bold leading-none text-foreground/[0.08]"
-                  style={{ fontFamily: 'Mohican, sans-serif' }}
+                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
                 >
-                  01
+                  0 1
                 </div>
               </div>
 
@@ -131,7 +138,7 @@ export function HeroSection() {
                     >
                       <span 
                         className="text-2xl md:text-3xl font-bold text-foreground"
-                        style={{ fontFamily: 'Mohican, sans-serif' }}
+                        style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
                       >
                         {item.letter}
                       </span>
@@ -146,7 +153,7 @@ export function HeroSection() {
               {/* Meta Info */}
               <div className="pt-4 space-y-3" style={{ fontFamily: monoFont }}>
                 <div className="flex items-center gap-3 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50">
-                  <span>[01]</span>
+                  <span>[0 1]</span>
                   <span className="h-px flex-1 bg-border/30" />
                   <span>DEF</span>
                 </div>
@@ -189,9 +196,9 @@ export function HeroSection() {
               <div className="flex items-start justify-end gap-4">
                 <div 
                   className="text-[80px] md:text-[100px] font-bold leading-none text-foreground/[0.08]"
-                  style={{ fontFamily: 'Mohican, sans-serif' }}
+                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
                 >
-                  02
+                  0 2
                 </div>
               </div>
 
@@ -202,9 +209,9 @@ export function HeroSection() {
                 </div>
                 <h3 
                   className="text-2xl md:text-3xl font-bold text-foreground"
-                  style={{ fontFamily: 'Mohican, sans-serif' }}
+                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
                 >
-                  Building<br />Digital Worlds
+                  B u i l d i n g<br />D i g i t a l &nbsp; W o r l d s
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   VR, XR, AR, AI, and 3D visualization merged into one living ecosystem. We build universes powered by next-generation technology.
@@ -240,7 +247,7 @@ export function HeroSection() {
                 <div className="flex items-center justify-end gap-3 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50">
                   <span>VIS</span>
                   <span className="h-px w-12 bg-border/30" />
-                  <span>[02]</span>
+                  <span>[0 2]</span>
                 </div>
               </div>
             </motion.div>
@@ -272,7 +279,7 @@ export function HeroSection() {
             <div className="hidden md:flex items-center gap-4 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/40" style={{ fontFamily: monoFont }}>
               <span>HOME</span>
               <span className="h-px w-6 bg-border/30" />
-              <span>p. 01</span>
+              <span>p. 0 1</span>
             </div>
 
             {/* Right - Tech Stack */}

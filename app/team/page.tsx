@@ -17,10 +17,10 @@ export default function TeamPage() {
           <div className="mb-12 border-b border-border/70">
             <div className="flex items-end justify-between pb-6">
               <div className="flex items-center gap-6">
-                <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
+                <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>01</div>
                 <div>
                   <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-2">Team</div>
-                  <h1 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif' }}>T E A M</h1>
+                  <h1 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.25em' }}>TEAM</h1>
                 </div>
               </div>
               <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 01 · v1</div>
@@ -46,10 +46,10 @@ export default function TeamPage() {
             >
               <div className="flex items-center justify-between">
                 <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Founder</div>
-                <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
+                <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>01</div>
               </div>
               <div className="h-px w-full bg-border" />
-              <h2 className="text-3xl font-bold" style={{ fontFamily: 'Mohican, sans-serif' }}>V i c t o r  ·  E d e t  ·  C o l e m a n</h2>
+              <h2 className="text-3xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.15em' }}>Victor · Edet · Coleman</h2>
               <p className="text-muted-foreground">3D Software Engineer · Founder of HUIX-2099</p>
 
               {/* Spec Panel */}
