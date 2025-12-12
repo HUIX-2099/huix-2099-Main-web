@@ -203,8 +203,8 @@ export function Navbar() {
               <div className="flex items-center gap-2">
                 <div className="text-[10px] text-muted-foreground tracking-[0.12em] opacity-60" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>[00]</div>
                 <div
-                  className="whitespace-nowrap leading-none text-sm sm:text-base tracking-[0.2em] font-bold group-hover:tracking-[0.25em] transition-all duration-300"
-                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                  className="whitespace-nowrap leading-none text-sm sm:text-base font-bold transition-all duration-300"
+                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.15em' }}
                 >
                   HUIX-2099
                 </div>

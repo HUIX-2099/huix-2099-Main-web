@@ -111,9 +111,9 @@ export function HeroSection() {
               <div className="flex items-start gap-4">
                 <div 
                   className="text-[80px] md:text-[100px] font-bold leading-none text-foreground/[0.08]"
-                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                  style={{ fontFamily: 'Mohican, sans-serif' }}
                 >
-                  0 1
+                  01
                 </div>
               </div>
 
@@ -137,8 +137,8 @@ export function HeroSection() {
                       className="flex items-baseline gap-3"
                     >
                       <span 
-                        className="text-2xl md:text-3xl font-bold text-foreground"
-                        style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                        className="text-2xl md:text-3xl font-bold text-foreground tracking-[0.1em]"
+                        style={{ fontFamily: 'Mohican, sans-serif' }}
                       >
                         {item.letter}
                       </span>
@@ -195,10 +195,10 @@ export function HeroSection() {
               {/* Section Number */}
               <div className="flex items-start justify-end gap-4">
                 <div 
-                  className="text-[80px] md:text-[100px] font-bold leading-none text-foreground/[0.08]"
+                  className="text-[80px] md:text-[100px] font-bold leading-none text-foreground/[0.1em]"
                   style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
                 >
-                  0 2
+                  02
                 </div>
               </div>
 
@@ -208,10 +208,10 @@ export function HeroSection() {
                   UNIFIED REALITY
                 </div>
                 <h3 
-                  className="text-2xl md:text-3xl font-bold text-foreground"
-                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                  className="text-2xl md:text-3xl font-bold text-foreground tracking-[0.1em]"
+                  style={{ fontFamily: 'Mohican, sans-serif' }}
                 >
-                  B u i l d i n g<br />D i g i t a l &nbsp; W o r l d s
+                  Building<br />Digital Worlds
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   VR, XR, AR, AI, and 3D visualization merged into one living ecosystem. We build universes powered by next-generation technology.

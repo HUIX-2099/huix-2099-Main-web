@@ -23,7 +23,7 @@ export default function Home() {
             <div className="mb-8 border-b border-border/70 pb-4 flex items-end justify-between">
               <div className="flex items-center gap-6">
                 <ParallaxText speed={0.2} direction="up">
-                  <div className="text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>02</div>
+                  <div className="text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
                 </ParallaxText>
                 <div>
                   <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-1">Overview</div>
@@ -40,10 +40,10 @@ export default function Home() {
               <div className="p-6 rounded-lg bg-card border border-border">
                 <div className="flex items-center justify-between mb-3">
                   <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Company</div>
-                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>01</div>
+                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
                 </div>
                 <div className="h-px w-full bg-border mb-4" />
-                <div className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.2em' }}>HUIX-2099</div>
+                <div className="text-xl font-bold tracking-[0.15em]" style={{ fontFamily: 'Mohican, sans-serif' }}>HUIX-2099</div>
                 <p className="text-sm text-muted-foreground mt-2">The studio and engineering company delivering advanced XR, AI and 3D software.</p>
               </div>
             </ParallaxReveal>
@@ -103,11 +103,11 @@ export default function Home() {
               <div className="p-6 rounded-lg bg-card border border-border">
                 <div className="flex items-center justify-between mb-3">
                   <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">System</div>
-                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>02</div>
+                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
                 </div>
                 <div className="h-px w-full bg-border mb-2" />
                 <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Funding · Concept Stage · Experimental</div>
-                <div className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.2em' }}>HUIX-HORIZEN</div>
+                <div className="text-xl font-bold tracking-[0.15em]" style={{ fontFamily: 'Mohican, sans-serif' }}>HUIX-HORIZEN</div>
                 <p className="text-sm text-muted-foreground mt-2">Our modular platform architecture and tools powering immersive products.</p>
               </div>
             </ParallaxReveal>
@@ -166,7 +166,7 @@ export default function Home() {
               <div className="p-6 rounded-lg bg-card border border-border">
                 <div className="flex items-center justify-between mb-3">
                   <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Product</div>
-                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>03</div>
+                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>03</div>
                 </div>
                 <div className="h-px w-full bg-border mb-2" />
                 <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Concept · Development Stage · 0 Funding</div>
@@ -185,11 +185,11 @@ export default function Home() {
             <div className="mb-8 border-b border-border/70 pb-4 flex items-end justify-between">
               <div className="flex items-center gap-6">
                 <ParallaxText speed={0.2} direction="up">
-                  <div className="text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>02</div>
+                  <div className="text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
                 </ParallaxText>
                 <div>
                   <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-1">Mission & Values</div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground uppercase" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>MISSION & VALUES</h2>
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground uppercase tracking-[0.1em]" style={{ fontFamily: 'Mohican, sans-serif' }}>MISSION & VALUES</h2>
                 </div>
               </div>
               <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
@@ -260,8 +260,8 @@ export default function Home() {
               <div className="relative">
                 <div className="relative inline-block">
                   <h2 
-                    className="text-4xl md:text-5xl font-bold text-foreground mb-6 cursor-pointer uppercase" 
-                    style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                    className="text-4xl md:text-5xl font-bold text-foreground mb-6 cursor-pointer uppercase tracking-[0.1em]" 
+                    style={{ fontFamily: 'Mohican, sans-serif' }}
                   >
                     ABOUT HUIX-2099
                   </h2>
@@ -359,13 +359,13 @@ export default function Home() {
               <div className="flex items-baseline gap-3">
                 <span 
                   className="text-[120px] lg:text-[180px] font-bold leading-none text-foreground/[0.06]"
-                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                  style={{ fontFamily: 'Mohican, sans-serif' }}
                 >
                   0
                 </span>
                 <span 
                   className="text-[120px] lg:text-[180px] font-bold leading-none text-foreground/[0.06]"
-                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                  style={{ fontFamily: 'Mohican, sans-serif' }}
                 >
                   3
                 </span>
@@ -380,8 +380,8 @@ export default function Home() {
                   SECTION · 03 — INNOVATION
                 </div>
                 <h2 
-                  className="text-4xl lg:text-5xl font-bold uppercase"
-                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                  className="text-4xl lg:text-5xl font-bold uppercase tracking-[0.1em]"
+                  style={{ fontFamily: 'Mohican, sans-serif' }}
                 >
                   INNOVATION<br />IN MOTION
                 </h2>
@@ -493,8 +493,8 @@ export default function Home() {
                 SECTION · 04 — PROTOTYPES
               </div>
               <h2 
-                className="text-4xl lg:text-6xl font-bold mb-6 uppercase"
-                style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                className="text-4xl lg:text-6xl font-bold mb-6 uppercase tracking-[0.1em]"
+                style={{ fontFamily: 'Mohican, sans-serif' }}
               >
                 OUR<br />PROTOTYPES
               </h2>
@@ -504,13 +504,13 @@ export default function Home() {
               <div className="flex items-baseline justify-end gap-3">
                 <span 
                   className="text-[120px] lg:text-[180px] font-bold leading-none text-foreground/[0.06]"
-                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                  style={{ fontFamily: 'Mohican, sans-serif' }}
                 >
                   0
                 </span>
                 <span 
                   className="text-[120px] lg:text-[180px] font-bold leading-none text-foreground/[0.06]"
-                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                  style={{ fontFamily: 'Mohican, sans-serif' }}
                 >
                   4
                 </span>
@@ -611,13 +611,13 @@ export default function Home() {
               <div className="flex items-baseline gap-4">
                 <span 
                   className="text-[150px] lg:text-[220px] font-bold leading-none text-foreground/[0.04]"
-                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                  style={{ fontFamily: 'Mohican, sans-serif' }}
                 >
                   0
                 </span>
                 <span 
                   className="text-[150px] lg:text-[220px] font-bold leading-none text-foreground/[0.04]"
-                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                  style={{ fontFamily: 'Mohican, sans-serif' }}
                 >
                   5
                 </span>
@@ -634,8 +634,8 @@ export default function Home() {
                   SECTION · 05 — CONTACT
                 </div>
                 <h2 
-                  className="text-4xl lg:text-5xl font-bold mb-6 uppercase"
-                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                  className="text-4xl lg:text-5xl font-bold mb-6 uppercase tracking-[0.1em]"
+                  style={{ fontFamily: 'Mohican, sans-serif' }}
                 >
                   READY TO BUILD<br />THE FUTURE?
                 </h2>
