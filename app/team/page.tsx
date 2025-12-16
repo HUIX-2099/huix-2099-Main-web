@@ -1,11 +1,75 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 export default function TeamPage() {
-  const headshot = "https://scontent.fmlw1-2.fna.fbcdn.net/v/t39.30808-6/558881686_787057407650313_2763870488666293635_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHPkhB-RX6-ouW-P271Z-gVF-L79RMvP5MX4vv1Ey8_k1P4l9hieOMaPHSExtkD3gIESbN9R-VO5_yfBeP8d8nz&_nc_ohc=dpYPenuxOjQQ7kNvwH9shoe&_nc_oc=Adnln5c_nrHUs2zcNwH19p6hZNmvR2dnZ9s4aEeLWsqD_I-85P8toDQkzJ70-iF_zeI&_nc_zt=23&_nc_ht=scontent.fmlw1-2.fna&_nc_gid=_bD84OyyzvL6Myz74QvY6w&oh=00_AfjlrIYc21uHKU3I-RJihRLTUYaHCAOf-F1vfIeYqdKMeA&oe=69266FC7"
+  const victorPhotos = [
+    {
+      id: "01",
+      image: "/Team/514511392_703930722629649_5743849837949265079_n.jpg",
+      caption: "Portrait",
+    },
+    {
+      id: "02",
+      image: "/Team/574933943_807963102226410_2571496973128815359_n.jpg",
+      caption: "Engineering",
+    },
+    {
+      id: "03",
+      image: "/Team/597177353_837102955979091_1762846876181727098_n.jpg",
+      caption: "XR / Field",
+    },
+  ]
+
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [direction, setDirection] = useState(0)
+
+  // Auto-advance slideshow
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection(1)
+      setCurrentIndex((prev) => (prev + 1) % victorPhotos.length)
+    }, 4000)
+    return () => clearInterval(timer)
+  }, [victorPhotos.length])
+
+  const goToPrev = () => {
+    setDirection(-1)
+    setCurrentIndex((prev) => (prev - 1 + victorPhotos.length) % victorPhotos.length)
+  }
+
+  const goToNext = () => {
+    setDirection(1)
+    setCurrentIndex((prev) => (prev + 1) % victorPhotos.length)
+  }
+
+  const goToSlide = (index: number) => {
+    setDirection(index > currentIndex ? 1 : -1)
+    setCurrentIndex(index)
+  }
+
+  const currentPhoto = victorPhotos[currentIndex]
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 300 : -300,
+      opacity: 0,
+    }),
+  }
 
   return (
     <>
@@ -27,17 +91,88 @@ export default function TeamPage() {
             </div>
           </div>
 
-          {/* Member Card */}
+          {/* Member Card with Slideshow */}
           <div className="grid md:grid-cols-2 gap-12 items-start">
+            {/* Slideshow Card */}
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="rounded-lg overflow-hidden border border-border bg-card"
+              className="rounded-lg overflow-hidden border border-border bg-card relative"
             >
-              <img src={headshot} alt="Victor Edet Coleman" className="w-full h-auto object-cover" />
+              {/* Image Container */}
+              <div className="relative aspect-[3/4] overflow-hidden bg-muted">
+                <AnimatePresence initial={false} custom={direction}>
+                  <motion.img
+                    key={currentIndex}
+                    src={currentPhoto.image}
+                    alt={`Victor Edet Coleman - ${currentPhoto.caption}`}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                      x: { type: "spring", stiffness: 300, damping: 30 },
+                      opacity: { duration: 0.2 },
+                    }}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                </AnimatePresence>
+
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none" />
+
+                {/* Slide Index */}
+                <div
+                  className="absolute top-4 left-4 text-[10px] uppercase tracking-[0.18em] text-white/80 bg-black/30 px-2 py-1 rounded"
+                  style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
+                >
+                  [{currentPhoto.id}] · {currentPhoto.caption}
+                </div>
+
+                {/* Navigation Arrows */}
+                <button
+                  onClick={goToPrev}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 p-2 bg-background/80 hover:bg-background border border-border rounded-full transition-colors z-10"
+                  aria-label="Previous photo"
+                >
+                  <ChevronLeft className="h-5 w-5 text-foreground" />
+                </button>
+                <button
+                  onClick={goToNext}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-background/80 hover:bg-background border border-border rounded-full transition-colors z-10"
+                  aria-label="Next photo"
+                >
+                  <ChevronRight className="h-5 w-5 text-foreground" />
+                </button>
+              </div>
+
+              {/* Slide Indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+                {victorPhotos.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => goToSlide(idx)}
+                    className={`h-2 rounded-full transition-all ${
+                      idx === currentIndex ? "w-6 bg-foreground" : "w-2 bg-foreground/40 hover:bg-foreground/60"
+                    }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Caption Bar */}
+              <div
+                className="px-4 py-3 flex items-center justify-between text-[9px] uppercase tracking-[0.15em] text-muted-foreground border-t border-border"
+                style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
+              >
+                <span>FIG. {currentPhoto.id} — {currentPhoto.caption}</span>
+                <span>{currentIndex + 1} / {victorPhotos.length}</span>
+              </div>
             </motion.div>
 
+            {/* Info Panel */}
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -78,6 +213,33 @@ export default function TeamPage() {
                 Building HUIX-HORIZEN and Virtual Past Liberia—architectural and cultural visualization platforms designed
                 to enable Liberia and the region to imagine, prototype, and build the future.
               </p>
+
+              {/* Photo Thumbnails */}
+              <div className="pt-4 border-t border-border">
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-3">
+                  Gallery · {victorPhotos.length} Photos
+                </div>
+                <div className="flex gap-2">
+                  {victorPhotos.map((photo, idx) => (
+                    <button
+                      key={photo.id}
+                      onClick={() => goToSlide(idx)}
+                      className={`relative w-16 h-16 rounded overflow-hidden border-2 transition-all ${
+                        idx === currentIndex ? "border-foreground" : "border-border hover:border-foreground/50"
+                      }`}
+                    >
+                      <img
+                        src={photo.image}
+                        alt={`Thumbnail ${photo.id}`}
+                        className="w-full h-full object-cover"
+                      />
+                      {idx === currentIndex && (
+                        <div className="absolute inset-0 bg-foreground/10" />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>

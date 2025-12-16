@@ -488,6 +488,89 @@ export default function HUIXHorizenPage() {
         </div>
       </section>
 
+      {/* HUIX-HORIZEN OS Section - Full Width Visual */}
+      <section className="relative bg-[#0d0d0d] overflow-hidden">
+        {/* OS Visual - Full Width */}
+        <div className="relative w-full">
+          <img 
+            src="/horzien-images/VRi.jpg" 
+            alt="HUIX-HORIZEN OS System" 
+            className="w-full h-auto object-cover"
+          />
+          
+          {/* Overlay gradient for text readability at edges */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0d0d0d]/60 via-transparent to-[#0d0d0d]/60 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d0d]/40 via-transparent to-[#0d0d0d]/60 pointer-events-none" />
+          
+          {/* Top-left corner info */}
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="absolute top-6 left-6 lg:top-10 lg:left-10"
+          >
+            <div className="text-[8px] lg:text-[10px] uppercase tracking-[0.2em] text-white/40 mb-1" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+              SYSTEM · IN DEVELOPMENT
+            </div>
+            <div className="text-lg lg:text-2xl font-bold text-white/90" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.15em' }}>
+              HUIX-HORIZEN OS
+            </div>
+          </motion.div>
+
+          {/* Bottom-left description */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="absolute bottom-6 left-6 lg:bottom-10 lg:left-10 max-w-md"
+          >
+            <div className="text-[9px] lg:text-[11px] text-white/50 leading-relaxed mb-3" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+              Phone-based immersive reality OS layer. Stereo rendering, 3DOF tracking, gaze interaction — designed for architectural visualization without expensive headsets.
+            </div>
+            <div className="flex items-center gap-3 text-[8px] lg:text-[9px] uppercase tracking-[0.15em] text-white/30" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+              <span>R&D</span>
+              <span className="h-px w-4 bg-white/20" />
+              <span>UNITY XR</span>
+              <span className="h-px w-4 bg-white/20" />
+              <span>OPENXR</span>
+            </div>
+          </motion.div>
+
+          {/* Right side specs */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="absolute top-6 right-6 lg:top-10 lg:right-10 text-right hidden sm:block"
+          >
+            <div className="space-y-1 text-[8px] lg:text-[9px] uppercase tracking-[0.12em] text-white/40" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+              <div>STEREO · DUAL CAM</div>
+              <div>IPD · ADJUSTABLE</div>
+              <div>FOV · 60-70°</div>
+              <div className="text-[#ff5a00]/80">STATUS · PROTOTYPE</div>
+            </div>
+          </motion.div>
+
+          {/* Bottom-right version */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="absolute bottom-6 right-6 lg:bottom-10 lg:right-10"
+          >
+            <div className="flex items-center gap-2 text-[8px] lg:text-[9px] uppercase tracking-[0.15em] text-white/30" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+              <span>HUIX-2099</span>
+              <span className="h-3 w-px bg-white/20" />
+              <span>v0.5</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Tech Stack Section - Document Table Style */}
       <section className="py-20 px-4 lg:px-8 border-b border-border">
         <div className="max-w-7xl mx-auto">
@@ -607,6 +690,199 @@ export default function HUIXHorizenPage() {
         </div>
       </section>
 
+      {/* Visual Reference Gallery - Creative Bento Layout */}
+      <section className="py-20 px-4 lg:px-8 border-b border-border bg-card/30">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="grid lg:grid-cols-[300px_1fr] gap-16 mb-12">
+            <div>
+              <ParallaxText speed={0.15} direction="up">
+                <div 
+                  className="text-[140px] md:text-[180px] font-bold leading-[0.8] text-foreground/[0.06]"
+                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                >
+                  05
+                </div>
+              </ParallaxText>
+            </div>
+            <div className="flex items-end justify-between border-b border-border pb-4">
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                  VISUAL REFERENCE
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>
+                  Design Library
+                </h2>
+              </div>
+              <div className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/50" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                7 references
+              </div>
+            </div>
+          </div>
+
+          {/* Bento Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 auto-rows-[140px] md:auto-rows-[180px]">
+            {/* Large featured */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="col-span-2 row-span-2 relative rounded-lg overflow-hidden border border-border group"
+            >
+              <img 
+                src="/horzien-images/Gemini_Generated_Image_klg7c0klg7c0klg7.png" 
+                alt="Architectural visualization" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3">
+                <div className="text-[8px] uppercase tracking-[0.15em] text-foreground/60 mb-1" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                  [01] · CONCEPT
+                </div>
+                <div className="text-sm font-semibold text-foreground">XR Environment</div>
+              </div>
+              <div className="absolute top-3 right-3 w-6 h-6 border border-foreground/20 rounded-full flex items-center justify-center">
+                <div className="w-2 h-2 bg-foreground/40 rounded-full" />
+              </div>
+            </motion.div>
+
+            {/* Floor plan tall */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.05 }}
+              viewport={{ once: true }}
+              className="col-span-1 row-span-2 relative rounded-lg overflow-hidden border border-border group"
+            >
+              <img 
+                src="/horzien-images/Floor%20plan.jpg" 
+                alt="Floor plan" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent" />
+              <div className="absolute bottom-2 left-2 text-[7px] uppercase tracking-[0.12em] text-foreground/70 bg-background/50 backdrop-blur-sm px-1.5 py-0.5 rounded" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                [02] PLAN
+              </div>
+            </motion.div>
+
+            {/* 3D Render */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="col-span-1 row-span-1 relative rounded-lg overflow-hidden border border-border group"
+            >
+              <img 
+                src="/horzien-images/I%20will%20do%20architectural%20floor%20plans%2C%203d%20model%20and%20renderings.jpg" 
+                alt="3D model rendering" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+              <div className="absolute bottom-2 left-2 text-[6px] uppercase tracking-[0.1em] text-foreground/70" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                [03]
+              </div>
+            </motion.div>
+
+            {/* Villa wide */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              viewport={{ once: true }}
+              className="col-span-2 row-span-1 relative rounded-lg overflow-hidden border border-border group"
+            >
+              <img 
+                src="/horzien-images/_Villa%20%20Vue%20en%20plan%20c%C3%B4t%C3%A9_.jpg" 
+                alt="Villa plan view" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
+              <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between">
+                <span className="text-[6px] uppercase tracking-[0.1em] text-foreground/70 bg-background/40 backdrop-blur-sm px-1.5 py-0.5 rounded" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                  [04] VILLA
+                </span>
+                <span className="text-[6px] text-foreground/50" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                  ARCH
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Interior */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="col-span-1 row-span-1 relative rounded-lg overflow-hidden border border-border group"
+            >
+              <img 
+                src="/horzien-images/Interior%20design%20student%20%F0%9F%91%B7%F0%9F%8F%BB%E2%80%8D%E2%99%80%EF%B8%8F%E2%9C%A8.jpg" 
+                alt="Interior design" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+              <div className="absolute bottom-2 left-2 text-[6px] uppercase tracking-[0.1em] text-foreground/70" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                [05]
+              </div>
+            </motion.div>
+
+            {/* Minimal */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              viewport={{ once: true }}
+              className="col-span-1 row-span-1 relative rounded-lg overflow-hidden border border-border group"
+            >
+              <img 
+                src="/horzien-images/b860a6a6db362df7737a3847d66712ad.jpg" 
+                alt="Architecture reference" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+              <div className="absolute bottom-2 left-2 text-[6px] uppercase tracking-[0.1em] text-foreground/70" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                [06]
+              </div>
+            </motion.div>
+
+            {/* Download wide */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="col-span-2 md:col-span-2 row-span-1 relative rounded-lg overflow-hidden border border-border group"
+            >
+              <img 
+                src="/horzien-images/download%20(61).jpg" 
+                alt="Design reference" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/50 to-transparent" />
+              <div className="absolute bottom-2 left-2 text-[6px] uppercase tracking-[0.1em] text-foreground/70 bg-background/40 backdrop-blur-sm px-1.5 py-0.5 rounded" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                [07] REF
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom Caption */}
+          <div className="mt-6 flex items-center justify-between text-[8px] uppercase tracking-[0.12em] text-muted-foreground/40" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+            <div className="flex items-center gap-3">
+              <span>PLATES · 01–07</span>
+              <span className="h-px w-8 bg-border/50" />
+              <span>ARCH-VIZ REFERENCES</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span>HUIX-HORIZEN</span>
+              <span className="h-px w-4 bg-border/50" />
+              <span>2024</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section - Minimal */}
       <section className="py-24 px-4 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -670,7 +946,7 @@ export default function HUIXHorizenPage() {
               <span className="inline-block h-px w-6 bg-border" />
               <span>2024</span>
               <span className="inline-block h-px w-6 bg-border" />
-              <span>p. 04 of 04</span>
+              <span>p. 06 of 06</span>
             </div>
           </div>
         </div>

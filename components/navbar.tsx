@@ -102,6 +102,7 @@ export function Navbar() {
       dropdown: [
         { label: "ALL PROJECTS", href: "/projects", index: "01" },
         { label: "HUIX-HORIZEN", href: "/huix-horizen", index: "02", featured: true },
+        { label: "HUIX HORIZON WHITEPAPER", href: "/huix-horizen/whitepaper", index: "02A", featured: true },
         { label: "VIRTUAL PAST LIBERIA", href: "/virtual-past-liberia", index: "03", featured: true },
         { label: "PROTOTYPES", href: "/prototypes", index: "04" },
         { label: "GALLERY", href: "/gallery", index: "05" },
@@ -118,6 +119,7 @@ export function Navbar() {
   const searchResults = searchQuery.toLowerCase().trim()
     ? [
         { name: "HUIX-HORIZEN", url: "/huix-horizen", cat: "PRJ" },
+        { name: "HUIX Horizon Whitepaper", url: "/huix-horizen/whitepaper", cat: "DOC" },
         { name: "Virtual Past Liberia", url: "/virtual-past-liberia", cat: "PRJ" },
         { name: "Prototypes", url: "/prototypes", cat: "PRJ" },
         { name: "About", url: "/about", cat: "DOC" },

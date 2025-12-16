@@ -54,6 +54,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/huix-horizen/whitepaper" className="hover:text-foreground transition-colors font-semibold">
+                  ✦ HUIX HORIZON WHITEPAPER
+                </Link>
+              </li>
+              <li>
                 <Link href="/virtual-past-liberia" className="hover:text-foreground transition-colors font-semibold">
                   ✦ Virtual Past Liberia
                 </Link>

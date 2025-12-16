@@ -247,13 +247,108 @@ export default function Home() {
       {/* About Section */}
       <section className="py-20 px-4 lg:px-8 bg-background">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-12 grid lg:grid-cols-2 gap-12 items-center">
+          <div className="mb-12 grid lg:grid-cols-[auto_1fr_1fr] gap-8 lg:gap-12 items-center">
             {/* Left: Futuristic Number */}
             <ParallaxText speed={0.4} direction="up">
               <div className="text-8xl lg:text-9xl font-bold text-foreground/10">
                 01
               </div>
             </ParallaxText>
+
+            {/* Center: Featured Image with Side Text */}
+            <ParallaxReveal direction="up" delay={0.05}>
+              <div className="flex items-center gap-3 lg:gap-4 justify-center">
+                {/* Left side text - vertical */}
+                <div 
+                  className="flex flex-col items-center gap-1.5 lg:gap-2 text-[7px] lg:text-[9px] uppercase tracking-[0.2em] text-muted-foreground/60"
+                  style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace', writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+                >
+                  <span className="hidden sm:inline">XR · VR · AR</span>
+                  <span className="sm:hidden">XR</span>
+                  <span className="h-6 lg:h-8 w-px bg-border/50" />
+                  <span>2024</span>
+                </div>
+
+                {/* Image Container */}
+                <div className="relative">
+                  {/* Top label - mobile */}
+                  <div 
+                    className="mb-2 flex items-center gap-2 text-[8px] uppercase tracking-[0.15em] text-muted-foreground/70 lg:hidden"
+                    style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
+                  >
+                    <span className="h-px w-4 bg-foreground/20" />
+                    <span>HUIX-2099</span>
+                    <span className="h-px flex-1 bg-foreground/20" />
+                  </div>
+
+                  <div className="relative rounded-lg overflow-hidden border border-border bg-card w-[180px] sm:w-[200px] lg:max-w-[240px]">
+                    <img 
+                      src="/images/22.jpg" 
+                      alt="HUIX-2099 XR Demo" 
+                      className="w-full h-auto object-cover aspect-[3/4] max-h-[220px] sm:max-h-[250px] lg:max-h-[280px]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+                    
+                    {/* Corner accent */}
+                    <div className="absolute top-0 right-0 w-8 h-8">
+                      <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-foreground/30" />
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-8 h-8">
+                      <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-foreground/30" />
+                    </div>
+
+                    {/* Badge */}
+                    <div 
+                      className="absolute bottom-2 left-2 text-[7px] lg:text-[8px] uppercase tracking-[0.15em] text-white/90 bg-black/50 backdrop-blur-sm px-1.5 py-0.5 rounded border border-white/10"
+                      style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
+                    >
+                      [01] · FIELD
+                    </div>
+
+                    {/* Tech badge */}
+                    <div 
+                      className="absolute top-2 left-2 text-[6px] lg:text-[7px] uppercase tracking-[0.1em] text-white/70 bg-black/40 backdrop-blur-sm px-1 py-0.5 rounded"
+                      style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
+                    >
+                      META QUEST 3
+                    </div>
+                  </div>
+
+                  {/* Caption below */}
+                  <div 
+                    className="mt-2 flex items-center justify-between text-[7px] lg:text-[8px] uppercase tracking-[0.12em] text-muted-foreground/50"
+                    style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
+                  >
+                    <span>FIG. 01</span>
+                    <span className="h-px flex-1 mx-2 bg-border/30" />
+                    <span>DEMO</span>
+                  </div>
+
+                  {/* Bottom specs - mobile */}
+                  <div 
+                    className="mt-1 flex items-center justify-center gap-3 text-[6px] uppercase tracking-[0.1em] text-muted-foreground/40 lg:hidden"
+                    style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
+                  >
+                    <span>VR</span>
+                    <span>·</span>
+                    <span>AR</span>
+                    <span>·</span>
+                    <span>XR</span>
+                  </div>
+                </div>
+
+                {/* Right side text - vertical */}
+                <div 
+                  className="flex flex-col items-center gap-1.5 lg:gap-2 text-[7px] lg:text-[9px] uppercase tracking-[0.2em] text-muted-foreground/60"
+                  style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace', writingMode: 'vertical-rl' }}
+                >
+                  <span className="hidden sm:inline">LIBERIA</span>
+                  <span className="sm:hidden">LBR</span>
+                  <span className="h-6 lg:h-8 w-px bg-border/50" />
+                  <span>HUIX</span>
+                </div>
+              </div>
+            </ParallaxReveal>
             
             {/* Right: Title and Description */}
             <ParallaxReveal direction="right" delay={0.1}>

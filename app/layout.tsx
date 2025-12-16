@@ -31,6 +31,8 @@ export const metadata: Metadata = {
   },
   description:
     "HUIX-2099 is a Liberia-based next-generation technology company pioneering VR, XR, AR, AI, 3D visualization, and immersive digital engineering. Founded in 2024 in Monrovia by Victor Edet Coleman, we build innovative software solutions that merge creativity, culture, and commerce. Our flagship products include HUIX-Horizen platform and Virtual Past Liberia heritage preservation project.",
+  applicationName: "HUIX-2099",
+  generator: "Next.js",
   keywords: [
     "HUIX-2099",
     "HUIX 2099",
@@ -126,14 +128,16 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
+      { url: "/icon-light-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon-dark-32x32.png", type: "image/png", sizes: "32x32" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: [{ url: "/icon.svg", type: "image/svg+xml", sizes: "any" }],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
   },
   manifest: "/manifest.json",
   verification: {
-    google: "google-site-verification-code", // Replace with actual verification code when available
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
   },
   other: {
     "geo.region": "LR",
@@ -143,7 +147,6 @@ export const metadata: Metadata = {
     "og:locale:alternate": "en_GB",
     "application-name": "HUIX-2099",
     "msapplication-TileColor": "#0d0d0d",
-    "msapplication-config": "/browserconfig.xml",
     "apple-mobile-web-app-title": "HUIX-2099",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
@@ -226,10 +229,6 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.className} ${inter.variable} antialiased`}
-        style={{
-          fontFamily:
-            'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-        }}
       >
         <ThemeProvider>
           <CustomCursor />

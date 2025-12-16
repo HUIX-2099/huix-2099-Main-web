@@ -95,36 +95,36 @@ const tabsContent: TabContent[] = [
       codes: {
         topLeft: ["SN-HRZ-2099", "REV-A3", "LIC 53698-LBR"],
         topRight: ["2099", "HORIZEN"],
-        bottomCodes: ["VR · AR · XR", "ARCH-VIZ", "v2.0"]
+        bottomCodes: ["VR · AR · XR", "PHONE‑BASED", "R&D"]
       },
       systemInfo: [
-        { label: "Platform", value: "XR Visualization" },
-        { label: "Version", value: "2.0.99" },
-        { label: "Engine", value: "WebGL 2.0" },
-        { label: "Max FPS", value: "90Hz" },
-        { label: "Spatial Audio", value: "Enabled", highlight: true },
-        { label: "Hand Tracking", value: "Active", highlight: true }
+        { label: "Platform", value: "Phone‑Based Immersion" },
+        { label: "Use Cases", value: "VR/AR + Arch Sim" },
+        { label: "Stack", value: "Unity XR · OpenXR" },
+        { label: "Tracking", value: "3DOF Sensors" },
+        { label: "Status", value: "R&D / Prototyping", highlight: true },
+        { label: "Built", value: "Liberia", highlight: true }
       ]
     },
     sections: [
       {
         number: "01",
-        title: "Immersive Architecture Visualization",
-        subtitle: "XR Platform",
+        title: "Phone‑Based Immersive Platform",
+        subtitle: "HUIX Horizon / HUIX‑HORIZEN",
         content: [
-          "HUIX-HORIZEN is our flagship immersive visualization platform designed specifically for architects, urban designers, and real estate developers. It transforms how spatial design is communicated, reviewed, and experienced.",
-          "The platform enables seamless transitions from 2D plans to fully immersive 3D environments. Clients can walk through buildings before they're built, experience spaces at true scale, and make informed decisions through virtual reality.",
-          "With support for VR headsets, AR mobile experiences, and WebXR browser access, HUIX-HORIZEN removes barriers between design intent and stakeholder understanding — no installs, no friction."
+          "HUIX Horizon (also referred to as HUIX‑HORIZEN) is a phone‑based immersive reality platform being developed under HUIX‑2099. It is designed to turn modern smartphones into practical tools for VR, AR, and architectural & engineering simulation—without requiring expensive headsets.",
+          "The system targets professional outcomes: accurate spatial perception, real stereo rendering, stable head tracking, and a clean immersive UI layer suitable for design review, education, and field demonstrations.",
+          "HUIX Horizon is in active research and development and is ready for early testing, prototyping, and experimentation with partners."
         ]
       },
       {
         number: "02",
-        title: "Technology & Capabilities",
-        subtitle: "Platform Features",
+        title: "System Architecture (High‑Level)",
+        subtitle: "Stereo · Sensors · Interaction",
         content: [
-          "Built on Unity Engine with OpenXR support, HUIX-HORIZEN delivers 90fps real-time rendering across all major VR platforms. Our adaptive streaming technology ensures consistent quality regardless of network conditions.",
-          "Key features include real-time collaboration, sun studies, material swapping, spatial annotations, and one-click deployment to multiple platforms. Teams can invite consultants, capture notes, and maintain decision trails anchored to the 3D model.",
-          "The platform integrates with industry-standard CAD and BIM tools, allowing architects to maintain their existing workflows while gaining powerful visualization capabilities."
+          "Core stereo rendering uses independent left/right eye cameras with correct IPD spacing, adjustable field of view, and distortion correction to preserve depth perception (avoiding “fake split‑screen”).",
+          "Motion is driven by phone sensors (gyroscope/accelerometer; magnetometer optional) with sensor fusion for low‑latency 3DOF head tracking. The default interaction model supports gaze selection, head‑based cursor, and optional voice commands, with Bluetooth controller support as an option.",
+          "HUIX Horizon is being built as a modular Unity plugin system (camera prefab, sensor input module, UI framework, spatial audio helpers). A full technical overview is available in the whitepaper."
         ]
       }
     ]
