@@ -41,7 +41,7 @@ export default function HUIXHorizenPage() {
   ]
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="bg-background min-h-screen overflow-x-hidden">
       <Navbar />
 
       {/* Hero Section - Matching Home Style */}
@@ -467,13 +467,13 @@ export default function HUIXHorizenPage() {
               style={{ backgroundColor: '#ff5a00' }} 
             />
 
-            {/* Keychain */}
+            {/* Keychain (hide on small to avoid overflow) */}
             <motion.div 
               initial={{ x: 20, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}
               viewport={{ once: true }}
-              className="absolute -right-16 top-1/3 transition-transform duration-300 group-hover:-translate-y-4"
+              className="hidden md:block absolute -right-16 top-1/3 transition-transform duration-300 group-hover:-translate-y-4"
             >
               <div className="w-4 h-8 bg-neutral-700 rounded-sm" />
               <div className="w-3 h-16 bg-neutral-800 rounded-sm mx-auto" />
