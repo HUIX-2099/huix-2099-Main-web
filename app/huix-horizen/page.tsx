@@ -491,11 +491,11 @@ export default function HUIXHorizenPage() {
       {/* HUIX-HORIZEN OS Section - Full Width Visual */}
       <section className="relative bg-[#0d0d0d] overflow-hidden">
         {/* OS Visual - Full Width */}
-        <div className="relative w-full">
+        <div className="relative w-full max-h-[560px] sm:max-h-[640px] overflow-hidden">
           <img 
             src="/horzien-images/VRi.jpg" 
             alt="HUIX-HORIZEN OS System" 
-            className="w-full h-auto object-cover"
+            className="w-full h-full object-contain md:object-cover"
           />
           
           {/* Overlay gradient for text readability at edges */}
@@ -721,7 +721,7 @@ export default function HUIXHorizenPage() {
           </div>
 
           {/* Bento Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 auto-rows-[140px] md:auto-rows-[180px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 auto-rows-[120px] sm:auto-rows-[140px] md:auto-rows-[180px]">
             {/* Large featured */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
