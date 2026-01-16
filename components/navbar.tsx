@@ -123,10 +123,23 @@ export function Navbar() {
       ]
     },
     {
+      id: "products",
+      label: "PRODUCTS",
+      href: "/products",
+      index: "03",
+      dropdown: [
+        { label: "ALL PRODUCTS", href: "/products", index: "01" },
+        { label: "SOFTWARE", href: "/products#Software", index: "02" },
+        { label: "WEBSITES", href: "/products#Website", index: "03" },
+        { label: "APPS", href: "/products#App", index: "04" },
+        { label: "GAMES", href: "/products#Game", index: "05", featured: true },
+      ]
+    },
+    {
       id: "contact",
       label: "CONTACT",
       href: "/contact",
-      index: "03",
+      index: "04",
     },
   ]
 
@@ -136,6 +149,11 @@ export function Navbar() {
         { name: "HUIX Horizon Whitepaper", url: "/huix-horizen/whitepaper", cat: "DOC" },
         { name: "Virtual Past Liberia", url: "/virtual-past-liberia", cat: "PRJ" },
         { name: "Prototypes", url: "/prototypes", cat: "PRJ" },
+        { name: "Products", url: "/products", cat: "PRD" },
+        { name: "Software Products", url: "/products#Software", cat: "PRD" },
+        { name: "Website Products", url: "/products#Website", cat: "PRD" },
+        { name: "App Products", url: "/products#App", cat: "PRD" },
+        { name: "Game Products", url: "/products#Game", cat: "PRD" },
         { name: "About", url: "/about", cat: "DOC" },
         { name: "Contact", url: "/contact", cat: "DOC" },
       ].filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase()))
