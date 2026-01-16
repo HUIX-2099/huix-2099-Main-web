@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { ThemeSwitcher } from "./theme-switcher"
 import { ChevronDown, Menu, X, Wifi, Smartphone, Search, Terminal, ArrowRight } from "lucide-react"
 import { useTheme } from "./theme-provider"
 import { motion, AnimatePresence } from "framer-motion"
 import { usePathname } from "next/navigation"
+import { useWebXR } from "@/hooks/use-webxr"
 
 export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
@@ -21,6 +23,18 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false)
   const { resolvedTheme } = useTheme()
   const pathname = usePathname()
+  const { isVRSupported, isActualVRHeadset, deviceType: vrDeviceType, deviceName, enterVR, isInVR } = useWebXR()
+
+  // Google Cardboard VR Icon
+  const CardboardIcon = ({ className }: { className?: string }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <rect x="2" y="6" width="20" height="12" rx="2" />
+      <circle cx="7" cy="12" r="2" />
+      <circle cx="17" cy="12" r="2" />
+      <path d="M10 18h4" />
+      <path d="M12 6v-2" />
+    </svg>
+  )
 
   useEffect(() => {
     setMounted(true)
@@ -203,7 +217,14 @@ export function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
               <div className="flex items-center gap-2">
-                <div className="text-[10px] text-muted-foreground tracking-[0.12em] opacity-60" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>[00]</div>
+                <div className="w-6 h-6 relative rounded overflow-hidden">
+                  <Image
+                    src={resolvedTheme === 'dark' ? '/icons/HUIX 2099 dark logo icon version.jpg' : '/icons/HUIX 2099 light logo icon version.jpg'}
+                    alt="HUIX-2099"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <div
                   className="whitespace-nowrap leading-none text-sm sm:text-base font-bold transition-all duration-300"
                   style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.15em' }}
@@ -218,7 +239,7 @@ export function Navbar() {
             </Link>
 
             {/* Desktop Nav Links */}
-            <div className="hidden md:flex items-center">
+            <div className="hidden lg:flex items-center">
               {navItems.map((item, idx) => (
                 <div
                   key={item.id}
@@ -228,14 +249,14 @@ export function Navbar() {
                 >
                   <Link
                     href={item.href}
-                    className={`flex items-center gap-2 px-4 py-2 text-[11px] uppercase tracking-[0.14em] transition-colors group ${
+                    className={`flex items-center gap-1.5 lg:gap-2 px-2 lg:px-3 xl:px-4 py-2 text-[10px] lg:text-[11px] uppercase tracking-[0.12em] lg:tracking-[0.14em] transition-colors group ${
                       pathname === item.href || pathname.startsWith(item.href + '/') 
                         ? 'text-foreground' 
                         : 'text-muted-foreground hover:text-foreground'
                     }`}
                     style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
                   >
-                    <span className="text-[9px] opacity-50">[{item.index}]</span>
+                    <span className="text-[8px] lg:text-[9px] opacity-50 hidden xl:inline">[{item.index}]</span>
                     <span>{item.label}</span>
                     {item.dropdown && (
                       <ChevronDown
@@ -308,23 +329,24 @@ export function Navbar() {
                 </div>
               ))}
               
-              <div className="h-4 w-px bg-border mx-2" />
+              <div className="h-4 w-px bg-border mx-1 lg:mx-2" />
               
               {/* Assistant Link */}
               <Link
                 href="/huix-assistant"
-                className="flex items-center gap-2 px-3 py-1.5 text-[10px] uppercase tracking-[0.12em] text-muted-foreground hover:text-foreground border border-border/50 hover:border-border rounded transition-all group"
+                className="flex items-center gap-1.5 lg:gap-2 px-2 lg:px-3 py-1.5 text-[9px] lg:text-[10px] uppercase tracking-[0.1em] lg:tracking-[0.12em] text-muted-foreground hover:text-foreground border border-border/50 hover:border-border rounded transition-all group"
                 style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
               >
                 <Terminal className="h-3 w-3" />
-                <span>ASSISTANT</span>
+                <span className="hidden xl:inline">ASSISTANT</span>
+                <span className="xl:hidden">AST</span>
               </Link>
             </div>
 
             {/* Right Section */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 lg:gap-3">
               {/* Search */}
-              <div className="relative hidden md:block">
+              <div className="relative hidden lg:block">
                 <button
                   onClick={() => setShowSearch(!showSearch)}
                   className={`p-2 transition-all rounded ${showSearch ? 'bg-foreground text-background' : 'hover:bg-card text-muted-foreground hover:text-foreground'}`}
@@ -395,6 +417,28 @@ export function Navbar() {
                 <span className={`inline-block h-2 w-2 rounded-full ${mounted && online ? 'bg-green-500' : mounted ? 'bg-red-500' : 'bg-muted-foreground/50'}`} />
               </div>
 
+              {/* VR Button - Shows ONLY on actual VR headsets (not laptops, phones, TVs) */}
+              {mounted && isActualVRHeadset && isVRSupported && (
+                <button
+                  onClick={enterVR}
+                  className={`flex items-center gap-1.5 px-2 py-1.5 text-[9px] border rounded transition-all ${
+                    isInVR 
+                      ? 'bg-foreground text-background border-foreground' 
+                      : 'text-muted-foreground border-border/50 bg-card/50 hover:border-foreground/50 hover:text-foreground'
+                  }`}
+                  style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
+                  title={deviceName || "Enter VR Mode"}
+                >
+                  <CardboardIcon className="h-3.5 w-3.5" />
+                  <span className="hidden sm:inline uppercase tracking-wider">
+                    {isInVR ? 'IN VR' : 'VR'}
+                  </span>
+                  {vrDeviceType && (
+                    <span className={`inline-block h-2 w-2 rounded-full ${isInVR ? 'bg-background animate-pulse' : 'bg-green-500'}`} />
+                  )}
+                </button>
+              )}
+
               {/* Theme Switcher */}
               <div suppressHydrationWarning>
                 <ThemeSwitcher />
@@ -403,7 +447,7 @@ export function Navbar() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="md:hidden p-2 hover:bg-card rounded transition-colors"
+                className="lg:hidden p-2 hover:bg-card rounded transition-colors"
                 aria-label="Toggle menu"
               >
                 {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -421,7 +465,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden border-b border-border bg-background overflow-hidden"
+            className="lg:hidden border-b border-border bg-background overflow-hidden"
           >
             <div className="px-4 py-4 space-y-1">
               {/* Mobile Search */}

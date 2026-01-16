@@ -19,7 +19,7 @@ export function Footer() {
   const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
 
   return (
-    <footer className="py-16 px-4 lg:px-8 bg-card border-t border-border" style={{ fontFamily: sansFont }}>
+    <footer className="py-10 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-card border-t border-border" style={{ fontFamily: sansFont }}>
       <div className="max-w-7xl mx-auto">
         {/* Series Header */}
         <ParallaxReveal direction="up">
@@ -27,7 +27,7 @@ export function Footer() {
             <div className="flex items-end justify-between pb-6">
               <div className="flex items-center gap-6">
                 <ParallaxText speed={0.2} direction="up">
-                  <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>01</div>
+                  <div className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>01</div>
                 </ParallaxText>
                 <div>
                   <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2">Footer</div>
@@ -38,7 +38,7 @@ export function Footer() {
             </div>
           </div>
         </ParallaxReveal>
-        <ParallaxStagger className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <ParallaxStagger className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
           <ParallaxStaggerItem>
             <h3 className="text-lg font-bold text-foreground mb-4">HUIX-2099</h3>
             <p className="text-sm text-muted-foreground">

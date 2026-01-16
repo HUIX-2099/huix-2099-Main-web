@@ -13,33 +13,33 @@
   "categories": ["technology", "business", "productivity"],
   "icons": [
     {
-      "src": "/icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
+      "src": "/icons/HUIX 2099 dark logo icon version.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     },
     {
-      "src": "/icon-light-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png",
-      "purpose": "any"
+      "src": "/icons/HUIX 2099 light logo icon version.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     },
     {
-      "src": "/icon-dark-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png",
-      "purpose": "any"
+      "src": "/icons/HUIX 2099 dark logo icon version.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     },
     {
-      "src": "/apple-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "any"
+      "src": "/icons/HUIX 2099 light logo icon version.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     }
   ],
   "screenshots": [
     {
-      "src": "/images/huix-202099-20dark-20logo-20jpg.jpg",
+      "src": "/icons/HUIX 2099 dark logo icon version.jpg",
       "sizes": "1200x630",
       "type": "image/jpeg",
       "label": "HUIX-2099 Homepage"

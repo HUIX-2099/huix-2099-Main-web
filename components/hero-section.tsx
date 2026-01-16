@@ -77,7 +77,7 @@ export function HeroSection() {
         className="absolute top-0 left-0 right-0 z-20 border-b border-border/30"
       >
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-between h-12 text-[9px] uppercase tracking-[0.2em] text-muted-foreground/60" style={{ fontFamily: monoFont }}>
+          <div className="flex items-center justify-between h-10 sm:h-12 text-[8px] sm:text-[9px] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-muted-foreground/60" style={{ fontFamily: monoFont }}>
             <div className="flex items-center gap-4">
               <span>HUIX-2099</span>
               <span className="hidden sm:inline-block h-px w-6 bg-border/50" />
@@ -98,7 +98,7 @@ export function HeroSection() {
         style={{ y: contentY, opacity: contentOpacity }}
       >
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 items-center py-16 sm:py-20 lg:py-24">
             
             {/* Left Panel */}
             <motion.div
@@ -118,7 +118,7 @@ export function HeroSection() {
               </div>
 
               {/* Definition Block */}
-              <div className="border-l-2 border-foreground/20 pl-6 space-y-4">
+              <div className="border-l-2 border-foreground/20 pl-4 sm:pl-6 space-y-3 sm:space-y-4">
                 <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60" style={{ fontFamily: monoFont }}>
                   THE DEFINITION
                 </div>
@@ -137,12 +137,12 @@ export function HeroSection() {
                       className="flex items-baseline gap-3"
                     >
                       <span 
-                        className="text-2xl md:text-3xl font-bold text-foreground tracking-[0.1em]"
+                        className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground tracking-[0.1em]"
                         style={{ fontFamily: 'Mohican, sans-serif' }}
                       >
                         {item.letter}
                       </span>
-                      <span className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground" style={{ fontFamily: monoFont }}>
+                      <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.15em] text-muted-foreground" style={{ fontFamily: monoFont }}>
                         = {item.word}
                       </span>
                     </motion.div>

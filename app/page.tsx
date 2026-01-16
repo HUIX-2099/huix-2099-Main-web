@@ -17,27 +17,27 @@ export default function Home() {
       <HeroSection />
 
       {/* Flow Diagram: Company -> System -> Product */}
-      <section className="py-12 px-4 lg:px-8 bg-background">
+      <section className="py-8 sm:py-10 lg:py-12 px-4 sm:px-6 lg:px-8 bg-background">
         <div className="max-w-7xl mx-auto">
           <ParallaxReveal direction="up">
-            <div className="mb-8 border-b border-border/70 pb-4 flex items-end justify-between">
-              <div className="flex items-center gap-6">
+            <div className="mb-6 sm:mb-8 border-b border-border/70 pb-3 sm:pb-4 flex items-end justify-between">
+              <div className="flex items-center gap-3 sm:gap-6">
                 <ParallaxText speed={0.2} direction="up">
-                  <div className="text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
+                  <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
                 </ParallaxText>
                 <div>
-                  <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-1">Overview</div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">System Flow</h2>
+                  <div className="text-[9px] sm:text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.15em] sm:tracking-[0.18em] mb-1">Overview</div>
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">System Flow</h2>
                 </div>
               </div>
-              <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
+              <div className="hidden md:block text-[10px] sm:text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
             </div>
           </ParallaxReveal>
 
-          <div className="relative grid grid-cols-1 md:grid-cols-3 items-start gap-6">
+          <div className="relative grid grid-cols-1 md:grid-cols-3 items-start gap-4 sm:gap-6">
             {/* Node 1 */}
             <ParallaxReveal direction="left" delay={0}>
-              <div className="p-6 rounded-lg bg-card border border-border">
+              <div className="p-4 sm:p-6 rounded-lg bg-card border border-border">
                 <div className="flex items-center justify-between mb-3">
                   <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Company</div>
                   <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
@@ -100,7 +100,7 @@ export default function Home() {
 
             {/* Node 2 */}
             <ParallaxReveal direction="up" delay={0.1}>
-              <div className="p-6 rounded-lg bg-card border border-border">
+              <div className="p-4 sm:p-6 rounded-lg bg-card border border-border">
                 <div className="flex items-center justify-between mb-3">
                   <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">System</div>
                   <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
@@ -156,14 +156,14 @@ export default function Home() {
                   muted
                   loop
                   playsInline
-                  className="w-56 h-auto rounded-md"
+                  className="w-full max-w-[14rem] h-auto rounded-md"
                 />
               </div>
             </div>
 
             {/* Node 3 */}
             <ParallaxReveal direction="right" delay={0.2} className="md:col-start-3">
-              <div className="p-6 rounded-lg bg-card border border-border">
+              <div className="p-4 sm:p-6 rounded-lg bg-card border border-border">
                 <div className="flex items-center justify-between mb-3">
                   <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Product</div>
                   <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>03</div>
@@ -179,24 +179,24 @@ export default function Home() {
       </section>
 
       {/* Series 02: Mission & Values (Home) */}
-      <section className="px-4 lg:px-8 pt-12 pb-10 bg-background">
+      <section className="px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 lg:pt-12 pb-8 sm:pb-10 bg-background">
         <div className="max-w-7xl mx-auto">
           <ParallaxReveal direction="up">
-            <div className="mb-8 border-b border-border/70 pb-4 flex items-end justify-between">
-              <div className="flex items-center gap-6">
+            <div className="mb-6 sm:mb-8 border-b border-border/70 pb-3 sm:pb-4 flex items-end justify-between">
+              <div className="flex items-center gap-3 sm:gap-6">
                 <ParallaxText speed={0.2} direction="up">
-                  <div className="text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
+                  <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
                 </ParallaxText>
                 <div>
-                  <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-1">Mission & Values</div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground uppercase tracking-[0.1em]" style={{ fontFamily: 'Mohican, sans-serif' }}>MISSION & VALUES</h2>
+                  <div className="text-[9px] sm:text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.15em] sm:tracking-[0.18em] mb-1">Mission & Values</div>
+                  <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-foreground uppercase tracking-[0.08em] sm:tracking-[0.1em]" style={{ fontFamily: 'Mohican, sans-serif' }}>MISSION & VALUES</h2>
                 </div>
               </div>
-              <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
+              <div className="hidden md:block text-[10px] sm:text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
             </div>
           </ParallaxReveal>
 
-          <ParallaxStagger className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ParallaxStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {[
               { title: 'INNOVATION', desc: "Constantly challenging the boundaries of what is possible in technology" },
               { title: 'CREATIVITY', desc: 'Where art and science coexist in perfect harmony for extraordinary solutions' },
@@ -208,7 +208,7 @@ export default function Home() {
               <ParallaxStaggerItem key={item.title}>
                 <motion.div
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className="group relative p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all h-full"
+                  className="group relative p-4 sm:p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all h-full"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div 
@@ -245,7 +245,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-20 px-4 lg:px-8 bg-background">
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-background">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 grid lg:grid-cols-[auto_1fr_1fr] gap-8 lg:gap-12 items-center">
             {/* Left: Futuristic Number */}
@@ -402,7 +402,7 @@ export default function Home() {
               <ParallaxStaggerItem key={service.title}>
                 <motion.div
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className="group relative p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all h-full"
+                  className="group relative p-4 sm:p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all h-full"
                 >
                   {/* Meta row */}
                   <div className="flex items-center justify-between mb-3">
@@ -446,7 +446,7 @@ export default function Home() {
       </section>
 
       {/* Innovation Section - Editorial Document Style */}
-      <section className="py-24 lg:py-32 px-4 lg:px-8 bg-background border-t border-border">
+      <section className="py-12 sm:py-16 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
         <div className="max-w-7xl mx-auto">
           {/* Section Header - Document Style */}
           <div className="grid lg:grid-cols-[200px_1fr] gap-8 lg:gap-16 mb-16">
@@ -576,7 +576,7 @@ export default function Home() {
       </section>
 
       {/* Prototypes Preview Section - Editorial Document Style */}
-      <section className="py-24 lg:py-32 px-4 lg:px-8 bg-card/30 border-t border-border">
+      <section className="py-12 sm:py-16 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 bg-card/30 border-t border-border">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="grid lg:grid-cols-[1fr_200px] gap-8 mb-16">
@@ -698,7 +698,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section - Editorial Document Style */}
-      <section className="py-24 lg:py-32 px-4 lg:px-8 bg-background border-t border-border">
+      <section className="py-12 sm:py-16 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center">
             {/* Left - Large Number */}

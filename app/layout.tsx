@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { CustomCursor } from "@/components/custom-cursor"
+import { VRImmersePrompt } from "@/components/vr-immerse-prompt"
 import "./globals.css"
 
 const inter = Inter({
@@ -103,7 +104,7 @@ export const metadata: Metadata = {
       "Liberia-based next-generation technology company pioneering VR, XR, AR, AI, 3D visualization, and immersive digital engineering. Founded in 2024 in Monrovia, we build innovative solutions that merge creativity, culture, and commerce.",
     images: [
       {
-        url: "/images/huix-202099-20dark-20logo-20jpg.jpg",
+        url: "/icons/HUIX 2099 dark logo icon version.jpg",
         width: 1200,
         height: 630,
         alt: "HUIX-2099 - Building the Digital Future of Africa - Liberia Tech Company",
@@ -117,7 +118,7 @@ export const metadata: Metadata = {
     title: "HUIX-2099 | Building the Digital Future of Africa",
     description:
       "Liberia-based next-generation technology company pioneering VR, XR, AR, AI, 3D visualization, and immersive digital engineering. Founded in 2024 in Monrovia.",
-    images: ["/images/huix-202099-20dark-20logo-20jpg.jpg"],
+    images: ["/icons/HUIX 2099 dark logo icon version.jpg"],
   },
   alternates: {
     canonical: "https://huix-2099.vercel.app",
@@ -128,12 +129,19 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
-      { url: "/icon-light-32x32.png", type: "image/png", sizes: "32x32" },
-      { url: "/icon-dark-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icons/HUIX 2099 dark logo icon version.jpg", type: "image/jpeg", sizes: "512x512", media: "(prefers-color-scheme: dark)" },
+      { url: "/icons/HUIX 2099 light logo icon version.jpg", type: "image/jpeg", sizes: "512x512", media: "(prefers-color-scheme: light)" },
+      { url: "/icons/HUIX 2099 dark logo icon version.jpg", type: "image/jpeg", sizes: "192x192", media: "(prefers-color-scheme: dark)" },
+      { url: "/icons/HUIX 2099 light logo icon version.jpg", type: "image/jpeg", sizes: "192x192", media: "(prefers-color-scheme: light)" },
     ],
-    shortcut: [{ url: "/icon.svg", type: "image/svg+xml", sizes: "any" }],
-    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
+    shortcut: [
+      { url: "/icons/HUIX 2099 dark logo icon version.jpg", type: "image/jpeg", sizes: "192x192", media: "(prefers-color-scheme: dark)" },
+      { url: "/icons/HUIX 2099 light logo icon version.jpg", type: "image/jpeg", sizes: "192x192", media: "(prefers-color-scheme: light)" },
+    ],
+    apple: [
+      { url: "/icons/HUIX 2099 dark logo icon version.jpg", type: "image/jpeg", sizes: "180x180", media: "(prefers-color-scheme: dark)" },
+      { url: "/icons/HUIX 2099 light logo icon version.jpg", type: "image/jpeg", sizes: "180x180", media: "(prefers-color-scheme: light)" },
+    ],
   },
   manifest: "/manifest.json",
   verification: {
@@ -161,7 +169,7 @@ const jsonLd = {
   name: "HUIX-2099",
   alternateName: "HUIX 2099",
   url: "https://huix-2099.vercel.app",
-  logo: "https://huix-2099.vercel.app/images/huix-202099-20dark-20logo-20jpg.jpg",
+  logo: "https://huix-2099.vercel.app/icons/HUIX 2099 dark logo icon version.jpg",
   description:
     "Liberia-based next-generation technology company pioneering VR, XR, AR, AI, 3D visualization, and immersive digital engineering.",
   foundingDate: "2024",
@@ -232,6 +240,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <CustomCursor />
+          <VRImmersePrompt />
           {children}
           <Analytics />
         </ThemeProvider>
