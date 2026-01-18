@@ -566,6 +566,257 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+      
+        {/* System Flow Section */}
+        <section className="py-8 sm:py-10 lg:py-12 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <div className="mb-6 sm:mb-8 border-b border-border/70 pb-3 sm:pb-4 flex items-end justify-between">
+                <div className="flex items-center gap-3 sm:gap-6">
+                  <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
+                  <div>
+                    <div className="text-[9px] sm:text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.15em] sm:tracking-[0.18em] mb-1">Overview</div>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">System Flow</h2>
+                  </div>
+                </div>
+                <div className="hidden md:block text-[10px] sm:text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
+              </div>
+            </motion.div>
+
+            <div className="relative grid grid-cols-1 md:grid-cols-3 items-start gap-4 sm:gap-6">
+              {/* Node 1 */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <div className="p-4 sm:p-6 rounded-lg bg-card border border-border">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Company</div>
+                    <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
+                  </div>
+                  <div className="h-px w-full bg-border mb-4" />
+                  <div className="text-xl font-bold tracking-[0.15em]" style={{ fontFamily: 'Mohican, sans-serif' }}>HUIX-2099</div>
+                  <p className="text-sm text-muted-foreground mt-2">The studio and engineering company delivering advanced XR, AI and 3D software.</p>
+                </div>
+              </motion.div>
+
+              {/* Center Column (Desktop): Wire + Map + Counties */}
+              <div className="hidden md:flex flex-col items-center justify-center gap-2 -mt-6">
+                <motion.svg
+                  width="120"
+                  height="8"
+                  viewBox="0 0 120 8"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-foreground/50"
+                >
+                  <motion.line
+                    x1="0"
+                    y1="4"
+                    x2="110"
+                    y2="4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                  />
+                  {/* Arrowhead */}
+                  <motion.polyline
+                    points="110,1 120,4 110,7"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                  />
+                </motion.svg>
+                <div className="w-full flex justify-center py-2">
+                  <video
+                    src="/ready.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-80 h-auto rounded-md"
+                  />
+                </div>
+              </div>
+
+              {/* Node 2 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="p-4 sm:p-6 rounded-lg bg-card border border-border">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">System</div>
+                    <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
+                  </div>
+                  <div className="h-px w-full bg-border mb-2" />
+                  <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Funding · Concept Stage · Experimental</div>
+                  <div className="text-xl font-bold tracking-[0.15em]" style={{ fontFamily: 'Mohican, sans-serif' }}>HUIX-HORIZEN</div>
+                  <p className="text-sm text-muted-foreground mt-2">Our modular platform architecture and tools powering immersive products.</p>
+                </div>
+              </motion.div>
+
+              {/* Connector + Map + Counties (Mobile) */}
+              <div className="md:hidden flex flex-col items-center justify-center gap-2 -mt-4">
+                <motion.svg
+                  width="8"
+                  height="36"
+                  viewBox="0 0 8 36"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-foreground/50"
+                >
+                  <motion.line
+                    x1="4"
+                    y1="0"
+                    x2="4"
+                    y2="32"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                  />
+                  <motion.polyline
+                    points="1,32 4,36 7,32"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                  />
+                </motion.svg>
+                <div className="w-full flex justify-center py-2">
+                  <video
+                    src="/ready.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full max-w-[14rem] h-auto rounded-md"
+                  />
+                </div>
+              </div>
+
+              {/* Node 3 */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="md:col-start-3"
+              >
+                <div className="p-4 sm:p-6 rounded-lg bg-card border border-border">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Product</div>
+                    <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>03</div>
+                  </div>
+                  <div className="h-px w-full bg-border mb-2" />
+                  <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Concept · Development Stage · 0 Funding</div>
+                  <div className="text-xl font-bold">Virtual Past Liberia</div>
+                  <p className="text-sm text-muted-foreground mt-2">A flagship immersive heritage experience built on HUIX-HORIZEN.</p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Mission & Values Section */}
+        <section className="px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 lg:pt-12 pb-8 sm:pb-10 bg-background">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <div className="mb-6 sm:mb-8 border-b border-border/70 pb-3 sm:pb-4 flex items-end justify-between">
+                <div className="flex items-center gap-3 sm:gap-6">
+                  <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
+                  <div>
+                    <div className="text-[9px] sm:text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.15em] sm:tracking-[0.18em] mb-1">Mission & Values</div>
+                    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-foreground uppercase tracking-[0.08em] sm:tracking-[0.1em]" style={{ fontFamily: 'Mohican, sans-serif' }}>MISSION & VALUES</h2>
+                  </div>
+                </div>
+                <div className="hidden md:block text-[10px] sm:text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
+              </div>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {[
+                { title: 'INNOVATION', desc: "Constantly challenging the boundaries of what is possible in technology" },
+                { title: 'CREATIVITY', desc: 'Where art and science coexist in perfect harmony for extraordinary solutions' },
+                { title: 'INTEGRITY', desc: 'Operating with honesty, responsibility, and transparency always' },
+                { title: 'COLLABORATION', desc: 'True innovation happens through collective intelligence and teamwork' },
+                { title: 'EXCELLENCE', desc: 'Continuous improvement and technical mastery in every project' },
+                { title: 'EMPOWERMENT', desc: 'Inspiring the next generation of African innovators and leaders' },
+              ].map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                  className="group relative p-4 sm:p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all h-full"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <div 
+                      className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]"
+                      style={{ fontFamily: monoFont }}
+                    >
+                      Value
+                    </div>
+                    <div 
+                      className="text-sm text-muted-foreground tabular-nums"
+                      style={{ fontFamily: monoFont }}
+                    >
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
+                  </div>
+                  <div className="h-px w-full bg-border mb-4" />
+                  <h3 
+                    className="text-lg font-bold text-foreground mb-2 uppercase tracking-[0.06em]"
+                  >
+                    {item.title}
+                  </h3>
+                  <p 
+                    className="text-muted-foreground leading-relaxed text-sm"
+                  >
+                    {item.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
 
       <Footer />
