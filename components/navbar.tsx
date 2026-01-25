@@ -150,6 +150,7 @@ export function Navbar() {
         { name: "Virtual Past Liberia", url: "/virtual-past-liberia", cat: "PRJ" },
         { name: "Prototypes", url: "/prototypes", cat: "PRJ" },
         { name: "Products", url: "/products", cat: "PRD" },
+        { name: "HUIX-THEME", url: "/products/huix-theme", cat: "PRD" },
         { name: "Software Products", url: "/products#Software", cat: "PRD" },
         { name: "Website Products", url: "/products#Website", cat: "PRD" },
         { name: "App Products", url: "/products#App", cat: "PRD" },
