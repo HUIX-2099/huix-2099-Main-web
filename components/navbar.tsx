@@ -109,37 +109,49 @@ export function Navbar() {
       ]
     },
     {
-      id: "projects",
+      id: "company",
+      label: "COMPANY",
+      href: "#",
+      index: "02",
+      mega: true,
+    },
+    {
+      id: "contact",
+      label: "CONTACT",
+      href: "/contact",
+      index: "03",
+    },
+  ]
+
+  // Company mega dropdown: Products, Projects, Pricing (with sub-links)
+  const companySections = [
+    {
+      label: "PRODUCTS",
+      href: "/products",
+      links: [
+        { label: "ALL PRODUCTS", href: "/products", index: "01" },
+        { label: "SOFTWARE", href: "/products#Software", index: "02" },
+        { label: "WEBSITES", href: "/products#Website", index: "03" },
+        { label: "APPS", href: "/products#App", index: "04" },
+        { label: "GAMES", href: "/products#Game", index: "05", featured: true },
+      ],
+    },
+    {
       label: "PROJECTS",
       href: "/projects",
-      index: "02",
-      dropdown: [
+      links: [
         { label: "ALL PROJECTS", href: "/projects", index: "01" },
         { label: "HUIX-HORIZEN", href: "/huix-horizen", index: "02", featured: true },
         { label: "HUIX HORIZON WHITEPAPER", href: "/huix-horizen/whitepaper", index: "02A", featured: true },
         { label: "VIRTUAL PAST LIBERIA", href: "/virtual-past-liberia", index: "03", featured: true },
         { label: "PROTOTYPES", href: "/prototypes", index: "04" },
         { label: "GALLERY", href: "/gallery", index: "05" },
-      ]
+      ],
     },
     {
-      id: "products",
-      label: "PRODUCTS",
-      href: "/products",
-      index: "03",
-      dropdown: [
-        { label: "ALL PRODUCTS", href: "/products", index: "01" },
-        { label: "SOFTWARE", href: "/products#Software", index: "02" },
-        { label: "WEBSITES", href: "/products#Website", index: "03" },
-        { label: "APPS", href: "/products#App", index: "04" },
-        { label: "GAMES", href: "/products#Game", index: "05", featured: true },
-      ]
-    },
-    {
-      id: "contact",
-      label: "CONTACT",
-      href: "/contact",
-      index: "04",
+      label: "PRICING",
+      href: "/pricing",
+      links: [{ label: "PRICING", href: "/pricing", index: "01" }],
     },
   ]
 
@@ -156,6 +168,7 @@ export function Navbar() {
         { name: "App Products", url: "/products#App", cat: "PRD" },
         { name: "Game Products", url: "/products#Game", cat: "PRD" },
         { name: "About", url: "/about", cat: "DOC" },
+        { name: "Pricing", url: "/pricing", cat: "DOC" },
         { name: "Contact", url: "/contact", cat: "DOC" },
       ].filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase()))
     : []
@@ -229,12 +242,12 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Main Nav */}
-      <div className="border-b border-border">
+      {/* Main Nav - onMouseLeave here so Company mega dropdown stays open when moving from link to panel */}
+      <div className="border-b border-border relative" onMouseLeave={() => setOpenDropdown(null)}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
+            <Link href="/" className="flex items-center gap-3 group shrink-0">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 relative rounded overflow-hidden">
                   <Image
@@ -257,34 +270,34 @@ export function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Nav Links */}
+            {/* Desktop Nav Links - onMouseLeave is on parent (border-b) so Company mega stays open when hovering dropdown */}
             <div className="hidden lg:flex items-center">
-              {navItems.map((item, idx) => (
+              {navItems.map((item) => (
                 <div
                   key={item.id}
                   className="relative"
-                  onMouseEnter={() => item.dropdown && setOpenDropdown(item.id)}
-                  onMouseLeave={() => setOpenDropdown(null)}
+                  onMouseEnter={() => (item.dropdown || item.mega) && setOpenDropdown(item.id)}
                 >
                   <Link
                     href={item.href}
+                    onClick={(e) => item.mega && e.preventDefault()}
                     className={`flex items-center gap-1.5 lg:gap-2 px-2 lg:px-3 xl:px-4 py-2 text-[10px] lg:text-[11px] uppercase tracking-[0.12em] lg:tracking-[0.14em] transition-colors group ${
-                      pathname === item.href || pathname.startsWith(item.href + '/') 
-                        ? 'text-foreground' 
-                        : 'text-muted-foreground hover:text-foreground'
+                      pathname === item.href || (item.href !== "#" && pathname.startsWith(item.href + "/"))
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
-                    style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
+                    style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
                   >
                     <span className="text-[8px] lg:text-[9px] opacity-50 hidden xl:inline">[{item.index}]</span>
                     <span>{item.label}</span>
-                    {item.dropdown && (
+                    {(item.dropdown || item.mega) && (
                       <ChevronDown
                         className={`h-3 w-3 transition-transform duration-200 ${openDropdown === item.id ? "rotate-180" : ""}`}
                       />
                     )}
                   </Link>
-                  
-                  {/* Desktop Dropdown */}
+
+                  {/* Desktop Dropdown (regular items only) */}
                   <AnimatePresence>
                     {item.dropdown && openDropdown === item.id && (
                       <motion.div
@@ -294,9 +307,8 @@ export function Navbar() {
                         transition={{ duration: 0.15 }}
                         className="absolute left-0 top-full mt-0 w-64 bg-background border border-border shadow-lg"
                       >
-                        {/* Dropdown Header */}
                         <div className="px-4 py-2 border-b border-border bg-card/50">
-                          <div className="flex items-center justify-between" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                          <div className="flex items-center justify-between" style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}>
                             <span className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground">
                               {item.label} · INDEX
                             </span>
@@ -305,12 +317,10 @@ export function Navbar() {
                             </span>
                           </div>
                         </div>
-                        
-                        {/* Dropdown Items */}
                         <div className="py-2">
                           {item.dropdown.map((subItem, subIdx) => (
                             <motion.div
-                              key={subItem.href}
+                              key={subItem.href + subItem.label}
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: subIdx * 0.03 }}
@@ -318,9 +328,9 @@ export function Navbar() {
                               <Link
                                 href={subItem.href}
                                 className={`flex items-center justify-between px-4 py-2.5 text-[11px] uppercase tracking-[0.1em] transition-all group hover:bg-card ${
-                                  subItem.featured ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
+                                  subItem.featured ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                                 }`}
-                                style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
+                                style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
                               >
                                 <span className="flex items-center gap-3">
                                   <span className="text-[9px] opacity-40">[{subItem.index}]</span>
@@ -334,10 +344,8 @@ export function Navbar() {
                             </motion.div>
                           ))}
                         </div>
-                        
-                        {/* Dropdown Footer */}
                         <div className="px-4 py-2 border-t border-border bg-card/30">
-                          <div className="flex items-center justify-between text-[8px] text-muted-foreground/50 uppercase tracking-[0.1em]" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                          <div className="flex items-center justify-between text-[8px] text-muted-foreground/50 uppercase tracking-[0.1em]" style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}>
                             <span>NAV · {item.id.toUpperCase()}</span>
                             <span>→</span>
                           </div>
@@ -474,6 +482,67 @@ export function Navbar() {
             </div>
           </div>
         </div>
+
+        {/* Company mega dropdown - full navbar width, logo left / links right */}
+        <AnimatePresence>
+          {openDropdown === "company" && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.15 }}
+              className="absolute left-0 right-0 top-full -mt-px z-50 bg-background border-x border-b border-border shadow-lg"
+            >
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row gap-8 lg:gap-12">
+                {/* Left: HUIX 2099 logo (barcode) */}
+                <div className="flex-shrink-0 flex items-center justify-center lg:justify-start lg:w-64 border-r border-border/50 pr-6">
+                  <div className="relative w-40 h-24 lg:w-48 lg:h-28">
+                    <Image
+                      src={resolvedTheme === "dark" ? "/icons/HUIX 2099 dark logo icon version.jpg" : "/icons/HUIX 2099 light logo icon version.jpg"}
+                      alt="HUIX 2099"
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 1024px) 160px, 192px"
+                    />
+                  </div>
+                </div>
+                {/* Right: Products, Projects, Pricing sections */}
+                <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
+                  {companySections.map((section) => (
+                    <div key={section.label}>
+                      <Link
+                        href={section.href}
+                        className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground border-b border-border pb-1.5 mb-3 inline-block"
+                        style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
+                      >
+                        {section.label}
+                      </Link>
+                      <ul className="space-y-1">
+                        {section.links.map((link) => (
+                          <li key={link.href + link.label}>
+                            <Link
+                              href={link.href}
+                              className={`flex items-center gap-2 py-1.5 text-[11px] uppercase tracking-[0.1em] transition-colors hover:text-foreground ${
+                                link.featured ? "text-foreground" : "text-muted-foreground"
+                              }`}
+                              style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
+                            >
+                              <span className="text-[9px] opacity-50">[{link.index}]</span>
+                              <span>{link.label}</span>
+                              {link.featured && (
+                                <span className="px-1 py-0.5 text-[7px] bg-foreground/10 rounded">★</span>
+                              )}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Mobile Menu */}
@@ -524,29 +593,55 @@ export function Navbar() {
 
               {/* Mobile Nav Items */}
               {navItems.map((item) => (
-                <div key={item.id}>
-                  <div className="flex items-center justify-between">
-                    <Link
-                      href={item.href}
-                      className={`flex-1 flex items-center gap-2 px-3 py-2.5 text-[11px] uppercase tracking-[0.14em] ${
-                        pathname === item.href ? 'text-foreground' : 'text-muted-foreground'
-                      }`}
-                      style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
-                      onClick={() => !item.dropdown && setMobileOpen(false)}
+                <div key={item.id} className="border-b border-border/50 last:border-b-0">
+                  {item.mega ? (
+                    /* Company: whole row toggles open/close */
+                    <button
+                      type="button"
+                      onClick={() => setOpenDropdown(openDropdown === item.id ? null : item.id)}
+                      className="flex w-full items-center justify-between px-3 py-3 text-left"
+                      aria-expanded={openDropdown === item.id}
                     >
-                      <span className="text-[9px] opacity-50">[{item.index}]</span>
-                      <span>{item.label}</span>
-                    </Link>
-                    {item.dropdown && (
-                      <button
-                        onClick={() => setOpenDropdown(openDropdown === item.id ? null : item.id)}
-                        className="p-2 text-muted-foreground"
+                      <span
+                        className={`flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] ${
+                          openDropdown === item.id ? "text-foreground" : "text-muted-foreground"
+                        }`}
+                        style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
                       >
-                        <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === item.id ? "rotate-180" : ""}`} />
-                      </button>
-                    )}
-                  </div>
-                  
+                        <span className="text-[9px] opacity-50">[{item.index}]</span>
+                        <span>{item.label}</span>
+                      </span>
+                      <ChevronDown
+                        className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform ${openDropdown === item.id ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <Link
+                        href={item.href}
+                        className={`flex-1 flex items-center gap-2 px-3 py-2.5 text-[11px] uppercase tracking-[0.14em] ${
+                          pathname === item.href ? "text-foreground" : "text-muted-foreground"
+                        }`}
+                        style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
+                        onClick={() => !item.dropdown && setMobileOpen(false)}
+                      >
+                        <span className="text-[9px] opacity-50">[{item.index}]</span>
+                        <span>{item.label}</span>
+                      </Link>
+                      {item.dropdown && (
+                        <button
+                          type="button"
+                          onClick={() => setOpenDropdown(openDropdown === item.id ? null : item.id)}
+                          className="p-2 text-muted-foreground"
+                          aria-label={openDropdown === item.id ? "Collapse" : "Expand"}
+                        >
+                          <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === item.id ? "rotate-180" : ""}`} />
+                        </button>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Regular dropdown */}
                   <AnimatePresence>
                     {item.dropdown && openDropdown === item.id && (
                       <motion.div
@@ -558,10 +653,10 @@ export function Navbar() {
                       >
                         {item.dropdown.map((subItem) => (
                           <Link
-                            key={subItem.href}
+                            key={subItem.href + subItem.label}
                             href={subItem.href}
                             className="flex items-center gap-2 px-4 py-2 text-[10px] uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors"
-                            style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
+                            style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
                             onClick={() => setMobileOpen(false)}
                           >
                             <span className="text-[8px] opacity-40">[{subItem.index}]</span>
@@ -571,6 +666,61 @@ export function Navbar() {
                             )}
                           </Link>
                         ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Company mega: Products, Projects, Pricing – contained inside menu, tap row again to close */}
+                  <AnimatePresence>
+                    {item.mega && openDropdown === item.id && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.15 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mx-3 mt-2 mb-4 rounded-lg border border-border bg-card/50 p-4 max-h-[60vh] overflow-y-auto">
+                          <div className="mb-4 flex justify-center border-b border-border/50 pb-3">
+                            <Image
+                              src={resolvedTheme === "dark" ? "/icons/HUIX 2099 dark logo icon version.jpg" : "/icons/HUIX 2099 light logo icon version.jpg"}
+                              alt="HUIX 2099"
+                              width={120}
+                              height={72}
+                              className="object-contain"
+                            />
+                          </div>
+                          {companySections.map((section) => (
+                            <div key={section.label} className="mb-4 last:mb-0">
+                              <Link
+                                href={section.href}
+                                className="mb-2 block text-[10px] uppercase tracking-[0.12em] text-foreground font-medium"
+                                style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
+                                onClick={() => setMobileOpen(false)}
+                              >
+                                {section.label}
+                              </Link>
+                              <ul className="space-y-0.5">
+                                {section.links.map((link) => (
+                                  <li key={link.href + link.label}>
+                                    <Link
+                                      href={link.href}
+                                      className="flex items-center gap-2 py-1.5 pl-2 text-[10px] uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground active:text-foreground transition-colors"
+                                      style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
+                                      onClick={() => setMobileOpen(false)}
+                                    >
+                                      <span className="text-[8px] opacity-40">[{link.index}]</span>
+                                      <span>{link.label}</span>
+                                      {link.featured && (
+                                        <span className="px-1 py-0.5 text-[7px] bg-foreground/10 rounded">★</span>
+                                      )}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>

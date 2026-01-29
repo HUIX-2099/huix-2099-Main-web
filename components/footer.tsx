@@ -83,6 +83,11 @@ export function Footer() {
                   Products
                 </Link>
               </li>
+              <li>
+                <Link href="/pricing" className="hover:text-foreground transition-colors">
+                  Pricing
+                </Link>
+              </li>
             </ul>
           </ParallaxStaggerItem>
           <ParallaxStaggerItem>

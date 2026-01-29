@@ -61,6 +61,18 @@ const products: Product[] = [
     link: "https://marketplace.visualstudio.com/items?itemName=huix-2099.huix-2099-theme",
     detailPage: "/products/huix-theme",
   },
+  {
+    id: 4,
+    title: "TYPE LR",
+    category: "Software",
+    platform: "Windows",
+    description: "Digital skills for Liberia — typing tutor and gamified learning with Liberian content. Teaching Liberians to type, one keystroke at a time.",
+    image: "/products/typelr/SPLASH%20SCREEN%20LOGO.jpg",
+    year: "2025",
+    status: "Development",
+    technologies: [".NET 8", "WPF", "XAML"],
+    detailPage: "/products/typelr",
+  },
 ]
 
 const categories = [
@@ -90,6 +102,9 @@ export default function ProductsPage() {
     const page = getProductPage(product)
     if (page) router.push(page)
   }
+
+
+  
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -287,7 +302,7 @@ export default function ProductsPage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
               >
                 {filteredProducts.map((product, index) => {
                   const CategoryIcon = getCategoryIcon(product.category)
