@@ -42,7 +42,7 @@ export function HeroSection() {
       className="relative min-h-screen w-full overflow-hidden bg-background"
     >
       {/* Grid Pattern Overlay */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.02] z-[1]"
         style={{
           backgroundImage: `linear-gradient(${isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)'} 1px, transparent 1px), linear-gradient(90deg, ${isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)'} 1px, transparent 1px)`,
@@ -55,51 +55,30 @@ export function HeroSection() {
         className="absolute inset-0 w-full h-[130%] -top-[15%] z-[2]"
         style={{
           backgroundImage: `url('${bgImage}')`,
-          backgroundSize: "contain",
+          backgroundSize: "80%",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           y: backgroundY,
           scale: backgroundScale,
         }}
       />
-      
+
       {/* Gradient Overlay */}
-      <motion.div 
+      <motion.div
         className={`absolute inset-0 z-[3] ${isDark ? "bg-black" : "bg-white"}`}
         style={{ opacity: overlayOpacity }}
       />
 
-      {/* Top Meta Bar */}
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="absolute top-0 left-0 right-0 z-20 border-b border-border/30"
-      >
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-between h-10 sm:h-12 text-[8px] sm:text-[9px] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-muted-foreground/60" style={{ fontFamily: monoFont }}>
-            <div className="flex items-center gap-4">
-              <span>HUIX-2099</span>
-              <span className="hidden sm:inline-block h-px w-6 bg-border/50" />
-              <span className="hidden sm:inline">MONROVIA · LIBERIA</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="hidden sm:inline">EST. 2024</span>
-              <span className="hidden sm:inline-block h-px w-6 bg-border/50" />
-              <span>INDEX · 00</span>
-            </div>
-          </div>
-        </div>
-      </motion.div>
+
 
       {/* Main Content */}
-      <motion.div 
+      <motion.div
         className="relative z-10 min-h-screen flex items-center"
         style={{ y: contentY, opacity: contentOpacity }}
       >
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 items-center py-16 sm:py-20 lg:py-24">
-            
+
             {/* Left Panel */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -109,7 +88,7 @@ export function HeroSection() {
             >
               {/* Section Number */}
               <div className="flex items-start gap-4">
-                <div 
+                <div
                   className="text-[80px] md:text-[100px] font-bold leading-none text-foreground/[0.08]"
                   style={{ fontFamily: 'Mohican, sans-serif' }}
                 >
@@ -136,7 +115,7 @@ export function HeroSection() {
                       transition={{ delay: 0.5 + index * 0.1 }}
                       className="flex items-baseline gap-3"
                     >
-                      <span 
+                      <span
                         className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground tracking-[0.1em]"
                         style={{ fontFamily: 'Mohican, sans-serif' }}
                       >
@@ -164,7 +143,7 @@ export function HeroSection() {
             </motion.div>
 
             {/* Center - Visual Focus Area */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 1 }}
@@ -175,7 +154,7 @@ export function HeroSection() {
               <div className="absolute top-0 right-0 w-16 h-16 border-r border-t border-foreground/10" />
               <div className="absolute bottom-0 left-0 w-16 h-16 border-l border-b border-foreground/10" />
               <div className="absolute bottom-0 right-0 w-16 h-16 border-r border-b border-foreground/10" />
-              
+
               {/* Center Label */}
               <div className="text-center">
                 <div className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground/30 mb-2" style={{ fontFamily: monoFont }}>
@@ -194,7 +173,7 @@ export function HeroSection() {
             >
               {/* Section Number */}
               <div className="flex items-start justify-end gap-4">
-                <div 
+                <div
                   className="text-[80px] md:text-[100px] font-bold leading-none text-foreground/[0.1em]"
                   style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
                 >
@@ -203,11 +182,11 @@ export function HeroSection() {
               </div>
 
               {/* Content Block */}
-              <div className="border-r-2 border-foreground/20 pr-6 text-right space-y-4">
+              <div className="border-r-2 border-foreground/20 pr-6 text-right space-y-4 max-w-sm ml-auto bg-background/20 backdrop-blur-sm p-4 rounded-tl-xl sm:bg-transparent sm:backdrop-blur-none sm:p-0">
                 <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60" style={{ fontFamily: monoFont }}>
                   UNIFIED REALITY
                 </div>
-                <h3 
+                <h3
                   className="text-2xl md:text-3xl font-bold text-foreground tracking-[0.1em]"
                   style={{ fontFamily: 'Mohican, sans-serif' }}
                 >
@@ -256,7 +235,7 @@ export function HeroSection() {
       </motion.div>
 
       {/* Bottom Meta Bar */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
@@ -265,7 +244,7 @@ export function HeroSection() {
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-14">
             {/* Left - Scroll Indicator */}
-            <motion.div 
+            <motion.div
               animate={{ y: [0, 6, 0] }}
               transition={{ repeat: Infinity, duration: 2 }}
               className="flex items-center gap-3 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50"

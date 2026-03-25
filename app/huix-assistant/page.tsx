@@ -43,7 +43,7 @@ export default function HuixAssistant() {
     const welcomeMsg: Message = {
       id: 'welcome',
       type: 'assistant',
-      content: `Hey there! 👋 I'm HUIX Assistant — your AI guide to everything HUIX-2099.\n\nI know this site inside out: our projects, services, team, tech stack, and more. Ask me anything!\n\nTry: "What is HUIX-2099?" or "Tell me about Virtual Past Liberia"`,
+      content: `Hey there! 👋 I'm HUIX Assistant — your AI guide to everything HUIX-2099.\n\nI know this site inside out: our projects, services, team (Victor our CTO, Wulwyn our CEO), tech stack, and more. Ask me anything!\n\nTry: "What is HUIX-2099?" or "Who is the CTO?"`,
       timestamp: new Date(),
       sentiment: 'positive'
     }
@@ -56,7 +56,7 @@ export default function HuixAssistant() {
       name: "HUIX-2099",
       tagline: "Where Innovation Meets Imagination",
       founded: "2024",
-      founder: "Victor Edet Coleman",
+      founder: "Victor Edet Coleman (CTO & Co-founder) and Wulwyn Porte L (CEO & Co-founder)",
       location: "Monrovia, Liberia",
       email: "huixtech2099@gmail.com",
       phone: ["+231 776 800 064", "+231 770 499 140"],
@@ -65,7 +65,8 @@ export default function HuixAssistant() {
       vision: "To be Africa's leading innovator in VR, AI, and immersive digital experiences"
     },
     team: [
-      { name: "Victor Edet Coleman", role: "Founder & 3D Innovator", desc: "Liberian 3D Software Engineer" },
+      { name: "Victor Edet Coleman", role: "CTO & Co-founder", desc: "Chief Technology Officer · 3D Software Engineer · Technical Architect" },
+      { name: "Wulwyn Porte L", role: "CEO & Co-founder & Investor", desc: "Chief Executive Officer · Strategic Lead · Investor" },
       { name: "Amanda Anderson", role: "Architect & Designer", desc: "The Ancestral Grid Architect for Virtual Past Liberia" }
     ],
     services: [
@@ -97,7 +98,7 @@ export default function HuixAssistant() {
       }
     },
     website: {
-      pages: ["Home", "About", "HUIX-HORIZEN", "Virtual Past Liberia", "Prototypes", "Gallery", "Research", "Team", "Contact"],
+      pages: ["Home", "About", "HUIX-HORIZEN", "Virtual Past Liberia", "Research", "Team", "Contact"],
       features: ["Dark/Light mode", "Responsive design", "Parallax effects", "Interactive cards", "AI Assistant"],
       tech: ["Next.js 16", "React", "TypeScript", "Tailwind CSS", "Framer Motion"]
     },
@@ -106,7 +107,7 @@ export default function HuixAssistant() {
       { q: "cost|price|pricing|expensive|cheap", a: "Our pricing is project-based and depends on scope, complexity, and timeline. Contact us with your project details for a custom quote. We work with various budgets." },
       { q: "how long|timeline|duration|delivery", a: "Timelines vary: simple projects take 2-4 weeks, complex VR/AI projects can take 2-6 months. We'll give you a realistic timeline after understanding your needs." },
       { q: "where|location|based|office", a: "We're based in Monrovia, Liberia 🇱🇷 but work with clients worldwide remotely." },
-      { q: "who made|who built|who created|developer", a: "HUIX-2099 was founded by Victor Edet Coleman, a Liberian 3D Software Engineer passionate about innovation." }
+      { q: "who made|who built|who created|developer|cto|victor", a: "HUIX-2099 was co-founded by **Victor Edet Coleman** (CTO & Co-founder)—our Chief Technology Officer who architects and builds our platforms—and **Wulwyn Porte L** (CEO & Co-founder & Investor). Victor drives all technical vision: XR, 3D, AI, and immersive systems." }
     ]
   }
 
@@ -149,7 +150,7 @@ export default function HuixAssistant() {
         return "You're very welcome! 😊 It's been great chatting with you. Is there anything else you'd like to know about HUIX-2099? I'm here to help!"
       }
       if (lower.includes("love") || lower.includes("awesome") || lower.includes("amazing")) {
-        return "That means so much to us! 🎉 We put a lot of passion into everything we create. If you'd like to see more of our work, check out the Gallery or Prototypes pages. And if you ever want to collaborate, we'd love to hear from you!"
+        return "That means so much to us! 🎉 We put a lot of passion into everything we create. If you'd like to see more of our work, feel free to explore our projects. And if you ever want to collaborate, we'd love to hear from you!"
       }
     }
 
@@ -170,7 +171,7 @@ export default function HuixAssistant() {
 
     // About HUIX-2099
     if (lower.includes("what is huix") || lower.includes("about huix") || lower.includes("tell me about huix") || lower.includes("who is huix")) {
-      return `**HUIX-2099** is ${knowledgeBase.company.description}.\n\n🎯 **Mission:** ${knowledgeBase.company.mission}\n\n📍 **Based in:** ${knowledgeBase.company.location}\n👤 **Founded by:** ${knowledgeBase.company.founder}\n📅 **Year:** ${knowledgeBase.company.founded}\n\nWe specialize in VR, AI, 3D, and cutting-edge web/app development. Want to know about our specific projects or services?`
+      return `**HUIX-2099** is ${knowledgeBase.company.description}.\n\n🎯 **Mission:** ${knowledgeBase.company.mission}\n\n📍 **Based in:** ${knowledgeBase.company.location}\n👤 **Co-founded by:** Victor Edet Coleman (CTO) & Wulwyn Porte L (CEO)\n📅 **Year:** ${knowledgeBase.company.founded}\n\nWe specialize in VR, AI, 3D, and cutting-edge web/app development. Want to know about our specific projects or services?`
     }
 
     // Services
@@ -191,10 +192,10 @@ export default function HuixAssistant() {
       return `🏛️ **${v.name}**\n\n${v.description}\n\n**Architect:** ${v.architect}\n**Status:** ${v.status}\n\n**Highlights:**\n${v.features.map(f => `• ${f}`).join("\n")}\n\n**Tribes Featured:** ${v.tribes.slice(0, 8).join(", ")}... and 8 more!\n\nThis project preserves Liberia's rich cultural heritage in VR. Explore more on the Virtual Past Liberia page!`
     }
 
-    // Team
-    if (lower.includes("team") || lower.includes("who works") || lower.includes("founder") || lower.includes("victor") || lower.includes("amanda")) {
+    // Team / CTO / CEO
+    if (lower.includes("team") || lower.includes("who works") || lower.includes("founder") || lower.includes("victor") || lower.includes("wulwyn") || lower.includes("cto") || lower.includes("ceo") || lower.includes("amanda")) {
       const teamList = knowledgeBase.team.map(t => `• **${t.name}** — ${t.role}\n  _${t.desc}_`).join("\n\n")
-      return `Meet our talented team:\n\n${teamList}\n\nWe're a passionate group dedicated to pushing the boundaries of technology. Interested in joining us or collaborating?`
+      return `Meet our leadership and team:\n\n${teamList}\n\n**Victor Edet Coleman** is our CTO & Co-founder—he leads all technical architecture, XR/3D development, and platform innovation. **Wulwyn Porte L** is our CEO & Co-founder & Investor—driving strategy, partnerships, and growth. We're dedicated to building the digital future of Africa.`
     }
 
     // Contact
@@ -228,15 +229,7 @@ export default function HuixAssistant() {
       return "🤝 **Let's Work Together!**\n\nWe'd love to hear about your project! Here's how to get started:\n\n1. **Contact us:** huixtech2099@gmail.com\n2. **Tell us about your idea** — the more details, the better\n3. **We'll schedule a free consultation**\n4. **Receive a custom proposal**\n\nWhether it's VR, AI, web, mobile, or 3D — we've got you covered. What's your project idea?"
     }
 
-    // Gallery
-    if (lower.includes("gallery") || lower.includes("portfolio") || lower.includes("work") || lower.includes("examples") || lower.includes("showcase")) {
-      return "🖼️ **Our Gallery**\n\nCheck out our work in the Gallery page! You'll find:\n• VR/XR experiences\n• 3D models and renders\n• AI projects\n• Web designs\n• Architectural visualizations\n\nEach piece showcases our commitment to innovation and quality."
-    }
 
-    // Prototypes
-    if (lower.includes("prototype") || lower.includes("demo") || lower.includes("preview")) {
-      return "🧪 **Prototypes**\n\nOur Prototypes page showcases experimental work:\n• Virtual Past Liberia 3D testing\n• Display case designs\n• Museum building concepts (The Ancestral Grid)\n\nThese represent our R&D and innovation pipeline. Want to see something specific?"
-    }
 
     // FAQ pattern matching
     for (const faq of knowledgeBase.faqs) {
@@ -319,6 +312,7 @@ export default function HuixAssistant() {
 
   const quickActions = [
     { label: "What is HUIX-2099?", icon: "🏢" },
+    { label: "Who is the CTO?", icon: "👨‍💻" },
     { label: "Tell me about HUIX-HORIZEN", icon: "🚀" },
     { label: "What services do you offer?", icon: "💼" },
     { label: "How can I work with you?", icon: "🤝" },

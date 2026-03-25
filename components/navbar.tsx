@@ -14,7 +14,7 @@ export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [deviceType, setDeviceType] = useState("DSK")
-  const [platform, setPlatform] = useState<"windows" | "mac" | "linux" | "android" | "ios" | "unknown">("unknown")
+  const [platform, setPlatform] = useState<"windows" | "win11" | "mac" | "linux" | "android" | "ios" | "unknown">("unknown")
   const [online, setOnline] = useState(true)
   const [showSearch, setShowSearch] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
@@ -36,6 +36,15 @@ export function Navbar() {
     </svg>
   )
 
+  const GoogleIcon = ({ className }: { className?: string }) => (
+    <svg viewBox="0 0 24 24" className={className}>
+      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+    </svg>
+  )
+
   useEffect(() => {
     setMounted(true)
     
@@ -52,12 +61,32 @@ export function Navbar() {
     else if (/tablet/i.test(ua)) setDeviceType("TBL")
 
     // Detect platform/OS
-    if (/Android/i.test(ua)) setPlatform("android")
-    else if (/iPhone|iPad|iPod/i.test(ua)) setPlatform("ios")
-    else if (/Win/i.test(ua)) setPlatform("windows")
-    else if (/Mac/i.test(ua)) setPlatform("mac")
-    else if (/Linux/i.test(ua)) setPlatform("linux")
-    else setPlatform("unknown")
+    const checkOS = async () => {
+      let detectedOS: "windows" | "win11" | "mac" | "linux" | "android" | "ios" | "unknown" = "unknown"
+      if (/Android/i.test(ua)) detectedOS = "android"
+      else if (/iPhone|iPad|iPod/i.test(ua)) detectedOS = "ios"
+      else if (/Mac/i.test(ua)) detectedOS = "mac"
+      else if (/Linux/i.test(ua)) detectedOS = "linux"
+      else if (/Win/i.test(ua)) {
+        detectedOS = "windows";
+        // Attempt Windows 11 detection
+        if ('userAgentData' in navigator) {
+          try {
+            const uaData = await (navigator as any).userAgentData.getHighEntropyValues(['platformVersion']);
+            if (uaData && uaData.platformVersion) {
+              const majorVersion = parseInt(uaData.platformVersion.split('.')[0]);
+              if (majorVersion >= 13) {
+                detectedOS = "win11";
+              }
+            }
+          } catch (e) {
+            // fallback to "windows"
+          }
+        }
+      }
+      setPlatform(detectedOS)
+    }
+    checkOS()
 
     // Update time every minute
     const updateTime = () => {
@@ -136,18 +165,7 @@ export function Navbar() {
         { label: "GAMES", href: "/products#Game", index: "05", featured: true },
       ],
     },
-    {
-      label: "PROJECTS",
-      href: "/projects",
-      links: [
-        { label: "ALL PROJECTS", href: "/projects", index: "01" },
-        { label: "HUIX-HORIZEN", href: "/huix-horizen", index: "02", featured: true },
-        { label: "HUIX HORIZON WHITEPAPER", href: "/huix-horizen/whitepaper", index: "02A", featured: true },
-        { label: "VIRTUAL PAST LIBERIA", href: "/virtual-past-liberia", index: "03", featured: true },
-        { label: "PROTOTYPES", href: "/prototypes", index: "04" },
-        { label: "GALLERY", href: "/gallery", index: "05" },
-      ],
-    },
+
     {
       label: "PRICING",
       href: "/pricing",
@@ -157,10 +175,6 @@ export function Navbar() {
 
   const searchResults = searchQuery.toLowerCase().trim()
     ? [
-        { name: "HUIX-HORIZEN", url: "/huix-horizen", cat: "PRJ" },
-        { name: "HUIX Horizon Whitepaper", url: "/huix-horizen/whitepaper", cat: "DOC" },
-        { name: "Virtual Past Liberia", url: "/virtual-past-liberia", cat: "PRJ" },
-        { name: "Prototypes", url: "/prototypes", cat: "PRJ" },
         { name: "Products", url: "/products", cat: "PRD" },
         { name: "HUIX-THEME", url: "/products/huix-theme", cat: "PRD" },
         { name: "Software Products", url: "/products#Software", cat: "PRD" },
@@ -173,39 +187,41 @@ export function Navbar() {
       ].filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase()))
     : []
 
-  const currentYear = new Date().getFullYear()
-
   // Platform icons (tiny, no bg)
   const PlatformIcon = () => {
     const iconClass = "h-3 w-3 opacity-70"
     switch (platform) {
+      case "win11":
       case "windows":
         return (
-          <svg viewBox="0 0 24 24" className={iconClass} fill="currentColor">
-            <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+          <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 flex-shrink-0 opacity-90">
+            <path d="M2.5 2.5H11.5V11.5H2.5V2.5Z" fill="#0078D4"/>
+            <path d="M12.5 2.5H21.5V11.5H12.5V2.5Z" fill="#0078D4"/>
+            <path d="M2.5 12.5H11.5V21.5H2.5V12.5Z" fill="#0078D4"/>
+            <path d="M12.5 12.5H21.5V21.5H12.5V12.5Z" fill="#0078D4"/>
           </svg>
         )
       case "mac":
         return (
-          <svg viewBox="0 0 24 24" className={iconClass} fill="currentColor">
+          <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 flex-shrink-0 opacity-90" fill="#A3AAAE">
             <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
           </svg>
         )
       case "linux":
         return (
-          <svg viewBox="0 0 24 24" className={iconClass} fill="currentColor">
+          <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 flex-shrink-0 opacity-90" fill="#FCC624">
             <path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.468v.018c.002.135.028.267.076.399.05.117.109.232.18.332-.02.045-.037.088-.064.132-.027.044-.06.09-.086.135a.606.606 0 01-.12-.27.94.94 0 01-.025-.2v-.033c-.002-.073-.002-.129-.002-.2v-.067l.002-.052v-.138a1.82 1.82 0 01.145-.675c.103-.199.254-.467.47-.602.116-.07.235-.133.402-.133zm-2.027.21a1.2 1.2 0 01.49.098.654.654 0 01.147.053c.051.036.1.073.146.114.1.102.17.241.232.4.063.202.093.4.093.598v.2c-.004.133-.03.266-.07.4-.039.133-.1.266-.18.399l-.053.066a.67.67 0 00-.067.063c-.006.004-.014.006-.016.014h-.013a.78.78 0 00-.18.048c.024-.065.04-.135.06-.201.033-.135.04-.266.04-.4v-.266a1.78 1.78 0 00-.073-.4c-.04-.13-.09-.203-.168-.333a.593.593 0 00-.241-.135.468.468 0 00-.193-.032c-.18 0-.34.134-.433.27-.093.132-.133.266-.173.4-.036.133-.066.266-.066.399v.465c0 .066.003.133.006.2a.74.74 0 00.02.133c-.1-.067-.134-.133-.2-.2-.066-.066-.1-.133-.133-.2a.96.96 0 01-.133-.4c-.006-.133-.006-.266.027-.4.04-.132.09-.332.203-.465a.86.86 0 01.406-.333 1.42 1.42 0 01.49-.098z"/>
           </svg>
         )
       case "android":
         return (
-          <svg viewBox="0 0 24 24" className={iconClass} fill="currentColor">
+          <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 flex-shrink-0 opacity-90" fill="#3DDC84">
             <path d="M17.523 15.341c-.5 0-.906-.406-.906-.906s.406-.906.906-.906.906.406.906.906-.406.906-.906.906zm-11.046 0c-.5 0-.906-.406-.906-.906s.406-.906.906-.906.906.406.906.906-.406.906-.906.906zm11.398-5.789l1.997-3.458a.416.416 0 00-.152-.567.416.416 0 00-.567.152l-2.022 3.502A12.216 12.216 0 0012 8.421c-1.823 0-3.541.406-5.131 1.12L4.847 6.039a.416.416 0 00-.567-.152.416.416 0 00-.152.567l1.997 3.458C2.688 12.07.5 15.994.5 20.5h23c0-4.506-2.188-8.43-5.625-10.588z"/>
           </svg>
         )
       case "ios":
         return (
-          <svg viewBox="0 0 24 24" className={iconClass} fill="currentColor">
+          <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 flex-shrink-0 opacity-90" fill="#A3AAAE">
             <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
           </svg>
         )
@@ -216,36 +232,10 @@ export function Navbar() {
 
   return (
     <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled ? 'bg-background/98 backdrop-blur-md shadow-sm' : 'bg-background/95 backdrop-blur'}`}>
-      {/* Top Meta Strip */}
-      <div className="hidden lg:block border-b border-border/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-7 text-[10px] uppercase tracking-[0.12em] text-muted-foreground" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
-            <div className="flex items-center gap-4">
-              <span>HUIX-2099 · NAV</span>
-              <span className="inline-block h-[1px] w-4 bg-border" />
-              <span>SYS {currentYear}</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1.5">
-                <span className={`inline-block h-1.5 w-1.5 rounded-full ${mounted && online ? 'bg-green-500' : mounted ? 'bg-red-500' : 'bg-muted-foreground'}`} />
-                {mounted ? (online ? 'ONLINE' : 'OFFLINE') : '---'}
-              </span>
-              <span className="inline-block h-[1px] w-4 bg-border" />
-              <span className="flex items-center gap-1.5">
-                {mounted && <PlatformIcon />}
-                <span>{mounted ? deviceType : '---'}</span>
-              </span>
-              <span className="inline-block h-[1px] w-4 bg-border" />
-              <span suppressHydrationWarning>{currentTime}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Nav - onMouseLeave here so Company mega dropdown stays open when moving from link to panel */}
       <div className="border-b border-border relative" onMouseLeave={() => setOpenDropdown(null)}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14">
+          <div className="flex items-center justify-between h-16 py-1">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group shrink-0">
               <div className="flex items-center gap-2">
@@ -358,15 +348,17 @@ export function Navbar() {
               
               <div className="h-4 w-px bg-border mx-1 lg:mx-2" />
               
-              {/* Assistant Link */}
+              {/* Google Link */}
               <Link
-                href="/huix-assistant"
+                href="https://www.google.com/search?q=HUIX+2099&sca_esv=1f81df499d5b0247&biw=1024&bih=1111&sxsrf=ANbL-n4slGxCE_C-rtdNLJOQeKt7-h7GlA%3A1774305642356&ei=asHBaY2yFZijhbIPmP-z-AI&ved=0ahUKEwiNj6TMi7eTAxWYUUEAHZj_DC8Q4dUDCBE&uact=5&oq=HUIX+2099&gs_lp=Egxnd3Mtd2l6LXNlcnAaAhgCIglIVUlYIDIwOTkyBBAjGCcyBBAjGCcyBBAjGCcyBRAAGO8FMggQABiABBiiBDIFEAAY7wUyBRAAGO8FSOMcUABY8xpwAHgAkAEAmAH-A6AB0hqqAQU0LTUuMrgBA8gBAPgBAZgCB6ACmhvCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAhEQLhiABBixAxjRAxiDARjHAcICDhAuGIAEGLEDGNEDGMcBwgIIEC4YgAQYsQPCAgsQABiABBixAxiDAcICCxAuGIAEGJECGIoFwgIKEC4YgAQYQxiKBcICChAAGIAEGEMYigXCAg4QLhiABBixAxiDARiKBcICERAAGIAEGJECGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQLhiABMICCBAAGIAEGIsDwgIREC4YgAQYogUYqAMYiwMYnQPCAgwQABiABBixAxgKGAvCAgkQABiABBgKGAvCAgwQLhiABBjlBBgKGAuYAwCSBwM0LTegB6JusgcDNC03uAeaG8IHBzAuMS4zLjPIBzyACAA&sclient=gws-wiz-serp"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-1.5 lg:gap-2 px-2 lg:px-3 py-1.5 text-[9px] lg:text-[10px] uppercase tracking-[0.1em] lg:tracking-[0.12em] text-muted-foreground hover:text-foreground border border-border/50 hover:border-border rounded transition-all group"
                 style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
               >
-                <Terminal className="h-3 w-3" />
-                <span className="hidden xl:inline">ASSISTANT</span>
-                <span className="xl:hidden">AST</span>
+                <GoogleIcon className="h-3 w-3" />
+                <span className="hidden xl:inline">FIND ON GOOGLE</span>
+                <span className="xl:hidden">GOOGLE</span>
               </Link>
             </div>
 
@@ -493,21 +485,9 @@ export function Navbar() {
               transition={{ duration: 0.15 }}
               className="absolute left-0 right-0 top-full -mt-px z-50 bg-background border-x border-b border-border shadow-lg"
             >
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row gap-8 lg:gap-12">
-                {/* Left: HUIX 2099 logo (barcode) */}
-                <div className="flex-shrink-0 flex items-center justify-center lg:justify-start lg:w-64 border-r border-border/50 pr-6">
-                  <div className="relative w-40 h-24 lg:w-48 lg:h-28">
-                    <Image
-                      src={resolvedTheme === "dark" ? "/icons/HUIX 2099 dark logo icon version.jpg" : "/icons/HUIX 2099 light logo icon version.jpg"}
-                      alt="HUIX 2099"
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 1024px) 160px, 192px"
-                    />
-                  </div>
-                </div>
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row gap-8 lg:gap-12 justify-center lg:justify-start">
                 {/* Right: Products, Projects, Pricing sections */}
-                <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
+                <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 max-w-4xl">
                   {companySections.map((section) => (
                     <div key={section.label}>
                       <Link
@@ -545,20 +525,20 @@ export function Navbar() {
         </AnimatePresence>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — Premium Full-Screen */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="lg:hidden border-b border-border bg-background overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="lg:hidden fixed inset-0 top-[64px] z-50 bg-background overflow-y-auto"
           >
-            <div className="px-4 py-4 space-y-1">
+            <div className="px-6 py-8 min-h-full flex flex-col">
               {/* Mobile Search */}
-              <div className="mb-4 pb-4 border-b border-border">
-                <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.12em] text-muted-foreground mb-2" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+              <div className="mb-8">
+                <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.12em] text-muted-foreground mb-3" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
                   <Search className="h-3 w-3" />
                   <span>SEARCH</span>
                 </div>
@@ -567,16 +547,16 @@ export function Navbar() {
                   placeholder="Enter query..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-3 py-2 bg-card border border-border text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-foreground/30"
+                  className="w-full px-4 py-3 bg-card border border-border rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-foreground/30"
                   style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
                 />
                 {searchResults.length > 0 && (
-                  <div className="mt-2 space-y-1">
+                  <div className="mt-3 border border-border rounded-lg overflow-hidden">
                     {searchResults.map((result, idx) => (
                       <Link
                         key={result.url}
                         href={result.url}
-                        className="flex items-center justify-between px-3 py-2 text-[11px] hover:bg-card transition-colors"
+                        className="flex items-center justify-between px-4 py-3 text-[11px] hover:bg-card transition-colors border-b border-border/50 last:border-b-0"
                         style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
                         onClick={() => setMobileOpen(false)}
                       >
@@ -591,155 +571,174 @@ export function Navbar() {
                 )}
               </div>
 
-              {/* Mobile Nav Items */}
-              {navItems.map((item) => (
-                <div key={item.id} className="border-b border-border/50 last:border-b-0">
-                  {item.mega ? (
-                    /* Company: whole row toggles open/close */
-                    <button
-                      type="button"
-                      onClick={() => setOpenDropdown(openDropdown === item.id ? null : item.id)}
-                      className="flex w-full items-center justify-between px-3 py-3 text-left"
-                      aria-expanded={openDropdown === item.id}
-                    >
-                      <span
-                        className={`flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] ${
-                          openDropdown === item.id ? "text-foreground" : "text-muted-foreground"
-                        }`}
-                        style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
-                      >
-                        <span className="text-[9px] opacity-50">[{item.index}]</span>
-                        <span>{item.label}</span>
-                      </span>
-                      <ChevronDown
-                        className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform ${openDropdown === item.id ? "rotate-180" : ""}`}
-                      />
-                    </button>
-                  ) : (
-                    <div className="flex items-center justify-between">
-                      <Link
-                        href={item.href}
-                        className={`flex-1 flex items-center gap-2 px-3 py-2.5 text-[11px] uppercase tracking-[0.14em] ${
-                          pathname === item.href ? "text-foreground" : "text-muted-foreground"
-                        }`}
-                        style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
-                        onClick={() => !item.dropdown && setMobileOpen(false)}
-                      >
-                        <span className="text-[9px] opacity-50">[{item.index}]</span>
-                        <span>{item.label}</span>
-                      </Link>
-                      {item.dropdown && (
+              {/* Divider */}
+              <div className="h-px bg-border mb-8" />
+
+              {/* Nav Items — Large editorial style */}
+              <div className="space-y-2 flex-1">
+                {navItems.map((item, itemIdx) => (
+                  <div key={item.id}>
+                    {item.mega ? (
+                      /* Company: expandable */
+                      <>
                         <button
                           type="button"
                           onClick={() => setOpenDropdown(openDropdown === item.id ? null : item.id)}
-                          className="p-2 text-muted-foreground"
-                          aria-label={openDropdown === item.id ? "Collapse" : "Expand"}
+                          className="flex w-full items-center justify-between py-4"
+                          aria-expanded={openDropdown === item.id}
                         >
-                          <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === item.id ? "rotate-180" : ""}`} />
-                        </button>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Regular dropdown */}
-                  <AnimatePresence>
-                    {item.dropdown && openDropdown === item.id && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.15 }}
-                        className="overflow-hidden ml-6 border-l border-border"
-                      >
-                        {item.dropdown.map((subItem) => (
-                          <Link
-                            key={subItem.href + subItem.label}
-                            href={subItem.href}
-                            className="flex items-center gap-2 px-4 py-2 text-[10px] uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors"
-                            style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
-                            onClick={() => setMobileOpen(false)}
-                          >
-                            <span className="text-[8px] opacity-40">[{subItem.index}]</span>
-                            <span>{subItem.label}</span>
-                            {subItem.featured && (
-                              <span className="px-1 py-0.5 text-[7px] bg-foreground/10 rounded">★</span>
-                            )}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Company mega: Products, Projects, Pricing – contained inside menu, tap row again to close */}
-                  <AnimatePresence>
-                    {item.mega && openDropdown === item.id && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.15 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="mx-3 mt-2 mb-4 rounded-lg border border-border bg-card/50 p-4 max-h-[60vh] overflow-y-auto">
-                          <div className="mb-4 flex justify-center border-b border-border/50 pb-3">
-                            <Image
-                              src={resolvedTheme === "dark" ? "/icons/HUIX 2099 dark logo icon version.jpg" : "/icons/HUIX 2099 light logo icon version.jpg"}
-                              alt="HUIX 2099"
-                              width={120}
-                              height={72}
-                              className="object-contain"
-                            />
+                          <div className="flex items-center gap-4">
+                            <span
+                              className="text-4xl font-bold text-foreground/15"
+                              style={{ fontFamily: "Mohican, sans-serif" }}
+                            >
+                              {item.index}
+                            </span>
+                            <span
+                              className="text-lg uppercase tracking-[0.1em] font-bold text-foreground"
+                              style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.12em" }}
+                            >
+                              {item.label}
+                            </span>
                           </div>
-                          {companySections.map((section) => (
-                            <div key={section.label} className="mb-4 last:mb-0">
-                              <Link
-                                href={section.href}
-                                className="mb-2 block text-[10px] uppercase tracking-[0.12em] text-foreground font-medium"
-                                style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
-                                onClick={() => setMobileOpen(false)}
-                              >
-                                {section.label}
-                              </Link>
-                              <ul className="space-y-0.5">
-                                {section.links.map((link) => (
-                                  <li key={link.href + link.label}>
+                          <ChevronDown
+                            className={`h-5 w-5 text-muted-foreground transition-transform duration-200 ${openDropdown === item.id ? "rotate-180" : ""}`}
+                          />
+                        </button>
+                        <AnimatePresence>
+                          {openDropdown === item.id && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="pl-14 pb-4 space-y-4">
+                                {companySections.map((section) => (
+                                  <div key={section.label}>
                                     <Link
-                                      href={link.href}
-                                      className="flex items-center gap-2 py-1.5 pl-2 text-[10px] uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground active:text-foreground transition-colors"
+                                      href={section.href}
+                                      className="block text-[10px] uppercase tracking-[0.14em] text-muted-foreground font-bold mb-2 hover:text-foreground transition-colors"
                                       style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
                                       onClick={() => setMobileOpen(false)}
                                     >
-                                      <span className="text-[8px] opacity-40">[{link.index}]</span>
-                                      <span>{link.label}</span>
-                                      {link.featured && (
-                                        <span className="px-1 py-0.5 text-[7px] bg-foreground/10 rounded">★</span>
-                                      )}
+                                      {section.label}
                                     </Link>
-                                  </li>
+                                    <div className="space-y-0.5">
+                                      {section.links.map((link) => (
+                                        <Link
+                                          key={link.href + link.label}
+                                          href={link.href}
+                                          className="flex items-center gap-2 py-2 text-[11px] uppercase tracking-[0.1em] text-muted-foreground/70 hover:text-foreground transition-colors"
+                                          style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
+                                          onClick={() => setMobileOpen(false)}
+                                        >
+                                          <span className="text-[8px] opacity-40">[{link.index}]</span>
+                                          <span>{link.label}</span>
+                                          {link.featured && (
+                                            <span className="px-1 py-0.5 text-[7px] bg-foreground/10 rounded">★</span>
+                                          )}
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  </div>
                                 ))}
-                              </ul>
-                            </div>
-                          ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </>
+                    ) : (
+                      /* Regular nav item */
+                      <>
+                        <div className="flex items-center justify-between">
+                          <Link
+                            href={item.href}
+                            className="flex-1 flex items-center gap-4 py-4"
+                            onClick={() => !item.dropdown && setMobileOpen(false)}
+                          >
+                            <span
+                              className="text-4xl font-bold text-foreground/15"
+                              style={{ fontFamily: "Mohican, sans-serif" }}
+                            >
+                              {item.index}
+                            </span>
+                            <span
+                              className={`text-lg uppercase tracking-[0.1em] font-bold ${
+                                pathname === item.href ? "text-foreground" : "text-foreground/70"
+                              }`}
+                              style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.12em" }}
+                            >
+                              {item.label}
+                            </span>
+                          </Link>
+                          {item.dropdown && (
+                            <button
+                              type="button"
+                              onClick={() => setOpenDropdown(openDropdown === item.id ? null : item.id)}
+                              className="p-2 text-muted-foreground"
+                              aria-label={openDropdown === item.id ? "Collapse" : "Expand"}
+                            >
+                              <ChevronDown className={`h-5 w-5 transition-transform duration-200 ${openDropdown === item.id ? "rotate-180" : ""}`} />
+                            </button>
+                          )}
                         </div>
-                      </motion.div>
+
+                        {/* Sub-dropdown */}
+                        <AnimatePresence>
+                          {item.dropdown && openDropdown === item.id && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.15 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="pl-14 pb-4 space-y-0.5">
+                                {item.dropdown.map((subItem) => (
+                                  <Link
+                                    key={subItem.href + subItem.label}
+                                    href={subItem.href}
+                                    className="flex items-center gap-2 py-2 text-[11px] uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors"
+                                    style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
+                                    onClick={() => setMobileOpen(false)}
+                                  >
+                                    <span className="text-[8px] opacity-40">[{subItem.index}]</span>
+                                    <span>{subItem.label}</span>
+                                    {subItem.featured && (
+                                      <span className="px-1 py-0.5 text-[7px] bg-foreground/10 rounded">★</span>
+                                    )}
+                                  </Link>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </>
                     )}
-                  </AnimatePresence>
-                </div>
-              ))}
-              
-              {/* Mobile Assistant Link */}
+                  </div>
+                ))}
+              </div>
+
+              {/* Divider */}
+              <div className="h-px bg-border my-6" />
+
+              {/* Mobile Google Link */}
               <Link
-                href="/huix-assistant"
-                className="flex items-center gap-2 px-3 py-2.5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground"
+                href="https://www.google.com/search?q=HUIX+2099"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 py-3 text-[11px] uppercase tracking-[0.14em] text-muted-foreground"
                 style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
                 onClick={() => setMobileOpen(false)}
               >
-                <Terminal className="h-3 w-3" />
-                <span>ASSISTANT</span>
+                <GoogleIcon className="h-4 w-4" />
+                <span>FIND ON GOOGLE</span>
               </Link>
-              
-              {/* Mobile Footer Meta */}
-              <div className="pt-4 mt-4 border-t border-border">
+
+              {/* Footer Meta */}
+              <div className="pt-6 mt-auto border-t border-border">
                 <div className="flex items-center justify-between text-[9px] uppercase tracking-[0.1em] text-muted-foreground/60" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
                   <div className="flex items-center gap-2">
                     <span className={`inline-block h-1.5 w-1.5 rounded-full ${mounted && online ? 'bg-green-500' : mounted ? 'bg-red-500' : 'bg-muted-foreground'}`} />

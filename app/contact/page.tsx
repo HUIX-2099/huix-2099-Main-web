@@ -9,6 +9,15 @@ import { Twitter, Instagram, Facebook, Youtube, Mail, Phone, MapPin, Clock, Send
 
 const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
 
+const GmailIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path d="M1.636 21H5.455V11.73L0 7.64v11.726A1.636 1.636 0 0 0 1.636 21z" fill="#4285F4"/>
+    <path d="M22.364 21H18.545V11.73l5.455-4.09v11.726A1.636 1.636 0 0 1 22.364 21z" fill="#34A853"/>
+    <path d="M18.545 4.64v7.09L24 7.64V5.457c0-2.023-2.309-3.178-3.927-1.964L18.545 4.64zM5.455 11.73V4.64L3.927 3.493C2.309 2.279 0 3.434 0 5.457v2.183l5.455 4.09z" fill="#EA4335"/>
+    <path d="M12 16.64L18.545 11.73V4.64L12 9.548 5.455 4.64v7.09L12 16.64z" fill="#FBBC05"/>
+  </svg>
+)
+
 export default function ContactPage() {
   const { resolvedTheme } = useTheme()
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
@@ -281,170 +290,35 @@ export default function ContactPage() {
       {/* Main Contact Section */}
       <section className="py-16 lg:py-24 px-4 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="flex items-center gap-6 mb-12">
-            <div 
-              className="text-[100px] lg:text-[140px] font-bold leading-none text-foreground/[0.03]"
-              style={{ fontFamily: 'Mohican, sans-serif' }}
-            >
-              02
-            </div>
-            <div>
-              <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-2" style={{ fontFamily: monoFont }}>
-                REACH OUT
-              </div>
-              <h2 
-                className="text-2xl lg:text-3xl font-bold"
-                style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
-              >
-                SEND A MESSAGE
-              </h2>
-            </div>
-          </div>
-
           <div className="grid lg:grid-cols-[1fr_400px] gap-12 lg:gap-16">
-            {/* Left: Contact Form */}
+            {/* Left: Gmail Link Block */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
+              className="flex flex-col items-center justify-center bg-card border border-border p-12 text-center h-full"
             >
-              <div className="bg-card border border-border p-6 lg:p-8">
-                <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
-                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground" style={{ fontFamily: monoFont }}>
-                    Contact Form
-                  </div>
-                  <div className="text-[9px] text-muted-foreground/50" style={{ fontFamily: monoFont }}>
-                    * Required fields
-                  </div>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label 
-                        className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-2"
-                        style={{ fontFamily: monoFont }}
-                      >
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Your name"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder-muted-foreground/50 focus:outline-none focus:border-foreground/50 transition-colors text-sm"
-                        style={{ fontFamily: monoFont }}
-                      />
-                    </div>
-
-                    <div>
-                      <label 
-                        className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-2"
-                        style={{ fontFamily: monoFont }}
-                      >
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="your@email.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder-muted-foreground/50 focus:outline-none focus:border-foreground/50 transition-colors text-sm"
-                        style={{ fontFamily: monoFont }}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label 
-                      className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-2"
-                      style={{ fontFamily: monoFont }}
-                    >
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Project inquiry, collaboration, etc."
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder-muted-foreground/50 focus:outline-none focus:border-foreground/50 transition-colors text-sm"
-                      style={{ fontFamily: monoFont }}
-                    />
-                  </div>
-
-                  <div>
-                    <label 
-                      className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-2"
-                      style={{ fontFamily: monoFont }}
-                    >
-                      Message *
-                    </label>
-                    <textarea
-                      required
-                      placeholder="Tell us about your project, idea, or question..."
-                      rows={6}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder-muted-foreground/50 focus:outline-none focus:border-foreground/50 transition-colors resize-none text-sm"
-                      style={{ fontFamily: monoFont }}
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <div className="flex items-center justify-between pt-4">
-                    <div className="text-[9px] text-muted-foreground/50" style={{ fontFamily: monoFont }}>
-                      Sends directly to HUIX
-                    </div>
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="group px-6 py-3 bg-foreground text-background text-[11px] uppercase tracking-wider flex items-center gap-3 hover:bg-foreground/90 transition-all disabled:opacity-50"
-                      style={{ fontFamily: monoFont }}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          Send Message
-                          <Send className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                        </>
-                      )}
-                    </motion.button>
-                  </div>
-
-                  {/* Status Messages */}
-                  {submitStatus === 'success' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center gap-2 p-4 bg-green-500/10 border border-green-500/30 text-green-600"
-                    >
-                      <CheckCircle className="w-5 h-5" />
-                      <span className="text-sm">Message sent successfully! We'll get back to you within 24-48 hours.</span>
-                    </motion.div>
-                  )}
-
-                  {submitStatus === 'error' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center gap-2 p-4 bg-red-500/10 border border-red-500/30 text-red-600"
-                    >
-                      <AlertCircle className="w-5 h-5" />
-                      <span className="text-sm">Something went wrong. Please try again or email us directly.</span>
-                    </motion.div>
-                  )}
-                </form>
+              <div className="w-32 h-32 rounded-full flex items-center justify-center mb-8 shadow-sm">
+                <GmailIcon className="w-20 h-20" />
               </div>
+              <h3 
+                className="text-4xl font-bold mb-4 uppercase" 
+                style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+              >
+                Direct Email
+              </h3>
+              <p className="text-muted-foreground mb-10 max-w-md leading-relaxed text-lg">
+                We've streamlined our communication. Click the button below to open your email client and send us a message directly to <strong className="text-foreground">huixtech2099@gmail.com</strong>.
+              </p>
+              <a 
+                href="mailto:huixtech2099@gmail.com"
+                className="group px-10 py-5 bg-foreground text-background text-base uppercase tracking-wider flex items-center gap-3 hover:bg-foreground/90 hover:scale-105 transition-all font-bold rounded-lg shadow-xl"
+                style={{ fontFamily: monoFont }}
+              >
+                Click to Contact
+                <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </a>
             </motion.div>
 
             {/* Right: Contact Info */}

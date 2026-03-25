@@ -69,7 +69,6 @@ export default function ResearchPage() {
             {[
               { title: 'HUIX-HORIZEN', meta: 'Platform · Experimental', desc: 'Modular XR platform for spatial visualization and collaboration.', href: '/huix-horizen' },
               { title: 'V i r t u a l  ·  P a s t  ·  L i b e r i a', meta: 'Concept · 0 Funding', desc: 'Immersive cultural reconstruction and architectural storytelling.', href: '/virtual-past-liberia' },
-              { title: 'P r o t o t y p e s', meta: 'R&D', desc: 'Explorations in 3D interaction, shaders, and tools.', href: '/prototypes' },
             ].map((item, index) => (
               <motion.a
                 key={item.title}

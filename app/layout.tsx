@@ -5,6 +5,10 @@ import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { CustomCursor } from "@/components/custom-cursor"
 import { VRImmersePrompt } from "@/components/vr-immerse-prompt"
+import { ChatBot } from "@/components/chat-bot"
+import { CookieConsent } from "@/components/cookie-consent"
+import { SocialSidebar } from "@/components/social-sidebar"
+
 import "./globals.css"
 
 const inter = Inter({
@@ -177,8 +181,13 @@ const jsonLd = {
     {
       "@type": "Person",
       name: "Victor Edet Coleman",
-      jobTitle: "Founder & CEO",
+      jobTitle: "CTO & Co-founder",
       url: "https://www.linkedin.com/in/victor-coleman-4731701a5/",
+    },
+    {
+      "@type": "Person",
+      name: "Wulwyn Porte L",
+      jobTitle: "CEO & Co-founder & Investor",
     },
   ],
   address: {
@@ -241,8 +250,12 @@ export default function RootLayout({
         <ThemeProvider>
           <CustomCursor />
           <VRImmersePrompt />
+          <SocialSidebar />
           {children}
+          <ChatBot />
+          <CookieConsent />
           <Analytics />
+
         </ThemeProvider>
       </body>
     </html>

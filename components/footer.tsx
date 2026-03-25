@@ -19,132 +19,45 @@ export function Footer() {
   const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
 
   return (
-    <footer className="py-10 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-card border-t border-border" style={{ fontFamily: sansFont }}>
-      <div className="max-w-7xl mx-auto">
-        {/* Series Header */}
-        <ParallaxReveal direction="up">
-          <div className="mb-12 border-b border-border/70">
-            <div className="flex items-end justify-between pb-6">
-              <div className="flex items-center gap-6">
-                <ParallaxText speed={0.2} direction="up">
-                  <div className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>01</div>
-                </ParallaxText>
-                <div>
-                  <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2">Footer</div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>H U I X - 2 0 9 9</h2>
-                </div>
-              </div>
-              <div className="hidden md:block text-xs text-muted-foreground tracking-widest uppercase">Series / 01 · v1</div>
-            </div>
-          </div>
-        </ParallaxReveal>
-        <ParallaxStagger className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
-          <ParallaxStaggerItem>
-            <h3 className="text-lg font-bold text-foreground mb-4">HUIX-2099</h3>
-            <p className="text-sm text-muted-foreground">
-              Building the digital future of Africa through VR, XR, AR, and AI innovation.
-            </p>
-          </ParallaxStaggerItem>
-          <ParallaxStaggerItem>
-            <h4 className="font-semibold text-foreground mb-4">Company</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link href="/huix-horizen" className="hover:text-foreground transition-colors font-semibold">
-                  ✦ HUIX-HORIZEN
-                </Link>
-              </li>
-              <li>
-                <Link href="/huix-horizen/whitepaper" className="hover:text-foreground transition-colors font-semibold">
-                  ✦ HUIX HORIZON WHITEPAPER
-                </Link>
-              </li>
-              <li>
-                <Link href="/virtual-past-liberia" className="hover:text-foreground transition-colors font-semibold">
-                  ✦ Virtual Past Liberia
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:text-foreground transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/about?section=team" className="hover:text-foreground transition-colors">
-                  Team
-                </Link>
-              </li>
-              <li>
-                <Link href="/projects" className="hover:text-foreground transition-colors">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="hover:text-foreground transition-colors">
-                  Products
-                </Link>
-              </li>
-              <li>
-                <Link href="/pricing" className="hover:text-foreground transition-colors">
-                  Pricing
-                </Link>
-              </li>
-            </ul>
-          </ParallaxStaggerItem>
-          <ParallaxStaggerItem>
-            <h4 className="font-semibold text-foreground mb-4">Resources</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link href="/#faq" className="hover:text-foreground transition-colors">
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallery" className="hover:text-foreground transition-colors">
-                  Gallery
-                </Link>
-              </li>
-              <li>
-                <Link href="/policy" className="hover:text-foreground transition-colors">
-                  Policy
-                </Link>
-              </li>
-            </ul>
-          </ParallaxStaggerItem>
-          <ParallaxStaggerItem>
-            <h4 className="font-semibold text-foreground mb-4">Connect</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link href="/contact" className="hover:text-foreground transition-colors">
-                  Contact Us
-                </Link>
-              </li>
-              {socialLinks.map((social) => (
-                <li key={social.label}>
-                  <a
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-foreground transition-colors flex items-center gap-2"
-                  >
-                    <social.icon className="h-4 w-4" />
-                    {social.label}
-                  </a>
-              </li>
-            ))}
-            </ul>
-          </ParallaxStaggerItem>
-        </ParallaxStagger>
-        <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; 2025 HUIX-2099. All rights reserved. | Designed & Built in Monrovia, Liberia</p>
-          <p className="mt-1">Designed and Engineered by Victor E. Coleman</p>
-          <p className="mt-1">
-            <a href="mailto:huixtech2099@gmail.com" className="underline hover:text-foreground">huixtech2099@gmail.com</a>
-            {" · "}
-            <a href="tel:+231776800064" className="underline hover:text-foreground">+231776800064</a>
-            {" · "}
-            <a href="tel:+231770499140" className="underline hover:text-foreground">+231770499140</a>
-          </p>
+    <footer className="relative py-12 px-4 sm:px-6 lg:px-8 bg-[#111] border-t border-white/5" style={{ fontFamily: sansFont }}>
+      <div className="max-w-7xl mx-auto flex flex-col items-center justify-center pt-8 pb-4">
+        
+        {/* Logo/Brand */}
+        <div className="mb-8 text-2xl font-bold tracking-[0.15em] text-white uppercase text-center" style={{ fontFamily: 'Mohican, sans-serif' }}>
+          HUIX-2099
+          <div className="text-[6px] text-white/50 tracking-[0.3em] mt-1 font-mono">OFFICIAL WEBSITE</div>
         </div>
+        
+        {/* Horizontal Links */}
+        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 mb-8 text-xs font-semibold uppercase tracking-widest text-white/50">
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <Link href="/about" className="hover:text-white transition-colors">About</Link>
+          <Link href="/showcase" className="hover:text-white transition-colors">Showcase</Link>
+          <Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link>
+          <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
+        </div>
+
+        {/* Social Icons */}
+        <div className="flex items-center justify-center gap-4 mb-8">
+          {socialLinks.map((social) => (
+            <a 
+              key={social.label} 
+              href={social.url} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-white hover:text-black hover:border-white transition-all"
+            >
+              <social.icon className="w-4 h-4" />
+            </a>
+          ))}
+        </div>
+
+        {/* Copyright */}
+        <div className="text-[10px] text-white/30 text-center max-w-2xl mx-auto tracking-wider leading-relaxed">
+          Designed & Engineered by Victor E. Coleman. All Rights Reserved.<br />
+          HUIX-2099, Monrovia, Liberia. Email: huixtech2099@gmail.com Call Us Now: +231 776 800 064
+        </div>
+        
       </div>
     </footer>
   )

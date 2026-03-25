@@ -6,9 +6,10 @@ import { useTheme } from "./theme-provider"
 interface BarcodeProps {
   value: string
   format?: string
+  className?: string
 }
 
-export function Barcode({ value, format = "code128" }: BarcodeProps) {
+export function Barcode({ value, format = "code128", className = "" }: BarcodeProps) {
   const [src, setSrc] = useState("")
   const { resolvedTheme } = useTheme()
 
@@ -24,7 +25,7 @@ export function Barcode({ value, format = "code128" }: BarcodeProps) {
     <img
       src={src || "/placeholder.svg"}
       alt="Barcode"
-      className={`h-12 rounded border ${borderColor} ${bgColor} p-1`}
+      className={`p-0 ${className || "h-12"}`}
     />
   ) : null
 }

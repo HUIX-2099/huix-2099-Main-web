@@ -308,23 +308,7 @@ export default function AboutPage() {
 
       {/* Main Content Area */}
       <div className="min-h-screen bg-background">
-        {/* Fixed Left Social Bar */}
-        <div className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-6">
-          <div className="w-px h-12 bg-border" />
-          <a href="https://x.com/Huix2099" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-            <Twitter className="h-4 w-4" />
-          </a>
-          <a href="https://www.instagram.com/huix.2099/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-            <Instagram className="h-4 w-4" />
-          </a>
-          <a href="https://www.facebook.com/profile.php?id=61572485499528" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-            <Facebook className="h-4 w-4" />
-          </a>
-          <a href="https://www.youtube.com/@HUIX-2099" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-            <Youtube className="h-4 w-4" />
-          </a>
-          <div className="w-px h-12 bg-border" />
-        </div>
+
 
         {/* Header with Tab Switcher */}
         <header className="border-b border-border">
