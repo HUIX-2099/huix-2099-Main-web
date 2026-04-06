@@ -5,7 +5,19 @@ import { Footer } from "@/components/footer"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Grid, List, Monitor, Globe, Smartphone, Gamepad2, Palette, Cpu } from "lucide-react"
+import {
+  Grid,
+  List,
+  Monitor,
+  Globe,
+  Smartphone,
+  Gamepad2,
+  Palette,
+  Cpu,
+  ArrowRight,
+  ExternalLink,
+  Sparkles,
+} from "lucide-react"
 
 const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
 
@@ -19,6 +31,7 @@ interface Product {
   year: string
   status: "Live" | "Development" | "Concept"
   technologies: string[]
+  openSource?: boolean
   link?: string
   detailPage?: string
 }
@@ -29,24 +42,40 @@ const products: Product[] = [
     title: "HUIX-THEME",
     category: "Theme",
     platform: "VS Code",
-    description: "Premium dark VS Code theme with satellite hardware background and ultra-sharp neon syntax colors. Clean, minimal design with maximum code visibility.",
+    description:
+      "Premium dark VS Code theme with satellite hardware background and ultra-sharp neon syntax colors. Clean, minimal design with maximum code visibility.",
     image: "/products/huix-theme/Media/logo.png",
     year: "2024",
     status: "Live",
     technologies: ["VS Code", "Theme", "Neon Syntax"],
+    openSource: true,
     link: "https://marketplace.visualstudio.com/items?itemName=huix-2099.huix-2099-theme",
     detailPage: "/products/huix-theme",
+  },
+  {
+    id: 2,
+    title: "HUIXOR",
+    category: "Software",
+    platform: "Windows 10/11",
+    description:
+      "Multi-device web preview in one window — up to 8 panels, VR stage, synced scroll, CDP emulation. Portable .exe.",
+    image: "/products/huixor/Huixor.ico",
+    year: "2026",
+    status: "Development",
+    technologies: ["WPF", ".NET 8", "WebView2", "CDP"],
+    openSource: true,
+    detailPage: "/products/huixor",
   },
 ]
 
 const categories = [
-  { id: "all", label: "ALL PRODUCTS", icon: Grid, count: products.length },
-  { id: "Software", label: "SOFTWARE", icon: Monitor, count: products.filter(p => p.category === "Software").length },
-  { id: "Website", label: "WEBSITES", icon: Globe, count: products.filter(p => p.category === "Website").length },
-  { id: "App", label: "APPS", icon: Smartphone, count: products.filter(p => p.category === "App").length },
-  { id: "Game", label: "GAMES", icon: Gamepad2, count: products.filter(p => p.category === "Game").length },
-  { id: "Theme", label: "THEMES", icon: Palette, count: products.filter(p => p.category === "Theme").length },
-  { id: "Simulation", label: "SIMULATIONS", icon: Cpu, count: products.filter(p => p.category === "Simulation").length },
+  { id: "all", label: "ALL", icon: Grid, count: products.length },
+  { id: "Software", label: "SOFTWARE", icon: Monitor, count: products.filter((p) => p.category === "Software").length },
+  { id: "Website", label: "WEBSITES", icon: Globe, count: products.filter((p) => p.category === "Website").length },
+  { id: "App", label: "APPS", icon: Smartphone, count: products.filter((p) => p.category === "App").length },
+  { id: "Game", label: "GAMES", icon: Gamepad2, count: products.filter((p) => p.category === "Game").length },
+  { id: "Theme", label: "THEMES", icon: Palette, count: products.filter((p) => p.category === "Theme").length },
+  { id: "Simulation", label: "SIMS", icon: Cpu, count: products.filter((p) => p.category === "Simulation").length },
 ]
 
 export default function ProductsPage() {
@@ -67,27 +96,35 @@ export default function ProductsPage() {
     if (page) router.push(page)
   }
 
-
-  
-
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "Live": return "bg-green-500"
-      case "Development": return "bg-yellow-500"
-      case "Concept": return "bg-blue-500"
-      default: return "bg-muted-foreground"
+      case "Live":
+        return "bg-green-500"
+      case "Development":
+        return "bg-yellow-500"
+      case "Concept":
+        return "bg-blue-500"
+      default:
+        return "bg-muted-foreground"
     }
   }
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case "Software": return Monitor
-      case "Website": return Globe
-      case "App": return Smartphone
-      case "Game": return Gamepad2
-      case "Theme": return Palette
-      case "Simulation": return Cpu
-      default: return Grid
+      case "Software":
+        return Monitor
+      case "Website":
+        return Globe
+      case "App":
+        return Smartphone
+      case "Game":
+        return Gamepad2
+      case "Theme":
+        return Palette
+      case "Simulation":
+        return Cpu
+      default:
+        return Grid
     }
   }
 
@@ -97,10 +134,10 @@ export default function ProductsPage() {
 
       {/* Hero Section */}
       <section className="border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
           {/* Top Meta Strip */}
           <div
-            className="flex items-center justify-between py-4 border-b border-border/50 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50"
+            className="flex items-center justify-between border-b border-border/50 py-4 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50"
             style={{ fontFamily: monoFont }}
           >
             <div className="flex items-center gap-3">
@@ -109,22 +146,22 @@ export default function ProductsPage() {
               <span>PRODUCTS</span>
             </div>
             <div className="flex items-center gap-3">
-              <span>CAT NO · PRD-001</span>
-              <span className="h-px w-4 bg-border/50" />
+              <span className="hidden sm:inline">CAT NO · PRD-001</span>
+              <span className="hidden sm:inline h-px w-4 bg-border/50" />
               <span>{filteredProducts.length} ITEMS</span>
             </div>
           </div>
 
           {/* Main Hero */}
-          <div className="py-12 lg:py-16">
-            <div className="grid lg:grid-cols-[300px_1fr] gap-12">
+          <div className="py-10 lg:py-14">
+            <div className="grid items-center gap-8 lg:grid-cols-[240px_1fr] lg:gap-12">
               {/* Left - Large Letter */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-[180px] lg:text-[240px] font-bold leading-[0.75] text-foreground/[0.04] select-none"
-                style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}
+                className="hidden text-[200px] font-bold leading-[0.75] text-foreground/[0.04] select-none lg:block"
+                style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.05em" }}
               >
                 P
               </motion.div>
@@ -137,21 +174,21 @@ export default function ProductsPage() {
                   transition={{ duration: 0.6, delay: 0.1 }}
                 >
                   <div
-                    className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-4"
+                    className="mb-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60"
                     style={{ fontFamily: monoFont }}
                   >
                     [02] PRODUCT SHOWCASE
                   </div>
                   <h1
-                    className="text-5xl lg:text-6xl font-bold mb-6"
-                    style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
+                    className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl"
+                    style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.1em" }}
                   >
                     PRODUCTS
                   </h1>
-                  <div className="h-px w-20 bg-foreground/20 mb-6" />
-                  <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
-                    A showcase of what we've built — software, websites, apps, and games
-                    crafted with precision and innovation.
+                  <div className="mb-4 h-px w-16 bg-foreground/20" />
+                  <p className="max-w-xl text-base text-muted-foreground leading-relaxed sm:text-lg">
+                    A showcase of what we&apos;ve built — software, websites, apps, and games crafted with precision
+                    and innovation.
                   </p>
                 </motion.div>
               </div>
@@ -160,39 +197,32 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-8 bg-card/30 border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* Compact Category Stats */}
+      <section className="border-b border-border bg-card/30 py-4">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="flex flex-wrap gap-2">
             {categories.slice(1).map((cat, idx) => {
               const IconComponent = cat.icon
+              const active = filter === cat.id
               return (
                 <motion.button
                   key={cat.id}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  onClick={() => setFilter(cat.id)}
-                  className={`p-4 border transition-all text-left ${filter === cat.id
-                    ? "bg-foreground text-background border-foreground"
-                    : "bg-card border-border hover:border-foreground/30"
-                    }`}
+                  transition={{ delay: idx * 0.05 }}
+                  onClick={() => setFilter(active ? "all" : cat.id)}
+                  className={`flex items-center gap-2 rounded-md border px-3 py-2 text-[10px] uppercase tracking-[0.1em] transition-all ${
+                    active
+                      ? "border-foreground bg-foreground text-background"
+                      : "border-border bg-card text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+                  }`}
+                  style={{ fontFamily: monoFont }}
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <IconComponent className={`h-5 w-5 ${filter === cat.id ? 'text-background/70' : 'text-muted-foreground'}`} />
-                    <span
-                      className={`text-2xl font-bold ${filter === cat.id ? 'text-background' : 'text-foreground'}`}
-                      style={{ fontFamily: monoFont }}
-                    >
-                      {cat.count}
-                    </span>
-                  </div>
-                  <div
-                    className={`text-[10px] uppercase tracking-[0.12em] ${filter === cat.id ? 'text-background/70' : 'text-muted-foreground'}`}
-                    style={{ fontFamily: monoFont }}
-                  >
-                    {cat.label}
-                  </div>
+                  <IconComponent className={`h-3.5 w-3.5 ${active ? "text-background/70" : ""}`} />
+                  <span>{cat.label}</span>
+                  <span className={`ml-0.5 ${active ? "text-background/50" : "text-muted-foreground/40"}`}>
+                    {cat.count}
+                  </span>
                 </motion.button>
               )
             })}
@@ -200,55 +230,75 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Filter & Controls Section */}
-      <section className="sticky top-14 z-30 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 py-4">
-            {/* Category Tabs */}
-            <div className="flex flex-wrap gap-1">
-              {categories.map((cat) => (
-                <motion.button
-                  key={cat.id}
-                  onClick={() => setFilter(cat.id)}
-                  className={`relative px-4 py-2 text-[10px] uppercase tracking-[0.12em] transition-colors ${filter === cat.id
-                    ? 'text-background'
-                    : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                  style={{ fontFamily: monoFont }}
-                >
-                  {filter === cat.id && (
-                    <motion.div
-                      layoutId="activeProductFilter"
-                      className="absolute inset-0 bg-foreground"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
-                    />
-                  )}
-                  <span className="relative z-10 flex items-center gap-2">
-                    {cat.label}
-                    <span className={`${filter === cat.id ? 'text-background/60' : 'text-muted-foreground/40'}`}>
-                      [{cat.count}]
-                    </span>
-                  </span>
-                </motion.button>
-              ))}
+      {/* Filter & Controls Bar */}
+      <section className="sticky top-16 z-30 border-b border-border bg-background/95 backdrop-blur-sm">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="flex items-center justify-between gap-4 py-3">
+            {/* Active Filter */}
+            <div className="flex items-center gap-3">
+              <span
+                className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground/50"
+                style={{ fontFamily: monoFont }}
+              >
+                Showing
+              </span>
+              <div className="flex flex-wrap gap-1">
+                {categories
+                  .filter((c) => filter === "all" || c.id === filter || c.id === "all")
+                  .map((cat) => (
+                    <motion.button
+                      key={cat.id}
+                      onClick={() => setFilter(cat.id)}
+                      className={`relative rounded-sm px-3 py-1.5 text-[10px] uppercase tracking-[0.12em] transition-colors ${
+                        (filter === "all" && cat.id === "all") || filter === cat.id
+                          ? "text-background"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                      style={{ fontFamily: monoFont }}
+                    >
+                      {((filter === "all" && cat.id === "all") || filter === cat.id) && (
+                        <motion.div
+                          layoutId="activeProductFilter"
+                          className="absolute inset-0 rounded-sm bg-foreground"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                        />
+                      )}
+                      <span className="relative z-10">
+                        {cat.id === "all" ? "ALL" : cat.label}
+                        <span className="ml-1.5 opacity-60">[{cat.count}]</span>
+                      </span>
+                    </motion.button>
+                  ))}
+              </div>
             </div>
 
             {/* View Mode Toggle */}
-            <div className="flex items-center gap-2">
-              <span className="text-[9px] uppercase tracking-[0.12em] text-muted-foreground/50 mr-2" style={{ fontFamily: monoFont }}>
+            <div className="flex items-center gap-1.5">
+              <span
+                className="mr-1.5 hidden text-[9px] uppercase tracking-[0.12em] text-muted-foreground/50 sm:inline"
+                style={{ fontFamily: monoFont }}
+              >
                 VIEW
               </span>
               <button
                 onClick={() => setViewMode("grid")}
-                className={`p-2 transition-colors ${viewMode === "grid" ? 'text-foreground' : 'text-muted-foreground/40 hover:text-muted-foreground'}`}
+                className={`rounded-sm p-1.5 transition-colors ${
+                  viewMode === "grid"
+                    ? "bg-foreground text-background"
+                    : "text-muted-foreground/40 hover:text-muted-foreground"
+                }`}
               >
-                <Grid className="h-4 w-4" />
+                <Grid className="h-3.5 w-3.5" />
               </button>
               <button
                 onClick={() => setViewMode("list")}
-                className={`p-2 transition-colors ${viewMode === "list" ? 'text-foreground' : 'text-muted-foreground/40 hover:text-muted-foreground'}`}
+                className={`rounded-sm p-1.5 transition-colors ${
+                  viewMode === "list"
+                    ? "bg-foreground text-background"
+                    : "text-muted-foreground/40 hover:text-muted-foreground"
+                }`}
               >
-                <List className="h-4 w-4" />
+                <List className="h-3.5 w-3.5" />
               </button>
             </div>
           </div>
@@ -257,16 +307,16 @@ export default function ProductsPage() {
 
       {/* Products Content */}
       <section className="py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <AnimatePresence mode="wait">
             {viewMode === "grid" ? (
-              /* Grid View */
+              /* Grid View — 4 columns: 2 products + 2 empty slots */
               <motion.div
                 key="grid"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
               >
                 {filteredProducts.map((product, index) => {
                   const CategoryIcon = getCategoryIcon(product.category)
@@ -275,73 +325,162 @@ export default function ProductsPage() {
                       key={product.id}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05 }}
+                      transition={{ delay: index * 0.08 }}
                       viewport={{ once: true }}
-                      className="group cursor-pointer"
                       onClick={() => handleProductSelect(product)}
+                      className="group cursor-pointer overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-foreground/20 hover:shadow-lg"
                     >
-                      {/* Image Container */}
-                      <div className="relative aspect-[4/3] bg-card border border-border overflow-hidden">
-                        {/* Index Number */}
-                        <div
-                          className="absolute top-3 left-3 z-10 text-[10px] text-foreground/30 group-hover:text-foreground/60 transition-colors"
-                          style={{ fontFamily: monoFont }}
-                        >
-                          [{String(product.id).padStart(2, '0')}]
-                        </div>
-
-                        {/* Category & Status Badge */}
-                        <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
-                          <div className={`w-2 h-2 rounded-full ${getStatusColor(product.status)}`} />
+                      {/* Image */}
+                      <div className="relative aspect-[4/3] overflow-hidden bg-muted/30">
+                        {/* Top badges */}
+                        <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between p-4">
                           <div
-                            className="px-2 py-1 bg-background/80 backdrop-blur-sm border border-border text-[8px] uppercase tracking-[0.1em] flex items-center gap-1.5"
+                            className="text-[10px] text-foreground/40 group-hover:text-foreground/70 transition-colors"
                             style={{ fontFamily: monoFont }}
                           >
-                            <CategoryIcon className="h-3 w-3" />
-                            {product.category}
+                            [{String(product.id).padStart(2, "0")}]
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {product.openSource && (
+                              <span
+                                className="flex items-center gap-1 rounded-full border border-green-500/30 bg-green-500/10 px-2.5 py-1 text-[9px] uppercase tracking-wider text-green-600 dark:text-green-400 backdrop-blur-md"
+                                style={{ fontFamily: monoFont }}
+                              >
+                                <Sparkles className="h-3 w-3" />
+                                Open Source
+                              </span>
+                            )}
+                            <span
+                              className="flex items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-2.5 py-1 text-[9px] uppercase tracking-wider backdrop-blur-md"
+                              style={{ fontFamily: monoFont }}
+                            >
+                              <span className={`h-1.5 w-1.5 rounded-full ${getStatusColor(product.status)}`} />
+                              {product.status}
+                            </span>
                           </div>
                         </div>
 
-                        {/* Image */}
                         {product.image ? (
                           <img
                             src={product.image}
                             alt={product.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-secondary">
+                          <div className="flex h-full w-full items-center justify-center bg-secondary">
                             <CategoryIcon className="h-16 w-16 text-muted-foreground/20" />
                           </div>
                         )}
+
+                        {/* Bottom gradient */}
+                        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-card to-transparent" />
                       </div>
 
                       {/* Info */}
-                      <div className="mt-4 space-y-2">
-                        <div className="flex items-center justify-between">
-                          <h3
-                            className="text-base font-bold uppercase"
-                            style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.25em' }}
+                      <div className="p-5 sm:p-6">
+                        <div className="mb-3 flex items-start justify-between gap-4">
+                          <div className="min-w-0">
+                            <h3
+                              className="text-lg font-bold uppercase tracking-wider sm:text-xl"
+                              style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.2em" }}
+                            >
+                              {product.title}
+                            </h3>
+                            <div
+                              className="mt-1 flex items-center gap-2 text-[10px] uppercase tracking-[0.1em] text-muted-foreground/60"
+                              style={{ fontFamily: monoFont }}
+                            >
+                              <CategoryIcon className="h-3 w-3" />
+                              <span>{product.category}</span>
+                              <span className="h-px w-2 bg-border" />
+                              <span>{product.platform}</span>
+                            </div>
+                          </div>
+                          <span
+                            className="shrink-0 text-[10px] text-muted-foreground/40"
+                            style={{ fontFamily: monoFont }}
                           >
-                            {product.title}
-                          </h3>
-                          <span className="text-[9px] text-muted-foreground/50" style={{ fontFamily: monoFont }}>
                             {product.year}
                           </span>
                         </div>
-                        <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
-                        <div
-                          className="flex items-center gap-3 text-[9px] text-muted-foreground/40 uppercase tracking-[0.1em]"
-                          style={{ fontFamily: monoFont }}
-                        >
-                          <span>{product.platform}</span>
-                          <span className="w-1 h-1 rounded-full bg-muted-foreground/20" />
-                          <span className={`${product.status === "Live" ? "text-green-500" : ""}`}>{product.status}</span>
+
+                        <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{product.description}</p>
+
+                        {/* Tech tags */}
+                        <div className="mb-4 flex flex-wrap gap-1.5">
+                          {product.technologies.map((tech) => (
+                            <span
+                              key={tech}
+                              className="rounded-md border border-border bg-muted/40 px-2 py-1 text-[9px] uppercase tracking-wider text-muted-foreground"
+                              style={{ fontFamily: monoFont }}
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Footer */}
+                        <div className="flex items-center justify-between border-t border-border/50 pt-4">
+                          <div className="flex items-center gap-3">
+                            {product.link && (
+                              <a
+                                href={product.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.1em] text-muted-foreground transition-colors hover:text-foreground"
+                                style={{ fontFamily: monoFont }}
+                              >
+                                <ExternalLink className="h-3 w-3" />
+                                Marketplace
+                              </a>
+                            )}
+                          </div>
+                          <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.1em] text-muted-foreground/60 transition-colors group-hover:text-foreground" style={{ fontFamily: monoFont }}>
+                            View details
+                            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                          </span>
                         </div>
                       </div>
                     </motion.div>
                   )
                 })}
+
+                {/* Empty placeholder slots to fill 4-column grid */}
+                {Array.from({ length: Math.max(0, 4 - filteredProducts.length) }).map((_, i) => (
+                  <motion.div
+                    key={`empty-${i}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: (filteredProducts.length + i) * 0.08 }}
+                    viewport={{ once: true }}
+                    className="flex flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed border-border/60 bg-card/30"
+                  >
+                    <div className="flex aspect-[4/3] w-full items-center justify-center bg-muted/10">
+                      <div className="flex flex-col items-center gap-3 px-4 text-center">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border/60 bg-muted/30">
+                          <span className="text-lg text-muted-foreground/30">+</span>
+                        </div>
+                        <span
+                          className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground/30"
+                          style={{ fontFamily: monoFont }}
+                        >
+                          Coming soon
+                        </span>
+                      </div>
+                    </div>
+                    <div className="w-full p-5 sm:p-6">
+                      <div className="mb-3 h-4 w-24 rounded bg-muted/20" />
+                      <div className="mb-2 h-3 w-full rounded bg-muted/15" />
+                      <div className="mb-4 h-3 w-3/4 rounded bg-muted/10" />
+                      <div className="flex gap-1.5">
+                        <div className="h-5 w-12 rounded-md bg-muted/15" />
+                        <div className="h-5 w-10 rounded-md bg-muted/15" />
+                        <div className="h-5 w-14 rounded-md bg-muted/15" />
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
             ) : (
               /* List View */
@@ -350,11 +489,11 @@ export default function ProductsPage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="border border-border"
+                className="overflow-hidden rounded-lg border border-border"
               >
                 {/* Table Header */}
                 <div
-                  className="hidden md:grid grid-cols-[60px_1fr_120px_120px_100px_80px] gap-4 px-4 py-3 bg-card/50 border-b border-border text-[9px] uppercase tracking-[0.12em] text-muted-foreground/60"
+                  className="hidden gap-4 border-b border-border bg-card/50 px-4 py-3 text-[9px] uppercase tracking-[0.12em] text-muted-foreground/60 md:grid md:grid-cols-[50px_1fr_100px_100px_90px_60px]"
                   style={{ fontFamily: monoFont }}
                 >
                   <span>IDX</span>
@@ -376,47 +515,60 @@ export default function ProductsPage() {
                       transition={{ delay: index * 0.02 }}
                       viewport={{ once: true }}
                       onClick={() => handleProductSelect(product)}
-                      className="grid grid-cols-1 md:grid-cols-[60px_1fr_120px_120px_100px_80px] gap-2 md:gap-4 px-4 py-4 border-b border-border/30 last:border-b-0 hover:bg-card/30 transition-colors cursor-pointer group"
+                      className="grid cursor-pointer grid-cols-1 gap-2 border-b border-border/30 px-4 py-4 transition-colors last:border-b-0 hover:bg-card/30 md:grid-cols-[50px_1fr_100px_100px_90px_60px] md:gap-4 group"
                     >
                       <div
-                        className="hidden md:block text-muted-foreground/40 group-hover:text-foreground/60 transition-colors"
+                        className="hidden text-muted-foreground/40 transition-colors group-hover:text-foreground/60 md:block"
                         style={{ fontFamily: monoFont }}
                       >
-                        [{String(product.id).padStart(2, '0')}]
+                        [{String(product.id).padStart(2, "0")}]
                       </div>
                       <div className="flex items-center gap-4">
                         {product.image && (
-                          <div className="w-12 h-9 bg-card border border-border overflow-hidden flex-shrink-0">
-                            <img src={product.image} alt="" className="w-full h-full object-cover" />
+                          <div className="h-9 w-12 flex-shrink-0 overflow-hidden rounded border border-border bg-card">
+                            <img src={product.image} alt="" className="h-full w-full object-cover" />
                           </div>
                         )}
-                        <div>
-                          <div
-                            className="font-bold text-sm group-hover:text-foreground transition-colors uppercase"
-                            style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.2em' }}
-                          >
-                            {product.title}
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span
+                              className="truncate text-sm font-bold uppercase transition-colors group-hover:text-foreground"
+                              style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.2em" }}
+                            >
+                              {product.title}
+                            </span>
+                            {product.openSource && (
+                              <span className="shrink-0 rounded-full bg-green-500/10 px-2 py-0.5 text-[8px] uppercase tracking-wider text-green-600 dark:text-green-400" style={{ fontFamily: monoFont }}>
+                                OSS
+                              </span>
+                            )}
                           </div>
-                          <div className="text-[10px] text-muted-foreground/50 line-clamp-1">{product.description}</div>
+                          <div className="truncate text-[10px] text-muted-foreground/50">{product.description}</div>
                         </div>
                       </div>
                       <div className="flex items-center">
                         <span
-                          className="px-2 py-1 bg-card border border-border text-[9px] uppercase tracking-[0.1em] flex items-center gap-1.5"
+                          className="flex items-center gap-1.5 rounded border border-border bg-card px-2 py-1 text-[9px] uppercase tracking-[0.1em]"
                           style={{ fontFamily: monoFont }}
                         >
                           <CategoryIcon className="h-3 w-3" />
                           {product.category}
                         </span>
                       </div>
-                      <div className="flex items-center text-[10px] text-muted-foreground" style={{ fontFamily: monoFont }}>
+                      <div
+                        className="flex items-center text-[10px] text-muted-foreground"
+                        style={{ fontFamily: monoFont }}
+                      >
                         {product.platform}
                       </div>
                       <div className="flex items-center gap-2 text-[10px]" style={{ fontFamily: monoFont }}>
-                        <span className={`w-2 h-2 rounded-full ${getStatusColor(product.status)}`} />
+                        <span className={`h-2 w-2 rounded-full ${getStatusColor(product.status)}`} />
                         <span className="text-muted-foreground">{product.status}</span>
                       </div>
-                      <div className="flex items-center text-[10px] text-muted-foreground/40" style={{ fontFamily: monoFont }}>
+                      <div
+                        className="flex items-center text-[10px] text-muted-foreground/40"
+                        style={{ fontFamily: monoFont }}
+                      >
                         {product.year}
                       </div>
                     </motion.div>
@@ -428,10 +580,12 @@ export default function ProductsPage() {
 
           {/* Results Count */}
           <div
-            className="mt-8 pt-6 border-t border-border flex items-center justify-between text-[9px] uppercase tracking-[0.12em] text-muted-foreground/40"
+            className="mt-8 flex items-center justify-between border-t border-border pt-6 text-[9px] uppercase tracking-[0.12em] text-muted-foreground/40"
             style={{ fontFamily: monoFont }}
           >
-            <span>SHOWING {filteredProducts.length} OF {products.length} PRODUCTS</span>
+            <span>
+              SHOWING {filteredProducts.length} OF {products.length} PRODUCTS
+            </span>
             <span>PRODUCTS · p. 01</span>
           </div>
         </div>

@@ -110,8 +110,23 @@ export function Navbar() {
   }, [pathname])
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : ""
-    return () => { document.body.style.overflow = "" }
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden"
+      document.body.style.position = "fixed"
+      document.body.style.inset = "0"
+      document.body.style.width = "100%"
+    } else {
+      document.body.style.overflow = ""
+      document.body.style.position = ""
+      document.body.style.inset = ""
+      document.body.style.width = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+      document.body.style.position = ""
+      document.body.style.inset = ""
+      document.body.style.width = ""
+    }
   }, [mobileOpen])
 
   const navItems = [
@@ -177,6 +192,7 @@ export function Navbar() {
     ? [
         { name: "Products", url: "/products", cat: "PRD" },
         { name: "HUIX-THEME", url: "/products/huix-theme", cat: "PRD" },
+        { name: "Huixor", url: "/products/huixor", cat: "PRD" },
         { name: "Software Products", url: "/products#Software", cat: "PRD" },
         { name: "Website Products", url: "/products#Website", cat: "PRD" },
         { name: "App Products", url: "/products#App", cat: "PRD" },
@@ -231,7 +247,7 @@ export function Navbar() {
   }
 
   return (
-    <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled ? 'bg-background/98 backdrop-blur-md shadow-sm' : 'bg-background/95 backdrop-blur'}`}>
+    <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${mobileOpen ? 'bg-background' : scrolled ? 'bg-background/98 backdrop-blur-md shadow-sm' : 'bg-background/95 backdrop-blur'}`}>
       {/* Main Nav - onMouseLeave here so Company mega dropdown stays open when moving from link to panel */}
       <div className="border-b border-border relative" onMouseLeave={() => setOpenDropdown(null)}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -529,11 +545,12 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="lg:hidden fixed inset-0 top-[64px] z-50 bg-background overflow-y-auto"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden fixed inset-x-0 top-[64px] bottom-0 z-[999] bg-background overflow-y-auto overscroll-contain border-t border-border"
+            style={{ willChange: "auto" }}
           >
             <div className="px-6 py-8 min-h-full flex flex-col">
               {/* Mobile Search */}

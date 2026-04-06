@@ -245,7 +245,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.className} ${inter.variable} antialiased`}
+        className={`${inter.className} ${inter.variable} antialiased overflow-x-hidden`}
       >
         <ThemeProvider>
           <CustomCursor />

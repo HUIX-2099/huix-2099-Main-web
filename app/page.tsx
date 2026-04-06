@@ -7,6 +7,39 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { CustomCursor } from "@/components/custom-cursor";
 import { ParallaxReveal, ParallaxImage, ParallaxText, ParallaxFloat, ParallaxStagger, ParallaxStaggerItem } from "@/components/parallax";
+import { ArrowRight, Monitor, Palette, Sparkles, ExternalLink } from "lucide-react";
+
+const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace';
+
+const latestProducts = [
+  {
+    id: 1,
+    title: "HUIX-THEME",
+    category: "Theme",
+    icon: Palette,
+    platform: "VS Code",
+    description: "Premium dark VS Code theme with satellite hardware background and ultra-sharp neon syntax colors.",
+    image: "/products/huix-theme/Media/logo.png",
+    year: "2024",
+    status: "Live" as const,
+    openSource: true,
+    href: "/products/huix-theme",
+    external: "https://marketplace.visualstudio.com/items?itemName=huix-2099.huix-2099-theme",
+  },
+  {
+    id: 2,
+    title: "HUIXOR",
+    category: "Software",
+    icon: Monitor,
+    platform: "Windows 10/11",
+    description: "Multi-device web preview in one window — up to 8 panels, VR stage, synced scroll, CDP emulation.",
+    image: "/products/huixor/Huixor.ico",
+    year: "2026",
+    status: "Development" as const,
+    openSource: true,
+    href: "/products/huixor",
+  },
+];
 
 
 export default function Home() {
@@ -194,6 +227,157 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* Latest Products Showcase */}
+      <section className="border-t border-border bg-background py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Section header */}
+          <ParallaxReveal direction="up" delay={0.05}>
+            <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <div
+                  className="mb-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60"
+                  style={{ fontFamily: monoFont }}
+                >
+                  [03] LATEST PRODUCTS
+                </div>
+                <h2
+                  className="text-3xl sm:text-4xl font-bold uppercase tracking-[0.1em]"
+                  style={{ fontFamily: 'Mohican, sans-serif' }}
+                >
+                  OUR PRODUCTS
+                </h2>
+                <p className="mt-2 max-w-md text-base text-muted-foreground">
+                  Tools and software built by HUIX-2099 — all open source.
+                </p>
+              </div>
+              <Link
+                href="/products"
+                className="group inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground shrink-0"
+                style={{ fontFamily: monoFont }}
+              >
+                View all products
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </div>
+          </ParallaxReveal>
+
+          {/* Product cards */}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            {latestProducts.map((product, idx) => {
+              const Icon = product.icon;
+              return (
+                <ParallaxReveal key={product.id} direction="up" delay={0.1 + idx * 0.08}>
+                  <Link
+                    href={product.href}
+                    className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-foreground/20 hover:shadow-lg sm:flex-row"
+                  >
+                    {/* Image */}
+                    <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-muted/20 sm:aspect-auto sm:w-44 lg:w-52">
+                      {product.image ? (
+                        <img
+                          src={product.image}
+                          alt={product.title}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center">
+                          <Icon className="h-12 w-12 text-muted-foreground/20" />
+                        </div>
+                      )}
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent to-card/50 hidden sm:block" />
+
+                      {/* Status pill */}
+                      <span
+                        className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-2.5 py-1 text-[9px] uppercase tracking-wider backdrop-blur-md sm:top-2 sm:left-2"
+                        style={{ fontFamily: monoFont }}
+                      >
+                        <span className={`h-1.5 w-1.5 rounded-full ${product.status === "Live" ? "bg-green-500" : "bg-yellow-500"}`} />
+                        {product.status}
+                      </span>
+                    </div>
+
+                    {/* Info */}
+                    <div className="flex min-w-0 flex-1 flex-col justify-between p-5 sm:p-6">
+                      <div>
+                        <div className="mb-1 flex flex-wrap items-center gap-2">
+                          <h3
+                            className="text-base font-bold uppercase tracking-wider sm:text-lg"
+                            style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.18em' }}
+                          >
+                            {product.title}
+                          </h3>
+                          {product.openSource && (
+                            <span
+                              className="flex items-center gap-1 rounded-full border border-green-500/30 bg-green-500/10 px-2 py-0.5 text-[8px] uppercase tracking-wider text-green-600 dark:text-green-400"
+                              style={{ fontFamily: monoFont }}
+                            >
+                              <Sparkles className="h-2.5 w-2.5" />
+                              Open Source
+                            </span>
+                          )}
+                        </div>
+                        <div
+                          className="mb-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.1em] text-muted-foreground/50"
+                          style={{ fontFamily: monoFont }}
+                        >
+                          <Icon className="h-3 w-3" />
+                          {product.category}
+                          <span className="h-px w-2 bg-border" />
+                          {product.platform}
+                          <span className="h-px w-2 bg-border" />
+                          {product.year}
+                        </div>
+                        <p className="text-sm leading-relaxed text-muted-foreground line-clamp-2">
+                          {product.description}
+                        </p>
+                      </div>
+
+                      <div className="mt-4 flex items-center justify-between">
+                        {product.external ? (
+                          <span
+                            className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.1em] text-muted-foreground/50"
+                            style={{ fontFamily: monoFont }}
+                          >
+                            <ExternalLink className="h-3 w-3" />
+                            Marketplace
+                          </span>
+                        ) : (
+                          <span />
+                        )}
+                        <span
+                          className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.1em] text-muted-foreground/50 transition-colors group-hover:text-foreground"
+                          style={{ fontFamily: monoFont }}
+                        >
+                          Details
+                          <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </ParallaxReveal>
+              );
+            })}
+          </div>
+
+          {/* Browse all CTA */}
+          <ParallaxReveal direction="up" delay={0.25}>
+            <div className="mt-8 flex justify-center">
+              <Link href="/products">
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="flex items-center gap-3 rounded-full border border-border bg-card px-8 py-3.5 text-[11px] uppercase tracking-[0.16em] text-muted-foreground transition-all hover:border-foreground/30 hover:text-foreground hover:shadow-md"
+                  style={{ fontFamily: monoFont }}
+                >
+                  Browse All Products
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </motion.button>
+              </Link>
+            </div>
+          </ParallaxReveal>
+        </div>
+      </section>
 
       {/* CTA Section - Editorial Document Style */}
       <section className="py-12 sm:py-16 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">

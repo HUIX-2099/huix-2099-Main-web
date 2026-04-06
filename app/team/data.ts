@@ -7,9 +7,9 @@ export const teamMembers = [
         role: "CTO & Co-founder",
         title: "Chief Technology Officer",
         badge: "01",
-        image: "https://scontent.fmlw1-2.fna.fbcdn.net/v/t39.30808-6/654473800_915967604759292_730100914272495836_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeE7VrVezhFNF86zkoZsXSUCoxhrn0HXQ8ajGGufQddDxvwL-ULPy0nvnJC9rNkvhvbaT_tafBJuIuhIPkPM-BFR&_nc_ohc=OOI5eqgDtAcQ7kNvwFMn53n&_nc_oc=AdpLuexfeHKLk8GadX_gss3PlbaEyj3GN3p1Q1PaBXac_P_fbzNIw43_rYqJua-5gRE&_nc_zt=23&_nc_ht=scontent.fmlw1-2.fna&_nc_gid=LJRY7V-SpiZylR5XrZGcqA&_nc_ss=7a32e&oh=00_Afwiud1SYXjWnOhmo7lvtQ1FX1QcGTrNTOEprbOWG7fE4A&oe=69C593D3",
+        image: "/Team/VICTOR.jpeg",
         photos: [
-            { id: "01", image: "https://scontent.fmlw1-2.fna.fbcdn.net/v/t39.30808-6/654473800_915967604759292_730100914272495836_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeE7VrVezhFNF86zkoZsXSUCoxhrn0HXQ8ajGGufQddDxvwL-ULPy0nvnJC9rNkvhvbaT_tafBJuIuhIPkPM-BFR&_nc_ohc=OOI5eqgDtAcQ7kNvwFMn53n&_nc_oc=AdpLuexfeHKLk8GadX_gss3PlbaEyj3GN3p1Q1PaBXac_P_fbzNIw43_rYqJua-5gRE&_nc_zt=23&_nc_ht=scontent.fmlw1-2.fna&_nc_gid=LJRY7V-SpiZylR5XrZGcqA&_nc_ss=7a32e&oh=00_Afwiud1SYXjWnOhmo7lvtQ1FX1QcGTrNTOEprbOWG7fE4A&oe=69C593D3", caption: "CTO" },
+            { id: "01", image: "/Team/VICTOR.jpeg", caption: "CTO" },
         ],
         tagline: "3D Software Engineer · CTO & Co-founder of HUIX-2099",
         bio: "Chief Technology Officer driving HUIX-2099's technical vision. Architects and builds HUIX-HORIZEN and Virtual Past Liberia—platforms that enable Liberia and the region to imagine, prototype, and build the future through XR, 3D visualization, and immersive systems.",
