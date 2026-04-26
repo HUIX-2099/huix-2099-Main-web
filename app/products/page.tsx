@@ -21,6 +21,39 @@ import {
 
 const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
 
+function IconWindows({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <path
+        fill="currentColor"
+        d="M3 5.5L10.5 4.2v7.1H3V5.5zm0 8.2h7.5v7.3L3 19.5v-5.8zm8.7-9.3L21 3v8.1h-9.3V4.4zm0 9.4H21V21l-9.3-1.3v-6.1z"
+      />
+    </svg>
+  )
+}
+
+function IconMac({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <path
+        fill="currentColor"
+        d="M16.2 1.1c-1.3.1-2.5.9-3.1 1.8-.5.7-.9 1.7-.7 2.5.1.1.1.1.1.1 1.3-.1 2.4-.7 2.9-1.4.5-.6 1-1.6.8-3zm2.1 3.1c-2.1 0-3.4 1.2-4 1.2-.6 0-1.8-1.1-3.1-1.1-1.5 0-3.1.9-3.8 2.1-1.5 2.5-.3 6.2 1 8.1.6.9 1.4 2 2.3 1.9.8-.1 1.1-.4 1.8-.4.8 0 1.1.4 1.8.4.9 0 1.6-1.1 2.1-1.8 1-1.4 1.2-1.6 1.2-1.6-.1 0-2-1-2-3.4 0-1.6 1-2.2 1.1-2.2-.4-.4-1.1-.5-1.5-.5z"
+      />
+    </svg>
+  )
+}
+
+function IconAndroid({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <path
+        fill="currentColor"
+        d="M17.6 9.2l1.3-1.8c.1-.1.1-.3 0-.4-.1-.1-.2-.1-.3 0l-1.4 1.9c-1.1-.5-2.3-.7-3.5-.7s-2.4.2-3.5.7L8.8 7c-.1-.1-.2-.1-.3 0-.1.1-.1.2 0 .3l1.3 1.8C6.9 10.2 5.2 12.2 4.5 15h15c-.7-2.8-2.4-4.8-4.9-5.8zM9 12.2c0 .5-.4.9-.9.9s-.8-.4-.8-.9.3-.9.8-.9.9.4.9.9zm5.8.9c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.8.4.8.9-.3.9-.8.9zM7 20h1v1H7v-1zm9 0h1v1h-1v-1z"
+      />
+    </svg>
+  )
+}
+
 interface Product {
   id: number
   title: string
@@ -65,6 +98,18 @@ const products: Product[] = [
     technologies: ["WPF", ".NET 8", "WebView2", "CDP"],
     openSource: true,
     detailPage: "/products/huixor",
+  },
+  {
+    id: 3,
+    title: "Monrovia Hustle",
+    category: "Game",
+    platform: "Windows · macOS · Android",
+    description: "Coming soon",
+    image: "/products/Monrovia_hustle_Demo_Campane/logo%20for%20ui.png",
+    year: "2026",
+    status: "Development",
+    technologies: [],
+    detailPage: "/products/monrovia-hustle",
   },
 ]
 
@@ -404,20 +449,50 @@ export default function ProductsPage() {
                           </span>
                         </div>
 
-                        <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{product.description}</p>
+                        {product.id === 3 ? (
+                          <div className="mb-4">
+                            <div className="flex items-center justify-center gap-6 py-2 text-foreground/80">
+                              <span className="flex flex-col items-center gap-1" title="Windows">
+                                <IconWindows className="h-9 w-9" />
+                                <span className="text-[9px] uppercase tracking-widest text-muted-foreground" style={{ fontFamily: monoFont }}>
+                                  Windows
+                                </span>
+                              </span>
+                              <span className="flex flex-col items-center gap-1" title="macOS">
+                                <IconMac className="h-9 w-9" />
+                                <span className="text-[9px] uppercase tracking-widest text-muted-foreground" style={{ fontFamily: monoFont }}>
+                                  Mac
+                                </span>
+                              </span>
+                              <span className="flex flex-col items-center gap-1" title="Android">
+                                <IconAndroid className="h-9 w-9" />
+                                <span className="text-[9px] uppercase tracking-widest text-muted-foreground" style={{ fontFamily: monoFont }}>
+                                  Android
+                                </span>
+                              </span>
+                            </div>
+                            <p className="text-center text-sm text-muted-foreground" style={{ fontFamily: monoFont }}>
+                              Coming soon
+                            </p>
+                          </div>
+                        ) : (
+                          <>
+                            <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{product.description}</p>
 
-                        {/* Tech tags */}
-                        <div className="mb-4 flex flex-wrap gap-1.5">
-                          {product.technologies.map((tech) => (
-                            <span
-                              key={tech}
-                              className="rounded-md border border-border bg-muted/40 px-2 py-1 text-[9px] uppercase tracking-wider text-muted-foreground"
-                              style={{ fontFamily: monoFont }}
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
+                            {/* Tech tags */}
+                            <div className="mb-4 flex flex-wrap gap-1.5">
+                              {product.technologies.map((tech) => (
+                                <span
+                                  key={tech}
+                                  className="rounded-md border border-border bg-muted/40 px-2 py-1 text-[9px] uppercase tracking-wider text-muted-foreground"
+                                  style={{ fontFamily: monoFont }}
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </>
+                        )}
 
                         {/* Footer */}
                         <div className="flex items-center justify-between border-t border-border/50 pt-4">
@@ -543,7 +618,18 @@ export default function ProductsPage() {
                               </span>
                             )}
                           </div>
-                          <div className="truncate text-[10px] text-muted-foreground/50">{product.description}</div>
+                          {product.id === 3 ? (
+                            <div className="mt-1 flex items-center gap-3 text-foreground/70">
+                              <IconWindows className="h-4 w-4 shrink-0" />
+                              <IconMac className="h-4 w-4 shrink-0" />
+                              <IconAndroid className="h-4 w-4 shrink-0" />
+                              <span className="text-[10px] uppercase tracking-widest text-muted-foreground" style={{ fontFamily: monoFont }}>
+                                Coming soon
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="truncate text-[10px] text-muted-foreground/50">{product.description}</div>
+                          )}
                         </div>
                       </div>
                       <div className="flex items-center">

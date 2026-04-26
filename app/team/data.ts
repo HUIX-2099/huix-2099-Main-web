@@ -4,14 +4,14 @@ export const teamMembers = [
     {
         id: "victor",
         name: "Victor Edet Coleman",
-        role: "CTO & Co-founder",
+        role: "Founder & CTO",
         title: "Chief Technology Officer",
         badge: "01",
         image: "/Team/VICTOR.jpeg",
         photos: [
             { id: "01", image: "/Team/VICTOR.jpeg", caption: "CTO" },
         ],
-        tagline: "3D Software Engineer · CTO & Co-founder of HUIX-2099",
+        tagline: "3D Software Engineer · Founder & CTO of HUIX-2099",
         bio: "Chief Technology Officer driving HUIX-2099's technical vision. Architects and builds HUIX-HORIZEN and Virtual Past Liberia—platforms that enable Liberia and the region to imagine, prototype, and build the future through XR, 3D visualization, and immersive systems.",
         focus: "XR · 3D Visualization · Systems Architecture · AI Integration",
         location: "Monrovia, Liberia",
@@ -42,3 +42,5 @@ export const teamMembers = [
         googleSearch: null
     },
 ]
+
+export type TeamMember = (typeof teamMembers)[number]

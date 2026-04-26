@@ -181,7 +181,7 @@ const jsonLd = {
     {
       "@type": "Person",
       name: "Victor Edet Coleman",
-      jobTitle: "CTO & Co-founder",
+      jobTitle: "Founder & CTO",
       url: "https://www.linkedin.com/in/victor-coleman-4731701a5/",
     },
     {

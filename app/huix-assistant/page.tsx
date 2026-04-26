@@ -43,7 +43,7 @@ export default function HuixAssistant() {
     const welcomeMsg: Message = {
       id: 'welcome',
       type: 'assistant',
-      content: `Hey there! 👋 I'm HUIX Assistant — your AI guide to everything HUIX-2099.\n\nI know this site inside out: our projects, services, team (Victor our CTO, Wulwyn our CEO), tech stack, and more. Ask me anything!\n\nTry: "What is HUIX-2099?" or "Who is the CTO?"`,
+      content: `Hey there! 👋 I'm HUIX Assistant — your AI guide to everything HUIX-2099.\n\nI know this site inside out: our projects, services, team (Victor our Founder & CTO, Wulwyn our CEO), tech stack, and more. Ask me anything!\n\nTry: "What is HUIX-2099?" or "Who is the CTO?"`,
       timestamp: new Date(),
       sentiment: 'positive'
     }
@@ -56,7 +56,7 @@ export default function HuixAssistant() {
       name: "HUIX-2099",
       tagline: "Where Innovation Meets Imagination",
       founded: "2024",
-      founder: "Victor Edet Coleman (CTO & Co-founder) and Wulwyn Porte L (CEO & Co-founder)",
+      founder: "Victor Edet Coleman (Founder & CTO) and Wulwyn Porte L (CEO & Co-founder & Investor)",
       location: "Monrovia, Liberia",
       email: "huixtech2099@gmail.com",
       phone: ["+231 776 800 064", "+231 770 499 140"],
@@ -65,7 +65,7 @@ export default function HuixAssistant() {
       vision: "To be Africa's leading innovator in VR, AI, and immersive digital experiences"
     },
     team: [
-      { name: "Victor Edet Coleman", role: "CTO & Co-founder", desc: "Chief Technology Officer · 3D Software Engineer · Technical Architect" },
+      { name: "Victor Edet Coleman", role: "Founder & CTO", desc: "Chief Technology Officer · 3D Software Engineer · Technical Architect" },
       { name: "Wulwyn Porte L", role: "CEO & Co-founder & Investor", desc: "Chief Executive Officer · Strategic Lead · Investor" },
       { name: "Amanda Anderson", role: "Architect & Designer", desc: "The Ancestral Grid Architect for Virtual Past Liberia" }
     ],
@@ -107,7 +107,7 @@ export default function HuixAssistant() {
       { q: "cost|price|pricing|expensive|cheap", a: "Our pricing is project-based and depends on scope, complexity, and timeline. Contact us with your project details for a custom quote. We work with various budgets." },
       { q: "how long|timeline|duration|delivery", a: "Timelines vary: simple projects take 2-4 weeks, complex VR/AI projects can take 2-6 months. We'll give you a realistic timeline after understanding your needs." },
       { q: "where|location|based|office", a: "We're based in Monrovia, Liberia 🇱🇷 but work with clients worldwide remotely." },
-      { q: "who made|who built|who created|developer|cto|victor", a: "HUIX-2099 was co-founded by **Victor Edet Coleman** (CTO & Co-founder)—our Chief Technology Officer who architects and builds our platforms—and **Wulwyn Porte L** (CEO & Co-founder & Investor). Victor drives all technical vision: XR, 3D, AI, and immersive systems." }
+      { q: "who made|who built|who created|developer|cto|victor", a: "**Victor Edet Coleman** is the **Founder & CTO** of HUIX-2099—he founded the company and leads all technical architecture, XR/3D, AI, and platform work. **Wulwyn Porte L** is **CEO & Co-founder & Investor**, driving strategy, partnerships, and growth." }
     ]
   }
 
@@ -171,7 +171,7 @@ export default function HuixAssistant() {
 
     // About HUIX-2099
     if (lower.includes("what is huix") || lower.includes("about huix") || lower.includes("tell me about huix") || lower.includes("who is huix")) {
-      return `**HUIX-2099** is ${knowledgeBase.company.description}.\n\n🎯 **Mission:** ${knowledgeBase.company.mission}\n\n📍 **Based in:** ${knowledgeBase.company.location}\n👤 **Co-founded by:** Victor Edet Coleman (CTO) & Wulwyn Porte L (CEO)\n📅 **Year:** ${knowledgeBase.company.founded}\n\nWe specialize in VR, AI, 3D, and cutting-edge web/app development. Want to know about our specific projects or services?`
+      return `**HUIX-2099** is ${knowledgeBase.company.description}.\n\n🎯 **Mission:** ${knowledgeBase.company.mission}\n\n📍 **Based in:** ${knowledgeBase.company.location}\n👤 **Leadership:** Victor Edet Coleman (Founder & CTO) · Wulwyn Porte L (CEO & Co-founder & Investor)\n📅 **Year:** ${knowledgeBase.company.founded}\n\nWe specialize in VR, AI, 3D, and cutting-edge web/app development. Want to know about our specific projects or services?`
     }
 
     // Services
@@ -195,7 +195,7 @@ export default function HuixAssistant() {
     // Team / CTO / CEO
     if (lower.includes("team") || lower.includes("who works") || lower.includes("founder") || lower.includes("victor") || lower.includes("wulwyn") || lower.includes("cto") || lower.includes("ceo") || lower.includes("amanda")) {
       const teamList = knowledgeBase.team.map(t => `• **${t.name}** — ${t.role}\n  _${t.desc}_`).join("\n\n")
-      return `Meet our leadership and team:\n\n${teamList}\n\n**Victor Edet Coleman** is our CTO & Co-founder—he leads all technical architecture, XR/3D development, and platform innovation. **Wulwyn Porte L** is our CEO & Co-founder & Investor—driving strategy, partnerships, and growth. We're dedicated to building the digital future of Africa.`
+      return `Meet our leadership and team:\n\n${teamList}\n\n**Victor Edet Coleman** is our **Founder & CTO**—he founded HUIX-2099 and leads technical architecture, XR/3D development, and platform innovation. **Wulwyn Porte L** is our **CEO & Co-founder & Investor**—driving strategy, partnerships, and growth. We're dedicated to building the digital future of Africa.`
     }
 
     // Contact

@@ -21,7 +21,7 @@ const INITIAL_MESSAGE: Message = {
 
 const QA_KNOWLEDGE: Record<string, string> = {
     "contact": "You can reach us at huixtech2099@gmail.com or call +231-776-800-064 / +231-887-544-923.",
-    "victor": "Victor Edet Coleman is the CTO & Co-founder of HUIX-2099, driving our technical vision.",
+    "victor": "Victor Edet Coleman is the Founder & CTO of HUIX-2099, driving our technical vision.",
     "wulwyn": "Wulwyn Porte L is the CEO & Co-founder, leading our business strategy.",
     "what do you do": "We are a Liberia-based technology company pioneering VR, XR, AR, AI, 3D visualization, and immersive digital engineering.",
     "products": "Our flagship products include HUIX-THEME and our immersive digital engineering solutions.",

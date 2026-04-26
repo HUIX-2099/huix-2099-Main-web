@@ -1402,7 +1402,7 @@ export default function HuixorPage() {
                           </span>
                         </div>
                         <p className="mb-1 text-sm font-medium text-muted-foreground">
-                          Monrovia, Liberia · CTO & Co-founder
+                          Monrovia, Liberia · Founder & CTO
                         </p>
                         <p className="text-sm leading-relaxed text-muted-foreground">
                           3D Software Engineer who designed, architected, and built Huixor from scratch — the WPF engine, WebView2 integration, VR preview, device emulation layer, and every pixel of the UI.
