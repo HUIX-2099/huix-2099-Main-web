@@ -19,7 +19,7 @@ export function Footer() {
   const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
 
   return (
-    <footer className="relative pt-12 pb-32 lg:pb-12 px-4 sm:px-6 lg:px-8 bg-[#111] border-t border-white/5" style={{ fontFamily: sansFont }}>
+    <footer className="relative py-12 px-4 sm:px-6 lg:px-8 bg-[#111] border-t border-white/5" style={{ fontFamily: sansFont }}>
       <div className="max-w-7xl mx-auto flex flex-col items-center justify-center pt-8 pb-4">
         
         {/* Logo/Brand */}

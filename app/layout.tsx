@@ -249,8 +249,12 @@ export default function RootLayout({
         <ThemeProvider>
           <CustomCursor />
           <VRImmersePrompt />
-          <main>
-            {children}
+          <main className="flex flex-col min-h-screen">
+            <div className="flex-1">
+              {children}
+            </div>
+            {/* Mobile Tab Bar Spacer to prevent overlapping footer/content */}
+            <div className="h-28 lg:hidden w-full bg-[#111]" />
           </main>
           <ChatBot />
           <CookieConsent />
