@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { ThemeSwitcher } from "./theme-switcher"
-import { ChevronDown, Menu, X, Wifi, Smartphone, Search, Terminal, ArrowRight } from "lucide-react"
+import { ChevronDown, Menu, X, Wifi, Smartphone, Search, Terminal, ArrowRight, Home, Info, Building2, Phone, MessageSquare, Facebook } from "lucide-react"
 import { useTheme } from "./theme-provider"
 import { motion, AnimatePresence } from "framer-motion"
 import { usePathname } from "next/navigation"
@@ -12,7 +12,6 @@ import { useWebXR } from "@/hooks/use-webxr"
 
 export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
-  const [mobileOpen, setMobileOpen] = useState(false)
   const [deviceType, setDeviceType] = useState("DSK")
   const [platform, setPlatform] = useState<"windows" | "win11" | "mac" | "linux" | "android" | "ios" | "unknown">("unknown")
   const [online, setOnline] = useState(true)
@@ -104,37 +103,17 @@ export function Navbar() {
   }, [])
 
   useEffect(() => {
-    setMobileOpen(false)
     setOpenDropdown(null)
     setShowSearch(false)
   }, [pathname])
 
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden"
-      document.body.style.position = "fixed"
-      document.body.style.inset = "0"
-      document.body.style.width = "100%"
-    } else {
-      document.body.style.overflow = ""
-      document.body.style.position = ""
-      document.body.style.inset = ""
-      document.body.style.width = ""
-    }
-    return () => {
-      document.body.style.overflow = ""
-      document.body.style.position = ""
-      document.body.style.inset = ""
-      document.body.style.width = ""
-    }
-  }, [mobileOpen])
-
   const navItems = [
     {
       id: "home",
-      label: "INDEX",
+      label: "HOME",
       href: "/",
       index: "00",
+      icon: Home,
       dropdown: [
         { label: "FAQ", href: "/#faq", index: "01" },
         { label: "WHY CHOOSE US", href: "/#why-choose-us", index: "02" },
@@ -146,6 +125,7 @@ export function Navbar() {
       label: "ABOUT",
       href: "/about",
       index: "01",
+      icon: Info,
       dropdown: [
         { label: "OUR STORY", href: "/about#our-story", index: "01" },
         { label: "TEAM", href: "/team", index: "02" },
@@ -157,6 +137,7 @@ export function Navbar() {
       label: "COMPANY",
       href: "#",
       index: "02",
+      icon: Building2,
       mega: true,
     },
     {
@@ -164,8 +145,10 @@ export function Navbar() {
       label: "CONTACT",
       href: "/contact",
       index: "03",
+      icon: Phone,
     },
   ]
+
 
   // Company mega dropdown: Products, Projects, Pricing (with sub-links)
   const companySections = [
@@ -247,22 +230,15 @@ export function Navbar() {
   }
 
   return (
-    <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${mobileOpen ? 'bg-background' : scrolled ? 'bg-background/98 backdrop-blur-md shadow-sm' : 'bg-background/95 backdrop-blur'}`}>
-      {/* Main Nav - onMouseLeave here so Company mega dropdown stays open when moving from link to panel */}
+    <>
+      <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled ? 'bg-background/98 backdrop-blur-md shadow-sm' : 'bg-background/95 backdrop-blur'}`}>
+        {/* Main Nav - onMouseLeave here so Company mega dropdown stays open when moving from link to panel */}
       <div className="border-b border-border relative" onMouseLeave={() => setOpenDropdown(null)}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 py-1">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group shrink-0">
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 relative rounded overflow-hidden">
-                  <Image
-                    src={resolvedTheme === 'dark' ? '/icons/HUIX 2099 dark logo icon version.jpg' : '/icons/HUIX 2099 light logo icon version.jpg'}
-                    alt="HUIX-2099"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
                 <div
                   className="whitespace-nowrap leading-none text-sm sm:text-base font-bold transition-all duration-300"
                   style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.15em' }}
@@ -270,10 +246,30 @@ export function Navbar() {
                   HUIX-2099
                 </div>
               </div>
-              <div className="hidden sm:block h-4 w-px bg-border" />
-              <div className="hidden sm:block text-[9px] uppercase tracking-[0.1em] text-muted-foreground" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
-                TECH · LBR
-              </div>
+              {/* Dynamic Tagline or Logo */}
+              {pathname === "/products/monrovia-hustle" && mounted ? (
+                <>
+                  <div className="flex h-3 sm:h-4 w-px bg-border" />
+                  <div className="flex text-[9px] uppercase tracking-[0.1em] text-muted-foreground flex-shrink-0" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                    <div className="relative w-24 sm:w-28 h-5 sm:h-6 flex items-center">
+                      <Image
+                        src={resolvedTheme === 'dark' ? '/products/Monrovia_hustle_Demo_Campane/dark_mode_logo.png' : '/products/Monrovia_hustle_Demo_Campane/light_mode_logo.png'}
+                        alt="Monrovia Hustle"
+                        fill
+                        className="object-contain object-left"
+                        priority
+                      />
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="hidden sm:block h-4 w-px bg-border" />
+                  <div className="hidden sm:block text-[9px] uppercase tracking-[0.1em] text-muted-foreground flex-shrink-0" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                    <span>TECH · LBR</span>
+                  </div>
+                </>
+              )}
             </Link>
 
             {/* Desktop Nav Links - onMouseLeave is on parent (border-b) so Company mega stays open when hovering dropdown */}
@@ -286,8 +282,10 @@ export function Navbar() {
                 >
                   <Link
                     href={item.href}
-                    onClick={(e) => item.mega && e.preventDefault()}
-                    className={`flex items-center gap-1.5 lg:gap-2 px-2 lg:px-3 xl:px-4 py-2 text-[10px] lg:text-[11px] uppercase tracking-[0.12em] lg:tracking-[0.14em] transition-colors group ${
+                    onClick={(e) => {
+                      if (item.mega) e.preventDefault()
+                    }}
+                    className={`font-bold flex items-center gap-1.5 lg:gap-2 px-2 lg:px-3 xl:px-4 py-2 text-[10px] lg:text-[11px] uppercase tracking-[0.12em] lg:tracking-[0.14em] transition-colors group ${
                       pathname === item.href || (item.href !== "#" && pathname.startsWith(item.href + "/"))
                         ? "text-foreground"
                         : "text-muted-foreground hover:text-foreground"
@@ -295,6 +293,7 @@ export function Navbar() {
                     style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
                   >
                     <span className="text-[8px] lg:text-[9px] opacity-50 hidden xl:inline">[{item.index}]</span>
+                    {item.icon && <item.icon className="w-3.5 h-3.5 opacity-80" />}
                     <span>{item.label}</span>
                     {(item.dropdown || item.mega) && (
                       <ChevronDown
@@ -334,14 +333,14 @@ export function Navbar() {
                               <Link
                                 href={subItem.href}
                                 className={`flex items-center justify-between px-4 py-2.5 text-[11px] uppercase tracking-[0.1em] transition-all group hover:bg-card ${
-                                  subItem.featured ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                                  (subItem as any).featured ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                                 }`}
                                 style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
                               >
                                 <span className="flex items-center gap-3">
                                   <span className="text-[9px] opacity-40">[{subItem.index}]</span>
                                   <span>{subItem.label}</span>
-                                  {subItem.featured && (
+                                  {(subItem as any).featured && (
                                     <span className="px-1.5 py-0.5 text-[8px] bg-foreground/10 rounded">★</span>
                                   )}
                                 </span>
@@ -479,14 +478,6 @@ export function Navbar() {
                 <ThemeSwitcher />
               </div>
 
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden p-2 hover:bg-card rounded transition-colors"
-                aria-label="Toggle menu"
-              >
-                {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </button>
             </div>
           </div>
         </div>
@@ -540,237 +531,47 @@ export function Navbar() {
           )}
         </AnimatePresence>
       </div>
-
-      {/* Mobile Menu — Premium Full-Screen */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="lg:hidden fixed inset-x-0 top-[64px] bottom-0 z-[999] bg-background overflow-y-auto overscroll-contain border-t border-border"
-            style={{ willChange: "auto" }}
-          >
-            <div className="px-6 py-8 min-h-full flex flex-col">
-              {/* Mobile Search */}
-              <div className="mb-8">
-                <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.12em] text-muted-foreground mb-3" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
-                  <Search className="h-3 w-3" />
-                  <span>SEARCH</span>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Enter query..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-3 bg-card border border-border rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-foreground/30"
-                  style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
-                />
-                {searchResults.length > 0 && (
-                  <div className="mt-3 border border-border rounded-lg overflow-hidden">
-                    {searchResults.map((result, idx) => (
-                      <Link
-                        key={result.url}
-                        href={result.url}
-                        className="flex items-center justify-between px-4 py-3 text-[11px] hover:bg-card transition-colors border-b border-border/50 last:border-b-0"
-                        style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        <span className="flex items-center gap-2">
-                          <span className="text-[9px] text-muted-foreground/50">[{String(idx + 1).padStart(2, '0')}]</span>
-                          <span className="uppercase tracking-[0.1em]">{result.name}</span>
-                        </span>
-                        <span className="text-[8px] text-muted-foreground/50">{result.cat}</span>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Divider */}
-              <div className="h-px bg-border mb-8" />
-
-              {/* Nav Items — Large editorial style */}
-              <div className="space-y-2 flex-1">
-                {navItems.map((item, itemIdx) => (
-                  <div key={item.id}>
-                    {item.mega ? (
-                      /* Company: expandable */
-                      <>
-                        <button
-                          type="button"
-                          onClick={() => setOpenDropdown(openDropdown === item.id ? null : item.id)}
-                          className="flex w-full items-center justify-between py-4"
-                          aria-expanded={openDropdown === item.id}
-                        >
-                          <div className="flex items-center gap-4">
-                            <span
-                              className="text-4xl font-bold text-foreground/15"
-                              style={{ fontFamily: "Mohican, sans-serif" }}
-                            >
-                              {item.index}
-                            </span>
-                            <span
-                              className="text-lg uppercase tracking-[0.1em] font-bold text-foreground"
-                              style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.12em" }}
-                            >
-                              {item.label}
-                            </span>
-                          </div>
-                          <ChevronDown
-                            className={`h-5 w-5 text-muted-foreground transition-transform duration-200 ${openDropdown === item.id ? "rotate-180" : ""}`}
-                          />
-                        </button>
-                        <AnimatePresence>
-                          {openDropdown === item.id && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="overflow-hidden"
-                            >
-                              <div className="pl-14 pb-4 space-y-4">
-                                {companySections.map((section) => (
-                                  <div key={section.label}>
-                                    <Link
-                                      href={section.href}
-                                      className="block text-[10px] uppercase tracking-[0.14em] text-muted-foreground font-bold mb-2 hover:text-foreground transition-colors"
-                                      style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
-                                      onClick={() => setMobileOpen(false)}
-                                    >
-                                      {section.label}
-                                    </Link>
-                                    <div className="space-y-0.5">
-                                      {section.links.map((link) => (
-                                        <Link
-                                          key={link.href + link.label}
-                                          href={link.href}
-                                          className="flex items-center gap-2 py-2 text-[11px] uppercase tracking-[0.1em] text-muted-foreground/70 hover:text-foreground transition-colors"
-                                          style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
-                                          onClick={() => setMobileOpen(false)}
-                                        >
-                                          <span className="text-[8px] opacity-40">[{link.index}]</span>
-                                          <span>{link.label}</span>
-                                          {link.featured && (
-                                            <span className="px-1 py-0.5 text-[7px] bg-foreground/10 rounded">★</span>
-                                          )}
-                                        </Link>
-                                      ))}
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </>
-                    ) : (
-                      /* Regular nav item */
-                      <>
-                        <div className="flex items-center justify-between">
-                          <Link
-                            href={item.href}
-                            className="flex-1 flex items-center gap-4 py-4"
-                            onClick={() => !item.dropdown && setMobileOpen(false)}
-                          >
-                            <span
-                              className="text-4xl font-bold text-foreground/15"
-                              style={{ fontFamily: "Mohican, sans-serif" }}
-                            >
-                              {item.index}
-                            </span>
-                            <span
-                              className={`text-lg uppercase tracking-[0.1em] font-bold ${
-                                pathname === item.href ? "text-foreground" : "text-foreground/70"
-                              }`}
-                              style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.12em" }}
-                            >
-                              {item.label}
-                            </span>
-                          </Link>
-                          {item.dropdown && (
-                            <button
-                              type="button"
-                              onClick={() => setOpenDropdown(openDropdown === item.id ? null : item.id)}
-                              className="p-2 text-muted-foreground"
-                              aria-label={openDropdown === item.id ? "Collapse" : "Expand"}
-                            >
-                              <ChevronDown className={`h-5 w-5 transition-transform duration-200 ${openDropdown === item.id ? "rotate-180" : ""}`} />
-                            </button>
-                          )}
-                        </div>
-
-                        {/* Sub-dropdown */}
-                        <AnimatePresence>
-                          {item.dropdown && openDropdown === item.id && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.15 }}
-                              className="overflow-hidden"
-                            >
-                              <div className="pl-14 pb-4 space-y-0.5">
-                                {item.dropdown.map((subItem) => (
-                                  <Link
-                                    key={subItem.href + subItem.label}
-                                    href={subItem.href}
-                                    className="flex items-center gap-2 py-2 text-[11px] uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors"
-                                    style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
-                                    onClick={() => setMobileOpen(false)}
-                                  >
-                                    <span className="text-[8px] opacity-40">[{subItem.index}]</span>
-                                    <span>{subItem.label}</span>
-                                    {subItem.featured && (
-                                      <span className="px-1 py-0.5 text-[7px] bg-foreground/10 rounded">★</span>
-                                    )}
-                                  </Link>
-                                ))}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              {/* Divider */}
-              <div className="h-px bg-border my-6" />
-
-              {/* Mobile Google Link */}
-              <Link
-                href="https://www.google.com/search?q=HUIX+2099"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 py-3 text-[11px] uppercase tracking-[0.14em] text-muted-foreground"
-                style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
-                onClick={() => setMobileOpen(false)}
-              >
-                <GoogleIcon className="h-4 w-4" />
-                <span>FIND ON GOOGLE</span>
-              </Link>
-
-              {/* Footer Meta */}
-              <div className="pt-6 mt-auto border-t border-border">
-                <div className="flex items-center justify-between text-[9px] uppercase tracking-[0.1em] text-muted-foreground/60" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
-                  <div className="flex items-center gap-2">
-                    <span className={`inline-block h-1.5 w-1.5 rounded-full ${mounted && online ? 'bg-green-500' : mounted ? 'bg-red-500' : 'bg-muted-foreground'}`} />
-                    <span>{mounted ? (online ? 'ONLINE' : 'OFFLINE') : '---'}</span>
-                    <span>·</span>
-                    {mounted && <PlatformIcon />}
-                    <span>{mounted ? deviceType : '---'}</span>
-                  </div>
-                  <span suppressHydrationWarning>{currentTime}</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
+
+    {/* Mobile Bottom Tab Bar (lg:hidden) */}
+    <div 
+      className="lg:hidden fixed inset-x-4 z-[100] mx-auto max-w-md rounded-2xl border border-border/40 bg-gradient-to-b from-card/40 to-background/90 backdrop-blur-2xl shadow-2xl overflow-hidden"
+      style={{ bottom: 'max(1rem, env(safe-area-inset-bottom))' }}
+    >
+      <div className="flex items-center justify-between px-1 py-2.5">
+        {navItems.map((item) => {
+          const isActive = pathname === item.href || (item.href !== "#" && pathname.startsWith(item.href + "/"));
+          return (
+              <Link 
+                key={item.id} 
+                href={item.href}
+                className={`flex flex-1 flex-col items-center justify-center min-w-0 px-1 transition-all duration-300 relative ${
+                  isActive ? "text-foreground" : "text-muted-foreground"
+                }`}
+              >
+                {isActive && (
+                  <motion.div 
+                    layoutId="activeTab"
+                    className="absolute inset-[2px] bg-foreground/5 rounded-xl -z-10"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+              {item.icon && (
+                <motion.div
+                  animate={isActive ? { y: -1, scale: 1.1 } : { y: 0, scale: 1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                >
+                  <item.icon className="h-5 w-5 mb-1.5" />
+                </motion.div>
+              )}
+              <span className="text-[7px] xs:text-[8px] uppercase tracking-wider font-bold truncate w-full text-center" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+                {item.label}
+              </span>
+            </Link>
+          )
+        })}
+      </div>
+    </div>
+  </>
   )
 }

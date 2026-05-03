@@ -7,7 +7,6 @@ import { CustomCursor } from "@/components/custom-cursor"
 import { VRImmersePrompt } from "@/components/vr-immerse-prompt"
 import { ChatBot } from "@/components/chat-bot"
 import { CookieConsent } from "@/components/cookie-consent"
-import { SocialSidebar } from "@/components/social-sidebar"
 
 import "./globals.css"
 
@@ -29,7 +28,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://huix-2099.vercel.app"),
+  metadataBase: new URL("https://huix2099.com"),
   title: {
     default: "HUIX-2099 | Building the Digital Future of Africa",
     template: "%s | HUIX-2099",
@@ -101,7 +100,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://huix-2099.vercel.app",
+    url: "https://huix2099.com",
     siteName: "HUIX-2099",
     title: "HUIX-2099 | Building the Digital Future of Africa",
     description:
@@ -125,10 +124,10 @@ export const metadata: Metadata = {
     images: ["/icons/HUIX 2099 dark logo icon version.jpg"],
   },
   alternates: {
-    canonical: "https://huix-2099.vercel.app",
+    canonical: "https://huix2099.com",
     languages: {
-      "en-US": "https://huix-2099.vercel.app",
-      "en-GB": "https://huix-2099.vercel.app",
+      "en-US": "https://huix2099.com",
+      "en-GB": "https://huix2099.com",
     },
   },
   icons: {
@@ -172,8 +171,8 @@ const jsonLd = {
   "@type": "Organization",
   name: "HUIX-2099",
   alternateName: "HUIX 2099",
-  url: "https://huix-2099.vercel.app",
-  logo: "https://huix-2099.vercel.app/icons/HUIX 2099 dark logo icon version.jpg",
+  url: "https://huix2099.com",
+  logo: "https://huix2099.com/icons/HUIX 2099 dark logo icon version.jpg",
   description:
     "Liberia-based next-generation technology company pioneering VR, XR, AR, AI, 3D visualization, and immersive digital engineering.",
   foundingDate: "2024",
@@ -250,8 +249,9 @@ export default function RootLayout({
         <ThemeProvider>
           <CustomCursor />
           <VRImmersePrompt />
-          <SocialSidebar />
-          {children}
+          <main>
+            {children}
+          </main>
           <ChatBot />
           <CookieConsent />
           <Analytics />

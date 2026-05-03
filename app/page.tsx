@@ -7,7 +7,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { CustomCursor } from "@/components/custom-cursor";
 import { ParallaxReveal, ParallaxImage, ParallaxText, ParallaxFloat, ParallaxStagger, ParallaxStaggerItem } from "@/components/parallax";
-import { ArrowRight, Monitor, Palette, Sparkles, ExternalLink } from "lucide-react";
+import { ArrowRight, Monitor, Palette, Sparkles, ExternalLink, Gamepad2 } from "lucide-react";
 
 const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace';
 
@@ -38,6 +38,19 @@ const latestProducts = [
     status: "Development" as const,
     openSource: true,
     href: "/products/huixor",
+  },
+  {
+    id: 3,
+    title: "Monrovia Hustle",
+    category: "Game",
+    icon: Gamepad2,
+    platform: "PC",
+    description: "Survival Action RPG Demo Campaign built by HUIX-2099",
+    image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
+    year: "2024",
+    status: "Live" as const,
+    openSource: false,
+    href: "/products/monrovia-hustle",
   },
 ];
 
@@ -263,17 +276,17 @@ export default function Home() {
           </ParallaxReveal>
 
           {/* Product cards */}
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {latestProducts.map((product, idx) => {
               const Icon = product.icon;
               return (
                 <ParallaxReveal key={product.id} direction="up" delay={0.1 + idx * 0.08}>
                   <Link
                     href={product.href}
-                    className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-foreground/20 hover:shadow-lg sm:flex-row"
+                    className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-foreground/20 hover:shadow-lg"
                   >
                     {/* Image */}
-                    <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-muted/20 sm:aspect-auto sm:w-44 lg:w-52">
+                    <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-muted/20 border-b border-border/50">
                       {product.image ? (
                         <img
                           src={product.image}
@@ -285,11 +298,11 @@ export default function Home() {
                           <Icon className="h-12 w-12 text-muted-foreground/20" />
                         </div>
                       )}
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent to-card/50 hidden sm:block" />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                       {/* Status pill */}
                       <span
-                        className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-2.5 py-1 text-[9px] uppercase tracking-wider backdrop-blur-md sm:top-2 sm:left-2"
+                        className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-2.5 py-1 text-[9px] uppercase tracking-wider backdrop-blur-md"
                         style={{ fontFamily: monoFont }}
                       >
                         <span className={`h-1.5 w-1.5 rounded-full ${product.status === "Live" ? "bg-green-500" : "bg-yellow-500"}`} />

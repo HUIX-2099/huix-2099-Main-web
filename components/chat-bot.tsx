@@ -44,6 +44,15 @@ export function ChatBot() {
         }
     }, [messages, isOpen, isMinimized])
 
+    useEffect(() => {
+        const handleOpen = () => {
+            setIsOpen(true)
+            setIsMinimized(false)
+        }
+        window.addEventListener("toggle-chat", handleOpen)
+        return () => window.removeEventListener("toggle-chat", handleOpen)
+    }, [])
+
     const handleSend = () => {
         if (!inputValue.trim()) return
 
@@ -96,7 +105,7 @@ export function ChatBot() {
                         exit={{ scale: 0, opacity: 0 }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="fixed bottom-6 right-6 z-50"
+                        className="fixed bottom-32 right-6 z-50 lg:bottom-6"
                     >
                         <Button
                             onClick={() => { setIsOpen(true); setIsMinimized(false); }}
