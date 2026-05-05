@@ -19,6 +19,9 @@ import {
   LayoutGrid,
   Smartphone,
   Handshake,
+  Target,
+  Cpu,
+  MessageCircleWarning,
 } from "lucide-react"
 import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
@@ -133,19 +136,25 @@ export default function MonroviaHustlePage() {
                </div>
             </div>
 
-            <p className="relative z-30 mx-auto mt-3 max-w-lg text-center text-lg italic leading-snug text-foreground/95 sm:text-xl">
+            <p className="relative z-30 mx-auto mt-3 max-w-2xl text-center text-base font-medium leading-snug text-foreground/95 sm:text-lg">
+              <span className="font-semibold text-foreground">Monrovia Hustle 3D</span> is a playable concept — a vertical slice of the world,
+              systems, and story we want to build at full scale.
+            </p>
+            <p className="relative z-30 mx-auto mt-3 max-w-lg text-center text-sm italic leading-snug text-muted-foreground sm:text-base">
               &ldquo;Warning this is a concept.&rdquo;
             </p>
             <p className="relative z-30 mx-auto mt-4 max-w-2xl px-4 text-center text-sm leading-relaxed text-muted-foreground">
-              This page is HUIX-2099&apos;s hub for{" "}
-              <span className="font-semibold text-foreground">Monrovia Hustle 3D</span> — a new Liberian video game in active
-              development. Lead developer:{" "}
+              HUIX-2099&apos;s hub for press, testers, and players. Lead developer:{" "}
               <Link href="/team/victor" className="font-medium text-[#002868] underline decoration-[#002868]/40 underline-offset-2 hover:decoration-[#002868] dark:text-[#7eb3ff] dark:decoration-[#7eb3ff]/50">
                 Victor Edet Coleman
               </Link>
               , Founder &amp; CTO —{" "}
               <Link href="/team" className="font-medium text-foreground/90 underline underline-offset-2 hover:text-foreground">
                 meet the team
+              </Link>
+              . Deep build notes live on the{" "}
+              <Link href={CONCEPT_HREF} className="font-medium text-[#002868] underline underline-offset-2 dark:text-[#7eb3ff]">
+                concept page
               </Link>
               .
             </p>
@@ -192,7 +201,7 @@ export default function MonroviaHustlePage() {
                      href={`${CONCEPT_HREF}#download`}
                      className="inline-flex flex-1 min-w-[9rem] items-center justify-center gap-2 rounded border border-[#BF0A30]/50 bg-[#BF0A30]/10 py-2.5 text-[10px] font-black uppercase tracking-wider text-foreground transition hover:border-[#BF0A30] hover:bg-[#BF0A30]/18"
                    >
-                     Download
+                     Request access
                      <ArrowRight className="h-3.5 w-3.5" aria-hidden />
                    </Link>
                  </div>
@@ -212,21 +221,21 @@ export default function MonroviaHustlePage() {
                     <ShieldAlert className="w-5 h-5 text-[#BF0A30]" />
                  </div>
                  <div className="text-[#002868] dark:text-[#5c89d6] font-bold font-mono text-xs mb-2 uppercase tracking-[0.2em] z-10">
-                   Try the demo
+                   Concept build
                  </div>
                  <div className="text-3xl sm:text-4xl font-black text-foreground italic tracking-tighter uppercase leading-none z-10">
-                   Play The<br/>Demo Now
+                   Play the<br/>concept
                  </div>
                  
                  <div className="mt-8 space-y-3 relative z-10">
                    <Link href={`${CONCEPT_HREF}#download`}>
                      <button className="w-full bg-[#BF0A30] hover:bg-red-800 text-white font-black uppercase tracking-widest py-4 px-6 flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(191,10,48,0.3)]">
                        <Play className="w-5 h-5 fill-white" />
-                       Download Game
+                       Request access
                      </button>
                    </Link>
                    <p className="text-center text-[10px] text-muted-foreground uppercase tracking-widest">
-                     Supports Windows 10/11
+                     Windows 10/11 · Godot prototype
                    </p>
                  </div>
               </div>
@@ -321,28 +330,94 @@ export default function MonroviaHustlePage() {
             <h3 className="mb-4 text-5xl font-black tracking-tighter text-foreground sm:text-6xl md:text-7xl" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
               Monrovia Hustle 3D
             </h3>
-            <p className="mb-12 font-serif text-xl italic text-muted-foreground sm:text-2xl">&ldquo;Warning this is a concept.&rdquo;</p>
+            <p className="mb-4 font-serif text-xl italic text-muted-foreground sm:text-2xl">&ldquo;Warning this is a concept.&rdquo;</p>
+            <p className="mb-12 text-[15px] font-medium leading-[1.75] text-foreground/90 sm:text-base">
+              A Monrovia-set story game about street hustle, family pressure, and choosing your lane — part open-street slice, part mission-driven drama.
+            </p>
 
-            <div className="space-y-6 text-[15px] font-medium leading-[1.8] text-foreground/85 sm:text-base">
-              <h4 className="mb-2 text-sm font-bold uppercase tracking-wide text-foreground">In the neighbourhood (light touch)</h4>
-              <p>
-                <strong className="text-foreground">Monrovia Hustle 3D</strong> sits in prototype: a Liberia-rooted slice-of-life RPG about pressure,
-                pride, and how people move through a capital when the maths don&apos;t math. Think street rhythm, branching attitude, comic beats — not a
-                full plot dump on the open web.
-              </p>
-              <p>
-                The beat-by-beat story, arcs, and who&apos;s who live in our{" "}
+            <div className="space-y-8 text-[15px] font-medium leading-[1.8] text-foreground/85 sm:text-base">
+              <div>
+                <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">Vision first</h4>
+                <p>
+                  <strong className="text-foreground">Monrovia Hustle 3D</strong> is a playable concept: a vertical slice of Monrovia flavour, the hustle
+                  loop, feel, and world we intend to scale when we have stronger tools, more time, and ideally a team. That&apos;s not an excuse — it&apos;s
+                  how a lot of serious games start.
+                </p>
+              </div>
+              <div>
+                <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">What you&apos;re really hearing</h4>
+                <p>
+                  This isn&apos;t a AAA-studio product yet. It&apos;s a proof of concept built solo on tight hardware, meant to show the direction clearly so we
+                  can grow it with the right support — without overpromising a &ldquo;finished&rdquo; commercial box today.
+                </p>
+              </div>
+              <div>
+                <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">Reality (context, not a flex)</h4>
+                <p className="text-muted-foreground">
+                  Right now it&apos;s solo development on minimal hardware. This release is about proving the idea, collecting feedback and metrics, and
+                  shipping honesty — not claiming we&apos;re already a full retail game.
+                </p>
+              </div>
+              <div>
+                <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">What we&apos;re looking for</h4>
+                <p>
+                  Partners and investors who care about representation and West African urban stories — and who can help with{" "}
+                  <strong className="text-foreground">funding, polish, and distribution</strong> (mobile readiness, performance, marketing). The{" "}
+                  <Link
+                    href={CONCEPT_HREF}
+                    className="font-semibold text-[#002868] underline decoration-[#002868]/35 underline-offset-2 hover:decoration-[#BF0A30] dark:text-[#7eb3ff]"
+                  >
+                    concept dossier
+                  </Link>{" "}
+                  spells out the slice, roadmap, and how to reach us.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-border bg-card/60 p-6 sm:p-8 dark:bg-card/30">
+                <div className="mb-2 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-foreground">
+                  <MessageCircleWarning className="h-4 w-4 text-[#BF0A30]" aria-hidden />
+                  If the tone gets mocked
+                </div>
+                <p className="text-muted-foreground">
+                  Critics often mix up <strong className="text-foreground">not finished</strong> with <strong className="text-foreground">not serious</strong>.
+                  The frame here is intentional: serious direction, early-stage execution — which is normal for a vertical slice.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-foreground">
+                  <Target className="h-4 w-4 text-[#002868] dark:text-[#7eb3ff]" aria-hidden />
+                  Concept-launch goals (concrete, not vague)
+                </h4>
+                <ul className="list-inside list-disc space-y-2 text-muted-foreground marker:text-[#BF0A30]">
+                  <li>Downloads / plays of the build</li>
+                  <li>Watch time on trailer or average session length</li>
+                  <li>Short survey signal (e.g. &ldquo;Would you play weekly?&rdquo;)</li>
+                  <li>Waitlist interest for a mobile-capable release</li>
+                  <li>One tight trailer (30–60s) that sells the promise</li>
+                </ul>
+              </div>
+
+              <div className="rounded-2xl border border-[#002868]/25 bg-[#002868]/[0.06] p-6 dark:border-[#7eb3ff]/20 dark:bg-[#002868]/10">
+                <div className="mb-2 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-foreground">
+                  <Cpu className="h-4 w-4 text-[#002868] dark:text-[#7eb3ff]" aria-hidden />
+                  On the workstation (i7 · 4&nbsp;GB RAM)
+                </div>
+                <p className="text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
+                  Godot is a strong fit for low RAM, but 4&nbsp;GB is tight — lean scenes, compressed audio and textures, and testing on a minimum-spec profile
+                  are part of the discipline. That lines up with &ldquo;concept,&rdquo; not a flaw in the pitch.
+                </p>
+              </div>
+
+              <p className="text-muted-foreground">
+                Spoiler-light on this hub: economies bite, friendships fracture, missions go gray — full plot and cast bible sit in the{" "}
                 <Link
                   href={CONCEPT_HREF}
-                  className="font-semibold text-[#002868] underline decoration-[#002868]/35 underline-offset-2 hover:text-foreground hover:decoration-[#BF0A30] dark:text-[#7eb3ff] dark:decoration-[#7eb3ff]/45 dark:hover:text-foreground"
+                  className="font-semibold text-[#002868] underline decoration-[#002868]/35 underline-offset-2 hover:decoration-[#BF0A30] dark:text-[#7eb3ff]"
                 >
                   Concept 01 dossier
-                </Link>{" "}
-                for press, testers, and anyone we&apos;ve cleared for the deeper bible.
-              </p>
-              <p className="text-muted-foreground">
-                Prefer the bird&apos;s-eye? You still get honesty here: economies bite, friendships fracture, missions get gray — we&apos;ll let the trailer
-                and capsule art whisper the vibe while the hub stays spoiler-light.
+                </Link>
+                .
               </p>
             </div>
 

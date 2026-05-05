@@ -17,16 +17,20 @@ import {
   Monitor,
   HardDrive,
   Cpu,
+  ListChecks,
+  Route,
+  Scale,
 } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Concept 01 — Monrovia Hustle 3D | HUIX-2099",
   description:
-    "Store-style concept profile for Monrovia Hustle 3D: gameplay media, screenshots, specs, narrative urban RPG hub — HUIX-2099.",
+    "Playable concept for Monrovia Hustle 3D: vertical slice, street hustle loop, trailer & screenshots, build contents, roadmap, partners — HUIX-2099.",
 }
 
 const MH_YOUTUBE_URL = "https://www.youtube.com/@HUIX-2099"
 const MH_HUB = "/products/monrovia-hustle"
+const STUDIO_EMAIL = "huixtech2099@gmail.com"
 const VICTOR_IMAGE = "/Team/VICTOR.jpeg"
 const CAPSULE_ART = "/products/Monrovia_hustle_Demo_Campane/herosection.png"
 const MONO = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' as const
@@ -159,21 +163,54 @@ export default function MonroviaHustleConceptPage() {
               {/* Store title row */}
               <div className="mb-8 flex flex-wrap items-end justify-between gap-x-10 gap-y-6 border-b border-border pb-8 lg:mb-12 lg:pb-10 xl:gap-x-16">
                 <div className="max-w-none lg:max-w-[52rem] xl:max-w-none">
+                  <p className="mb-3 inline-flex items-center rounded-sm border border-[#002868]/30 bg-[#002868]/[0.07] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#002868] dark:border-[#89b8ff]/35 dark:bg-[#10223a]/80 dark:text-[#89b8ff]" style={{ fontFamily: MONO }}>
+                    Concept · early prototype
+                  </p>
                   <h1 className="text-[clamp(1.85rem,3.8vw,3.35rem)] font-normal lowercase leading-[1.08] tracking-tight text-foreground [font-variant-ligatures:none]">
                     monrovia hustle<span className="text-muted-foreground/90"> </span>
                     <span className="text-[0.92em] text-muted-foreground">3d</span>
                   </h1>
-                  <p className="mt-4 text-[14px] leading-relaxed text-muted-foreground sm:text-[15px] lg:text-base">
-                    <span className="text-[#002868] dark:text-[#89b8ff]">Concept prototype</span>
-                    {" · "}Slice-of-life narrative urban RPG · Godot · Windows
+                  <p className="mt-5 text-[15px] font-medium leading-[1.65] text-foreground/95 sm:text-[16px] lg:text-[17px] lg:leading-[1.7]">
+                    <strong className="text-foreground">Monrovia Hustle 3D</strong> is a playable concept — a vertical slice of the world, systems, and story
+                    we want to build at full scale. In plain English:{" "}
+                    <span className="text-muted-foreground">
+                      a Monrovia-set story game about street hustle, family pressure, and choosing your lane — part open-street slice, part mission-driven
+                      drama.
+                    </span>
                   </p>
-                  <p className="mt-3 text-[14px] italic leading-relaxed text-muted-foreground sm:text-[15px]">&ldquo;Warning this is a concept.&rdquo;</p>
+                  <p className="mt-3 text-[13px] italic leading-relaxed text-muted-foreground sm:text-[14px]">
+                    Not a finished AAA retail product — an honest prototype to prove direction and gather signal.
+                  </p>
                 </div>
                 <div className="hidden shrink-0 text-right text-[11px] uppercase leading-relaxed tracking-[0.16em] text-muted-foreground sm:block lg:text-[12px]" style={{ fontFamily: MONO }}>
                   HUIX-2099
                   <br />
                   <span className="opacity-75">concept 01 · archive 2026</span>
                 </div>
+              </div>
+
+              <div className="mb-8 flex flex-wrap items-center gap-3 lg:mb-10 xl:gap-4">
+                <a
+                  href={MH_YOUTUBE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-11 items-center justify-center gap-2 border border-border bg-[#BF0A30] px-5 text-[12px] font-bold uppercase tracking-wide text-white shadow-sm transition hover:bg-[#a00828]"
+                >
+                  <Play className="size-4 fill-white" aria-hidden />
+                  Watch trailer
+                </a>
+                <a
+                  href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Play%20the%20concept%20%2F%20Wishlist`}
+                  className="inline-flex h-11 items-center justify-center gap-2 border border-[#002868]/45 bg-[#002868]/10 px-5 text-[12px] font-bold uppercase tracking-wide text-foreground transition hover:bg-[#002868]/18 dark:border-[#89b8ff]/40 dark:bg-[#10223a]/60 dark:hover:bg-[#10223a]/90"
+                >
+                  Play the concept · Request access
+                </a>
+                <Link
+                  href="#download"
+                  className="inline-flex h-11 items-center justify-center border border-border bg-background px-5 text-[12px] font-semibold uppercase tracking-wide text-foreground transition hover:bg-muted/60"
+                >
+                  Demo &amp; download
+                </Link>
               </div>
 
               {/* Steam-style hero media (trailer first) */}
@@ -183,12 +220,89 @@ export default function MonroviaHustleConceptPage() {
 
               <div className="space-y-16 lg:space-y-24 xl:space-y-28 [&>*:first-child]:pt-0">
               <section>
-              <SectionTitle>About this game</SectionTitle>
-              <div className="space-y-6 text-[16px] leading-[1.85] text-muted-foreground sm:text-[17px] sm:leading-[1.85] lg:max-w-[56rem] xl:max-w-[62rem]">
+              <SectionTitle>About this concept</SectionTitle>
+              <div className="space-y-8 text-[16px] leading-[1.85] text-muted-foreground sm:text-[17px] sm:leading-[1.85] lg:max-w-[56rem] xl:max-w-[62rem]">
+                <p className="text-foreground/95">
+                  <strong className="text-foreground">Label for players:</strong> treat this page and build as{" "}
+                  <strong className="text-foreground">concept / early prototype</strong>, not a finished boxed product. Expect a Liberian urban hustle drama in
+                  Godot on Windows, with comic sequences, a small 3D hub, and an open-street block — stitched together as a vertical slice.
+                </p>
                 <p>
-                  Concept build on PC (Godot): voiced NPC corridors, branching hustle beats, illustrated comic passages, and sandbox movement through a stylized Monrovia grid. The sections below unpack the synopsis, cast bible, and media — intended for dossier readers; the{' '}
-                  <StoreLink href={MH_HUB}>public hub</StoreLink>{' '}
-                  stays lighter on plot specifics.
+                  The{" "}
+                  <StoreLink href={MH_HUB}>public hub</StoreLink>{" "}
+                  stays lighter on spoilers; here we spell out what&apos;s in the slice, how you&apos;re meant to play it, what comes next, and how partners can
+                  reach the studio.
+                </p>
+              </div>
+              </section>
+
+              <section>
+              <SectionTitle>What&apos;s in this build</SectionTitle>
+              <ul className="max-w-[56rem] space-y-3 border border-border bg-muted/25 p-6 text-[15px] leading-[1.75] dark:bg-muted/15 sm:p-8 lg:text-[16px] xl:max-w-[62rem]">
+                <li className="flex gap-3">
+                  <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
+                  <span>
+                    <strong className="text-foreground">Intended path from the main menu:</strong> Play — content-warning / rating slides — intro comic
+                    (slideshow) — <strong className="text-foreground">Jboy&apos;s bedroom</strong> hub (phone, story beats, find the key, exit toward the street) — loading —{" "}
+                    <strong className="text-foreground">the Street</strong> open block in third person with interaction prompts and UI hints.
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
+                  <span>
+                    <strong className="text-foreground">Street loop:</strong> side &ldquo;hustles&rdquo; (pickup / drop-off / bike / street-sell-style zones) that pay{" "}
+                    <strong className="text-foreground">LD</strong> and tie into broader Uncle Flomo-style trust in the full design.
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
+                  <span>
+                    <strong className="text-foreground">Mission spine (concept):</strong> the Tenneh phone thread — talk to Trapper, Tenneh, back to Trapper, Blamo
+                    (phone deal / money-split beat with an <strong className="text-foreground">Orange Money–style</strong> flavour), DC Young, Musu, then close with Trapper; waypoint / &ldquo;yellow arrow&rdquo; prompting, <strong className="text-foreground">E to interact</strong>, voiced lines.
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
+                  <span>
+                    <strong className="text-foreground">Story menu:</strong> &ldquo;Story&rdquo; cards can jump episodes (intro, room, Angel comic, house, street, club, office, opening room) — the full experience is intentionally{" "}
+                    <strong className="text-foreground">menu-driven episodes plus the street chain</strong>, not only one straight line.
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
+                  <span>
+                    <strong className="text-foreground">Controls:</strong> keyboard/mouse for this Windows slice; touch and mobile performance are roadmap targets, not promises in this drop.
+                  </span>
+                </li>
+              </ul>
+              </section>
+
+              <section>
+              <SectionTitle>Roadmap · what&apos;s next</SectionTitle>
+              <p className="mb-4 max-w-[56rem] text-[15px] leading-[1.8] text-muted-foreground lg:text-[16px] xl:max-w-[62rem]">
+                Only items we intend to keep chipping at — not a hype list:
+              </p>
+              <ul className="max-w-[56rem] list-inside list-disc space-y-2 text-[15px] leading-[1.75] text-muted-foreground marker:text-[#BF0A30] lg:text-[16px] xl:max-w-[62rem]">
+                <li>Mobile-capable build and performance pass once funding allows</li>
+                <li>More story chapters, polish passes, and clearer signposting between comic · room · street · club · office modes</li>
+                <li>Formal waitlist / newsletter and cleaner installer distribution</li>
+                <li>Partners for marketing, localization, and compliance where real brands appear as fiction</li>
+              </ul>
+              </section>
+
+              <section>
+              <SectionTitle>Why it can feel like &ldquo;many demos in one&rdquo;</SectionTitle>
+              <div className="max-w-[56rem] space-y-4 border border-border bg-card/40 p-6 text-[15px] leading-[1.85] text-muted-foreground shadow-sm sm:p-8 lg:text-[16px] xl:max-w-[62rem]">
+                <div className="flex gap-3">
+                  <Route className="mt-0.5 h-5 w-5 shrink-0 text-[#BF0A30]" aria-hidden />
+                  <p>
+                    Jumping between comic, bedroom hub, open street, and later club / office beats is a lot of modes for one download. Without heavy
+                    hand-holding, some players read that as scattered — for a <strong className="text-foreground">vertical slice</strong>, that&apos;s normal, not a logic failure.
+                  </p>
+                </div>
+                <p>
+                  <strong className="text-foreground">Simple genre tag:</strong> story-led 3D third-person life / hustle sim — open(ish) street plus scripted mission chain, light economy (LD / wallet), and branching narrative toward club, uncle, and path choice. Closer to{" "}
+                  <strong className="text-foreground">narrative adventure with errands</strong> than a pure shooter or racer.
                 </p>
               </div>
               </section>
@@ -212,8 +326,7 @@ export default function MonroviaHustleConceptPage() {
               <section>
               <SectionTitle>Screenshots &amp; media</SectionTitle>
               <p className="mb-2 max-w-[56rem] text-[15px] leading-[1.8] text-muted-foreground lg:text-[16px] xl:max-w-[62rem]">
-                Swap tiles on the carousel above — the first thumbnail is always the cinematic hook; remaining frames are workspace and in-progress
-                capture (quality varies by slice).
+                Use the carousel above: trailer first, then stills that try to show <strong className="text-foreground/90">character on street, environment reads, HUD / prompts</strong> — not only menus. Quality varies by capture pass; some tiles are workspace references.
               </p>
               </section>
 
@@ -255,10 +368,52 @@ export default function MonroviaHustleConceptPage() {
                   </StoreLink>
                   <p className="text-[15px] text-muted-foreground lg:text-base">Founder &amp; CTO — HUIX-2099 · Monrovia, Liberia</p>
                   <p className="text-[15px] leading-[1.85] text-muted-foreground lg:text-[16px] lg:leading-[1.85]">
-                    Narrative systems and technical direction on Monrovia Hustle 3D. More team context on the{" "}
+                    Solo development on Monrovia Hustle 3D — narrative systems and technical direction. Thank you to early testers and friends who file bugs and
+                    keep receipts honest; you&apos;ll roll into credits as the campaign formalizes. More on the{" "}
                     <StoreLink href="/team">team index</StoreLink>.
                   </p>
                 </div>
+              </div>
+              </section>
+
+              <section>
+              <SectionTitle>Partners &amp; investors</SectionTitle>
+              <div className="max-w-[56rem] space-y-6 border border-border bg-[#002868]/[0.06] p-7 text-[15px] leading-[1.85] dark:bg-[#10223a]/50 sm:p-9 lg:text-[16px] xl:max-w-[62rem]">
+                <div className="flex gap-3">
+                  <Scale className="mt-0.5 h-5 w-5 shrink-0 text-[#BF0A30]" aria-hidden />
+                  <div>
+                    <p className="font-semibold text-foreground">Problem / opportunity</p>
+                    <p className="mt-2 text-muted-foreground">
+                      West African cities — and Monrovia specifically — are under-represented as lived-in spaces in story-led games. A hustle-forward urban
+                      drama with real cultural texture addresses players and press hungry for that authenticity, without defaulting to Hollywood clichés.
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground">What we&apos;re looking for</p>
+                  <ul className="mt-3 list-inside list-disc space-y-2 text-muted-foreground marker:text-[#002868] dark:marker:text-[#89b8ff]">
+                    <li>
+                      <strong className="text-foreground">Funding:</strong> early-stage / project-scale conversations to move from solo prototype to a shippable
+                      slice and small team (specific rounds discussed privately).
+                    </li>
+                    <li>
+                      <strong className="text-foreground">Collaborators:</strong> character art, environment polish, engineering for performance and mobile, audio
+                      production.
+                    </li>
+                    <li>
+                      <strong className="text-foreground">Distribution:</strong> platform and marketing partners who understand narrative indies and emerging
+                      markets — not vague &ldquo;support,&rdquo; but concrete paths to players.
+                    </li>
+                  </ul>
+                </div>
+                <p className="text-[14px] text-muted-foreground">
+                  Contact:{" "}
+                  <a href={`mailto:${STUDIO_EMAIL}`} className="font-medium text-[#002868] underline dark:text-[#89b8ff]">
+                    {STUDIO_EMAIL}
+                  </a>
+                  {" · "}
+                  Socials in the sidebar — no implied endorsement by real-world brands referenced in-fiction unless we publish a formal partnership.
+                </p>
               </div>
               </section>
 
@@ -345,7 +500,7 @@ export default function MonroviaHustleConceptPage() {
                     className="flex h-12 items-center justify-center gap-2 border border-black/15 bg-muted/90 text-[13px] font-semibold uppercase tracking-wide text-foreground shadow-sm transition hover:bg-muted dark:border-white/10"
                   >
                     <Play className="size-5 fill-[#BF0A30] text-[#BF0A30]" aria-hidden />
-                    Play video
+                    Watch trailer
                   </a>
                   <p className="text-[13px] leading-[1.6] text-muted-foreground">
                     &ldquo;Warning this is a concept.&rdquo; Branching hustle, LD economy, and comic beats in a Super-Liberia sandbox.
@@ -381,17 +536,17 @@ export default function MonroviaHustleConceptPage() {
 
                   <div className="grid gap-2 border-y border-border py-4">
                     <a
-                      href="mailto:huixtech2099@gmail.com?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Wishlist%20%2F%20Demo"
+                      href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Play%20the%20concept%20%2F%20Wishlist`}
                       className="flex h-11 items-center justify-center gap-2 bg-[#BF0A30] text-[12px] font-bold uppercase tracking-wide text-white shadow-sm transition hover:bg-red-800"
                     >
                       <span className="text-lg leading-none">+</span>
-                      Request demo
+                      Play the concept · Request access
                     </a>
                     <Link
                       href="#download"
                       className="flex h-11 items-center justify-center border border-border bg-background text-[12px] font-semibold uppercase tracking-wide text-foreground transition hover:bg-muted/60"
                     >
-                      Demo details
+                      Wishlist &amp; download details
                     </Link>
                   </div>
 
@@ -418,8 +573,8 @@ export default function MonroviaHustleConceptPage() {
                     </div>
                     <p className="mt-3 text-[11px] text-muted-foreground">
                       Web:{" "}
-                      <a href="mailto:huixtech2099@gmail.com" className="text-[#002868] underline dark:text-[#89b8ff]">
-                        huixtech2099@gmail.com
+                      <a href={`mailto:${STUDIO_EMAIL}`} className="text-[#002868] underline dark:text-[#89b8ff]">
+                        {STUDIO_EMAIL}
                       </a>
                     </p>
                   </div>
@@ -446,20 +601,20 @@ export default function MonroviaHustleConceptPage() {
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground" style={{ fontFamily: MONO }}>
-                  Demo / press
+                  Concept build · demo / press
                 </p>
-                <h2 className="mt-2 text-xl font-bold uppercase tracking-tight text-foreground">Get the playable slice</h2>
+                <h2 className="mt-2 text-xl font-bold uppercase tracking-tight text-foreground">Play the concept · get access</h2>
                 <p className="mt-2 max-w-xl text-[14px] text-muted-foreground">
-                  Windows installers ship once QA clears. Ask for invite links or schedule a supervised build walkthrough.
+                  Windows installers ship when QA clears. Email for invite links, wishlist placement, or a supervised walkthrough — not a mass-market store drop yet.
                 </p>
               </div>
               <div className="flex shrink-0 flex-wrap gap-3">
                 <a
-                  href="mailto:huixtech2099@gmail.com?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Demo%20%2F%20Press"
+                  href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Demo%20%2F%20Press`}
                   className="inline-flex items-center gap-2 bg-[#BF0A30] px-6 py-3 text-[12px] font-bold uppercase tracking-[0.15em] text-white shadow-sm hover:bg-[#a00828]"
                 >
                   <Play className="h-4 w-4 fill-white" />
-                  Request demo
+                  Request concept build
                 </a>
                 <Link
                   href="/contact"
@@ -471,6 +626,21 @@ export default function MonroviaHustleConceptPage() {
               </div>
             </div>
           </section>
+
+          <div
+            className="mt-10 max-w-3xl space-y-3 border-t border-border pt-8 text-[11px] leading-relaxed text-muted-foreground"
+            aria-label="Legal and privacy notes"
+          >
+            <p>
+              <strong className="text-foreground/85">Privacy:</strong> Demo requests and wishlist replies use studio email ({STUDIO_EMAIL}); we
+              don&apos;t sell addresses. If we add analytics or marketing capture, we&apos;ll publish a short policy on this site.
+            </p>
+            <p>
+              <strong className="text-foreground/85">Trademarks:</strong> Names of real companies, carriers, or payment brands (e.g. Orange Money) that
+              appear in dialogue or UI are fictional uses for world-building; trademarks belong to their owners and do not imply partnership or
+              endorsement unless we state otherwise.
+            </p>
+          </div>
         </div>
       </main>
 
