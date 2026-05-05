@@ -254,7 +254,7 @@ export function Navbar() {
                     <div className="relative w-24 sm:w-28 h-5 sm:h-6 flex items-center">
                       <Image
                         src={resolvedTheme === 'dark' ? '/products/Monrovia_hustle_Demo_Campane/dark_mode_logo.png' : '/products/Monrovia_hustle_Demo_Campane/light_mode_logo.png'}
-                        alt="Monrovia Hustle"
+                        alt="Monrovia Hustle 3D"
                         fill
                         className="object-contain object-left"
                         priority
@@ -534,24 +534,28 @@ export function Navbar() {
     </nav>
 
     {/* Mobile Bottom Tab Bar (lg:hidden) */}
-    <div 
-      className="lg:hidden fixed inset-x-4 z-[100] mx-auto max-w-md rounded-2xl border border-border/40 bg-gradient-to-b from-card/40 to-background/90 backdrop-blur-2xl shadow-2xl overflow-hidden"
-      style={{ bottom: 'max(1rem, env(safe-area-inset-bottom))' }}
+    <div
+      className="mobile-bottom-tab-bar lg:hidden fixed z-[110] max-w-md rounded-2xl border border-border/40 bg-gradient-to-b from-card/40 to-background/90 shadow-2xl backdrop-blur-2xl overflow-hidden"
+      style={{
+        left: "max(1rem, env(safe-area-inset-left, 0px))",
+        right: "max(1rem, env(safe-area-inset-right, 0px))",
+        bottom: "max(1rem, env(safe-area-inset-bottom, 0px))",
+      }}
     >
-      <div className="flex items-center justify-between px-1 py-2.5">
+      <div className="flex items-stretch justify-between gap-0 px-0.5 py-1.5">
         {navItems.map((item) => {
           const isActive = pathname === item.href || (item.href !== "#" && pathname.startsWith(item.href + "/"));
           return (
               <Link 
                 key={item.id} 
                 href={item.href}
-                className={`flex flex-1 flex-col items-center justify-center min-w-0 px-1 transition-all duration-300 relative ${
+                className={`flex flex-1 flex-col items-center justify-center min-w-0 px-0.5 py-1 transition-all duration-300 relative ${
                   isActive ? "text-foreground" : "text-muted-foreground"
                 }`}
               >
                 {isActive && (
                   <motion.div 
-                    layoutId="activeTab"
+                    layoutId="mobileDockTabGlow"
                     className="absolute inset-[2px] bg-foreground/5 rounded-xl -z-10"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
@@ -564,7 +568,10 @@ export function Navbar() {
                   <item.icon className="h-5 w-5 mb-1.5" />
                 </motion.div>
               )}
-              <span className="text-[7px] xs:text-[8px] uppercase tracking-wider font-bold truncate w-full text-center" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
+              <span
+                className="w-full max-w-full truncate text-center text-[7px] font-bold uppercase tracking-wider xs:text-[8px]"
+                style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
+              >
                 {item.label}
               </span>
             </Link>

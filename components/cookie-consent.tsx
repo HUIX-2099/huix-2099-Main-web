@@ -32,7 +32,7 @@ export function CookieConsent() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-[420px] z-[100] bg-card border border-border rounded-xl shadow-2xl p-6"
+          className="fixed bottom-[var(--mobile-tab-bar-spacing)] left-4 right-4 z-[105] bg-card border border-border rounded-xl shadow-2xl p-6 lg:bottom-4 lg:left-auto lg:right-4 lg:w-[420px]"
         >
           <div className="flex items-start justify-between gap-4 mb-4">
             <div className="flex items-center gap-3">

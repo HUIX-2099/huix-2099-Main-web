@@ -101,11 +101,11 @@ const products: Product[] = [
   },
   {
     id: 3,
-    title: "Monrovia Hustle",
+    title: "Monrovia Hustle 3D",
     category: "Game",
     platform: "Windows · macOS · Android",
-    description: "Coming soon",
-    image: "/products/Monrovia_hustle_Demo_Campane/logo%20for%20ui.png",
+    description: "School on pause. Hustle on the street.",
+    image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
     year: "2026",
     status: "Development",
     technologies: [],
@@ -376,7 +376,7 @@ export default function ProductsPage() {
                       className="group cursor-pointer overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-foreground/20 hover:shadow-lg"
                     >
                       {/* Image */}
-                      <div className="relative aspect-[4/3] overflow-hidden bg-muted/30">
+                      <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-muted/20 border-b border-border/50">
                         {/* Top badges */}
                         <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between p-4">
                           <div
@@ -451,6 +451,12 @@ export default function ProductsPage() {
 
                         {product.id === 3 ? (
                           <div className="mb-4">
+                            <p className="mb-2 text-center font-serif text-sm italic leading-snug text-muted-foreground sm:text-base">
+                              &ldquo;{product.description}&rdquo;
+                            </p>
+                            <p className="mb-3 text-center text-[10px] uppercase tracking-widest text-muted-foreground/80" style={{ fontFamily: monoFont }}>
+                              HUIX-2099 hub · Liberian narrative RPG
+                            </p>
                             <div className="flex items-center justify-center gap-6 py-2 text-foreground/80">
                               <span className="flex flex-col items-center gap-1" title="Windows">
                                 <IconWindows className="h-9 w-9" />
@@ -619,13 +625,16 @@ export default function ProductsPage() {
                             )}
                           </div>
                           {product.id === 3 ? (
-                            <div className="mt-1 flex items-center gap-3 text-foreground/70">
+                            <div className="mt-1 space-y-1">
+                              <div className="line-clamp-2 text-[10px] italic text-muted-foreground/80">&ldquo;{product.description}&rdquo;</div>
+                              <div className="flex items-center gap-3 text-foreground/70">
                               <IconWindows className="h-4 w-4 shrink-0" />
                               <IconMac className="h-4 w-4 shrink-0" />
                               <IconAndroid className="h-4 w-4 shrink-0" />
                               <span className="text-[10px] uppercase tracking-widest text-muted-foreground" style={{ fontFamily: monoFont }}>
                                 Coming soon
                               </span>
+                            </div>
                             </div>
                           ) : (
                             <div className="truncate text-[10px] text-muted-foreground/50">{product.description}</div>

@@ -46,6 +46,8 @@
   --sidebar-accent-foreground: #111111;
   --sidebar-border: #e0e0e0;
   --sidebar-ring: #111111;
+  /* Fixed mobile bottom tab bar — keep in sync with components/navbar.tsx */
+  --mobile-tab-bar-spacing: calc(4.5rem + max(1rem, env(safe-area-inset-bottom, 0px)));
 }
 
 .dark {
@@ -397,6 +399,12 @@ html {
   [role="button"] {
     min-height: 44px;
     min-width: 44px;
+  }
+
+  /* Bottom tab row: allow flex shrink + full-width labels without horizontal overflow */
+  .mobile-bottom-tab-bar a {
+    min-width: 0;
+    min-height: 48px;
   }
   
   .text-\[9px\],

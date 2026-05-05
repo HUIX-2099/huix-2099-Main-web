@@ -21,6 +21,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  viewportFit: "cover",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#fafafa" },
     { media: "(prefers-color-scheme: dark)", color: "#0d0d0d" },
@@ -236,7 +237,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
       <head>
         <script
           type="application/ld+json"
@@ -249,12 +250,16 @@ export default function RootLayout({
         <ThemeProvider>
           <CustomCursor />
           <VRImmersePrompt />
-          <main className="flex flex-col min-h-screen">
+          <main className="flex min-h-dvh flex-col">
             <div className="flex-1">
               {children}
             </div>
-            {/* Mobile Tab Bar Spacer to prevent overlapping footer/content */}
-            <div className="h-28 lg:hidden w-full bg-[#111]" />
+            {/* Space for fixed mobile tab bar + home indicator (see --mobile-tab-bar-spacing in globals.css) */}
+            <div
+              aria-hidden
+              className="shrink-0 bg-background lg:hidden"
+              style={{ height: "var(--mobile-tab-bar-spacing)" }}
+            />
           </main>
           <ChatBot />
           <CookieConsent />

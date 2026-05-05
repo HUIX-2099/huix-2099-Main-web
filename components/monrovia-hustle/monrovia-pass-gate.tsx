@@ -51,7 +51,7 @@ export function MonroviaPassGate({ children, logoSrc, logoAlt = "Monrovia Hustle
       </div>
       {!unlocked ? (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/40 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-[130] flex items-center justify-center bg-background/40 p-4 pb-[max(1rem,env(safe-area-inset-bottom,0px))] backdrop-blur-md pt-[max(1rem,env(safe-area-inset-top,0px))]"
           role="dialog"
           aria-modal="true"
           aria-label="Page access"

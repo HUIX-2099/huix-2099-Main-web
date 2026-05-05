@@ -105,7 +105,7 @@ export function ChatBot() {
                         exit={{ scale: 0, opacity: 0 }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="fixed bottom-32 right-6 z-50 lg:bottom-6"
+                        className="fixed right-4 z-[105] max-lg:bottom-[calc(var(--mobile-tab-bar-spacing)+1rem)] lg:bottom-6"
                     >
                         <Button
                             onClick={() => { setIsOpen(true); setIsMinimized(false); }}
@@ -130,8 +130,7 @@ export function ChatBot() {
                         }}
                         exit={{ opacity: 0, y: 50, scale: 0.9 }}
                         transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                        className={`fixed bottom-6 right-6 z-50 w-[350px] sm:w-[380px] bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl overflow-hidden flex flex-col`}
-                        style={{ maxHeight: "calc(100vh - 48px)" }}
+                        className={`fixed z-[105] flex max-h-[min(450px,calc(100dvh-var(--mobile-tab-bar-spacing)-3rem))] flex-col overflow-hidden rounded-2xl border border-border/50 bg-card/80 shadow-2xl backdrop-blur-xl max-lg:inset-x-4 max-lg:bottom-[calc(var(--mobile-tab-bar-spacing)+1rem)] max-lg:w-auto lg:max-h-[calc(100dvh-4rem)] lg:bottom-6 lg:right-6 lg:left-auto lg:w-[380px]`}
                     >
                         {/* Header */}
                         <div className="bg-muted/50 border-b border-border/50 p-4 flex items-center justify-between">

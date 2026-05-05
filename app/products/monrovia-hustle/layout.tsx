@@ -2,12 +2,13 @@ import type { Metadata } from "next"
 import type { ReactNode } from "react"
 
 export const metadata: Metadata = {
-  title: "Monrovia Hustle — Demo & Funding Campaign",
+  title: "Monrovia Hustle 3D — Liberian narrative RPG hub",
   description:
-    "Street life. Ambition. Survival. A Liberian-built game demo — Windows. Support the campaign to build a stronger version. Developed by Victor Edet Coleman · HUIX-2099.",
+    "HUIX-2099's public hub for Monrovia Hustle 3D: a Liberian-led slice-of-life narrative urban RPG set in Monrovia — School on pause. Hustle on the street. Lead developer: Victor Edet Coleman.",
   openGraph: {
-    title: "Monrovia Hustle | HUIX-2099",
-    description: "Fund the future of Monrovia Hustle — demo available for Windows.",
+    title: "Monrovia Hustle 3D | HUIX-2099",
+    description:
+      "Explore the story, features, and vision — authentic Monrovia streets, branching hustle, comic-book narrative. Built in Liberia.",
   },
 }
 

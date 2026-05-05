@@ -182,7 +182,7 @@ function CardholderDesign({ card, isHovered }: { card: CardDesign; isHovered: bo
   const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
   
   return (
-    <div className="relative w-full max-w-[380px] h-[300px] mx-auto">
+    <div className="relative mx-auto h-[300px] w-full max-w-[380px] overflow-x-hidden sm:overflow-visible">
       {/* Hidden Info - Revealed on hover */}
       <div className={`absolute inset-x-3 top-0 bottom-6 rounded-xl bg-neutral-950 p-4 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
         <div className="text-[9px] text-neutral-500 uppercase tracking-wider mb-3" style={{ fontFamily: monoFont }}>
@@ -278,8 +278,8 @@ function CardholderDesign({ card, isHovered }: { card: CardDesign; isHovered: bo
         style={{ backgroundColor: card.accentColor }} 
       />
 
-      {/* Keychain */}
-      <div className={`absolute -right-12 top-1/3 transition-transform duration-300 ${isHovered ? '-translate-y-3' : ''}`}>
+      {/* Keychain — hidden on narrow screens (was causing horizontal overflow / layout shift) */}
+      <div className={`absolute -right-12 top-1/3 hidden transition-transform duration-300 sm:block ${isHovered ? '-translate-y-3' : ''}`}>
         <div className="w-3 h-6 bg-neutral-700 rounded-sm" />
         <div className="w-2 h-12 bg-neutral-800 rounded-sm mx-auto" />
         <div className="w-6 h-6 border-[3px] border-neutral-600 rounded-full mx-auto -mt-1" />
@@ -307,7 +307,7 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Main Content Area */}
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen overflow-x-hidden bg-background">
 
 
         {/* Header with Tab Switcher */}
@@ -338,7 +338,7 @@ export default function AboutPage() {
                   >
                     {activeTab === tab.id && (
                       <motion.div
-                        layoutId="activeTab"
+                        layoutId="aboutTabHighlight"
                         className="absolute inset-0 bg-foreground"
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
@@ -430,7 +430,7 @@ export default function AboutPage() {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}
                         viewport={{ once: true }}
-                        className="text-[120px] lg:text-[160px] font-bold leading-[0.85] text-foreground"
+                        className="text-[clamp(3.25rem,22vw,7.5rem)] font-bold leading-[0.85] text-foreground lg:text-[160px]"
                         style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}
                       >
                         {section.number}
