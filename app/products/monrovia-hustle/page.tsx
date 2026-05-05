@@ -17,6 +17,8 @@ import {
   Wallet,
   HeartHandshake,
   LayoutGrid,
+  Smartphone,
+  Handshake,
 } from "lucide-react"
 import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
@@ -35,6 +37,8 @@ const WORKSPACE_IMAGES = [
 function workspaceImageSrc(filename: string) {
   return `${WORKSPACE_IMAGE_DIR}/${encodeURIComponent(filename)}`
 }
+
+const CONCEPT_HREF = "/products/monrovia-hustle/concept"
 
 export default function MonroviaHustlePage() {
   const containerRef = useRef<HTMLElement>(null)
@@ -130,7 +134,7 @@ export default function MonroviaHustlePage() {
             </div>
 
             <p className="relative z-30 mx-auto mt-3 max-w-lg text-center text-lg italic leading-snug text-foreground/95 sm:text-xl">
-              &ldquo;School on pause. Hustle on the street.&rdquo;
+              &ldquo;Warning this is a concept.&rdquo;
             </p>
             <p className="relative z-30 mx-auto mt-4 max-w-2xl px-4 text-center text-sm leading-relaxed text-muted-foreground">
               This page is HUIX-2099&apos;s hub for{" "}
@@ -167,8 +171,8 @@ export default function MonroviaHustlePage() {
               className="w-full max-w-5xl mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 relative z-30"
             >
               
-              {/* INFO CARD 1 */}
-              <div className="bg-background/80 backdrop-blur-xl border border-border p-6 flex flex-col transition-all duration-300 hover:bg-card hover:border-[#002868]/50 cursor-default group overflow-hidden relative shadow-lg">
+              {/* INFO CARD 1 — teaser → full dossier on concept page */}
+              <div className="bg-background/80 backdrop-blur-xl border border-border p-6 flex flex-col transition-all duration-300 hover:bg-card hover:border-[#002868]/50 group overflow-hidden relative shadow-lg">
                  <div className="absolute top-0 right-0 w-16 h-16 bg-[#002868]/10 blur-xl rounded-full -translate-y-1/2 translate-x-1/2 transition-transform group-hover:scale-150"></div>
                  <div className="text-foreground/80 font-mono text-xs mb-3 uppercase tracking-[0.2em] flex items-center gap-2">
                    <Gamepad2 className="w-4 h-4 text-[#BF0A30]" /> Game Details
@@ -176,6 +180,25 @@ export default function MonroviaHustlePage() {
                  <div className="text-2xl sm:text-3xl font-black text-foreground italic tracking-tighter uppercase mb-6 group-hover:text-[#002868] transition-colors duration-300">
                    Slice-of-life<br/>Narrative urban RPG
                  </div>
+                 <div className="mb-4 flex flex-wrap gap-2">
+                   <Link
+                     href={CONCEPT_HREF}
+                     className="inline-flex flex-1 min-w-[9rem] items-center justify-center gap-2 rounded border border-[#002868]/50 bg-[#002868]/10 py-2.5 text-[10px] font-black uppercase tracking-wider text-foreground transition hover:border-[#002868] hover:bg-[#002868]/18 dark:bg-[#002868]/14"
+                   >
+                     Full info
+                     <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                   </Link>
+                   <Link
+                     href={`${CONCEPT_HREF}#download`}
+                     className="inline-flex flex-1 min-w-[9rem] items-center justify-center gap-2 rounded border border-[#BF0A30]/50 bg-[#BF0A30]/10 py-2.5 text-[10px] font-black uppercase tracking-wider text-foreground transition hover:border-[#BF0A30] hover:bg-[#BF0A30]/18"
+                   >
+                     Download
+                     <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                   </Link>
+                 </div>
+                 <p className="mb-4 text-[10px] leading-relaxed text-muted-foreground">
+                   Concept 01 · HUIX archive · 2026 — age notes, trailer, lead dev, cast &amp; supporters on the concept page.
+                 </p>
                  <div className="mt-auto pt-4 border-t border-border flex justify-between w-full text-[10px] sm:text-xs text-muted-foreground uppercase tracking-widest font-mono">
                    <span>Platform <span className="text-foreground ml-1 text-sm font-sans font-bold">PC</span></span>
                    <span>Engine <span className="text-foreground ml-1 text-sm font-sans font-bold">Godot</span></span>
@@ -196,7 +219,7 @@ export default function MonroviaHustlePage() {
                  </div>
                  
                  <div className="mt-8 space-y-3 relative z-10">
-                   <Link href="#download">
+                   <Link href={`${CONCEPT_HREF}#download`}>
                      <button className="w-full bg-[#BF0A30] hover:bg-red-800 text-white font-black uppercase tracking-widest py-4 px-6 flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(191,10,48,0.3)]">
                        <Play className="w-5 h-5 fill-white" />
                        Download Game
@@ -214,9 +237,16 @@ export default function MonroviaHustlePage() {
                  <div className="text-foreground/80 font-mono text-xs mb-3 uppercase tracking-[0.2em] flex items-center gap-2">
                    <ArrowRight className="w-4 h-4 text-[#002868]" /> Next Steps
                  </div>
-                 <div className="text-2xl sm:text-3xl font-black text-foreground italic tracking-tighter uppercase mb-6 group-hover:text-[#BF0A30] transition-colors duration-300">
+                 <div className="text-2xl sm:text-3xl font-black text-foreground italic tracking-tighter uppercase mb-4 group-hover:text-[#BF0A30] transition-colors duration-300">
                    Support<br/>The Campaign
                  </div>
+                 <Link
+                   href="/products/monrovia-hustle/donate"
+                   className="relative z-10 mb-4 inline-flex w-full items-center justify-center gap-2 rounded border border-[#002868]/50 bg-[#002868]/10 py-3 text-[11px] font-black uppercase tracking-widest text-foreground shadow-sm transition hover:border-[#002868] hover:bg-[#002868]/20 dark:bg-[#002868]/15 dark:hover:bg-[#002868]/25"
+                 >
+                   <Smartphone className="h-4 w-4 text-[#002868] dark:text-[#7eb3ff]" aria-hidden />
+                   Donate · Mobile &amp; Orange Money
+                 </Link>
                  <div className="mt-auto pt-4 border-t border-border flex justify-between w-full text-[10px] sm:text-xs text-muted-foreground uppercase tracking-widest font-mono">
                    <span>Studio <span className="text-foreground ml-1 text-sm font-sans font-bold">HUIX-2099</span></span>
                    <Link href="/team/victor" className="text-foreground ml-1 text-sm font-sans font-bold underline decoration-[#BF0A30]/50 hover:decoration-[#BF0A30]">
@@ -226,6 +256,43 @@ export default function MonroviaHustlePage() {
               </div>
 
             </motion.div>
+          </div>
+        </section>
+
+        {/* Partners — animated strip (placeholders until logos land) */}
+        <section
+          aria-label="Partners"
+          className="border-t border-border bg-muted/40 py-14 dark:bg-muted/20 lg:py-16"
+        >
+          <div className="container mx-auto mb-8 max-w-6xl px-6 lg:px-8">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground sm:text-xs">
+                  HUIX-2099 · Monrovia Hustle 3D
+                </p>
+                <h2 className="flex items-center gap-2 text-2xl font-black uppercase tracking-tighter text-foreground sm:text-3xl">
+                  <Handshake className="h-7 w-7 text-[#002868] dark:text-[#7eb3ff]" aria-hidden />
+                  Partners
+                </h2>
+                <p className="mt-2 max-w-lg text-sm text-muted-foreground">
+                  Brands and collaborators riding with us on this build — logos coming soon.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+            {/* One flex row duplicated end-to-end with uniform gaps so translateX(-50%) loops cleanly */}
+            <div className="mh-partners-marquee-track gap-14 sm:gap-16">
+              {Array.from({ length: 16 }, (_, i) => (
+                <div
+                  key={i}
+                  className="flex h-[4.25rem] w-[11rem] shrink-0 items-center justify-center rounded-xl border-2 border-dashed border-[#002868]/35 bg-background/90 px-4 font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground shadow-inner dark:border-[#7eb3ff]/30 dark:bg-card/80 sm:h-[5rem] sm:w-[13rem]"
+                  {...(i >= 8 ? { "aria-hidden": true as const } : {})}
+                >
+                  Coming soon
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -254,20 +321,28 @@ export default function MonroviaHustlePage() {
             <h3 className="mb-4 text-5xl font-black tracking-tighter text-foreground sm:text-6xl md:text-7xl" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
               Monrovia Hustle 3D
             </h3>
-            <p className="mb-12 font-serif text-xl italic text-muted-foreground sm:text-2xl">&ldquo;School on pause. Hustle on the street.&rdquo;</p>
+            <p className="mb-12 font-serif text-xl italic text-muted-foreground sm:text-2xl">&ldquo;Warning this is a concept.&rdquo;</p>
 
             <div className="space-y-6 text-[15px] font-medium leading-[1.8] text-foreground/85 sm:text-base">
-              <h4 className="mb-2 text-sm font-bold uppercase tracking-wide text-foreground">The story pitch</h4>
+              <h4 className="mb-2 text-sm font-bold uppercase tracking-wide text-foreground">In the neighbourhood (light touch)</h4>
               <p>
-                Set against the vibrant backdrop of downtown Monrovia, Liberia,{" "}
-                <strong className="text-foreground">Monrovia Hustle 3D</strong> follows{" "}
-                <strong className="text-foreground">Jboy</strong>, a 24-year-old navigating a tough economy. When his girlfriend, Angel,
-                breaks up with him over money and stability, Jboy lands on the unforgiving pavement of Carey and Benson streets.
+                <strong className="text-foreground">Monrovia Hustle 3D</strong> sits in prototype: a Liberia-rooted slice-of-life RPG about pressure,
+                pride, and how people move through a capital when the maths don&apos;t math. Think street rhythm, branching attitude, comic beats — not a
+                full plot dump on the open web.
               </p>
               <p>
-                Caught between his mother&apos;s grounded wisdom and the fast-money pull of the corner boys, he has to move through the
-                city grid. Take shady missions from fast-talkers like Trapper, or stack Liberian Dollars (LD), dress sharp, and aim for a
-                real seat at Uncle Flomo&apos;s desk — in Monrovia, your hustle shapes survival.
+                The beat-by-beat story, arcs, and who&apos;s who live in our{" "}
+                <Link
+                  href={CONCEPT_HREF}
+                  className="font-semibold text-[#002868] underline decoration-[#002868]/35 underline-offset-2 hover:text-foreground hover:decoration-[#BF0A30] dark:text-[#7eb3ff] dark:decoration-[#7eb3ff]/45 dark:hover:text-foreground"
+                >
+                  Concept 01 dossier
+                </Link>{" "}
+                for press, testers, and anyone we&apos;ve cleared for the deeper bible.
+              </p>
+              <p className="text-muted-foreground">
+                Prefer the bird&apos;s-eye? You still get honesty here: economies bite, friendships fracture, missions get gray — we&apos;ll let the trailer
+                and capsule art whisper the vibe while the hub stays spoiler-light.
               </p>
             </div>
 
@@ -279,8 +354,12 @@ export default function MonroviaHustlePage() {
                 <li className="flex gap-3 rounded-xl border border-border bg-background/60 p-4 dark:bg-card/40">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#002868]" aria-hidden />
                   <span>
-                    <strong className="text-foreground">Authentic Liberian setting:</strong> a &ldquo;Super Liberia&rdquo; sandbox rooted in Broad,
-                    Carey, Benson, and Gurley streets.
+                    <strong className="text-foreground">Urban Liberia flavour:</strong> a stylized coastal capital sandbox — neighbourhoods,
+                    markets, and back routes you can roam. Street-level geography and named beats are unpacked in the{" "}
+                    <Link href={CONCEPT_HREF} className="underline decoration-[#002868]/35 underline-offset-2 hover:decoration-[#BF0A30] dark:text-[#7eb3ff]">
+                      concept dossier
+                    </Link>
+                    , not spoilers on this billboard.
                   </span>
                 </li>
                 <li className="flex gap-3 rounded-xl border border-border bg-background/60 p-4 dark:bg-card/40">
@@ -307,8 +386,12 @@ export default function MonroviaHustlePage() {
                 <li className="flex gap-3 rounded-xl border border-border bg-background/60 p-4 dark:bg-card/40 sm:col-span-2">
                   <Wallet className="mt-0.5 h-5 w-5 shrink-0 text-[#002868]" aria-hidden />
                   <span>
-                    <strong className="text-foreground">Live the hustle:</strong> earn LD flipping phones, running errands, and building connects —
-                    reinvest in wardrobe and narrative paths.
+                    <strong className="text-foreground">Live the hustle:</strong> chase in-world currency, errands, side moves — flip value into
+                    wardrobe and branching paths (&ldquo;how far you push it&rdquo; lives in the{" "}
+                    <Link href={CONCEPT_HREF} className="underline decoration-[#002868]/35 underline-offset-2 hover:decoration-[#BF0A30] dark:text-[#7eb3ff]">
+                      sealed notes
+                    </Link>
+                    ).
                   </span>
                 </li>
               </ul>
@@ -386,32 +469,6 @@ export default function MonroviaHustlePage() {
                   </span>
                 </motion.div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Demo download anchor */}
-        <section id="download" className="scroll-mt-24 border-t border-border bg-background py-16 lg:py-20">
-          <div className="container mx-auto max-w-4xl px-6 lg:px-8">
-            <h3 className="mb-4 text-3xl font-black uppercase tracking-tighter text-foreground">Demo</h3>
-            <p className="mb-8 max-w-2xl text-muted-foreground">
-              Windows 10/11 builds ship from this hub as releases land. macOS and Android are on the roadmap — follow HUIX-2099 for drops.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="mailto:huixtech2099@gmail.com?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Demo%20%2F%20Press"
-                className="inline-flex items-center gap-2 bg-[#BF0A30] px-6 py-3 text-sm font-black uppercase tracking-widest text-white transition hover:bg-red-800"
-              >
-                <Play className="h-4 w-4 fill-white" />
-                Request demo access
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 border border-border px-6 py-3 text-sm font-bold uppercase tracking-widest text-foreground transition hover:bg-muted/50"
-              >
-                Contact studio
-                <ArrowRight className="h-4 w-4" />
-              </Link>
             </div>
           </div>
         </section>

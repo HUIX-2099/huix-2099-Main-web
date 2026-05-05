@@ -46,7 +46,7 @@ const latestProducts = [
     icon: Gamepad2,
     platform: "PC · Studio hub",
     description:
-      "School on pause. Hustle on the street. Liberian narrative urban RPG — led by Victor Edet Coleman at HUIX-2099.",
+      "Warning this is a concept. Liberian narrative urban RPG — led by Victor Edet Coleman at HUIX-2099.",
     image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
     year: "2026",
     status: "Development" as const,

@@ -104,7 +104,7 @@ const products: Product[] = [
     title: "Monrovia Hustle 3D",
     category: "Game",
     platform: "Windows · macOS · Android",
-    description: "School on pause. Hustle on the street.",
+    description: "Warning this is a concept.",
     image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
     year: "2026",
     status: "Development",

@@ -7,6 +7,7 @@ import { CustomCursor } from "@/components/custom-cursor"
 import { VRImmersePrompt } from "@/components/vr-immerse-prompt"
 import { ChatBot } from "@/components/chat-bot"
 import { CookieConsent } from "@/components/cookie-consent"
+import { SocialSidebar } from "@/components/social-sidebar"
 
 import "./globals.css"
 
@@ -250,6 +251,7 @@ export default function RootLayout({
         <ThemeProvider>
           <CustomCursor />
           <VRImmersePrompt />
+          <SocialSidebar />
           <main className="flex min-h-dvh flex-col">
             <div className="flex-1">
               {children}
