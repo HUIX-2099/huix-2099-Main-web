@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
-import type { ReactNode } from "react"
+import type { ComponentType, ReactNode } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ConceptGameplayGallery, type ConceptGalleryItem } from "@/components/monrovia-hustle/concept-gameplay-gallery"
+import { ClickToViewImage } from "@/components/click-to-view-image"
+import { cn } from "@/lib/utils"
 import {
   ArrowLeft,
   Youtube,
@@ -20,6 +22,7 @@ import {
   ListChecks,
   Route,
   Scale,
+  Palette,
 } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -31,6 +34,9 @@ export const metadata: Metadata = {
 const MH_YOUTUBE_URL = "https://www.youtube.com/@HUIX-2099"
 const MH_HUB = "/products/monrovia-hustle"
 const STUDIO_EMAIL = "huixtech2099@gmail.com"
+const FACEBOOK_PAGE_HREF = "https://www.facebook.com/profile.php?id=61572485499528"
+const FACEBOOK_INFO =
+  "HUIX-2099 on Facebook — dev snapshots, reels, build teasers, and community comments."
 const VICTOR_IMAGE = "/Team/VICTOR.jpeg"
 const CAPSULE_ART = "/products/Monrovia_hustle_Demo_Campane/herosection.png"
 const MONO = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' as const
@@ -63,11 +69,39 @@ const galleryItems: ConceptGalleryItem[] = [
   })),
 ]
 
-const socialChannels = [
-  { label: "X / Twitter", href: "https://x.com/Huix2099", icon: Twitter },
-  { label: "Instagram", href: "https://www.instagram.com/huix.2099/", icon: Instagram },
-  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61572485499528", icon: Facebook },
-  { label: "YouTube", href: MH_YOUTUBE_URL, icon: Youtube },
+type SocialChannel = {
+  label: string
+  href: string
+  icon: ComponentType<{ className?: string }>
+  /** Icon + hover border tint (brand) */
+  tone: string
+}
+
+const socialChannels: SocialChannel[] = [
+  {
+    label: "X / Twitter",
+    href: "https://x.com/Huix2099",
+    icon: Twitter,
+    tone: "text-[#1D9BF0] hover:border-[#1D9BF0]/45 hover:bg-[#1D9BF0]/10",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/huix.2099/",
+    icon: Instagram,
+    tone: "text-[#E4405F] hover:border-[#E4405F]/45 hover:bg-[#E4405F]/10",
+  },
+  {
+    label: "Facebook",
+    href: FACEBOOK_PAGE_HREF,
+    icon: Facebook,
+    tone: "text-[#1877F2] hover:border-[#1877F2]/45 hover:bg-[#1877F2]/10",
+  },
+  {
+    label: "YouTube",
+    href: MH_YOUTUBE_URL,
+    icon: Youtube,
+    tone: "text-[#FF0000] hover:border-[#FF0000]/40 hover:bg-[#FF0000]/10",
+  },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/victor-coleman-4731701a5/",
@@ -76,8 +110,113 @@ const socialChannels = [
         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
       </svg>
     ),
+    tone: "text-[#0A66C2] hover:border-[#0A66C2]/45 hover:bg-[#0A66C2]/10",
   },
 ]
+
+function GmailMark({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden>
+      <path
+        fill="#EA4335"
+        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+      />
+    </svg>
+  )
+}
+
+function StudioContactStrip({
+  heading,
+  className,
+  variant = "section",
+}: {
+  heading: string
+  className?: string
+  variant?: "section" | "card"
+}) {
+  const card = variant === "card"
+  return (
+    <div className={cn(className)}>
+      <p
+        className={cn(
+          "text-muted-foreground uppercase tracking-[0.2em]",
+          card ? "mb-2 text-[9px] tracking-[0.16em]" : "mb-3 text-[10px]",
+        )}
+        style={{ fontFamily: MONO }}
+      >
+        {heading}
+      </p>
+      <p
+        className={cn(
+          "text-muted-foreground",
+          card ? "mb-2 text-[10px] leading-snug" : "mb-3 text-[11px] leading-relaxed",
+        )}
+      >
+        <span className="font-semibold text-[#1877F2]">Facebook</span>
+        {" — "}
+        {FACEBOOK_INFO}{" "}
+        <a
+          href={FACEBOOK_PAGE_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cn(
+            "font-medium text-[#1877F2] underline decoration-[#1877F2]/35 underline-offset-2 transition hover:decoration-[#1877F2]",
+            card && "text-[10px]",
+          )}
+        >
+          Page link
+        </a>
+        .
+      </p>
+      <div className={cn("flex flex-wrap", card ? "gap-1.5" : "gap-2")}>
+        {socialChannels.map((s) => {
+          const Ico = s.icon
+          return (
+            <a
+              key={s.href}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "flex items-center justify-center rounded-[2px] border border-border bg-muted/50 transition dark:bg-muted/40",
+                card ? "h-8 w-8" : "h-9 w-9",
+                s.tone,
+              )}
+              aria-label={s.label}
+            >
+              <Ico className={cn("shrink-0", card ? "h-3.5 w-3.5" : "h-4 w-4")} />
+            </a>
+          )
+        })}
+      </div>
+      <a
+        href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Play%20the%20concept%20%2F%20Wishlist`}
+        className={cn(
+          "flex min-w-0 items-center rounded-[2px] border border-border/80 bg-muted/30 transition hover:bg-muted/50",
+          card
+            ? "mt-2 gap-1.5 px-2 py-1.5 text-[11px]"
+            : "mt-3 gap-2 px-2.5 py-2 text-[12px]",
+        )}
+      >
+        <GmailMark className={cn("shrink-0", card ? "size-3.5" : "size-4")} />
+        <span
+          className={cn("shrink-0 font-semibold text-[#EA4335]", card && "text-[10px]")}
+          style={{ fontFamily: MONO }}
+        >
+          Gmail
+        </span>
+        <span
+          className={cn(
+            "min-w-0 flex-1 truncate text-[#002868] underline decoration-[#002868]/35 underline-offset-2 dark:text-[#89b8ff] dark:decoration-[#89b8ff]/40",
+            card && "text-[10px]",
+          )}
+        >
+          {STUDIO_EMAIL}
+        </span>
+      </a>
+    </div>
+  )
+}
 
 const TAGS = ["Single-player", "Slice-of-life", "Narrative", "Open world", "Liberia", "Godot", "Comic story", "Street RPG"]
 
@@ -86,6 +225,8 @@ const CAST = [
     name: "Jboy",
     role: "Playable protagonist · Jayboy",
     epithet: "Sidewalk calculus",
+    imageSrc: "/products/Monrovia_hustle_Demo_Campane/1nmdB.jpg",
+    imageAlt: "Monrovia Hustle 3D — Jboy, street-level in-engine reference",
     body: [
       "Twenty-four on a thin wage. Carey and Benson know his stride — hustle as survival math, receipts as morality.",
       "Caught between grounded sense at home and the corner’s louder offers; every mission is another line in the ledger of who he’s becoming.",
@@ -95,6 +236,8 @@ const CAST = [
     name: "Angel",
     role: "Ex · emotional anchor arc",
     epithet: "Love priced in LD",
+    imageSrc: CAPSULE_ART,
+    imageAlt: "Monrovia Hustle 3D — key art (Angel storyline in comic beats)",
     body: [
       "Walks truth about stability and ambition; the fallout that strands Jboy on pavement is chapter one gravity, not melodrama wallpaper.",
       "Her dialogue trees push tone — tenderness, exhaustion, receipts — forcing the comic panels to breathe like real conversations.",
@@ -104,6 +247,8 @@ const CAST = [
     name: "Thomas",
     role: "Street operator · connect",
     epithet: "Fast talk, slower trust",
+    imageSrc: ws(WORKSPACE_FILES[0]),
+    imageAlt: "Studio reference — street / connect energy for Thomas’s arc",
     body: [
       "Knows every shortcut between Broad and Benson; runs errands into favours — the kind that teach you downtown doesn’t forgive noise.",
       "Expect branching missions that treat him like a hinge: help him, fleece him, or ghost him — the city adjusts its voice lines accordingly.",
@@ -113,20 +258,43 @@ const CAST = [
     name: "Jonnet",
     role: "Network · pressure / payoff",
     epithet: "Corner memory",
+    imageSrc: ws(WORKSPACE_FILES[1]),
+    imageAlt: "Studio reference — network / alley intel for Jonnet’s beat",
     body: [
       "Holds rumours like currency — who owes, who flips phones, whose cousin heard Uncle Flomo’s desk creak.",
       "Use her intel to stack LD or gamble reputation; epic beats land when alley gossip upgrades into storyline collision.",
     ],
   },
-]
+] as const
+
+const ARTISTS = [
+  {
+    name: "Victor Edet Coleman",
+    discipline: "Art direction · 3D staging · visual tone",
+    imageSrc: VICTOR_IMAGE,
+    imageAlt: "Victor Edet Coleman — Monrovia Hustle 3D art direction",
+    body:
+      "Shapes the slice’s look-and-feel: environment reads, character staging, UI mood, and how comic panels meet in-engine shots and capsule key art with the studio.",
+    href: "/team/victor",
+  },
+  {
+    name: "Collaborators & credits",
+    discipline: "Comic ink · promotional art · audio (rolling)",
+    imageSrc: CAPSULE_ART,
+    imageAlt: "Monrovia Hustle 3D capsule and key art",
+    body:
+      "As collaborators sign on, comic, marketing, and sound credits will list here by name. The concept build is solo-led today with room to grow the art team for the full campaign.",
+    href: null,
+  },
+] as const
 
 function SectionTitle({ children }: { children: ReactNode }) {
   return (
-    <div className="mb-8 flex items-center gap-4 lg:gap-6">
-      <h2 className="whitespace-nowrap text-[11px] font-normal uppercase tracking-[0.12em] text-[#002868] dark:text-[#89b8ff] lg:text-xs" style={{ fontFamily: MONO }}>
+    <div className="mb-6 flex items-center gap-4 lg:mb-8 lg:gap-6">
+      <h2 className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.14em] text-[#002868] dark:text-[#89b8ff] lg:text-xs" style={{ fontFamily: MONO }}>
         {children}
       </h2>
-      <div className="h-px min-w-[2rem] flex-1 bg-foreground/[0.115] dark:bg-foreground/[0.12]" aria-hidden />
+      <div className="h-px min-w-[2rem] flex-1 bg-foreground/10 dark:bg-foreground/15" aria-hidden />
     </div>
   )
 }
@@ -147,7 +315,7 @@ export default function MonroviaHustleConceptPage() {
       <Navbar />
 
       <main className="pb-28 pt-[5.75rem] sm:pt-28 lg:pb-36">
-        <div className="mx-auto w-full max-w-[min(100vw-2rem,1560px)] px-6 sm:px-10 md:px-14 lg:px-16 xl:px-24 2xl:px-32">
+        <div className="mx-auto w-full max-w-[min(100vw-2rem,2200px)] px-5 sm:px-8 md:px-12 lg:px-14 xl:px-16 2xl:px-20">
           <Link
             href={MH_HUB}
             className="mb-8 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground hover:text-[#002868] lg:mb-12 dark:hover:text-[#89b8ff]"
@@ -157,11 +325,15 @@ export default function MonroviaHustleConceptPage() {
             All games · Hub
           </Link>
 
-          <div className="flex flex-col gap-14 xl:flex-row xl:items-start xl:gap-16 2xl:gap-24">
+          {/*
+            xl+: two tracks only — [flexible main | 440px sidebar]. Avoids a 3-column 2xl template where a
+            missed span leaves an empty middle column (black gap) between main and the store column.
+          */}
+          <div className="grid grid-cols-1 gap-12 xl:grid-cols-[minmax(0,1fr)_440px] xl:items-start xl:gap-14 2xl:gap-16">
             {/* Main column — video first like Steam */}
-            <div className="min-w-0 flex-1">
+            <div className="min-w-0">
               {/* Store title row */}
-              <div className="mb-8 flex flex-wrap items-end justify-between gap-x-10 gap-y-6 border-b border-border pb-8 lg:mb-12 lg:pb-10 xl:gap-x-16">
+              <div className="mb-8 flex flex-wrap items-end justify-between gap-x-10 gap-y-6 border-b border-border/60 pb-8 lg:mb-12 lg:pb-10 xl:gap-x-16">
                 <div className="max-w-none lg:max-w-[52rem] xl:max-w-none">
                   <p className="mb-3 inline-flex items-center rounded-sm border border-[#002868]/30 bg-[#002868]/[0.07] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#002868] dark:border-[#89b8ff]/35 dark:bg-[#10223a]/80 dark:text-[#89b8ff]" style={{ fontFamily: MONO }}>
                     Concept · early prototype
@@ -214,14 +386,14 @@ export default function MonroviaHustleConceptPage() {
               </div>
 
               {/* Steam-style hero media (trailer first) */}
-              <div className="mb-14 rounded-sm border border-border bg-muted/20 p-2 shadow-sm dark:bg-muted/15 lg:mb-20 lg:p-3">
+              <div className="mb-14 rounded-xl border border-border/70 bg-card/40 p-2 shadow-sm backdrop-blur dark:border-border/60 dark:bg-muted/10 lg:mb-16 lg:p-3">
                 <ConceptGameplayGallery items={galleryItems} trailerHref={MH_YOUTUBE_URL} variant="hero" />
               </div>
 
-              <div className="space-y-16 lg:space-y-24 xl:space-y-28 [&>*:first-child]:pt-0">
+              <div className="grid gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-14">
               <section>
               <SectionTitle>About this concept</SectionTitle>
-              <div className="space-y-8 text-[16px] leading-[1.85] text-muted-foreground sm:text-[17px] sm:leading-[1.85] lg:max-w-[56rem] xl:max-w-[62rem]">
+              <div className="space-y-8 text-[16px] leading-[1.85] text-muted-foreground sm:text-[17px] sm:leading-[1.85] lg:max-w-none">
                 <p className="text-foreground/95">
                   <strong className="text-foreground">Label for players:</strong> treat this page and build as{" "}
                   <strong className="text-foreground">concept / early prototype</strong>, not a finished boxed product. Expect a Liberian urban hustle drama in
@@ -238,7 +410,7 @@ export default function MonroviaHustleConceptPage() {
 
               <section>
               <SectionTitle>What&apos;s in this build</SectionTitle>
-              <ul className="max-w-[56rem] space-y-3 border border-border bg-muted/25 p-6 text-[15px] leading-[1.75] dark:bg-muted/15 sm:p-8 lg:text-[16px] xl:max-w-[62rem]">
+              <ul className="max-w-none space-y-3 rounded-xl border border-border/70 bg-card/30 p-6 text-[15px] leading-[1.75] shadow-sm dark:border-border/60 dark:bg-muted/10 sm:p-8 lg:text-[16px]">
                 <li className="flex gap-3">
                   <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
                   <span>
@@ -279,10 +451,10 @@ export default function MonroviaHustleConceptPage() {
 
               <section>
               <SectionTitle>Roadmap · what&apos;s next</SectionTitle>
-              <p className="mb-4 max-w-[56rem] text-[15px] leading-[1.8] text-muted-foreground lg:text-[16px] xl:max-w-[62rem]">
+              <p className="mb-4 max-w-none text-[15px] leading-[1.8] text-muted-foreground lg:text-[16px]">
                 Only items we intend to keep chipping at — not a hype list:
               </p>
-              <ul className="max-w-[56rem] list-inside list-disc space-y-2 text-[15px] leading-[1.75] text-muted-foreground marker:text-[#BF0A30] lg:text-[16px] xl:max-w-[62rem]">
+              <ul className="max-w-none rounded-xl border border-border/70 bg-card/30 p-6 list-inside list-disc space-y-2 text-[15px] leading-[1.75] text-muted-foreground marker:text-[#BF0A30] shadow-sm dark:border-border/60 dark:bg-muted/10 lg:text-[16px]">
                 <li>Mobile-capable build and performance pass once funding allows</li>
                 <li>More story chapters, polish passes, and clearer signposting between comic · room · street · club · office modes</li>
                 <li>Formal waitlist / newsletter and cleaner installer distribution</li>
@@ -292,7 +464,7 @@ export default function MonroviaHustleConceptPage() {
 
               <section>
               <SectionTitle>Why it can feel like &ldquo;many demos in one&rdquo;</SectionTitle>
-              <div className="max-w-[56rem] space-y-4 border border-border bg-card/40 p-6 text-[15px] leading-[1.85] text-muted-foreground shadow-sm sm:p-8 lg:text-[16px] xl:max-w-[62rem]">
+              <div className="max-w-none space-y-4 rounded-xl border border-border/70 bg-card/30 p-6 text-[15px] leading-[1.85] text-muted-foreground shadow-sm dark:border-border/60 dark:bg-muted/10 sm:p-8 lg:text-[16px]">
                 <div className="flex gap-3">
                   <Route className="mt-0.5 h-5 w-5 shrink-0 text-[#BF0A30]" aria-hidden />
                   <p>
@@ -307,7 +479,7 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section>
+              <section className="lg:col-span-2">
               <SectionTitle>The story pitch</SectionTitle>
               <div className="space-y-8 border border-border bg-muted/20 p-8 text-[16px] leading-[1.9] text-foreground/95 shadow-sm dark:bg-muted/15 sm:p-10 sm:text-[17px] sm:leading-[1.9] lg:p-12 lg:text-lg lg:leading-[1.95] xl:leading-loose xl:p-14">
                 <p>
@@ -323,44 +495,148 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section>
+              <section className="lg:col-span-2">
               <SectionTitle>Screenshots &amp; media</SectionTitle>
-              <p className="mb-2 max-w-[56rem] text-[15px] leading-[1.8] text-muted-foreground lg:text-[16px] xl:max-w-[62rem]">
+              <p className="mb-2 max-w-none text-[15px] leading-[1.8] text-muted-foreground lg:text-[16px]">
                 Use the carousel above: trailer first, then stills that try to show <strong className="text-foreground/90">character on street, environment reads, HUD / prompts</strong> — not only menus. Quality varies by capture pass; some tiles are workspace references.
               </p>
               </section>
 
-              <section>
-              <SectionTitle>About these characters</SectionTitle>
-              <p className="mb-10 max-w-[56rem] text-[15px] leading-[1.85] text-muted-foreground lg:mb-12 lg:text-[16px] xl:max-w-[62rem]">
-                Lore bible entries — voice talent TBA. Casting inquiries through studio socials or the demo mail thread below.
+              <section id="cast" className="lg:col-span-2 scroll-mt-28">
+              <SectionTitle>Cast · image &amp; dossier</SectionTitle>
+              <p className="mb-8 max-w-none text-[15px] leading-[1.85] text-muted-foreground lg:mb-10 lg:text-[16px]">
+                Lore bible — voice talent TBA. Photos are <strong className="text-foreground/90">in-engine / studio refs</strong>, not final marketing art.
+                Casting: Facebook, socials &amp; Gmail — <strong className="text-foreground/90">on each card</strong> under the dossier. Click a portrait to enlarge.
               </p>
-              <div className="grid gap-8 sm:grid-cols-2 sm:gap-10 lg:gap-12 xl:grid-cols-2 xl:gap-x-14 xl:gap-y-12">
-                {CAST.map((c) => (
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 md:gap-8 xl:grid-cols-4">
+                {CAST.map((c, idx) => (
                   <article
                     key={c.name}
-                    className="border border-border bg-card p-7 shadow-sm sm:p-9 lg:p-10"
+                    className="group relative flex min-h-0 flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#002868]/40 hover:shadow-lg hover:shadow-[#002868]/[0.08] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] dark:hover:border-[#89b8ff]/35 dark:hover:shadow-[#000]/40"
                   >
-                    <h3 className="text-xl font-bold uppercase tracking-tight text-foreground lg:text-2xl">{c.name}</h3>
-                    <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#002868] dark:text-[#89b8ff] lg:text-[11px]" style={{ fontFamily: MONO }}>
-                      {c.role}
-                    </p>
-                    <p className="mt-4 text-base font-semibold italic leading-snug text-foreground/90 lg:text-lg">{c.epithet}</p>
-                    <div className="mt-6 space-y-5 border-t border-border/60 pt-6 text-[15px] leading-[1.85] text-muted-foreground lg:text-[16px] lg:leading-[1.88]">
-                      {c.body.map((para, i) => (
-                        <p key={i}>{para}</p>
-                      ))}
+                    <div
+                      className="absolute inset-x-0 top-0 z-10 h-[3px] bg-gradient-to-r from-[#002868] via-[#BF0A30] to-[#002868] opacity-90 transition-opacity duration-300 group-hover:opacity-100 dark:from-[#4a7ab8] dark:via-[#BF0A30] dark:to-[#4a7ab8]"
+                      aria-hidden
+                    />
+                    <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-muted/50">
+                      <ClickToViewImage
+                        src={c.imageSrc}
+                        alt={`${c.name} — ${c.imageAlt}`}
+                        triggerClassName="absolute inset-0 block size-full"
+                        showViewHint
+                        viewHintPlacement="bottom"
+                      >
+                        <Image
+                          src={c.imageSrc}
+                          alt=""
+                          fill
+                          className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                          sizes="(max-width:640px) 100vw, (max-width:1280px) 50vw, 25vw"
+                        />
+                      </ClickToViewImage>
+                      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent pt-16" />
+                      <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground drop-shadow-sm">
+                        {c.name} · {String(idx + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <div className="relative flex flex-1 flex-col p-5 sm:p-6">
+                      <div className="mb-3 flex items-start justify-between gap-2">
+                        <h3 className="text-lg font-black uppercase tracking-tight text-foreground sm:text-xl">{c.name}</h3>
+                      </div>
+                      <p className="text-[10px] font-bold uppercase leading-snug tracking-[0.12em] text-[#002868] dark:text-[#89b8ff]" style={{ fontFamily: MONO }}>
+                        {c.role}
+                      </p>
+                      <p className="mt-3 text-sm font-semibold italic leading-snug text-foreground/95 sm:text-base">&ldquo;{c.epithet}&rdquo;</p>
+                      <div className="mt-4 flex-1 space-y-3 border-t border-border/50 pt-4 text-[13px] leading-[1.72] text-muted-foreground sm:text-[14px] sm:leading-[1.78]">
+                        {c.body.map((para, i) => (
+                          <p key={i}>{para}</p>
+                        ))}
+                      </div>
+                      <StudioContactStrip
+                        variant="card"
+                        heading="Casting · studio reach"
+                        className="mt-4 border-t border-border/50 pt-4"
+                      />
                     </div>
                   </article>
                 ))}
               </div>
               </section>
 
-              <section>
+              <section id="artists" className="lg:col-span-2 scroll-mt-28">
+              <div className="mb-6 flex items-center gap-4 lg:mb-8 lg:gap-6">
+                <Palette className="h-7 w-7 shrink-0 text-[#BF0A30]" aria-hidden />
+                <h2
+                  className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.14em] text-[#002868] dark:text-[#89b8ff] lg:text-xs"
+                  style={{ fontFamily: MONO }}
+                >
+                  Art &amp; artists
+                </h2>
+                <div className="h-px min-w-[2rem] flex-1 bg-foreground/10 dark:bg-foreground/15" aria-hidden />
+              </div>
+              <p className="mb-8 max-w-none text-[15px] leading-[1.85] text-muted-foreground lg:mb-10 lg:text-[16px]">
+                Who&apos;s responsible for how the slice <strong className="text-foreground/90">reads on screen</strong> — not in-fiction characters (see{" "}
+                <a href="#cast" className="font-medium text-[#002868] underline decoration-[#002868]/35 underline-offset-2 dark:text-[#89b8ff]">
+                  Cast
+                </a>
+                ), but the people steering art direction, key art, and future collaborator credits.
+              </p>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:gap-10">
+                {ARTISTS.map((a) => (
+                  <article
+                    key={a.name}
+                    className="group flex min-h-0 flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04]"
+                  >
+                    <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-muted/50">
+                      <ClickToViewImage
+                        src={a.imageSrc}
+                        alt={a.imageAlt}
+                        triggerClassName="absolute inset-0 block size-full"
+                        showViewHint
+                        viewHintPlacement="bottom"
+                      >
+                        <Image
+                          src={a.imageSrc}
+                          alt=""
+                          fill
+                          className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                          sizes="(max-width:640px) 100vw, 50vw"
+                        />
+                      </ClickToViewImage>
+                    </div>
+                    <div className="flex flex-1 flex-col p-5 sm:p-6">
+                      <h3 className="text-lg font-black uppercase tracking-tight text-foreground sm:text-xl">{a.name}</h3>
+                      <p
+                        className="mt-2 text-[10px] font-bold uppercase leading-snug tracking-[0.12em] text-[#002868] dark:text-[#89b8ff]"
+                        style={{ fontFamily: MONO }}
+                      >
+                        {a.discipline}
+                      </p>
+                      <p className="mt-4 text-[13px] leading-[1.75] text-muted-foreground sm:text-[14px] sm:leading-[1.8]">{a.body}</p>
+                      {a.href ? (
+                        <StoreLink href={a.href} className="mt-5 inline-flex w-fit text-[13px] font-semibold">
+                          Team profile →
+                        </StoreLink>
+                      ) : (
+                        <p className="mt-5 text-[11px] font-medium italic text-muted-foreground">Credits update as partners join — no implied endorsement yet.</p>
+                      )}
+                    </div>
+                  </article>
+                ))}
+              </div>
+              </section>
+
+              <section className="lg:col-span-2">
               <SectionTitle>About the developer</SectionTitle>
               <div className="flex flex-col gap-10 border border-border bg-card p-8 shadow-sm sm:flex-row sm:items-start lg:gap-12 lg:p-10 xl:p-12">
                 <div className="relative h-48 w-full shrink-0 overflow-hidden border border-border sm:h-52 sm:w-44 lg:h-56 lg:w-48">
-                  <Image src={VICTOR_IMAGE} alt="Victor Edet Coleman" fill className="object-cover object-top" sizes="(max-width:640px) 100vw, 192px" />
+                  <ClickToViewImage
+                    src={VICTOR_IMAGE}
+                    alt="Portrait of Victor Edet Coleman"
+                    triggerClassName="absolute inset-0 block size-full"
+                  >
+                    <Image src={VICTOR_IMAGE} alt="" fill className="object-cover object-top" sizes="(max-width:640px) 100vw, 192px" />
+                  </ClickToViewImage>
                 </div>
                 <div className="min-w-0 max-w-none flex-1 space-y-4 lg:max-w-[42rem]">
                   <StoreLink href="/team/victor" className="text-xl font-bold uppercase tracking-tight lg:text-2xl">
@@ -376,9 +652,9 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section>
+              <section className="lg:col-span-2">
               <SectionTitle>Partners &amp; investors</SectionTitle>
-              <div className="max-w-[56rem] space-y-6 border border-border bg-[#002868]/[0.06] p-7 text-[15px] leading-[1.85] dark:bg-[#10223a]/50 sm:p-9 lg:text-[16px] xl:max-w-[62rem]">
+              <div className="max-w-none space-y-6 border border-border bg-[#002868]/[0.06] p-7 text-[15px] leading-[1.85] dark:bg-[#10223a]/50 sm:p-9 lg:text-[16px]">
                 <div className="flex gap-3">
                   <Scale className="mt-0.5 h-5 w-5 shrink-0 text-[#BF0A30]" aria-hidden />
                   <div>
@@ -417,7 +693,7 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section>
+              <section className="lg:col-span-2">
               <SectionTitle>System requirements (prototype)</SectionTitle>
               <div className="grid gap-8 sm:grid-cols-2 lg:gap-10 xl:gap-12">
                 <div className="border border-border bg-muted/40 p-7 text-[13px] dark:bg-card/70 lg:p-9 lg:text-[14px]">
@@ -469,7 +745,7 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section>
+              <section className="lg:col-span-2">
               <SectionTitle>Community &amp; backers</SectionTitle>
               <div className="rounded-sm border border-[#002868]/25 bg-[#002868]/[0.07] p-7 dark:border-[#4a7ab8]/30 dark:bg-[#10223a]/90 lg:p-9">
                 <HeartHandshake className="mb-3 h-8 w-8 text-[#BF0A30]" aria-hidden />
@@ -486,10 +762,16 @@ export default function MonroviaHustleConceptPage() {
             </div>
 
             {/* Sidebar — store column */}
-            <aside className="w-full shrink-0 xl:w-[380px] xl:sticky xl:top-28 xl:self-start">
-              <div className="border border-border bg-card shadow-sm">
+            <aside className="w-full xl:sticky xl:top-28 xl:self-start">
+              <div className="overflow-hidden rounded-xl border border-border/70 bg-card/40 shadow-sm dark:border-border/60 dark:bg-muted/10">
                 <div className="relative aspect-[2/3] w-full overflow-hidden border-b border-border">
-                  <Image src={CAPSULE_ART} alt="Monrovia Hustle 3D capsule" fill className="object-cover object-top" sizes="380px" />
+                  <ClickToViewImage
+                    src={CAPSULE_ART}
+                    alt="Monrovia Hustle 3D capsule art"
+                    triggerClassName="absolute inset-0 block size-full"
+                  >
+                    <Image src={CAPSULE_ART} alt="" fill className="object-cover object-top" sizes="380px" />
+                  </ClickToViewImage>
                 </div>
 
                 <div className="space-y-4 p-4">
@@ -551,32 +833,7 @@ export default function MonroviaHustleConceptPage() {
                   </div>
 
                   <div>
-                    <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground" style={{ fontFamily: MONO }}>
-                      Follow &amp; share
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {socialChannels.map((s) => {
-                        const Ico = s.icon
-                        return (
-                          <a
-                            key={s.href}
-                            href={s.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex h-9 w-9 items-center justify-center rounded-[2px] border border-border bg-muted/50 text-muted-foreground transition hover:border-[#002868]/35 hover:text-[#002868] dark:hover:text-[#89b8ff]"
-                            aria-label={s.label}
-                          >
-                            <Ico className="h-4 w-4" />
-                          </a>
-                        )
-                      })}
-                    </div>
-                    <p className="mt-3 text-[11px] text-muted-foreground">
-                      Web:{" "}
-                      <a href={`mailto:${STUDIO_EMAIL}`} className="text-[#002868] underline dark:text-[#89b8ff]">
-                        {STUDIO_EMAIL}
-                      </a>
-                    </p>
+                    <StudioContactStrip heading="Follow &amp; share" />
                   </div>
 
                   <a

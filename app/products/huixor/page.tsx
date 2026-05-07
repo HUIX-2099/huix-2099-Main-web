@@ -297,7 +297,7 @@ export default function HuixorPage() {
 
       setDownloadProgress(100)
 
-      const blob = new Blob(chunks, { type: "application/octet-stream" })
+      const blob = new Blob(chunks as BlobPart[], { type: "application/octet-stream" })
       const url = URL.createObjectURL(blob)
       const a = document.createElement("a")
       a.href = url

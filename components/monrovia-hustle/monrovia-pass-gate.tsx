@@ -4,7 +4,7 @@ import { useLayoutEffect, useState, type FormEvent, type ReactNode } from "react
 import Image from "next/image"
 import { Lock } from "lucide-react"
 
-const PASS = process.env.NEXT_PUBLIC_MONROVIA_HUSTLE_PASS ?? "0776800064"
+const PASS = process.env.NEXT_PUBLIC_MONROVIA_HUSTLE_PASS ?? "2003"
 const STORAGE_KEY = "mh_page_unlock_v1"
 const mono = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
 

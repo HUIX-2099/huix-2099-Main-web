@@ -16,16 +16,19 @@ import {
   GitBranch,
   Wallet,
   HeartHandshake,
-  LayoutGrid,
   Smartphone,
+  Expand,
   Handshake,
   Target,
   Cpu,
   MessageCircleWarning,
+  Palette,
 } from "lucide-react"
 import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useTheme } from "next-themes"
+import { ClickToViewImage } from "@/components/click-to-view-image"
+import { MonroviaPassGate } from "@/components/monrovia-hustle/monrovia-pass-gate"
 
 const WORKSPACE_IMAGE_DIR = "/products/Monrovia_hustle_Demo_Campane/images"
 
@@ -40,6 +43,9 @@ const WORKSPACE_IMAGES = [
 function workspaceImageSrc(filename: string) {
   return `${WORKSPACE_IMAGE_DIR}/${encodeURIComponent(filename)}`
 }
+
+const WORKSPACE_FEATURE = WORKSPACE_IMAGES[0]
+const WORKSPACE_MORE = WORKSPACE_IMAGES.slice(1)
 
 const CONCEPT_HREF = "/products/monrovia-hustle/concept"
 
@@ -68,6 +74,10 @@ export default function MonroviaHustlePage() {
   // Note: overflow-clip allows sticky elements inside the body to still work correctly,
   // unlike overflow-hidden which breaks the scrolling context layout.
   return (
+    <MonroviaPassGate
+      logoSrc="/products/Monrovia_hustle_Demo_Campane/lighticon.png"
+      logoAlt="Monrovia Hustle 3D"
+    >
     <div className="flex flex-col min-h-screen bg-background text-foreground overflow-clip selection:bg-[#002868] selection:text-white">
       <Navbar />
       
@@ -120,7 +130,7 @@ export default function MonroviaHustlePage() {
           ></motion.div>
 
           {/* Content Container */}
-          <div className="container relative z-20 mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col items-center justify-start flex-grow">
+          <div className="relative z-20 mx-auto w-full max-w-[min(100vw-2rem,1600px)] px-4 sm:px-6 lg:px-8 h-full flex flex-col items-center justify-start flex-grow">
             
             {/* Top Header Labels */}
             <div className="w-full max-w-6xl flex justify-between items-start mb-4 lg:mb-0 z-30">
@@ -162,16 +172,22 @@ export default function MonroviaHustlePage() {
             {/* Central Subject / Provided Image */}
             <motion.div 
               style={{ y: yImage }}
-              className="relative w-full max-w-5xl mx-auto flex items-center justify-center flex-grow mt-6 lg:mt-0 transition-transform duration-700 ease-out hover:scale-[1.01]"
+              className="relative z-20 flex w-full max-w-5xl flex-grow items-center justify-center mx-auto mt-6 lg:mt-0 transition-transform duration-700 ease-out hover:scale-[1.01]"
             >
-              <Image 
+              <ClickToViewImage
                 src="/products/Monrovia_hustle_Demo_Campane/herosection.png"
                 alt="Monrovia Hustle 3D — key art"
-                width={1920}
-                height={1080}
-                className="w-full max-h-[65vh] object-contain relative z-20 drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] dark:drop-shadow-[0_30px_50px_rgba(0,0,0,0.8)]"
-                priority
-              />
+                triggerClassName="relative w-full"
+              >
+                  <Image
+                    src="/products/Monrovia_hustle_Demo_Campane/herosection.png"
+                    alt=""
+                    width={1920}
+                    height={1080}
+                    className="relative z-20 w-full max-h-[65vh] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] dark:drop-shadow-[0_30px_50px_rgba(0,0,0,0.8)]"
+                    priority
+                  />
+              </ClickToViewImage>
             </motion.div>
 
             {/* Bottom Stats / Glass UI Cards (Dignitas Inspired) */}
@@ -268,12 +284,34 @@ export default function MonroviaHustlePage() {
           </div>
         </section>
 
+        {/* Art & artists — ties to concept page credits */}
+        <section aria-label="Art and artists" className="border-t border-border bg-[#002868]/[0.04] py-12 dark:bg-[#10223a]/40">
+          <div className="mx-auto flex w-full max-w-[min(100vw-2rem,1600px)] flex-col justify-between gap-6 px-6 sm:flex-row sm:items-center lg:px-8">
+            <div className="flex gap-4">
+              <Palette className="h-10 w-10 shrink-0 text-[#002868] dark:text-[#7eb3ff]" aria-hidden />
+              <div>
+                <h2 className="text-xl font-black uppercase tracking-tighter text-foreground sm:text-2xl">Art &amp; artists</h2>
+                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                  Art direction, key art, and rolling collaborator credits — see who shapes the look on the concept page.
+                </p>
+              </div>
+            </div>
+            <Link
+              href={`${CONCEPT_HREF}#artists`}
+              className="inline-flex shrink-0 items-center gap-2 self-start rounded-lg border border-[#002868]/45 bg-[#002868]/10 px-5 py-3 text-[11px] font-black uppercase tracking-[0.15em] text-foreground transition hover:border-[#002868] hover:bg-[#002868]/18 dark:border-[#7eb3ff]/35 dark:bg-[#10223a]/50 dark:hover:bg-[#10223a]/80 sm:self-center"
+            >
+              View art &amp; credits
+              <ArrowRight className="h-4 w-4 text-[#BF0A30]" aria-hidden />
+            </Link>
+          </div>
+        </section>
+
         {/* Partners — animated strip (placeholders until logos land) */}
         <section
           aria-label="Partners"
           className="border-t border-border bg-muted/40 py-14 dark:bg-muted/20 lg:py-16"
         >
-          <div className="container mx-auto mb-8 max-w-6xl px-6 lg:px-8">
+          <div className="mx-auto mb-8 w-full max-w-[min(100vw-2rem,1600px)] px-6 lg:px-8">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground sm:text-xs">
@@ -305,35 +343,134 @@ export default function MonroviaHustlePage() {
           </div>
         </section>
 
-        {/* About the game — hub narrative */}
+        {/* About the game — hub narrative (studio stills sit beside the headline, not a separate section) */}
         <section className="mt-12 w-full border-t border-border bg-[#fafafa] py-20 text-foreground transition-colors duration-300 dark:bg-background lg:py-32">
-          <div className="container mx-auto max-w-4xl px-6 font-sans lg:px-8">
-            <div className="mb-12 flex h-8 items-center justify-between text-xs font-bold uppercase tracking-widest text-muted-foreground/70">
-              <div>HUIX-2099 · MONROVIA HUSTLE 3D</div>
-              <div className="relative flex h-8 w-8 items-center justify-center rounded">
-                {mounted && (
-                  <Image
-                    src={
-                      resolvedTheme === "dark"
-                        ? "/products/Monrovia_hustle_Demo_Campane/darkicon.png"
-                        : "/products/Monrovia_hustle_Demo_Campane/lighticon.png"
-                    }
-                    alt=""
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                )}
-              </div>
-            </div>
+          <div className="mx-auto w-full max-w-[min(100vw-2rem,2200px)] px-5 font-sans sm:px-8 md:px-12 lg:px-14">
+            <div className="mb-6 grid gap-8 lg:mb-10 lg:grid-cols-12 lg:items-start lg:gap-x-10 lg:gap-y-0 xl:gap-x-12">
+              <div
+                className={`self-start ${
+                  WORKSPACE_IMAGES.length > 0 && WORKSPACE_FEATURE
+                    ? "lg:col-span-6 xl:col-span-5"
+                    : "lg:col-span-12"
+                }`}
+              >
+                <div className="mb-8 flex h-8 items-center justify-between text-xs font-bold uppercase tracking-widest text-muted-foreground/70 lg:mb-10">
+                  <div>HUIX-2099 · MONROVIA HUSTLE 3D</div>
+                  <div className="relative flex h-8 w-8 items-center justify-center rounded">
+                    {mounted && (
+                      <Image
+                        src={
+                          resolvedTheme === "dark"
+                            ? "/products/Monrovia_hustle_Demo_Campane/darkicon.png"
+                            : "/products/Monrovia_hustle_Demo_Campane/lighticon.png"
+                        }
+                        alt=""
+                        fill
+                        className="object-contain"
+                        priority
+                      />
+                    )}
+                  </div>
+                </div>
 
-            <h3 className="mb-4 text-5xl font-black tracking-tighter text-foreground sm:text-6xl md:text-7xl" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
-              Monrovia Hustle 3D
-            </h3>
-            <p className="mb-4 font-serif text-xl italic text-muted-foreground sm:text-2xl">&ldquo;Warning this is a concept.&rdquo;</p>
-            <p className="mb-12 text-[15px] font-medium leading-[1.75] text-foreground/90 sm:text-base">
-              A Monrovia-set story game about street hustle, family pressure, and choosing your lane — part open-street slice, part mission-driven drama.
-            </p>
+                <h3 className="mb-4 text-5xl font-black tracking-tighter text-foreground sm:text-6xl md:text-7xl" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
+                  Monrovia Hustle 3D
+                </h3>
+                <p className="mb-4 font-serif text-xl italic text-muted-foreground sm:text-2xl">&ldquo;Warning this is a concept.&rdquo;</p>
+                <p className="text-[15px] font-medium leading-[1.75] text-foreground/90 sm:text-base">
+                  A Monrovia-set story game about street hustle, family pressure, and choosing your lane — part open-street slice, part mission-driven drama.
+                </p>
+              </div>
+
+              {WORKSPACE_IMAGES.length > 0 && WORKSPACE_FEATURE ? (
+                <>
+                  <div className="flex min-w-0 flex-col gap-3 self-start lg:col-span-6 xl:col-span-7">
+                    <div>
+                      <p id="mh-workspace-heading" className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground sm:text-[11px]">
+                        Workspace · production stills
+                      </p>
+                      <p className="mt-1 max-w-xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
+                        From the HUIX-2099 desk — layout passes, environment reads, and in-engine snapshots as this RPG takes shape. Click a photo to view
+                        full size.
+                      </p>
+                    </div>
+                    <ClickToViewImage
+                      src={workspaceImageSrc(WORKSPACE_FEATURE)}
+                      alt={`Monrovia Hustle 3D workspace still 1 of ${WORKSPACE_IMAGES.length}`}
+                      triggerClassName="group relative aspect-video w-full overflow-hidden rounded-2xl border border-border/80 bg-muted shadow-lg ring-1 ring-black/[0.05] transition hover:border-[#002868]/40 dark:border-border dark:ring-white/[0.06] dark:hover:border-[#7eb3ff]/35"
+                      viewHintPlacement="bottom"
+                    >
+                      <Image
+                        src={workspaceImageSrc(WORKSPACE_FEATURE)}
+                        alt=""
+                        fill
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                        sizes="(max-width:1024px) 100vw, 52vw"
+                        priority={false}
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent dark:from-background/95" />
+                      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-2 bg-gradient-to-t from-black/80 to-transparent px-4 pb-4 pt-14 text-white">
+                        <div>
+                          <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/85">Monrovia Hustle 3D</p>
+                          <p className="text-sm font-semibold tracking-tight">Studio desk · ref 01</p>
+                        </div>
+                        <span className="rounded-md border border-white/25 bg-black/35 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white/95 backdrop-blur-sm">
+                          HUIX-2099
+                        </span>
+                      </div>
+                    </ClickToViewImage>
+                  </div>
+
+                  {WORKSPACE_MORE.length > 0 && (
+                    <div className="col-span-full mt-4 grid grid-cols-3 gap-2 sm:mt-5 sm:gap-3 lg:mt-4 lg:max-w-none lg:gap-4">
+                      {WORKSPACE_MORE.map((filename, index) => {
+                        const refIndex = index + 2
+                        const alt = `Monrovia Hustle 3D workspace still ${refIndex} of ${WORKSPACE_IMAGES.length}`
+                        return (
+                          <motion.div
+                            key={filename}
+                            initial={{ opacity: 0, y: 12 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-20px" }}
+                            transition={{ duration: 0.4, delay: index * 0.05 }}
+                            className="min-w-0"
+                          >
+                            <ClickToViewImage
+                              src={workspaceImageSrc(filename)}
+                              alt={alt}
+                              showViewHint={false}
+                              triggerClassName="group relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-border/70 bg-muted/30 shadow-sm ring-1 ring-black/[0.04] transition duration-300 hover:border-[#002868]/35 hover:shadow-md dark:border-border dark:hover:border-[#7eb3ff]/30"
+                            >
+                              <div
+                                className="pointer-events-none absolute inset-x-0 top-0 z-10 h-0.5 bg-gradient-to-r from-[#002868] via-[#BF0A30] to-[#002868] opacity-90"
+                                aria-hidden
+                              />
+                              <Image
+                                src={workspaceImageSrc(filename)}
+                                alt=""
+                                fill
+                                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+                                sizes="(max-width:640px) 33vw, 20vw"
+                              />
+                              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent" />
+                              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-center justify-between gap-1 px-1.5 pb-1.5 pt-8 sm:px-2 sm:pb-2">
+                                <span className="font-mono text-[8px] font-bold uppercase tracking-wider text-white drop-shadow-md sm:text-[9px]">
+                                  Ref · {String(refIndex).padStart(2, "0")}
+                                </span>
+                                <span className="flex items-center gap-0.5 rounded bg-white/10 px-1 py-0.5 font-mono text-[7px] font-bold uppercase text-white/95 backdrop-blur-sm sm:gap-1 sm:px-1.5 sm:text-[8px]">
+                                  <Expand className="size-2.5 shrink-0 opacity-90 sm:size-3" aria-hidden />
+                                  Open
+                                </span>
+                              </div>
+                            </ClickToViewImage>
+                          </motion.div>
+                        )
+                      })}
+                    </div>
+                  )}
+                </>
+              ) : null}
+            </div>
 
             <div className="space-y-8 text-[15px] font-medium leading-[1.8] text-foreground/85 sm:text-base">
               <div>
@@ -496,60 +633,9 @@ export default function MonroviaHustlePage() {
             </div>
           </div>
         </section>
-
-        {/* Workspace — production stills */}
-        <section
-          aria-labelledby="mh-workspace-heading"
-          className="border-t border-border bg-[#ececec] py-20 text-foreground dark:bg-[#141414] lg:py-28"
-        >
-          <div className="container mx-auto max-w-6xl px-6 lg:px-8">
-            <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-              <div className="max-w-xl">
-                <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground sm:text-xs">
-                  HUIX-2099 · Monrovia Hustle 3D
-                </p>
-                <h2 id="mh-workspace-heading" className="text-4xl font-black uppercase tracking-tighter sm:text-5xl">
-                  Workspace
-                </h2>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                  Production references from the studio desk — environment reads, layout passes, and in-engine snapshots as the Liberian street
-                  RPG takes shape.
-                </p>
-              </div>
-              <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-[#002868]/40 bg-[#002868]/10 dark:bg-[#002868]/20">
-                <LayoutGrid className="h-7 w-7 text-[#002868] dark:text-[#7eb3ff]" aria-hidden />
-              </div>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              {WORKSPACE_IMAGES.map((filename, index) => (
-                <motion.div
-                  key={filename}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.45, delay: index * 0.06 }}
-                  className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-muted shadow-lg"
-                >
-                  <Image
-                    src={workspaceImageSrc(filename)}
-                    alt={`Monrovia Hustle 3D workspace still ${index + 1} of ${WORKSPACE_IMAGES.length}`}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 720px"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-60 dark:from-background/90" />
-                  <span className="absolute bottom-3 left-3 font-mono text-[10px] font-bold uppercase tracking-widest text-white drop-shadow-md">
-                    Ref · {String(index + 1).padStart(2, "0")}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-        
       </main>
       <Footer />
     </div>
+    </MonroviaPassGate>
   )
 }

@@ -4,6 +4,12 @@ import { useState, useEffect, useCallback } from "react"
 
 export type XRDeviceType = "meta-quest" | "pico" | "vive" | "valve-index" | "windows-mr" | "phone-vr" | "unknown-vr" | null
 
+/** Minimal typing so `tsc` works without WebXR definitions in every environment. */
+export type XRSessionHandle = {
+  end: () => Promise<void>
+  addEventListener(...args: unknown[]): void
+}
+
 export interface WebXRState {
   isVRSupported: boolean
   isARSupported: boolean
@@ -12,7 +18,7 @@ export interface WebXRState {
   isActualVRHeadset: boolean // True only for real VR headsets, not laptops/phones/TVs
   deviceType: XRDeviceType
   deviceName: string
-  session: XRSession | null
+  session: XRSessionHandle | null
   enterVR: () => Promise<void>
   exitVR: () => Promise<void>
   enterAR: () => Promise<void>
@@ -111,7 +117,7 @@ export function useWebXR(): WebXRState {
   const [isInVR, setIsInVR] = useState(false)
   const [isInAR, setIsInAR] = useState(false)
   const [isActualVRHeadset, setIsActualVRHeadset] = useState(false)
-  const [session, setSession] = useState<XRSession | null>(null)
+  const [session, setSession] = useState<XRSessionHandle | null>(null)
   const [deviceType, setDeviceType] = useState<XRDeviceType>(null)
   const [deviceName, setDeviceName] = useState("")
 
@@ -178,7 +184,7 @@ export function useWebXR(): WebXRState {
         setSession(null)
       })
 
-      setSession(xrSession)
+      setSession(xrSession as XRSessionHandle)
       setIsInVR(true)
     } catch (error) {
       console.error("Failed to enter VR:", error)
@@ -207,7 +213,7 @@ export function useWebXR(): WebXRState {
         setSession(null)
       })
 
-      setSession(xrSession)
+      setSession(xrSession as XRSessionHandle)
       setIsInAR(true)
     } catch (error) {
       console.error("Failed to enter AR:", error)

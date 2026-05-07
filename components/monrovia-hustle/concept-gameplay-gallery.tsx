@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { Play } from "lucide-react"
+import { ClickToViewImage } from "@/components/click-to-view-image"
 
 export type ConceptGalleryItem =
   | { kind: "video"; posterSrc: string; alt: string }
@@ -58,14 +59,21 @@ export function ConceptGameplayGallery({ items, trailerHref, variant = "default"
             </span>
           </a>
         ) : (
-          <Image
+          <ClickToViewImage
             src={current.src}
             alt={current.alt}
-            fill
-            className="object-cover"
-            sizes={hero ? "(max-width:1024px) 100vw, min(1200px, 78vw)" : "(max-width:1024px) 100vw, 72vw"}
-            priority={active === 0}
-          />
+            triggerClassName="absolute inset-0 block size-full"
+            showViewHint
+          >
+            <Image
+              src={current.src}
+              alt=""
+              fill
+              className="object-cover"
+              sizes={hero ? "(max-width:1024px) 100vw, min(1200px, 78vw)" : "(max-width:1024px) 100vw, 72vw"}
+              priority={active === 0}
+            />
+          </ClickToViewImage>
         )}
 
         {/* Steam-ish bottom media bar */}
