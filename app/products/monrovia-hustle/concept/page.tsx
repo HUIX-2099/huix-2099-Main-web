@@ -352,8 +352,8 @@ export default function MonroviaHustleConceptPage() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <main className="pb-28 pt-[5.75rem] sm:pt-28 lg:pb-36">
-        <div className="mx-auto w-full max-w-[min(100vw-2rem,2200px)] px-5 sm:px-8 md:px-12 lg:px-14 xl:px-16 2xl:px-20">
+      <main className="w-full min-w-0 pb-28 pt-[5.75rem] sm:pt-28 lg:pb-36">
+        <div className="mx-auto w-full min-w-0 max-w-[2200px] px-5 sm:px-8 md:px-12 lg:px-14 xl:px-16 2xl:px-20">
           <Link
             href={MH_HUB}
             className="mb-8 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground hover:text-[#002868] lg:mb-12 dark:hover:text-[#89b8ff]"
@@ -370,12 +370,11 @@ export default function MonroviaHustleConceptPage() {
           </div>
 
           {/*
-            xl+: two tracks only — [flexible main | 440px sidebar]. Avoids a 3-column 2xl template where a
-            missed span leaves an empty middle column (black gap) between main and the store column.
+            xl+: two tracks — [flexible main | ~420px sidebar]. Main + gallery use w-full min-w-0 so flex parents never collapse width on desktop.
           */}
-          <div className="grid grid-cols-1 gap-12 xl:grid-cols-[minmax(0,1fr)_440px] xl:items-start xl:gap-14 2xl:gap-16">
+          <div className="grid w-full min-w-0 grid-cols-1 gap-12 xl:grid-cols-[minmax(0,1fr)_minmax(280px,420px)] xl:items-start xl:gap-10 2xl:gap-14">
             {/* Main column — video first like Steam */}
-            <div className="min-w-0">
+            <div className="min-w-0 w-full max-w-full">
               {/* Store title row */}
               <div className="mb-8 flex flex-wrap items-end justify-between gap-x-10 gap-y-6 border-b border-border/60 pb-8 lg:mb-12 lg:pb-10 xl:gap-x-16">
                 <div className="max-w-none lg:max-w-[52rem] xl:max-w-none">
@@ -430,11 +429,11 @@ export default function MonroviaHustleConceptPage() {
               </div>
 
               {/* Steam-style hero media (trailer first) */}
-              <div className="mb-14 rounded-xl border border-border/70 bg-card/40 p-2 shadow-sm backdrop-blur dark:border-border/60 dark:bg-muted/10 lg:mb-16 lg:p-3">
+              <div className="mb-14 w-full min-w-0 max-w-full rounded-xl border border-border/70 bg-card/40 p-2 shadow-sm backdrop-blur dark:border-border/60 dark:bg-muted/10 lg:mb-16 lg:p-3">
                 <ConceptGameplayGallery items={galleryItems} trailerHref={MH_YOUTUBE_URL} variant="hero" />
               </div>
 
-              <div className="grid gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-14">
+              <div className="grid w-full min-w-0 grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-14">
               <section>
               <SectionTitle>About this concept</SectionTitle>
               <div className="space-y-8 text-[16px] leading-[1.85] text-muted-foreground sm:text-[17px] sm:leading-[1.85] lg:max-w-none">
@@ -549,8 +548,8 @@ export default function MonroviaHustleConceptPage() {
               <section id="about-developer" className="lg:col-span-2 scroll-mt-28">
               <SectionTitle>About the developer</SectionTitle>
               <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-                <div className="grid grid-cols-1 gap-8 p-6 sm:p-8 lg:grid-cols-3 lg:gap-0 lg:items-stretch lg:p-0">
-                  <div className="relative min-h-[min(72vw,22rem)] w-full overflow-hidden bg-muted/30 lg:min-h-[26rem] lg:border-r lg:border-border">
+                <div className="grid w-full min-w-0 grid-cols-1 gap-8 p-6 sm:p-8 lg:grid-cols-3 lg:gap-0 lg:items-stretch lg:p-0">
+                  <div className="relative min-h-[20rem] w-full min-w-0 overflow-hidden bg-muted/30 sm:min-h-[22rem] md:min-h-[24rem] lg:min-h-[26rem] lg:border-r lg:border-border">
                     <ClickToViewImage
                       src={VICTOR_IMAGE}
                       alt="Portrait of Victor Edet Coleman"
@@ -634,12 +633,12 @@ export default function MonroviaHustleConceptPage() {
               <p className="mb-8 max-w-none text-[15px] leading-[1.85] text-muted-foreground lg:mb-10 lg:text-[16px]">
                 Voice talent bringing Monrovia Hustle 3D characters to life. Casting remains open — contact via Facebook, socials &amp; Gmail on each profile card.
               </p>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-7 md:gap-8">
+              <div className="grid w-full min-w-0 grid-cols-1 justify-items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-7 md:gap-8">
                 {CAST.map((c, idx) => (
                   <Link
                     key={c.name}
                     href={c.href}
-                    className="group relative flex min-h-0 flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#BF0A30]/40 hover:shadow-lg hover:shadow-[#BF0A30]/[0.08] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] dark:hover:border-[#BF0A30]/35 dark:hover:shadow-[#000]/40"
+                    className="group relative flex min-h-0 w-full max-w-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#BF0A30]/40 hover:shadow-lg hover:shadow-[#BF0A30]/[0.08] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] dark:hover:border-[#BF0A30]/35 dark:hover:shadow-[#000]/40"
                   >
                     <div
                       className="absolute inset-x-0 top-0 z-10 h-[3px] bg-gradient-to-r from-[#BF0A30] via-[#002868] to-[#BF0A30] opacity-90 transition-opacity duration-300 group-hover:opacity-100"
@@ -707,13 +706,13 @@ export default function MonroviaHustleConceptPage() {
                 </a>
                 ), but the people steering art direction, key art, and future collaborator credits.
               </p>
-              <div className="grid grid-cols-1 gap-6 lg:gap-8">
+              <div className="grid w-full min-w-0 grid-cols-1 gap-6 lg:gap-8">
                 {ARTISTS.map((a) => (
                   <article
                     key={a.name}
-                    className="group flex min-h-0 flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] sm:flex-row"
+                    className="group flex min-h-0 w-full min-w-0 flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] sm:flex-row"
                   >
-                    <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-muted/50 sm:w-2/5 lg:w-1/3">
+                    <div className="relative aspect-[16/10] w-full min-w-0 shrink-0 overflow-hidden bg-muted/50 sm:w-2/5 lg:w-1/3">
                       <ClickToViewImage
                         src={a.imageSrc}
                         alt={a.imageAlt}
@@ -862,7 +861,7 @@ export default function MonroviaHustleConceptPage() {
               </div>
             </div>
 
-            <aside className="hidden min-w-0 space-y-8 xl:block xl:w-full xl:max-w-[440px] xl:shrink-0">
+            <aside className="hidden min-w-0 w-full max-w-full space-y-8 xl:block xl:max-w-[420px] xl:shrink-0">
               <div className="xl:sticky xl:top-28 xl:space-y-8">
                 <div className="rounded-xl border border-border/70 bg-card/50 p-6 shadow-sm backdrop-blur-sm dark:border-border/60 dark:bg-muted/15">
                   <StudioContactStrip heading="Studio &amp; community" variant="card" />

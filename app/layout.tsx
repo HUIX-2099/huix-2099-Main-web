@@ -252,8 +252,8 @@ export default function RootLayout({
           <CustomCursor />
           <VRImmersePrompt />
           <SocialSidebar />
-          <main className="flex min-h-dvh flex-col">
-            <div className="flex-1">
+          <main className="flex min-h-dvh w-full min-w-0 flex-col">
+            <div className="min-w-0 w-full flex-1">
               {children}
             </div>
             {/* Space for fixed mobile tab bar + home indicator (see --mobile-tab-bar-spacing in globals.css) */}

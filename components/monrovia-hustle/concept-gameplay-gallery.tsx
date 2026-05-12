@@ -28,9 +28,9 @@ export function ConceptGameplayGallery({ items, trailerHref, variant = "default"
   const current = items[Math.min(active, items.length - 1)]!
 
   return (
-    <div className={hero ? "space-y-3" : "space-y-2"}>
+    <div className={`w-full min-w-0 max-w-full ${hero ? "space-y-3" : "space-y-2"}`}>
       <div
-        className={`relative w-full overflow-hidden border border-black/15 bg-black shadow-[0_4px_24px_-4px_rgba(0,0,0,0.35)] dark:border-white/[0.08] dark:shadow-[0_8px_40px_-8px_rgba(0,0,0,0.6)] ${hero ? "aspect-video min-h-[220px] sm:min-h-[300px] md:min-h-[360px] lg:min-h-[420px] xl:min-h-[460px] 2xl:min-h-[500px]" : "aspect-video"}`}
+        className={`relative w-full max-w-full min-w-0 overflow-hidden border border-black/15 bg-black shadow-[0_4px_24px_-4px_rgba(0,0,0,0.35)] dark:border-white/[0.08] dark:shadow-[0_8px_40px_-8px_rgba(0,0,0,0.6)] ${hero ? "aspect-video min-h-[220px] sm:min-h-[300px] md:min-h-[360px] lg:min-h-[420px] xl:min-h-[460px] 2xl:min-h-[500px]" : "aspect-video"}`}
       >
         {current.kind === "video" ? (
           <a href={trailerHref} target="_blank" rel="noopener noreferrer" className="group relative block size-full">
@@ -90,7 +90,7 @@ export function ConceptGameplayGallery({ items, trailerHref, variant = "default"
       </div>
 
       <div
-        className={`flex gap-1.5 overflow-x-auto pb-1 pt-0.5 [scrollbar-width:thin] ${hero ? "[scrollbar-color:hsl(var(--muted-foreground))_transparent]" : ""}`}
+        className={`flex w-full min-w-0 max-w-full gap-1.5 overflow-x-auto pb-1 pt-0.5 [scrollbar-width:thin] ${hero ? "[scrollbar-color:hsl(var(--muted-foreground))_transparent]" : ""}`}
         role="tablist"
         aria-label="Videos and screenshots"
       >
