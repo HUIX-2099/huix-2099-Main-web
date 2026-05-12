@@ -23,6 +23,8 @@ import {
   Route,
   Scale,
   Palette,
+  Search,
+  ExternalLink,
 } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -37,8 +39,13 @@ const STUDIO_EMAIL = "huixtech2099@gmail.com"
 const FACEBOOK_PAGE_HREF = "https://www.facebook.com/profile.php?id=61572485499528"
 const FACEBOOK_INFO =
   "HUIX-2099 on Facebook — dev snapshots, reels, build teasers, and community comments."
-const VICTOR_IMAGE = "/Team/VICTOR.jpeg"
+const VICTOR_IMAGE = `/products/Monrovia_hustle_Demo_Campane/developer/${encodeURIComponent("Victor Edet Coleman.png")}`
+const VICTOR_GOOGLE_HREF =
+  "https://www.google.com/search?q=Victor+Edet+Coleman&sourceid=chrome&ie=UTF-8"
+const VICTOR_FACEBOOK_REEL_HREF = "https://www.facebook.com/reel/988259967072643"
 const CAPSULE_ART = "/products/Monrovia_hustle_Demo_Campane/herosection.png"
+/** Monrovia Hustle mark on cast / partner cards (matches hub gate branding). */
+const MH_GAME_LOGO = "/products/Monrovia_hustle_Demo_Campane/lighticon.png"
 const MONO = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' as const
 
 const WORKSPACE_DIR = "/products/Monrovia_hustle_Demo_Campane/images"
@@ -50,8 +57,28 @@ const WORKSPACE_FILES = [
   "WhatsApp Image 2026-05-04 at 11.57.52 PM (2).jpeg",
 ] as const
 
+const CAST_CONCEPT_DIR = "/products/Monrovia_hustle_Demo_Campane/cast_concept"
+
 function ws(name: string) {
   return `${WORKSPACE_DIR}/${encodeURIComponent(name)}`
+}
+
+function cc(name: string) {
+  return `${CAST_CONCEPT_DIR}/${encodeURIComponent(name)}`
+}
+
+function MonroviaGameLogoMark({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        "pointer-events-none absolute right-2.5 top-2.5 z-20 flex size-10 items-center justify-center rounded-lg border border-black/10 bg-white/95 p-1 shadow-md ring-1 ring-black/[0.04] backdrop-blur-sm sm:right-3 sm:top-3 sm:size-11",
+        className,
+      )}
+      aria-hidden
+    >
+      <Image src={MH_GAME_LOGO} alt="" width={36} height={36} className="size-7 object-contain sm:size-8" />
+    </div>
+  )
 }
 
 const galleryItems: ConceptGalleryItem[] = [
@@ -223,67 +250,78 @@ const TAGS = ["Single-player", "Slice-of-life", "Narrative", "Open world", "Libe
 const CAST = [
   {
     name: "Jboy",
-    role: "Playable protagonist · Jayboy",
+    role: "Playable protagonist",
     epithet: "Sidewalk calculus",
-    imageSrc: "/products/Monrovia_hustle_Demo_Campane/1nmdB.jpg",
-    imageAlt: "Monrovia Hustle 3D — Jboy, street-level in-engine reference",
-    body: [
-      "Twenty-four on a thin wage. Carey and Benson know his stride — hustle as survival math, receipts as morality.",
-      "Caught between grounded sense at home and the corner’s louder offers; every mission is another line in the ledger of who he’s becoming.",
-    ],
+    imageSrc: cc("Dominc Rockson.jpeg"),
+    imageAlt: "Dominic Rockson — Voice talent for Jboy",
+    href: "/team/jboy",
   },
   {
-    name: "Angel",
-    role: "Ex · emotional anchor arc",
+    name: "Arthur B. Kollie",
+    role: "Cast Concept · HUIX Archive",
+    epithet: "Concept Tier 01",
+    imageSrc: cc("Arthur B. Kollie.jpeg"),
+    imageAlt: "Arthur B. Kollie — Monrovia Hustle 3D cast concept reference",
+    href: "/team/arthur-kollie",
+  },
+  {
+    name: "David Neor Jr.",
+    role: "Voice Actor · DC",
+    epithet: "DC Young · mission spine",
+    imageSrc: cc("David Neor Jr.png"),
+    imageAlt: "David Neor Jr. — Voice talent for DC (DC Young)",
+    href: "/team/david",
+  },
+  {
+    name: "Jerry D Kollie",
+    role: "Voice Actor · Cast Concept",
+    epithet: "Voice talent",
+    imageSrc: cc("Jerry D Kollie.png"),
+    imageAlt: "Jerry D Kollie — Monrovia Hustle 3D voice cast concept",
+    href: "/team/jerry-kollie",
+  },
+  {
+    name: "Alfred M. Nyeswa",
+    role: "Voice Actor · Jayboy's Father",
+    epithet: "The voice of wisdom and pressure",
+    imageSrc: cc("Alfred M. Nyeswa.png"),
+    imageAlt: "Alfred M. Nyeswa — Voice talent for Jayboy's father",
+    href: "/team/alfred-nyeswa",
+  },
+  {
+    name: "Kanneh Mohammed K.",
+    role: "Voice Actor · Instruction Narrator",
+    epithet: "Guiding the hustle loop",
+    imageSrc: cc("Kanneh Mohammed k..png"),
+    imageAlt: "Kanneh Mohammed K. — Voice talent for the instruction narrator",
+    href: "/team/kanneh-mohammed",
+  },
+  {
+    name: "Felix J. K. Sowoma",
+    role: "Voice Actor · Jayboy's uncle",
+    epithet: "Family weight · street wisdom",
+    imageSrc: cc("felix J. K. Sowoma.png"),
+    imageAlt: "Felix J. K. Sowoma — Voice talent for Jayboy's uncle",
+    href: "/team/felix-sowoma",
+  },
+  {
+    name: "Johnette Talkpa",
+    role: "Voice Actor · Angel",
     epithet: "Love priced in LD",
-    imageSrc: CAPSULE_ART,
-    imageAlt: "Monrovia Hustle 3D — key art (Angel storyline in comic beats)",
-    body: [
-      "Walks truth about stability and ambition; the fallout that strands Jboy on pavement is chapter one gravity, not melodrama wallpaper.",
-      "Her dialogue trees push tone — tenderness, exhaustion, receipts — forcing the comic panels to breathe like real conversations.",
-    ],
-  },
-  {
-    name: "Thomas",
-    role: "Street operator · connect",
-    epithet: "Fast talk, slower trust",
-    imageSrc: ws(WORKSPACE_FILES[0]),
-    imageAlt: "Studio reference — street / connect energy for Thomas’s arc",
-    body: [
-      "Knows every shortcut between Broad and Benson; runs errands into favours — the kind that teach you downtown doesn’t forgive noise.",
-      "Expect branching missions that treat him like a hinge: help him, fleece him, or ghost him — the city adjusts its voice lines accordingly.",
-    ],
-  },
-  {
-    name: "Jonnet",
-    role: "Network · pressure / payoff",
-    epithet: "Corner memory",
-    imageSrc: ws(WORKSPACE_FILES[1]),
-    imageAlt: "Studio reference — network / alley intel for Jonnet’s beat",
-    body: [
-      "Holds rumours like currency — who owes, who flips phones, whose cousin heard Uncle Flomo’s desk creak.",
-      "Use her intel to stack LD or gamble reputation; epic beats land when alley gossip upgrades into storyline collision.",
-    ],
+    imageSrc: cc("Johnette Talkpa.png"),
+    imageAlt: "Johnette Talkpa — Voice talent for Angel",
+    href: "/team/johnette-talkpa",
   },
 ] as const
 
 const ARTISTS = [
   {
-    name: "Victor Edet Coleman",
-    discipline: "Art direction · 3D staging · visual tone",
-    imageSrc: VICTOR_IMAGE,
-    imageAlt: "Victor Edet Coleman — Monrovia Hustle 3D art direction",
+    name: "Bucky Raw",
+    discipline: "Music partnership · Marketing collaboration",
+    imageSrc: "/products/Monrovia_hustle_Demo_Campane/music_artist/bucky raw.jpeg",
+    imageAlt: "Bucky Raw — Monrovia Hustle 3D music and marketing partner",
     body:
-      "Shapes the slice’s look-and-feel: environment reads, character staging, UI mood, and how comic panels meet in-engine shots and capsule key art with the studio.",
-    href: "/team/victor",
-  },
-  {
-    name: "Collaborators & credits",
-    discipline: "Comic ink · promotional art · audio (rolling)",
-    imageSrc: CAPSULE_ART,
-    imageAlt: "Monrovia Hustle 3D capsule and key art",
-    body:
-      "As collaborators sign on, comic, marketing, and sound credits will list here by name. The concept build is solo-led today with room to grow the art team for the full campaign.",
+      "Liberian music artist partnering with HUIX-2099 on Monrovia Hustle 3D. Bucky Raw and his team bring authentic Liberian soundscapes and marketing expertise to amplify the game's cultural reach and street authenticity.",
     href: null,
   },
 ] as const
@@ -502,63 +540,145 @@ export default function MonroviaHustleConceptPage() {
               </p>
               </section>
 
-              <section id="cast" className="lg:col-span-2 scroll-mt-28">
-              <SectionTitle>Cast · image &amp; dossier</SectionTitle>
+              <section id="about-developer" className="lg:col-span-2 scroll-mt-28">
+              <SectionTitle>About the developer</SectionTitle>
+              <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+                <div className="grid grid-cols-1 gap-8 p-6 sm:p-8 lg:grid-cols-3 lg:gap-0 lg:items-stretch lg:p-0">
+                  <div className="relative min-h-[min(72vw,22rem)] w-full overflow-hidden bg-muted/30 lg:min-h-[26rem] lg:border-r lg:border-border">
+                    <ClickToViewImage
+                      src={VICTOR_IMAGE}
+                      alt="Portrait of Victor Edet Coleman"
+                      triggerClassName="absolute inset-0 block size-full"
+                      viewHintPlacement="bottom"
+                    >
+                      <Image
+                        src={VICTOR_IMAGE}
+                        alt=""
+                        fill
+                        className="object-cover object-center"
+                        sizes="(max-width:1024px) 100vw, 33vw"
+                        priority={false}
+                      />
+                    </ClickToViewImage>
+                  </div>
+                  <div className="flex min-w-0 flex-col justify-center gap-4 lg:border-r lg:border-border lg:px-8 lg:py-10 xl:px-10 xl:py-12">
+                    <StoreLink href="/team/victor" className="text-xl font-bold uppercase tracking-tight lg:text-2xl">
+                      Victor Edet Coleman
+                    </StoreLink>
+                    <p className="text-[15px] text-muted-foreground lg:text-base">
+                      Founder &amp; CTO — HUIX-2099 · Monrovia, Liberia
+                    </p>
+                    <p className="text-[15px] leading-[1.85] text-muted-foreground lg:text-[16px] lg:leading-[1.85]">
+                      Solo lead on <strong className="text-foreground/90">Monrovia Hustle 3D</strong> — 3D game assets, storytelling, graphics and this site,
+                      narrative systems, technical direction, and the rest of the pipeline that gets the concept in players&apos; hands. Thank you to early testers
+                      and friends who file bugs and keep receipts honest; you&apos;ll roll into credits as the campaign formalizes. More on the{" "}
+                      <StoreLink href="/team">team index</StoreLink>.
+                    </p>
+                  </div>
+                  <div className="flex min-w-0 flex-col justify-center gap-4 lg:px-8 lg:py-10 xl:px-10 xl:py-12">
+                    <p
+                      className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground"
+                      style={{ fontFamily: MONO }}
+                    >
+                      Find Victor online
+                    </p>
+                    <a
+                      href={VICTOR_GOOGLE_HREF}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex min-w-0 items-center gap-3 rounded-lg border border-border bg-muted/25 px-4 py-3 transition hover:border-[#4285F4]/45 hover:bg-muted/45 dark:hover:border-[#4285F4]/35"
+                    >
+                      <span
+                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border/80 bg-background text-[#4285F4] shadow-sm"
+                        aria-hidden
+                      >
+                        <Search className="h-5 w-5" strokeWidth={2.25} />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Google</span>
+                        <span className="mt-0.5 block text-sm font-semibold leading-snug text-foreground">Victor Edet Coleman</span>
+                      </span>
+                      <ExternalLink className="h-4 w-4 shrink-0 text-muted-foreground opacity-70" aria-hidden />
+                    </a>
+                    <a
+                      href={VICTOR_FACEBOOK_REEL_HREF}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex min-w-0 items-center gap-3 rounded-lg border border-border bg-muted/25 px-4 py-3 transition hover:border-[#1877F2]/45 hover:bg-muted/45 dark:hover:border-[#1877F2]/35"
+                    >
+                      <span
+                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border/80 bg-background text-[#1877F2] shadow-sm"
+                        aria-hidden
+                      >
+                        <Facebook className="h-5 w-5" />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Facebook</span>
+                        <span className="mt-0.5 block text-sm font-semibold leading-snug text-foreground">Studio reel</span>
+                      </span>
+                      <ExternalLink className="h-4 w-4 shrink-0 text-muted-foreground opacity-70" aria-hidden />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              </section>
+
+              <section id="voice-actors" className="lg:col-span-2 scroll-mt-28">
+              <SectionTitle>Voice Actors Cast</SectionTitle>
               <p className="mb-8 max-w-none text-[15px] leading-[1.85] text-muted-foreground lg:mb-10 lg:text-[16px]">
-                Lore bible — voice talent TBA. Photos are <strong className="text-foreground/90">in-engine / studio refs</strong>, not final marketing art.
-                Casting: Facebook, socials &amp; Gmail — <strong className="text-foreground/90">on each card</strong> under the dossier. Click a portrait to enlarge.
+                Voice talent bringing Monrovia Hustle 3D characters to life. Casting remains open — contact via Facebook, socials &amp; Gmail on each profile card.
               </p>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 md:gap-8 xl:grid-cols-4">
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-7 md:gap-8">
                 {CAST.map((c, idx) => (
-                  <article
+                  <Link
                     key={c.name}
-                    className="group relative flex min-h-0 flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#002868]/40 hover:shadow-lg hover:shadow-[#002868]/[0.08] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] dark:hover:border-[#89b8ff]/35 dark:hover:shadow-[#000]/40"
+                    href={c.href}
+                    className="group relative flex min-h-0 flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#BF0A30]/40 hover:shadow-lg hover:shadow-[#BF0A30]/[0.08] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] dark:hover:border-[#BF0A30]/35 dark:hover:shadow-[#000]/40"
                   >
                     <div
-                      className="absolute inset-x-0 top-0 z-10 h-[3px] bg-gradient-to-r from-[#002868] via-[#BF0A30] to-[#002868] opacity-90 transition-opacity duration-300 group-hover:opacity-100 dark:from-[#4a7ab8] dark:via-[#BF0A30] dark:to-[#4a7ab8]"
+                      className="absolute inset-x-0 top-0 z-10 h-[3px] bg-gradient-to-r from-[#BF0A30] via-[#002868] to-[#BF0A30] opacity-90 transition-opacity duration-300 group-hover:opacity-100"
                       aria-hidden
                     />
                     <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-muted/50">
-                      <ClickToViewImage
+                      <Image
                         src={c.imageSrc}
-                        alt={`${c.name} — ${c.imageAlt}`}
-                        triggerClassName="absolute inset-0 block size-full"
-                        showViewHint
-                        viewHintPlacement="bottom"
-                      >
+                        alt={c.imageAlt}
+                        fill
+                        className={cn(
+                          "object-cover object-top transition-all duration-500 ease-out group-hover:scale-[1.03]",
+                          "hoverImageSrc" in c && "group-hover:opacity-0"
+                        )}
+                        sizes="(max-width:640px) 100vw, (max-width:1280px) 50vw, 25vw"
+                      />
+                      {"hoverImageSrc" in c && (
                         <Image
-                          src={c.imageSrc}
-                          alt=""
+                          src={c.hoverImageSrc as string}
+                          alt={`${c.name} — hover view`}
                           fill
-                          className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                          className="absolute inset-0 object-cover object-top transition-all duration-500 ease-out opacity-0 group-hover:opacity-100 group-hover:scale-[1.03]"
                           sizes="(max-width:640px) 100vw, (max-width:1280px) 50vw, 25vw"
                         />
-                      </ClickToViewImage>
+                      )}
                       <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent pt-16" />
                       <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground drop-shadow-sm">
-                        {c.name} · {String(idx + 1).padStart(2, "0")}
+                        {c.name} · VOICE
                       </span>
+                      <MonroviaGameLogoMark />
                     </div>
                     <div className="relative flex flex-1 flex-col p-5 sm:p-6">
                       <div className="mb-3 flex items-start justify-between gap-2">
                         <h3 className="text-lg font-black uppercase tracking-tight text-foreground sm:text-xl">{c.name}</h3>
                       </div>
-                      <p className="text-[10px] font-bold uppercase leading-snug tracking-[0.12em] text-[#002868] dark:text-[#89b8ff]" style={{ fontFamily: MONO }}>
+                      <p className="text-[10px] font-bold uppercase leading-snug tracking-[0.12em] text-[#BF0A30] dark:text-[#ff6b6b]" style={{ fontFamily: MONO }}>
                         {c.role}
                       </p>
                       <p className="mt-3 text-sm font-semibold italic leading-snug text-foreground/95 sm:text-base">&ldquo;{c.epithet}&rdquo;</p>
-                      <div className="mt-4 flex-1 space-y-3 border-t border-border/50 pt-4 text-[13px] leading-[1.72] text-muted-foreground sm:text-[14px] sm:leading-[1.78]">
-                        {c.body.map((para, i) => (
-                          <p key={i}>{para}</p>
-                        ))}
+                      <div className="mt-auto pt-4 flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-[#BF0A30] dark:text-[#ff6b6b] opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span>View Profile</span>
+                        <ArrowRight className="h-3 w-3" />
                       </div>
-                      <StudioContactStrip
-                        variant="card"
-                        heading="Casting · studio reach"
-                        className="mt-4 border-t border-border/50 pt-4"
-                      />
                     </div>
-                  </article>
+                  </Link>
                 ))}
               </div>
               </section>
@@ -581,13 +701,13 @@ export default function MonroviaHustleConceptPage() {
                 </a>
                 ), but the people steering art direction, key art, and future collaborator credits.
               </p>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:gap-10">
+              <div className="grid grid-cols-1 gap-6 lg:gap-8">
                 {ARTISTS.map((a) => (
                   <article
                     key={a.name}
-                    className="group flex min-h-0 flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04]"
+                    className="group flex min-h-0 flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] sm:flex-row"
                   >
-                    <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-muted/50">
+                    <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-muted/50 sm:w-2/5 lg:w-1/3">
                       <ClickToViewImage
                         src={a.imageSrc}
                         alt={a.imageAlt}
@@ -599,56 +719,31 @@ export default function MonroviaHustleConceptPage() {
                           src={a.imageSrc}
                           alt=""
                           fill
-                          className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                          sizes="(max-width:640px) 100vw, 50vw"
+                          className="object-contain object-center transition-transform duration-500 ease-out group-hover:scale-[1.02] bg-muted/30"
+                          sizes="(max-width:640px) 100vw, (max-width:1024px) 40vw, 33vw"
                         />
                       </ClickToViewImage>
+                      <MonroviaGameLogoMark />
                     </div>
-                    <div className="flex flex-1 flex-col p-5 sm:p-6">
-                      <h3 className="text-lg font-black uppercase tracking-tight text-foreground sm:text-xl">{a.name}</h3>
+                    <div className="flex flex-1 flex-col p-5 sm:p-6 lg:p-8">
+                      <h3 className="text-lg font-black uppercase tracking-tight text-foreground sm:text-xl lg:text-2xl">{a.name}</h3>
                       <p
                         className="mt-2 text-[10px] font-bold uppercase leading-snug tracking-[0.12em] text-[#002868] dark:text-[#89b8ff]"
                         style={{ fontFamily: MONO }}
                       >
                         {a.discipline}
                       </p>
-                      <p className="mt-4 text-[13px] leading-[1.75] text-muted-foreground sm:text-[14px] sm:leading-[1.8]">{a.body}</p>
+                      <p className="mt-4 text-[13px] leading-[1.75] text-muted-foreground sm:text-[14px] sm:leading-[1.8] lg:text-[15px] lg:leading-[1.8]">{a.body}</p>
                       {a.href ? (
                         <StoreLink href={a.href} className="mt-5 inline-flex w-fit text-[13px] font-semibold">
                           Team profile →
                         </StoreLink>
                       ) : (
-                        <p className="mt-5 text-[11px] font-medium italic text-muted-foreground">Credits update as partners join — no implied endorsement yet.</p>
+                        <p className="mt-5 text-[11px] font-medium italic text-muted-foreground sm:text-[12px]">Credits update as partners join — no implied endorsement yet.</p>
                       )}
                     </div>
                   </article>
                 ))}
-              </div>
-              </section>
-
-              <section className="lg:col-span-2">
-              <SectionTitle>About the developer</SectionTitle>
-              <div className="flex flex-col gap-10 border border-border bg-card p-8 shadow-sm sm:flex-row sm:items-start lg:gap-12 lg:p-10 xl:p-12">
-                <div className="relative h-48 w-full shrink-0 overflow-hidden border border-border sm:h-52 sm:w-44 lg:h-56 lg:w-48">
-                  <ClickToViewImage
-                    src={VICTOR_IMAGE}
-                    alt="Portrait of Victor Edet Coleman"
-                    triggerClassName="absolute inset-0 block size-full"
-                  >
-                    <Image src={VICTOR_IMAGE} alt="" fill className="object-cover object-top" sizes="(max-width:640px) 100vw, 192px" />
-                  </ClickToViewImage>
-                </div>
-                <div className="min-w-0 max-w-none flex-1 space-y-4 lg:max-w-[42rem]">
-                  <StoreLink href="/team/victor" className="text-xl font-bold uppercase tracking-tight lg:text-2xl">
-                    Victor Edet Coleman
-                  </StoreLink>
-                  <p className="text-[15px] text-muted-foreground lg:text-base">Founder &amp; CTO — HUIX-2099 · Monrovia, Liberia</p>
-                  <p className="text-[15px] leading-[1.85] text-muted-foreground lg:text-[16px] lg:leading-[1.85]">
-                    Solo development on Monrovia Hustle 3D — narrative systems and technical direction. Thank you to early testers and friends who file bugs and
-                    keep receipts honest; you&apos;ll roll into credits as the campaign formalizes. More on the{" "}
-                    <StoreLink href="/team">team index</StoreLink>.
-                  </p>
-                </div>
               </div>
               </section>
 
@@ -761,97 +856,7 @@ export default function MonroviaHustleConceptPage() {
               </div>
             </div>
 
-            {/* Sidebar — store column */}
-            <aside className="w-full xl:sticky xl:top-28 xl:self-start">
-              <div className="overflow-hidden rounded-xl border border-border/70 bg-card/40 shadow-sm dark:border-border/60 dark:bg-muted/10">
-                <div className="relative aspect-[2/3] w-full overflow-hidden border-b border-border">
-                  <ClickToViewImage
-                    src={CAPSULE_ART}
-                    alt="Monrovia Hustle 3D capsule art"
-                    triggerClassName="absolute inset-0 block size-full"
-                  >
-                    <Image src={CAPSULE_ART} alt="" fill className="object-cover object-top" sizes="380px" />
-                  </ClickToViewImage>
-                </div>
-
-                <div className="space-y-4 p-4">
-                  <a
-                    href={MH_YOUTUBE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-12 items-center justify-center gap-2 border border-black/15 bg-muted/90 text-[13px] font-semibold uppercase tracking-wide text-foreground shadow-sm transition hover:bg-muted dark:border-white/10"
-                  >
-                    <Play className="size-5 fill-[#BF0A30] text-[#BF0A30]" aria-hidden />
-                    Watch trailer
-                  </a>
-                  <p className="text-[13px] leading-[1.6] text-muted-foreground">
-                    &ldquo;Warning this is a concept.&rdquo; Branching hustle, LD economy, and comic beats in a Super-Liberia sandbox.
-                  </p>
-
-                  <div className="space-y-2 text-[12px]">
-                    <div className="flex gap-2">
-                      <span className="w-[88px] shrink-0 text-muted-foreground">Developer</span>
-                      <StoreLink href="/team" className="font-medium">
-                        HUIX-2099
-                      </StoreLink>
-                    </div>
-                    <div className="flex gap-2">
-                      <span className="w-[88px] shrink-0 text-muted-foreground">Publisher</span>
-                      <span className="text-foreground/90">HUIX-2099</span>
-                    </div>
-                    <div className="flex gap-2">
-                      <span className="w-[88px] shrink-0 text-muted-foreground">Release</span>
-                      <span className="text-foreground/90">In active development · 2026 concept</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {TAGS.map((t) => (
-                        <span
-                          key={t}
-                          className="inline-block rounded-[1px] border border-border bg-muted/80 px-2 py-0.5 text-[11px] text-foreground/90"
-                          style={{ fontFamily: MONO }}
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="grid gap-2 border-y border-border py-4">
-                    <a
-                      href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Play%20the%20concept%20%2F%20Wishlist`}
-                      className="flex h-11 items-center justify-center gap-2 bg-[#BF0A30] text-[12px] font-bold uppercase tracking-wide text-white shadow-sm transition hover:bg-red-800"
-                    >
-                      <span className="text-lg leading-none">+</span>
-                      Play the concept · Request access
-                    </a>
-                    <Link
-                      href="#download"
-                      className="flex h-11 items-center justify-center border border-border bg-background text-[12px] font-semibold uppercase tracking-wide text-foreground transition hover:bg-muted/60"
-                    >
-                      Wishlist &amp; download details
-                    </Link>
-                  </div>
-
-                  <div>
-                    <StudioContactStrip heading="Follow &amp; share" />
-                  </div>
-
-                  <a
-                    href={MH_YOUTUBE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-sm border border-border bg-muted/40 px-3 py-2.5 text-[12px] text-foreground transition hover:bg-muted/55"
-                  >
-                    <Youtube className="h-5 w-5 shrink-0 text-[#BF0A30]" aria-hidden />
-                    View all trailers &amp; shorts
-                  </a>
-                  <StoreLink href={MH_HUB} className="block text-center text-[12px] font-medium">
-                    Hub overview page →
-                  </StoreLink>
-                </div>
-              </div>
-            </aside>
-          </div>
+                      </div>
 
           {/* Bottom “Steam purchase bar” analogue */}
           <section id="download" className="scroll-mt-28 mt-14 border-t border-border bg-muted/30 px-5 py-8 dark:bg-muted/20">

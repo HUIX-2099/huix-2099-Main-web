@@ -80,6 +80,22 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ id:
                             {member.bio}
                         </p>
 
+                        {member.photos.length > 1 && (
+                            <div className="mb-12">
+                                <h3 className="text-xl font-bold mb-6 text-foreground">Gallery</h3>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    {member.photos.map((photo) => (
+                                        <div key={photo.id} className="relative aspect-video rounded-xl overflow-hidden border border-border bg-muted group">
+                                            <img src={photo.image} alt={photo.caption} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                                                <p className="text-white text-xs font-bold uppercase tracking-widest">{photo.caption}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                             <div className="bg-muted/40 p-5 rounded-2xl border border-border/50">
                                 <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-bold mb-2">Focus Area</div>
