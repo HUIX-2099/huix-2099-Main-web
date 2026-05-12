@@ -47,9 +47,9 @@ export const teamMembers = [
         role: "Playable Protagonist",
         title: "Main Character",
         badge: "03",
-        image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Dominc%20Rockson.jpeg",
+        image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Dominc%20Rockson.png",
         photos: [
-            { id: "01", image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Dominc%20Rockson.jpeg", caption: "Dominic Rockson (Voice Talent)" }
+            { id: "01", image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Dominc%20Rockson.png", caption: "Dominic Rockson (Voice Talent)" }
         ],
         tagline: "Sidewalk calculus",
         bio: "Twenty-four on a thin wage. Carey and Benson know his stride — hustle as survival math, receipts as morality. Jboy is brought to life by the voice talent of Dominic Rockson, whose performance captures the raw energy and cultural depth of Monrovia's streets.",
@@ -68,8 +68,8 @@ export const teamMembers = [
         role: "Cast Concept · HUIX Archive",
         title: "HUIX Archive",
         badge: "04",
-        image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Arthur%20B.%20Kollie.jpeg",
-        photos: [{ id: "01", image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Arthur%20B.%20Kollie.jpeg", caption: "Arthur" }],
+        image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Arthur%20B.%20Kollie.png",
+        photos: [{ id: "01", image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Arthur%20B.%20Kollie.png", caption: "Arthur" }],
         tagline: "Concept Tier 01",
         bio: "A key figure in the Monrovia Hustle narrative landscape, shaping the city's social and political undercurrents. Representing the established weight of the city, his concept points toward high-stakes interactions and structural pressure.",
         focus: "Narrative · Influence",
