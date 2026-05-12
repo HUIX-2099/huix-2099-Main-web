@@ -363,6 +363,12 @@ export default function MonroviaHustleConceptPage() {
             All games · Hub
           </Link>
 
+          <div className="mb-10 xl:hidden">
+            <div className="rounded-xl border border-border/70 bg-card/50 p-5 shadow-sm dark:border-border/60 dark:bg-muted/15">
+              <StudioContactStrip heading="Studio &amp; community" />
+            </div>
+          </div>
+
           {/*
             xl+: two tracks only — [flexible main | 440px sidebar]. Avoids a 3-column 2xl template where a
             missed span leaves an empty middle column (black gap) between main and the store column.
@@ -856,7 +862,32 @@ export default function MonroviaHustleConceptPage() {
               </div>
             </div>
 
-                      </div>
+            <aside className="hidden min-w-0 space-y-8 xl:block xl:w-full xl:max-w-[440px] xl:shrink-0">
+              <div className="xl:sticky xl:top-28 xl:space-y-8">
+                <div className="rounded-xl border border-border/70 bg-card/50 p-6 shadow-sm backdrop-blur-sm dark:border-border/60 dark:bg-muted/15">
+                  <StudioContactStrip heading="Studio &amp; community" variant="card" />
+                </div>
+                <div className="rounded-xl border border-border/70 bg-card/40 p-6 shadow-sm dark:border-border/60 dark:bg-muted/10">
+                  <p
+                    className="mb-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground"
+                    style={{ fontFamily: MONO }}
+                  >
+                    Tags
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {TAGS.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-border/80 bg-muted/35 px-2.5 py-1 text-[11px] font-medium leading-none text-muted-foreground dark:bg-muted/25"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
 
           {/* Bottom “Steam purchase bar” analogue */}
           <section id="download" className="scroll-mt-28 mt-14 border-t border-border bg-muted/30 px-5 py-8 dark:bg-muted/20">
