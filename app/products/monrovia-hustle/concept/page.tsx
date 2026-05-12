@@ -6,6 +6,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ConceptGameplayGallery, type ConceptGalleryItem } from "@/components/monrovia-hustle/concept-gameplay-gallery"
 import { ClickToViewImage } from "@/components/click-to-view-image"
+import { GoogleDiscoveryRow } from "@/components/google-discovery"
 import { cn } from "@/lib/utils"
 import {
   ArrowLeft,
@@ -23,7 +24,6 @@ import {
   Route,
   Scale,
   Palette,
-  Search,
   ExternalLink,
 } from "lucide-react"
 
@@ -40,8 +40,6 @@ const FACEBOOK_PAGE_HREF = "https://www.facebook.com/profile.php?id=615724854995
 const FACEBOOK_INFO =
   "HUIX-2099 on Facebook — dev snapshots, reels, build teasers, and community comments."
 const VICTOR_IMAGE = `/products/Monrovia_hustle_Demo_Campane/developer/${encodeURIComponent("Victor Edet Coleman.png")}`
-const VICTOR_GOOGLE_HREF =
-  "https://www.google.com/search?q=Victor+Edet+Coleman&sourceid=chrome&ie=UTF-8"
 const VICTOR_FACEBOOK_REEL_HREF = "https://www.facebook.com/reel/988259967072643"
 const CAPSULE_ART = "/products/Monrovia_hustle_Demo_Campane/herosection.png"
 /** Monrovia Hustle mark on cast / partner cards (matches hub gate branding). */
@@ -253,7 +251,9 @@ const CAST = [
     role: "Playable protagonist",
     epithet: "Sidewalk calculus",
     imageSrc: cc("Dominc Rockson.png"),
-    imageAlt: "Dominic Rockson — Monrovia Hustle 3D voice cast · Jboy",
+    imageAlt: "Dominic Rockson — Monrovia Hustle 3D voice cast, Jboy playable protagonist — HUIX-2099 Liberia",
+    googleLabel: "Dominic Rockson · Monrovia Hustle 3D voice cast",
+    googleQuery: "Dominic Rockson voice actor Monrovia Hustle 3D Jboy Liberia HUIX-2099",
     href: "/team/jboy",
   },
   {
@@ -261,7 +261,9 @@ const CAST = [
     role: "Cast Concept · HUIX Archive",
     epithet: "Concept Tier 01",
     imageSrc: cc("Arthur B. Kollie.png"),
-    imageAlt: "Arthur B. Kollie — Monrovia Hustle 3D voice cast concept",
+    imageAlt: "Arthur B. Kollie — Monrovia Hustle 3D voice cast and cast concept — HUIX-2099 Liberia",
+    googleLabel: "Arthur B. Kollie · Monrovia Hustle voice cast",
+    googleQuery: "Arthur B Kollie Monrovia Hustle 3D voice cast HUIX-2099 Liberia",
     href: "/team/arthur-kollie",
   },
   {
@@ -269,7 +271,9 @@ const CAST = [
     role: "Voice Actor · DC",
     epithet: "DC Young · mission spine",
     imageSrc: cc("David Neor Jr.png"),
-    imageAlt: "David Neor Jr. — Voice talent for DC (DC Young)",
+    imageAlt: "David Neor Jr. — Monrovia Hustle 3D voice cast, DC Young — HUIX-2099 Liberia",
+    googleLabel: "David Neor Jr. · Monrovia Hustle voice cast",
+    googleQuery: "David Neor Jr voice actor DC Young Monrovia Hustle 3D HUIX-2099 Liberia",
     href: "/team/david",
   },
   {
@@ -277,7 +281,9 @@ const CAST = [
     role: "Voice Actor · Cast Concept",
     epithet: "Voice talent",
     imageSrc: cc("Jerry D Kollie.png"),
-    imageAlt: "Jerry D Kollie — Monrovia Hustle 3D voice cast concept",
+    imageAlt: "Jerry D Kollie — Monrovia Hustle 3D voice cast — HUIX-2099 Liberia",
+    googleLabel: "Jerry D Kollie · Monrovia Hustle voice cast",
+    googleQuery: "Jerry D Kollie voice actor Monrovia Hustle 3D voice cast HUIX-2099 Liberia",
     href: "/team/jerry-kollie",
   },
   {
@@ -285,7 +291,9 @@ const CAST = [
     role: "Voice Actor · Jayboy's Father",
     epithet: "The voice of wisdom and pressure",
     imageSrc: cc("Alfred M. Nyeswa.png"),
-    imageAlt: "Alfred M. Nyeswa — Voice talent for Jayboy's father",
+    imageAlt: "Alfred M. Nyeswa — Monrovia Hustle 3D voice cast, Jayboy father — HUIX-2099 Liberia",
+    googleLabel: "Alfred M. Nyeswa · Monrovia Hustle voice cast",
+    googleQuery: "Alfred M Nyeswa voice actor Monrovia Hustle 3D Jayboy father HUIX-2099 Liberia",
     href: "/team/alfred-nyeswa",
   },
   {
@@ -293,7 +301,9 @@ const CAST = [
     role: "Voice Actor · Instruction Narrator",
     epithet: "Guiding the hustle loop",
     imageSrc: cc("Kanneh Mohammed k..png"),
-    imageAlt: "Kanneh Mohammed K. — Voice talent for the instruction narrator",
+    imageAlt: "Kanneh Mohammed K. — Monrovia Hustle 3D voice cast, instruction narrator — HUIX-2099 Liberia",
+    googleLabel: "Kanneh Mohammed K. · Monrovia Hustle voice cast",
+    googleQuery: "Kanneh Mohammed K voice actor Monrovia Hustle 3D instruction narrator HUIX-2099 Liberia",
     href: "/team/kanneh-mohammed",
   },
   {
@@ -301,7 +311,9 @@ const CAST = [
     role: "Voice Actor · Jayboy's uncle",
     epithet: "Family weight · street wisdom",
     imageSrc: cc("felix J. K. Sowoma.png"),
-    imageAlt: "Felix J. K. Sowoma — Voice talent for Jayboy's uncle",
+    imageAlt: "Felix J. K. Sowoma — Monrovia Hustle 3D voice cast, Jayboy uncle — HUIX-2099 Liberia",
+    googleLabel: "Felix J. K. Sowoma · Monrovia Hustle voice cast",
+    googleQuery: "Felix J K Sowoma voice actor Monrovia Hustle 3D Jayboy uncle HUIX-2099 Liberia",
     href: "/team/felix-sowoma",
   },
   {
@@ -309,7 +321,9 @@ const CAST = [
     role: "Voice Actor · Angel",
     epithet: "Love priced in LD",
     imageSrc: cc("Johnette Talkpa.png"),
-    imageAlt: "Johnette Talkpa — Voice talent for Angel",
+    imageAlt: "Johnette Talkpa — Monrovia Hustle 3D voice cast, Angel — HUIX-2099 Liberia",
+    googleLabel: "Johnette Talkpa · Monrovia Hustle voice cast",
+    googleQuery: "Johnette Talkpa voice actor Angel Monrovia Hustle 3D HUIX-2099 Liberia",
     href: "/team/johnette-talkpa",
   },
 ] as const
@@ -612,24 +626,11 @@ export default function MonroviaHustleConceptPage() {
                     >
                       Find Victor online
                     </p>
-                    <a
-                      href={VICTOR_GOOGLE_HREF}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex min-w-0 items-center gap-3 rounded-lg border border-border bg-muted/25 px-4 py-3 transition hover:border-[#4285F4]/45 hover:bg-muted/45 dark:hover:border-[#4285F4]/35"
-                    >
-                      <span
-                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border/80 bg-background text-[#4285F4] shadow-sm"
-                        aria-hidden
-                      >
-                        <Search className="h-5 w-5" strokeWidth={2.25} />
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Google</span>
-                        <span className="mt-0.5 block text-sm font-semibold leading-snug text-foreground">Victor Edet Coleman</span>
-                      </span>
-                      <ExternalLink className="h-4 w-4 shrink-0 text-muted-foreground opacity-70" aria-hidden />
-                    </a>
+                    <GoogleDiscoveryRow
+                      className="rounded-lg px-4 py-3"
+                      googleQuery="Victor Edet Coleman HUIX-2099 Founder CTO Monrovia Hustle 3D Liberia narrative game studio"
+                      googleLabel="Victor Edet Coleman · HUIX-2099 · Founder & CTO"
+                    />
                     <a
                       href={VICTOR_FACEBOOK_REEL_HREF}
                       target="_blank"
@@ -654,61 +655,67 @@ export default function MonroviaHustleConceptPage() {
               </section>
 
               <section id="voice-actors" className="scroll-mt-28">
-              <SectionTitle>Voice Actors Cast</SectionTitle>
+              <SectionTitle>Monrovia Hustle 3D — voice cast</SectionTitle>
               <p className="mb-8 max-w-none text-[15px] leading-[1.85] text-muted-foreground lg:mb-10 lg:text-[16px]">
-                Voice talent bringing Monrovia Hustle 3D characters to life. Casting remains open — contact via Facebook, socials &amp; Gmail on each profile card.
+                Monrovia Hustle 3D voice cast for HUIX-2099 (Liberia): each card opens the team profile; the Google row runs a search tuned to that performer and
+                the game&apos;s voice cast. Casting stays open — Facebook, socials, and Gmail on each profile.
               </p>
               <div className="grid w-full min-w-0 justify-items-stretch gap-6 [grid-template-columns:repeat(auto-fill,minmax(min(100%,16rem),1fr))] sm:gap-7 md:gap-8 [&>*]:min-w-0">
-                {CAST.map((c, idx) => (
-                  <Link
+                {CAST.map((c) => (
+                  <article
                     key={c.name}
-                    href={c.href}
                     className="group relative flex min-h-0 min-w-0 w-full max-w-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#BF0A30]/40 hover:shadow-lg hover:shadow-[#BF0A30]/[0.08] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] dark:hover:border-[#BF0A30]/35 dark:hover:shadow-[#000]/40"
                   >
                     <div
                       className="absolute inset-x-0 top-0 z-10 h-[3px] bg-gradient-to-r from-[#BF0A30] via-[#002868] to-[#BF0A30] opacity-90 transition-opacity duration-300 group-hover:opacity-100"
                       aria-hidden
                     />
-                    <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-muted/50">
-                      <Image
-                        src={c.imageSrc}
-                        alt={c.imageAlt}
-                        fill
-                        className={cn(
-                          "object-cover object-top transition-all duration-500 ease-out group-hover:scale-[1.03]",
-                          "hoverImageSrc" in c && "group-hover:opacity-0"
-                        )}
-                        sizes="(max-width:640px) 100vw, (max-width:1280px) 50vw, 25vw"
-                      />
-                      {"hoverImageSrc" in c && (
+                    <Link
+                      href={c.href}
+                      className="relative z-0 flex min-h-0 min-w-0 flex-1 flex-col text-inherit no-underline outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    >
+                      <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-muted/50">
                         <Image
-                          src={c.hoverImageSrc as string}
-                          alt={`${c.name} — hover view`}
+                          src={c.imageSrc}
+                          alt={c.imageAlt}
                           fill
-                          className="absolute inset-0 object-cover object-top transition-all duration-500 ease-out opacity-0 group-hover:opacity-100 group-hover:scale-[1.03]"
+                          className={cn(
+                            "object-cover object-top transition-all duration-500 ease-out group-hover:scale-[1.03]",
+                            "hoverImageSrc" in c && "group-hover:opacity-0"
+                          )}
                           sizes="(max-width:640px) 100vw, (max-width:1280px) 50vw, 25vw"
                         />
-                      )}
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent pt-16" />
-                      <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground drop-shadow-sm">
-                        {c.name} · VOICE
-                      </span>
-                      <MonroviaGameLogoMark />
-                    </div>
-                    <div className="relative flex flex-1 flex-col p-5 sm:p-6">
-                      <div className="mb-3 flex items-start justify-between gap-2">
-                        <h3 className="text-lg font-black uppercase tracking-tight text-foreground sm:text-xl">{c.name}</h3>
+                        {"hoverImageSrc" in c && (
+                          <Image
+                            src={c.hoverImageSrc as string}
+                            alt={`${c.name} — hover view`}
+                            fill
+                            className="absolute inset-0 object-cover object-top transition-all duration-500 ease-out opacity-0 group-hover:opacity-100 group-hover:scale-[1.03]"
+                            sizes="(max-width:640px) 100vw, (max-width:1280px) 50vw, 25vw"
+                          />
+                        )}
+                        <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent pt-16" />
+                        <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground drop-shadow-sm">
+                          {c.name} · voice cast
+                        </span>
+                        <MonroviaGameLogoMark />
                       </div>
-                      <p className="text-[10px] font-bold uppercase leading-snug tracking-[0.12em] text-[#BF0A30] dark:text-[#ff6b6b]" style={{ fontFamily: MONO }}>
-                        {c.role}
-                      </p>
-                      <p className="mt-3 text-sm font-semibold italic leading-snug text-foreground/95 sm:text-base">&ldquo;{c.epithet}&rdquo;</p>
-                      <div className="mt-auto pt-4 flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-[#BF0A30] dark:text-[#ff6b6b] opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span>View Profile</span>
-                        <ArrowRight className="h-3 w-3" />
+                      <div className="relative flex flex-1 flex-col p-5 sm:p-6">
+                        <div className="mb-3 flex items-start justify-between gap-2">
+                          <h3 className="text-lg font-black uppercase tracking-tight text-foreground sm:text-xl">{c.name}</h3>
+                        </div>
+                        <p className="text-[10px] font-bold uppercase leading-snug tracking-[0.12em] text-[#BF0A30] dark:text-[#ff6b6b]" style={{ fontFamily: MONO }}>
+                          {c.role}
+                        </p>
+                        <p className="mt-3 text-sm font-semibold italic leading-snug text-foreground/95 sm:text-base">&ldquo;{c.epithet}&rdquo;</p>
+                        <div className="mt-auto pt-4 flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-[#BF0A30] dark:text-[#ff6b6b] opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span>View Profile</span>
+                          <ArrowRight className="h-3 w-3" />
+                        </div>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                    <GoogleDiscoveryRow googleQuery={c.googleQuery} googleLabel={c.googleLabel} />
+                  </article>
                 ))}
               </div>
               </section>

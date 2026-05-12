@@ -18,6 +18,7 @@ import {
   ExternalLink,
   Sparkles,
 } from "lucide-react"
+import { GoogleDiscoveryIconButton, GoogleDiscoveryRow } from "@/components/google-discovery"
 
 const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
 
@@ -67,6 +68,10 @@ interface Product {
   openSource?: boolean
   link?: string
   detailPage?: string
+  /** HUIX-2099 + named lead + what they did on this product */
+  creditLine: string
+  googleLabel: string
+  googleQuery: string
 }
 
 const products: Product[] = [
@@ -84,6 +89,9 @@ const products: Product[] = [
     openSource: true,
     link: "https://marketplace.visualstudio.com/items?itemName=huix-2099.huix-2099-theme",
     detailPage: "/products/huix-theme",
+    creditLine: "HUIX-2099 · Victor Edet Coleman — Founder & CTO — led the HUIX-THEME VS Code extension.",
+    googleLabel: "HUIX-THEME · HUIX-2099 · Victor Edet Coleman",
+    googleQuery: "HUIX-THEME VS Code extension HUIX-2099 Victor Edet Coleman Founder CTO Liberia",
   },
   {
     id: 2,
@@ -98,18 +106,24 @@ const products: Product[] = [
     technologies: ["WPF", ".NET 8", "WebView2", "CDP"],
     openSource: true,
     detailPage: "/products/huixor",
+    creditLine: "HUIX-2099 · Victor Edet Coleman — Founder & CTO — engineering lead on HUIXOR.",
+    googleLabel: "HUIXOR · HUIX-2099 · Victor Edet Coleman",
+    googleQuery: "HUIXOR HUIX-2099 WPF WebView2 multi-device preview Victor Edet Coleman Liberia",
   },
   {
     id: 3,
     title: "Monrovia Hustle 3D",
     category: "Game",
     platform: "Windows · macOS · Android",
-    description: "Warning this is a concept.",
+    description: "Warning: concept slice. Liberian narrative urban RPG — Monrovia as a lived-in open map.",
     image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
     year: "2026",
     status: "Development",
     technologies: [],
     detailPage: "/products/monrovia-hustle",
+    creditLine: "HUIX-2099 · Victor Edet Coleman — Founder & CTO — narrative & technical lead on Monrovia Hustle 3D.",
+    googleLabel: "Monrovia Hustle 3D · HUIX-2099 · Victor Edet Coleman",
+    googleQuery: "Monrovia Hustle 3D HUIX-2099 Victor Edet Coleman Liberian narrative urban RPG Liberia",
   },
 ]
 
@@ -366,15 +380,18 @@ export default function ProductsPage() {
                 {filteredProducts.map((product, index) => {
                   const CategoryIcon = getCategoryIcon(product.category)
                   return (
-                    <motion.div
+                    <motion.article
                       key={product.id}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.08 }}
                       viewport={{ once: true }}
-                      onClick={() => handleProductSelect(product)}
-                      className="group cursor-pointer overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-foreground/20 hover:shadow-lg"
+                      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-foreground/20 hover:shadow-lg"
                     >
+                      <motion.div
+                        onClick={() => handleProductSelect(product)}
+                        className="flex min-h-0 flex-1 cursor-pointer flex-col"
+                      >
                       {/* Image */}
                       <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-muted/20 border-b border-border/50">
                         {/* Top badges */}
@@ -457,6 +474,12 @@ export default function ProductsPage() {
                             <p className="mb-3 text-center text-[10px] uppercase tracking-widest text-muted-foreground/80" style={{ fontFamily: monoFont }}>
                               HUIX-2099 hub · Liberian narrative RPG
                             </p>
+                            <p
+                              className="mb-3 px-1 text-center text-[10px] leading-snug text-muted-foreground/90"
+                              style={{ fontFamily: monoFont }}
+                            >
+                              {product.creditLine}
+                            </p>
                             <div className="flex items-center justify-center gap-6 py-2 text-foreground/80">
                               <span className="flex flex-col items-center gap-1" title="Windows">
                                 <IconWindows className="h-9 w-9" />
@@ -483,7 +506,13 @@ export default function ProductsPage() {
                           </div>
                         ) : (
                           <>
-                            <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{product.description}</p>
+                            <p className="mb-2 text-sm leading-relaxed text-muted-foreground">{product.description}</p>
+                            <p
+                              className="mb-3 text-[10px] leading-snug text-muted-foreground/90"
+                              style={{ fontFamily: monoFont }}
+                            >
+                              {product.creditLine}
+                            </p>
 
                             {/* Tech tags */}
                             <div className="mb-4 flex flex-wrap gap-1.5">
@@ -523,7 +552,9 @@ export default function ProductsPage() {
                           </span>
                         </div>
                       </div>
-                    </motion.div>
+                      </motion.div>
+                      <GoogleDiscoveryRow googleQuery={product.googleQuery} googleLabel={product.googleLabel} />
+                    </motion.article>
                   )
                 })}
 
@@ -610,10 +641,10 @@ export default function ProductsPage() {
                             <img src={product.image} alt="" className="h-full w-full object-cover" />
                           </div>
                         )}
-                        <div className="min-w-0">
-                          <div className="flex items-center gap-2">
+                        <div className="min-w-0 flex-1">
+                          <div className="flex min-w-0 items-center gap-2">
                             <span
-                              className="truncate text-sm font-bold uppercase transition-colors group-hover:text-foreground"
+                              className="min-w-0 truncate text-sm font-bold uppercase transition-colors group-hover:text-foreground"
                               style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.2em" }}
                             >
                               {product.title}
@@ -623,10 +654,18 @@ export default function ProductsPage() {
                                 OSS
                               </span>
                             )}
+                            <GoogleDiscoveryIconButton
+                              className="ml-auto shrink-0"
+                              googleQuery={product.googleQuery}
+                              title={product.googleLabel}
+                            />
                           </div>
                           {product.id === 3 ? (
                             <div className="mt-1 space-y-1">
                               <div className="line-clamp-2 text-[10px] italic text-muted-foreground/80">&ldquo;{product.description}&rdquo;</div>
+                              <p className="text-[9px] leading-snug text-muted-foreground/85" style={{ fontFamily: monoFont }}>
+                                {product.creditLine}
+                              </p>
                               <div className="flex items-center gap-3 text-foreground/70">
                               <IconWindows className="h-4 w-4 shrink-0" />
                               <IconMac className="h-4 w-4 shrink-0" />
@@ -637,7 +676,12 @@ export default function ProductsPage() {
                             </div>
                             </div>
                           ) : (
-                            <div className="truncate text-[10px] text-muted-foreground/50">{product.description}</div>
+                            <>
+                              <div className="mt-1 truncate text-[10px] text-muted-foreground/50">{product.description}</div>
+                              <div className="mt-1 line-clamp-2 text-[9px] leading-snug text-muted-foreground/80" style={{ fontFamily: monoFont }}>
+                                {product.creditLine}
+                              </div>
+                            </>
                           )}
                         </div>
                       </div>

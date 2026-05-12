@@ -30,15 +30,21 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ id:
 
                     <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 mb-12">
                         <div className="w-48 h-48 md:w-64 md:h-64 shrink-0 rounded-2xl overflow-hidden border border-border bg-muted relative">
-                            <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top" />
+                            <img src={member.image} alt={`${member.name} — HUIX-2099 · ${member.role}`} className="w-full h-full object-cover object-top" />
                             <div className="absolute inset-0 border border-foreground/10 rounded-2xl pointer-events-none" />
                         </div>
 
                         <div className="flex-1 text-center md:text-left">
-                            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em] mb-3">{member.role}</div>
-                            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>
+                            <h1 className="text-4xl md:text-5xl font-bold mb-2 text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>
                                 {member.name}
                             </h1>
+                            <p className="text-sm font-medium text-muted-foreground mb-3 md:mb-4">
+                                <span className="font-semibold text-foreground/90">HUIX-2099</span>
+                                {" · "}
+                                {member.role}
+                                {" · "}
+                                {member.location}
+                            </p>
                             <p className="text-lg md:text-xl text-muted-foreground font-medium mb-6 max-w-2xl">{member.tagline}</p>
 
                             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-4">
