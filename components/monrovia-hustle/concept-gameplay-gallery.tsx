@@ -39,7 +39,7 @@ export function ConceptGameplayGallery({ items, trailerHref, variant = "default"
               alt={current.alt}
               fill
               className="object-cover opacity-92 transition duration-300 group-hover:opacity-100 group-hover:scale-[1.01]"
-              sizes={hero ? "(max-width:1024px) 100vw, min(1200px, 78vw)" : "(max-width:1024px) 100vw, 72vw"}
+              sizes={hero ? "100vw" : "(max-width:1024px) 100vw, 72vw"}
               priority
             />
             {/* Dim vignette */}
@@ -70,7 +70,7 @@ export function ConceptGameplayGallery({ items, trailerHref, variant = "default"
               alt=""
               fill
               className="object-cover"
-              sizes={hero ? "(max-width:1024px) 100vw, min(1200px, 78vw)" : "(max-width:1024px) 100vw, 72vw"}
+              sizes={hero ? "100vw" : "(max-width:1024px) 100vw, 72vw"}
               priority={active === 0}
             />
           </ClickToViewImage>
