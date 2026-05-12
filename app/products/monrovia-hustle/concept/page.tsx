@@ -370,11 +370,10 @@ export default function MonroviaHustleConceptPage() {
           </div>
 
           {/*
-            xl+: main column grows to fill viewport; sidebar is a fixed track so the grid always spans full width (no dead strip on the right).
+            Single full-width column so body sections (developer card, cast grid, etc.) span the padded shell — no narrow “main + sidebar” strip leaving empty space on the right. Studio + tags sit in a full-width row under the hero on xl+.
           */}
-          <div className="grid w-full min-w-0 grid-cols-1 gap-12 xl:grid-cols-[minmax(0,1fr)_20rem] xl:items-start xl:gap-x-8 xl:gap-y-12 2xl:grid-cols-[minmax(0,1fr)_22rem] 2xl:gap-x-12">
-            {/* xl row 1: span both columns so hero media is full grid width (not squeezed next to the sidebar) */}
-            <div className="min-w-0 w-full max-w-full xl:col-span-2">
+          <div className="grid w-full min-w-0 grid-cols-1 gap-12 xl:gap-y-14">
+            <div className="min-w-0 w-full max-w-full">
               {/* Store title row */}
               <div className="mb-8 flex flex-wrap items-end justify-between gap-x-10 gap-y-6 border-b border-border/60 pb-8 lg:mb-12 lg:pb-10 xl:gap-x-16">
                 <div className="max-w-none">
@@ -434,7 +433,31 @@ export default function MonroviaHustleConceptPage() {
               </div>
             </div>
 
-            <div className="min-w-0 w-full max-w-full xl:col-start-1 xl:row-start-2">
+            <div className="hidden min-w-0 w-full grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 xl:grid">
+              <div className="rounded-xl border border-border/70 bg-card/50 p-6 shadow-sm backdrop-blur-sm dark:border-border/60 dark:bg-muted/15">
+                <StudioContactStrip heading="Studio &amp; community" variant="card" />
+              </div>
+              <div className="rounded-xl border border-border/70 bg-card/40 p-6 shadow-sm dark:border-border/60 dark:bg-muted/10">
+                <p
+                  className="mb-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground"
+                  style={{ fontFamily: MONO }}
+                >
+                  Tags
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {TAGS.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-border/80 bg-muted/35 px-2.5 py-1 text-[11px] font-medium leading-none text-muted-foreground dark:bg-muted/25"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="min-w-0 w-full max-w-full">
               <div className="grid w-full min-w-0 grid-cols-1 gap-12 lg:gap-14 xl:gap-16">
               <section>
               <SectionTitle>About this concept</SectionTitle>
@@ -635,7 +658,7 @@ export default function MonroviaHustleConceptPage() {
               <p className="mb-8 max-w-none text-[15px] leading-[1.85] text-muted-foreground lg:mb-10 lg:text-[16px]">
                 Voice talent bringing Monrovia Hustle 3D characters to life. Casting remains open — contact via Facebook, socials &amp; Gmail on each profile card.
               </p>
-              <div className="grid w-full min-w-0 grid-cols-1 justify-items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-7 md:gap-8 [&>*]:min-w-0">
+              <div className="grid w-full min-w-0 justify-items-stretch gap-6 [grid-template-columns:repeat(auto-fill,minmax(min(100%,16rem),1fr))] sm:gap-7 md:gap-8 [&>*]:min-w-0">
                 {CAST.map((c, idx) => (
                   <Link
                     key={c.name}
@@ -790,7 +813,7 @@ export default function MonroviaHustleConceptPage() {
                     {STUDIO_EMAIL}
                   </a>
                   {" · "}
-                  Socials in the sidebar — no implied endorsement by real-world brands referenced in-fiction unless we publish a formal partnership.
+                  Socials in the studio strip above — no implied endorsement by real-world brands referenced in-fiction unless we publish a formal partnership.
                 </p>
               </div>
               </section>
@@ -862,32 +885,6 @@ export default function MonroviaHustleConceptPage() {
               </section>
               </div>
             </div>
-
-            <aside className="hidden w-full min-w-0 max-w-none space-y-8 xl:col-start-2 xl:row-start-2 xl:block xl:shrink-0">
-              <div className="xl:sticky xl:top-28 xl:space-y-8">
-                <div className="rounded-xl border border-border/70 bg-card/50 p-6 shadow-sm backdrop-blur-sm dark:border-border/60 dark:bg-muted/15">
-                  <StudioContactStrip heading="Studio &amp; community" variant="card" />
-                </div>
-                <div className="rounded-xl border border-border/70 bg-card/40 p-6 shadow-sm dark:border-border/60 dark:bg-muted/10">
-                  <p
-                    className="mb-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground"
-                    style={{ fontFamily: MONO }}
-                  >
-                    Tags
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {TAGS.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-border/80 bg-muted/35 px-2.5 py-1 text-[11px] font-medium leading-none text-muted-foreground dark:bg-muted/25"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </aside>
           </div>
 
           {/* Bottom “Steam purchase bar” analogue */}
