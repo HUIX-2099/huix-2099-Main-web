@@ -353,7 +353,7 @@ export default function MonroviaHustleConceptPage() {
       <Navbar />
 
       <main className="w-full min-w-0 pb-28 pt-[5.75rem] sm:pt-28 lg:pb-36">
-        <div className="mx-auto w-full min-w-0 max-w-[2200px] px-5 sm:px-8 md:px-12 lg:px-14 xl:px-16 2xl:px-20">
+        <div className="w-full min-w-0 max-w-none px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14">
           <Link
             href={MH_HUB}
             className="mb-8 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground hover:text-[#002868] lg:mb-12 dark:hover:text-[#89b8ff]"
@@ -370,14 +370,14 @@ export default function MonroviaHustleConceptPage() {
           </div>
 
           {/*
-            xl+: two tracks — [flexible main | ~420px sidebar]. Main + gallery use w-full min-w-0 so flex parents never collapse width on desktop.
+            xl+: main column grows to fill viewport; sidebar is a fixed track so the grid always spans full width (no dead strip on the right).
           */}
-          <div className="grid w-full min-w-0 grid-cols-1 gap-12 xl:grid-cols-[minmax(0,1fr)_minmax(280px,420px)] xl:items-start xl:gap-10 2xl:gap-14">
-            {/* Main column — video first like Steam */}
-            <div className="min-w-0 w-full max-w-full">
+          <div className="grid w-full min-w-0 grid-cols-1 gap-12 xl:grid-cols-[minmax(0,1fr)_20rem] xl:items-start xl:gap-x-8 xl:gap-y-12 2xl:grid-cols-[minmax(0,1fr)_22rem] 2xl:gap-x-12">
+            {/* xl row 1: span both columns so hero media is full grid width (not squeezed next to the sidebar) */}
+            <div className="min-w-0 w-full max-w-full xl:col-span-2">
               {/* Store title row */}
               <div className="mb-8 flex flex-wrap items-end justify-between gap-x-10 gap-y-6 border-b border-border/60 pb-8 lg:mb-12 lg:pb-10 xl:gap-x-16">
-                <div className="max-w-none lg:max-w-[52rem] xl:max-w-none">
+                <div className="max-w-none">
                   <p className="mb-3 inline-flex items-center rounded-sm border border-[#002868]/30 bg-[#002868]/[0.07] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#002868] dark:border-[#89b8ff]/35 dark:bg-[#10223a]/80 dark:text-[#89b8ff]" style={{ fontFamily: MONO }}>
                     Concept · early prototype
                   </p>
@@ -432,8 +432,10 @@ export default function MonroviaHustleConceptPage() {
               <div className="mb-14 w-full min-w-0 max-w-full rounded-xl border border-border/70 bg-card/40 p-2 shadow-sm backdrop-blur dark:border-border/60 dark:bg-muted/10 lg:mb-16 lg:p-3">
                 <ConceptGameplayGallery items={galleryItems} trailerHref={MH_YOUTUBE_URL} variant="hero" />
               </div>
+            </div>
 
-              <div className="grid w-full min-w-0 grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-14">
+            <div className="min-w-0 w-full max-w-full xl:col-start-1 xl:row-start-2">
+              <div className="grid w-full min-w-0 grid-cols-1 gap-12 lg:gap-14 xl:gap-16">
               <section>
               <SectionTitle>About this concept</SectionTitle>
               <div className="space-y-8 text-[16px] leading-[1.85] text-muted-foreground sm:text-[17px] sm:leading-[1.85] lg:max-w-none">
@@ -456,7 +458,7 @@ export default function MonroviaHustleConceptPage() {
               <ul className="max-w-none space-y-3 rounded-xl border border-border/70 bg-card/30 p-6 text-[15px] leading-[1.75] shadow-sm dark:border-border/60 dark:bg-muted/10 sm:p-8 lg:text-[16px]">
                 <li className="flex gap-3">
                   <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
-                  <span>
+                  <span className="min-w-0 flex-1">
                     <strong className="text-foreground">Intended path from the main menu:</strong> Play — content-warning / rating slides — intro comic
                     (slideshow) — <strong className="text-foreground">Jboy&apos;s bedroom</strong> hub (phone, story beats, find the key, exit toward the street) — loading —{" "}
                     <strong className="text-foreground">the Street</strong> open block in third person with interaction prompts and UI hints.
@@ -464,28 +466,28 @@ export default function MonroviaHustleConceptPage() {
                 </li>
                 <li className="flex gap-3">
                   <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
-                  <span>
+                  <span className="min-w-0 flex-1">
                     <strong className="text-foreground">Street loop:</strong> side &ldquo;hustles&rdquo; (pickup / drop-off / bike / street-sell-style zones) that pay{" "}
                     <strong className="text-foreground">LD</strong> and tie into broader Uncle Flomo-style trust in the full design.
                   </span>
                 </li>
                 <li className="flex gap-3">
                   <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
-                  <span>
+                  <span className="min-w-0 flex-1">
                     <strong className="text-foreground">Mission spine (concept):</strong> the Tenneh phone thread — talk to Trapper, Tenneh, back to Trapper, Blamo
                     (phone deal / money-split beat with an <strong className="text-foreground">Orange Money–style</strong> flavour), DC Young, Musu, then close with Trapper; waypoint / &ldquo;yellow arrow&rdquo; prompting, <strong className="text-foreground">E to interact</strong>, voiced lines.
                   </span>
                 </li>
                 <li className="flex gap-3">
                   <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
-                  <span>
+                  <span className="min-w-0 flex-1">
                     <strong className="text-foreground">Story menu:</strong> &ldquo;Story&rdquo; cards can jump episodes (intro, room, Angel comic, house, street, club, office, opening room) — the full experience is intentionally{" "}
                     <strong className="text-foreground">menu-driven episodes plus the street chain</strong>, not only one straight line.
                   </span>
                 </li>
                 <li className="flex gap-3">
                   <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
-                  <span>
+                  <span className="min-w-0 flex-1">
                     <strong className="text-foreground">Controls:</strong> keyboard/mouse for this Windows slice; touch and mobile performance are roadmap targets, not promises in this drop.
                   </span>
                 </li>
@@ -497,7 +499,7 @@ export default function MonroviaHustleConceptPage() {
               <p className="mb-4 max-w-none text-[15px] leading-[1.8] text-muted-foreground lg:text-[16px]">
                 Only items we intend to keep chipping at — not a hype list:
               </p>
-              <ul className="max-w-none rounded-xl border border-border/70 bg-card/30 p-6 list-inside list-disc space-y-2 text-[15px] leading-[1.75] text-muted-foreground marker:text-[#BF0A30] shadow-sm dark:border-border/60 dark:bg-muted/10 lg:text-[16px]">
+              <ul className="max-w-none list-outside list-disc space-y-2 rounded-xl border border-border/70 bg-card/30 p-6 ps-8 text-[15px] leading-[1.75] text-muted-foreground marker:text-[#BF0A30] shadow-sm dark:border-border/60 dark:bg-muted/10 lg:text-[16px]">
                 <li>Mobile-capable build and performance pass once funding allows</li>
                 <li>More story chapters, polish passes, and clearer signposting between comic · room · street · club · office modes</li>
                 <li>Formal waitlist / newsletter and cleaner installer distribution</li>
@@ -510,7 +512,7 @@ export default function MonroviaHustleConceptPage() {
               <div className="max-w-none space-y-4 rounded-xl border border-border/70 bg-card/30 p-6 text-[15px] leading-[1.85] text-muted-foreground shadow-sm dark:border-border/60 dark:bg-muted/10 sm:p-8 lg:text-[16px]">
                 <div className="flex gap-3">
                   <Route className="mt-0.5 h-5 w-5 shrink-0 text-[#BF0A30]" aria-hidden />
-                  <p>
+                  <p className="min-w-0 flex-1">
                     Jumping between comic, bedroom hub, open street, and later club / office beats is a lot of modes for one download. Without heavy
                     hand-holding, some players read that as scattered — for a <strong className="text-foreground">vertical slice</strong>, that&apos;s normal, not a logic failure.
                   </p>
@@ -522,7 +524,7 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section className="lg:col-span-2">
+              <section>
               <SectionTitle>The story pitch</SectionTitle>
               <div className="space-y-8 border border-border bg-muted/20 p-8 text-[16px] leading-[1.9] text-foreground/95 shadow-sm dark:bg-muted/15 sm:p-10 sm:text-[17px] sm:leading-[1.9] lg:p-12 lg:text-lg lg:leading-[1.95] xl:leading-loose xl:p-14">
                 <p>
@@ -538,14 +540,14 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section className="lg:col-span-2">
+              <section>
               <SectionTitle>Screenshots &amp; media</SectionTitle>
               <p className="mb-2 max-w-none text-[15px] leading-[1.8] text-muted-foreground lg:text-[16px]">
                 Use the carousel above: trailer first, then stills that try to show <strong className="text-foreground/90">character on street, environment reads, HUD / prompts</strong> — not only menus. Quality varies by capture pass; some tiles are workspace references.
               </p>
               </section>
 
-              <section id="about-developer" className="lg:col-span-2 scroll-mt-28">
+              <section id="about-developer" className="scroll-mt-28">
               <SectionTitle>About the developer</SectionTitle>
               <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
                 <div className="grid w-full min-w-0 grid-cols-1 gap-8 p-6 sm:p-8 lg:grid-cols-3 lg:gap-0 lg:items-stretch lg:p-0">
@@ -561,7 +563,7 @@ export default function MonroviaHustleConceptPage() {
                         alt=""
                         fill
                         className="object-cover object-center"
-                        sizes="(max-width:1024px) 100vw, 33vw"
+                        sizes="(max-width:1024px) 100vw, 66vw"
                         priority={false}
                       />
                     </ClickToViewImage>
@@ -628,17 +630,17 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section id="voice-actors" className="lg:col-span-2 scroll-mt-28">
+              <section id="voice-actors" className="scroll-mt-28">
               <SectionTitle>Voice Actors Cast</SectionTitle>
               <p className="mb-8 max-w-none text-[15px] leading-[1.85] text-muted-foreground lg:mb-10 lg:text-[16px]">
                 Voice talent bringing Monrovia Hustle 3D characters to life. Casting remains open — contact via Facebook, socials &amp; Gmail on each profile card.
               </p>
-              <div className="grid w-full min-w-0 grid-cols-1 justify-items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-7 md:gap-8">
+              <div className="grid w-full min-w-0 grid-cols-1 justify-items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-7 md:gap-8 [&>*]:min-w-0">
                 {CAST.map((c, idx) => (
                   <Link
                     key={c.name}
                     href={c.href}
-                    className="group relative flex min-h-0 w-full max-w-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#BF0A30]/40 hover:shadow-lg hover:shadow-[#BF0A30]/[0.08] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] dark:hover:border-[#BF0A30]/35 dark:hover:shadow-[#000]/40"
+                    className="group relative flex min-h-0 min-w-0 w-full max-w-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#BF0A30]/40 hover:shadow-lg hover:shadow-[#BF0A30]/[0.08] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] dark:hover:border-[#BF0A30]/35 dark:hover:shadow-[#000]/40"
                   >
                     <div
                       className="absolute inset-x-0 top-0 z-10 h-[3px] bg-gradient-to-r from-[#BF0A30] via-[#002868] to-[#BF0A30] opacity-90 transition-opacity duration-300 group-hover:opacity-100"
@@ -688,7 +690,7 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section id="artists" className="lg:col-span-2 scroll-mt-28">
+              <section id="artists" className="scroll-mt-28">
               <div className="mb-6 flex items-center gap-4 lg:mb-8 lg:gap-6">
                 <Palette className="h-7 w-7 shrink-0 text-[#BF0A30]" aria-hidden />
                 <h2
@@ -752,12 +754,12 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section className="lg:col-span-2">
+              <section>
               <SectionTitle>Partners &amp; investors</SectionTitle>
               <div className="max-w-none space-y-6 border border-border bg-[#002868]/[0.06] p-7 text-[15px] leading-[1.85] dark:bg-[#10223a]/50 sm:p-9 lg:text-[16px]">
                 <div className="flex gap-3">
                   <Scale className="mt-0.5 h-5 w-5 shrink-0 text-[#BF0A30]" aria-hidden />
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <p className="font-semibold text-foreground">Problem / opportunity</p>
                     <p className="mt-2 text-muted-foreground">
                       West African cities — and Monrovia specifically — are under-represented as lived-in spaces in story-led games. A hustle-forward urban
@@ -767,7 +769,7 @@ export default function MonroviaHustleConceptPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-foreground">What we&apos;re looking for</p>
-                  <ul className="mt-3 list-inside list-disc space-y-2 text-muted-foreground marker:text-[#002868] dark:marker:text-[#89b8ff]">
+                  <ul className="mt-3 list-outside list-disc space-y-2 ps-6 text-muted-foreground marker:text-[#002868] dark:marker:text-[#89b8ff]">
                     <li>
                       <strong className="text-foreground">Funding:</strong> early-stage / project-scale conversations to move from solo prototype to a shippable
                       slice and small team (specific rounds discussed privately).
@@ -793,7 +795,7 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section className="lg:col-span-2">
+              <section>
               <SectionTitle>System requirements (prototype)</SectionTitle>
               <div className="grid gap-8 sm:grid-cols-2 lg:gap-10 xl:gap-12">
                 <div className="border border-border bg-muted/40 p-7 text-[13px] dark:bg-card/70 lg:p-9 lg:text-[14px]">
@@ -816,7 +818,7 @@ export default function MonroviaHustleConceptPage() {
                     </li>
                     <li className="flex gap-2">
                       <HardDrive className="mt-0.5 h-3.5 w-3.5 shrink-0 opacity-70" aria-hidden />
-                      <span>
+                      <span className="min-w-0 flex-1">
                         <span className="text-muted-foreground">Storage:</span> TBD — installer ships via studio email
                       </span>
                     </li>
@@ -845,11 +847,11 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section className="lg:col-span-2">
+              <section>
               <SectionTitle>Community &amp; backers</SectionTitle>
               <div className="rounded-sm border border-[#002868]/25 bg-[#002868]/[0.07] p-7 dark:border-[#4a7ab8]/30 dark:bg-[#10223a]/90 lg:p-9">
                 <HeartHandshake className="mb-3 h-8 w-8 text-[#BF0A30]" aria-hidden />
-                <p className="max-w-2xl text-[14px] leading-relaxed text-muted-foreground lg:text-[15px] lg:leading-[1.85]">
+                <p className="max-w-none text-[14px] leading-relaxed text-muted-foreground lg:text-[15px] lg:leading-[1.85]">
                   Backers and collaborators roll into credits and partner strips as the campaign formalizes. Drop a donation or join the mailing
                   thread via demo access.
                 </p>
@@ -861,7 +863,7 @@ export default function MonroviaHustleConceptPage() {
               </div>
             </div>
 
-            <aside className="hidden min-w-0 w-full max-w-full space-y-8 xl:block xl:max-w-[420px] xl:shrink-0">
+            <aside className="hidden w-full min-w-0 max-w-none space-y-8 xl:col-start-2 xl:row-start-2 xl:block xl:shrink-0">
               <div className="xl:sticky xl:top-28 xl:space-y-8">
                 <div className="rounded-xl border border-border/70 bg-card/50 p-6 shadow-sm backdrop-blur-sm dark:border-border/60 dark:bg-muted/15">
                   <StudioContactStrip heading="Studio &amp; community" variant="card" />
@@ -889,14 +891,14 @@ export default function MonroviaHustleConceptPage() {
           </div>
 
           {/* Bottom “Steam purchase bar” analogue */}
-          <section id="download" className="scroll-mt-28 mt-14 border-t border-border bg-muted/30 px-5 py-8 dark:bg-muted/20">
+          <section id="download" className="scroll-mt-28 mt-14 border-t border-border bg-muted/30 py-8 dark:bg-muted/20">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground" style={{ fontFamily: MONO }}>
                   Concept build · demo / press
                 </p>
                 <h2 className="mt-2 text-xl font-bold uppercase tracking-tight text-foreground">Play the concept · get access</h2>
-                <p className="mt-2 max-w-xl text-[14px] text-muted-foreground">
+                <p className="mt-2 max-w-none text-[14px] text-muted-foreground">
                   Windows installers ship when QA clears. Email for invite links, wishlist placement, or a supervised walkthrough — not a mass-market store drop yet.
                 </p>
               </div>
@@ -920,7 +922,7 @@ export default function MonroviaHustleConceptPage() {
           </section>
 
           <div
-            className="mt-10 max-w-3xl space-y-3 border-t border-border pt-8 text-[11px] leading-relaxed text-muted-foreground"
+            className="mt-10 max-w-none space-y-3 border-t border-border pt-8 text-[11px] leading-relaxed text-muted-foreground"
             aria-label="Legal and privacy notes"
           >
             <p>
