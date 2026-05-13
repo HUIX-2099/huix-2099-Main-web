@@ -485,26 +485,6 @@ html {
   border-color: var(--border);
 }
 
-/* Monrovia Hustle — partners strip (infinite marquee, duplicated track = 50% loop) */
-@keyframes mh-partners-marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.mh-partners-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: mh-partners-marquee 38s linear infinite;
-}
-
-.mh-partners-marquee-track:hover {
-  animation-play-state: paused;
-}
-
 /* Skeleton loader animation */
 @keyframes skeleton-loading {
   0% {

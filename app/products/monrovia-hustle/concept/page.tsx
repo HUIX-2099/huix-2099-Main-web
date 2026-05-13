@@ -7,6 +7,8 @@ import { Footer } from "@/components/footer"
 import { ConceptGameplayGallery, type ConceptGalleryItem } from "@/components/monrovia-hustle/concept-gameplay-gallery"
 import { ClickToViewImage } from "@/components/click-to-view-image"
 import { GoogleDiscoveryRow } from "@/components/google-discovery"
+import { monroviaConceptArtists, monroviaConceptArtistPageHref, MONROVIA_CONCEPT_ARTISTS_HREF } from "@/lib/monrovia-hustle/concept-artists"
+import { SITE_URL } from "@/lib/site"
 import { cn } from "@/lib/utils"
 import {
   ArrowLeft,
@@ -28,9 +30,28 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Concept 01 — Monrovia Hustle 3D | HUIX-2099",
+  title: {
+    absolute: "Concept 01 — Monrovia Hustle 3D dossier | voice cast · trailer · HUIX-2099 Liberia",
+  },
   description:
-    "Playable concept for Monrovia Hustle 3D: vertical slice, street hustle loop, trailer & screenshots, build contents, roadmap, partners — HUIX-2099.",
+    "Monrovia Hustle 3D Concept 01: playable vertical slice, trailer, screenshots, voice cast (Jayboy, Trapper, DC, Angel, Uncle Flomo, Jayboy Pa), lead developer Victor Edet Coleman — HUIX-2099, Monrovia, Liberia.",
+  keywords: [
+    "Monrovia Hustle 3D concept",
+    "Monrovia Hustle voice cast",
+    "HUIX-2099",
+    "Victor Edet Coleman",
+    "Liberia game concept",
+    "Monrovia RPG",
+    "Jayboy voice actor",
+  ],
+  alternates: { canonical: `${SITE_URL}/products/monrovia-hustle/concept` },
+  openGraph: {
+    title: "Monrovia Hustle 3D — Concept 01 | HUIX-2099",
+    description: "Playable concept, voice cast, trailer — Liberia.",
+    url: `${SITE_URL}/products/monrovia-hustle/concept`,
+    type: "article",
+    siteName: "HUIX-2099",
+  },
 }
 
 const MH_YOUTUBE_URL = "https://www.youtube.com/@HUIX-2099"
@@ -353,18 +374,6 @@ const CAST = [
     googleLabel: "Johnette Talkpa · Monrovia Hustle voice cast · Angel",
     googleQuery: "Johnette Talkpa voice actor Angel Monrovia Hustle 3D Jayboy club HUIX-2099 Liberia",
     href: "/team/johnette-talkpa",
-  },
-] as const
-
-const ARTISTS = [
-  {
-    name: "Bucky Raw",
-    discipline: "Music partnership · Marketing collaboration",
-    imageSrc: "/products/Monrovia_hustle_Demo_Campane/music_artist/bucky raw.jpeg",
-    imageAlt: "Bucky Raw — Monrovia Hustle 3D music and marketing partner",
-    body:
-      "Liberian music artist partnering with HUIX-2099 on Monrovia Hustle 3D. Bucky Raw and his team bring authentic Liberian soundscapes and marketing expertise to amplify the game's cultural reach and street authenticity.",
-    href: null,
   },
 ] as const
 
@@ -748,10 +757,11 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section id="artists" className="scroll-mt-28">
+              <section id="artists" className="scroll-mt-28" aria-label="Art and artists">
               <div className="mb-6 flex items-center gap-4 lg:mb-8 lg:gap-6">
                 <Palette className="h-7 w-7 shrink-0 text-[#BF0A30]" aria-hidden />
                 <h2
+                  id="artists-heading"
                   className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.14em] text-[#002868] dark:text-[#89b8ff] lg:text-xs"
                   style={{ fontFamily: MONO }}
                 >
@@ -759,17 +769,25 @@ export default function MonroviaHustleConceptPage() {
                 </h2>
                 <div className="h-px min-w-[2rem] flex-1 bg-foreground/10 dark:bg-foreground/15" aria-hidden />
               </div>
+              <p className="mb-3 text-[11px] font-medium text-muted-foreground" style={{ fontFamily: MONO }}>
+                Section anchor:{" "}
+                <StoreLink href={MONROVIA_CONCEPT_ARTISTS_HREF} className="text-[11px] font-semibold">
+                  #artists
+                </StoreLink>
+              </p>
               <p className="mb-8 max-w-none text-[15px] leading-[1.85] text-muted-foreground lg:mb-10 lg:text-[16px]">
                 Who&apos;s responsible for how the slice <strong className="text-foreground/90">reads on screen</strong> — not in-fiction characters (see{" "}
-                <a href="#cast" className="font-medium text-[#002868] underline decoration-[#002868]/35 underline-offset-2 dark:text-[#89b8ff]">
+                <a href="#voice-actors" className="font-medium text-[#002868] underline decoration-[#002868]/35 underline-offset-2 dark:text-[#89b8ff]">
                   Cast
                 </a>
-                ), but the people steering art direction, key art, and future collaborator credits.
+                ), but the people steering art direction, key art, music collaborators, and future credits.
               </p>
-              <div className="grid w-full min-w-0 grid-cols-1 gap-6 lg:gap-8">
-                {ARTISTS.map((a) => (
+              <div className="grid w-full min-w-0 grid-cols-1 gap-6 md:grid-cols-2 md:gap-6 lg:gap-8">
+                {monroviaConceptArtists.map((a) => {
+                  const artistHref = monroviaConceptArtistPageHref(a.slug)
+                  return (
                   <article
-                    key={a.name}
+                    key={a.slug}
                     className="group flex min-h-0 w-full min-w-0 flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] sm:flex-row"
                   >
                     <div className="relative aspect-[16/10] w-full min-w-0 shrink-0 overflow-hidden bg-muted/50 sm:w-2/5 lg:w-1/3">
@@ -788,27 +806,49 @@ export default function MonroviaHustleConceptPage() {
                           sizes="(max-width:640px) 100vw, (max-width:1024px) 40vw, 33vw"
                         />
                       </ClickToViewImage>
+                      <Link
+                        href={artistHref}
+                        className="absolute bottom-3 left-3 z-30 rounded-md border border-border/80 bg-background/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-foreground shadow-sm transition hover:border-[#BF0A30]/50 hover:text-[#BF0A30] sm:text-[11px]"
+                      >
+                        More info
+                      </Link>
                       <MonroviaGameLogoMark />
                     </div>
                     <div className="flex flex-1 flex-col p-5 sm:p-6 lg:p-8">
-                      <h3 className="text-lg font-black uppercase tracking-tight text-foreground sm:text-xl lg:text-2xl">{a.name}</h3>
+                      <Link href={artistHref} className="block w-fit max-w-full rounded-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-[#4285F4]/50 focus-visible:ring-offset-2">
+                        <h3 className="text-lg font-black uppercase tracking-tight text-foreground transition-colors group-hover:text-[#002868] sm:text-xl lg:text-2xl dark:group-hover:text-[#89b8ff]">
+                          {a.name}
+                        </h3>
+                      </Link>
                       <p
                         className="mt-2 text-[10px] font-bold uppercase leading-snug tracking-[0.12em] text-[#002868] dark:text-[#89b8ff]"
                         style={{ fontFamily: MONO }}
                       >
                         {a.discipline}
                       </p>
-                      <p className="mt-4 text-[13px] leading-[1.75] text-muted-foreground sm:text-[14px] sm:leading-[1.8] lg:text-[15px] lg:leading-[1.8]">{a.body}</p>
-                      {a.href ? (
-                        <StoreLink href={a.href} className="mt-5 inline-flex w-fit text-[13px] font-semibold">
-                          Team profile →
+                      <p className="mt-4 text-[13px] leading-[1.75] text-muted-foreground sm:text-[14px] sm:leading-[1.8] lg:text-[15px] lg:leading-[1.8]">{a.summary}</p>
+                      <div className="mt-5 flex flex-col gap-3">
+                        <StoreLink href={artistHref} className="inline-flex w-fit text-[13px] font-semibold">
+                          Full artist page →
                         </StoreLink>
-                      ) : (
-                        <p className="mt-5 text-[11px] font-medium italic text-muted-foreground sm:text-[12px]">Credits update as partners join — no implied endorsement yet.</p>
-                      )}
+                        <a
+                          href={a.facebookHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex w-fit max-w-full items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-[12px] font-semibold text-foreground shadow-sm transition hover:border-[#1877F2]/40 hover:bg-muted/50"
+                        >
+                          <Facebook className="h-4 w-4 shrink-0 text-[#1877F2]" aria-hidden />
+                          <span className="min-w-0">Facebook</span>
+                          <ExternalLink className="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden />
+                        </a>
+                        <p className="text-[11px] font-medium italic text-muted-foreground sm:text-[12px]">
+                          Credits update as partners join — no implied endorsement yet.
+                        </p>
+                      </div>
                     </div>
                   </article>
-                ))}
+                  )
+                })}
               </div>
               </section>
 

@@ -5,8 +5,7 @@ import Image from "next/image"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import {
-  Play,
-  ShieldAlert,
+  Lock,
   Monitor,
   Gamepad2,
   ArrowRight,
@@ -16,9 +15,7 @@ import {
   GitBranch,
   Wallet,
   HeartHandshake,
-  Smartphone,
   Expand,
-  Handshake,
   Target,
   Cpu,
   MessageCircleWarning,
@@ -190,99 +187,111 @@ export default function MonroviaHustlePage() {
               </ClickToViewImage>
             </motion.div>
 
-            {/* Bottom Stats / Glass UI Cards (Dignitas Inspired) */}
-            <motion.div 
-              style={{ y: yCards }}
-              className="w-full max-w-5xl mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 relative z-30"
-            >
-              
-              {/* INFO CARD 1 — teaser → full dossier on concept page */}
-              <div className="bg-background/80 backdrop-blur-xl border border-border p-6 flex flex-col transition-all duration-300 hover:bg-card hover:border-[#002868]/50 group overflow-hidden relative shadow-lg">
-                 <div className="absolute top-0 right-0 w-16 h-16 bg-[#002868]/10 blur-xl rounded-full -translate-y-1/2 translate-x-1/2 transition-transform group-hover:scale-150"></div>
-                 <div className="text-foreground/80 font-mono text-xs mb-3 uppercase tracking-[0.2em] flex items-center gap-2">
-                   <Gamepad2 className="w-4 h-4 text-[#BF0A30]" /> Game Details
-                 </div>
-                 <div className="text-2xl sm:text-3xl font-black text-foreground italic tracking-tighter uppercase mb-6 group-hover:text-[#002868] transition-colors duration-300">
-                   Slice-of-life<br/>Narrative urban RPG
-                 </div>
-                 <div className="mb-4 flex flex-wrap gap-2">
-                   <Link
-                     href={CONCEPT_HREF}
-                     className="inline-flex flex-1 min-w-[9rem] items-center justify-center gap-2 rounded border border-[#002868]/50 bg-[#002868]/10 py-2.5 text-[10px] font-black uppercase tracking-wider text-foreground transition hover:border-[#002868] hover:bg-[#002868]/18 dark:bg-[#002868]/14"
-                   >
-                     Full info
-                     <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-                   </Link>
-                   <Link
-                     href={`${CONCEPT_HREF}#download`}
-                     className="inline-flex flex-1 min-w-[9rem] items-center justify-center gap-2 rounded border border-[#BF0A30]/50 bg-[#BF0A30]/10 py-2.5 text-[10px] font-black uppercase tracking-wider text-foreground transition hover:border-[#BF0A30] hover:bg-[#BF0A30]/18"
-                   >
-                     Request access
-                     <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-                   </Link>
-                 </div>
-                 <p className="mb-4 text-[10px] leading-relaxed text-muted-foreground">
-                   Concept 01 · HUIX archive · 2026 — age notes, trailer, lead dev, cast &amp; supporters on the concept page.
-                 </p>
-                 <div className="mt-auto pt-4 border-t border-border flex justify-between w-full text-[10px] sm:text-xs text-muted-foreground uppercase tracking-widest font-mono">
-                   <span>Platform <span className="text-foreground ml-1 text-sm font-sans font-bold">PC</span></span>
-                   <span>Engine <span className="text-foreground ml-1 text-sm font-sans font-bold">Godot</span></span>
-                 </div>
-              </div>
-
-              {/* PRIMARY CALL TO ACTION CARD */}
-              <div className="bg-background backdrop-blur-xl border border-[#BF0A30]/50 p-6 flex flex-col justify-between group transform md:-translate-y-6 hover:-translate-y-8 transition-transform duration-500 relative shadow-[0_10px_40px_rgba(191,10,48,0.15)] hover:shadow-[0_15px_60px_rgba(191,10,48,0.25)]">
-                 <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-card z-0"></div>
-                 <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity z-10">
-                    <ShieldAlert className="w-5 h-5 text-[#BF0A30]" />
-                 </div>
-                 <div className="text-[#002868] dark:text-[#5c89d6] font-bold font-mono text-xs mb-2 uppercase tracking-[0.2em] z-10">
-                   Concept build
-                 </div>
-                 <div className="text-3xl sm:text-4xl font-black text-foreground italic tracking-tighter uppercase leading-none z-10">
-                   Play the<br/>concept
-                 </div>
-                 
-                 <div className="mt-8 space-y-3 relative z-10">
-                   <Link href={`${CONCEPT_HREF}#download`}>
-                     <button className="w-full bg-[#BF0A30] hover:bg-red-800 text-white font-black uppercase tracking-widest py-4 px-6 flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(191,10,48,0.3)]">
-                       <Play className="w-5 h-5 fill-white" />
-                       Request access
-                     </button>
-                   </Link>
-                   <p className="text-center text-[10px] text-muted-foreground uppercase tracking-widest">
-                     Windows 10/11 · Godot prototype
-                   </p>
-                 </div>
-              </div>
-
-              {/* INFO CARD 3 */}
-              <div className="bg-background/80 backdrop-blur-xl border border-border p-6 flex flex-col transition-all duration-300 hover:bg-card hover:border-[#BF0A30]/50 cursor-default group overflow-hidden relative shadow-lg">
-                 <div className="absolute top-0 right-0 w-16 h-16 bg-[#BF0A30]/10 blur-xl rounded-full -translate-y-1/2 translate-x-1/2 transition-transform group-hover:scale-150"></div>
-                 <div className="text-foreground/80 font-mono text-xs mb-3 uppercase tracking-[0.2em] flex items-center gap-2">
-                   <ArrowRight className="w-4 h-4 text-[#002868]" /> Next Steps
-                 </div>
-                 <div className="text-2xl sm:text-3xl font-black text-foreground italic tracking-tighter uppercase mb-4 group-hover:text-[#BF0A30] transition-colors duration-300">
-                   Support<br/>The Campaign
-                 </div>
-                 <Link
-                   href="/products/monrovia-hustle/donate"
-                   className="relative z-10 mb-4 inline-flex w-full items-center justify-center gap-2 rounded border border-[#002868]/50 bg-[#002868]/10 py-3 text-[11px] font-black uppercase tracking-widest text-foreground shadow-sm transition hover:border-[#002868] hover:bg-[#002868]/20 dark:bg-[#002868]/15 dark:hover:bg-[#002868]/25"
-                 >
-                   <Smartphone className="h-4 w-4 text-[#002868] dark:text-[#7eb3ff]" aria-hidden />
-                   Donate · Mobile &amp; Orange Money
-                 </Link>
-                 <div className="mt-auto pt-4 border-t border-border flex justify-between w-full text-[10px] sm:text-xs text-muted-foreground uppercase tracking-widest font-mono">
-                   <span>Studio <span className="text-foreground ml-1 text-sm font-sans font-bold">HUIX-2099</span></span>
-                   <Link href="/team/victor" className="text-foreground ml-1 text-sm font-sans font-bold underline decoration-[#BF0A30]/50 hover:decoration-[#BF0A30]">
-                     Victor →
-                   </Link>
-                 </div>
-              </div>
-
-            </motion.div>
           </div>
         </section>
+
+        {/* Franchise — Concept 01 (live) + future entry (locked) */}
+        <motion.section
+          style={{ y: yCards }}
+          id="franchise"
+          aria-labelledby="franchise-heading"
+          className="relative z-20 border-t border-border bg-muted/25 py-14 dark:bg-muted/10 sm:py-16"
+        >
+          <div className="mx-auto w-full max-w-[min(100vw-2rem,1200px)] px-4 sm:px-6 lg:px-8">
+            <div className="mb-10 max-w-2xl">
+              <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground sm:text-xs">
+                HUIX-2099 · Monrovia Hustle 3D
+              </p>
+              <h2 id="franchise-heading" className="text-2xl font-black uppercase tracking-tighter text-foreground sm:text-3xl">
+                Franchise
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                Concept 01 is live on the dossier. Additional franchise beats stay under lock until the studio publishes the next lane.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+              {/* Card 1 — Monrovia Hustle concept · demo → concept page */}
+              <article className="flex flex-col overflow-hidden rounded-2xl border border-[#002868]/40 bg-background/90 shadow-lg ring-1 ring-black/[0.04] transition hover:border-[#002868]/70 hover:shadow-xl dark:bg-card/80 dark:ring-white/[0.06]">
+                <div className="border-b border-border/80 bg-[#002868]/[0.08] px-5 py-4 dark:bg-[#002868]/15">
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#002868] dark:text-[#7eb3ff]">Available · Concept dossier</p>
+                  <h3 className="mt-1 text-xl font-black uppercase italic tracking-tighter text-foreground sm:text-2xl">
+                    <Link href={CONCEPT_HREF} className="transition hover:text-[#002868] dark:hover:text-[#7eb3ff]">
+                      Monrovia Hustle — Concept · demo
+                    </Link>
+                  </h3>
+                </div>
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <div className="text-foreground/80 font-mono text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+                    <Gamepad2 className="h-4 w-4 text-[#BF0A30]" aria-hidden />
+                    Game details
+                  </div>
+                  <div className="mt-3 text-2xl font-black uppercase italic tracking-tighter text-foreground sm:text-3xl">
+                    Slice-of-life
+                    <br />
+                    Narrative urban RPG
+                  </div>
+                  <div className="mt-5">
+                    <Link
+                      href={CONCEPT_HREF}
+                      className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded border border-[#002868]/50 bg-[#002868]/10 px-3 py-2.5 text-[10px] font-black uppercase tracking-wider text-foreground transition hover:border-[#002868] hover:bg-[#002868]/18 dark:bg-[#002868]/14 sm:w-auto sm:min-w-[9rem]"
+                    >
+                      Full info
+                      <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                    </Link>
+                  </div>
+                  <p className="mt-4 text-[11px] leading-relaxed text-muted-foreground sm:text-xs">
+                    Concept 01 · HUIX archive · 2026 — age notes, trailer, lead dev, cast &amp; supporters on the concept page.
+                  </p>
+                  <div className="mt-5 flex flex-wrap justify-between gap-3 border-t border-border pt-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground sm:text-xs">
+                    <span>
+                      Platform <span className="ml-1 font-sans text-sm font-bold text-foreground">PC</span>
+                    </span>
+                    <span>
+                      Engine <span className="ml-1 font-sans text-sm font-bold text-foreground">Godot</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+
+              {/* Card 2 — locked (no public dossier yet) */}
+              <article
+                className="relative flex flex-col overflow-hidden rounded-2xl border border-dashed border-border bg-muted/20 text-muted-foreground dark:bg-muted/5"
+                aria-label="Future franchise entry — not available"
+              >
+                <div className="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 bg-background/75 px-6 text-center backdrop-blur-[2px] dark:bg-background/80">
+                  <Lock className="h-12 w-12 text-foreground/40" strokeWidth={1.25} aria-hidden />
+                  <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/70">Locked</p>
+                  <p className="max-w-xs text-xs leading-relaxed text-muted-foreground">No public content yet — this slot is reserved for a future franchise beat.</p>
+                </div>
+                <div className="flex flex-col p-5 opacity-40 sm:p-6" aria-hidden>
+                  <div className="font-mono text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+                    <Gamepad2 className="h-4 w-4" aria-hidden />
+                    Game details
+                  </div>
+                  <div className="mt-3 text-2xl font-black uppercase italic tracking-tighter">
+                    Slice-of-life
+                    <br />
+                    Narrative urban RPG
+                  </div>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    <span className="inline-flex min-h-[44px] min-w-[9rem] flex-1 items-center justify-center rounded border border-border bg-muted/40 px-3 py-2.5 text-[10px] font-black uppercase tracking-wider">
+                      Full info
+                    </span>
+                    <span className="inline-flex min-h-[44px] min-w-[9rem] flex-1 items-center justify-center rounded border border-border bg-muted/40 px-3 py-2.5 text-[10px] font-black uppercase tracking-wider">
+                      Request access
+                    </span>
+                  </div>
+                  <p className="mt-4 text-[11px] leading-relaxed sm:text-xs">View · game details · full dossier when HUIX publishes the next entry.</p>
+                  <div className="mt-5 flex flex-wrap justify-between gap-3 border-t border-border pt-4 font-mono text-[10px] uppercase tracking-widest sm:text-xs">
+                    <span>Platform —</span>
+                    <span>Engine —</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </motion.section>
 
         {/* Art & artists — ties to concept page credits */}
         <section aria-label="Art and artists" className="border-t border-border bg-[#002868]/[0.04] py-12 dark:bg-[#10223a]/40">
@@ -303,43 +312,6 @@ export default function MonroviaHustlePage() {
               View art &amp; credits
               <ArrowRight className="h-4 w-4 text-[#BF0A30]" aria-hidden />
             </Link>
-          </div>
-        </section>
-
-        {/* Partners — animated strip (placeholders until logos land) */}
-        <section
-          aria-label="Partners"
-          className="border-t border-border bg-muted/40 py-14 dark:bg-muted/20 lg:py-16"
-        >
-          <div className="mx-auto mb-8 w-full max-w-[min(100vw-2rem,1600px)] px-6 lg:px-8">
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground sm:text-xs">
-                  HUIX-2099 · Monrovia Hustle 3D
-                </p>
-                <h2 className="flex items-center gap-2 text-2xl font-black uppercase tracking-tighter text-foreground sm:text-3xl">
-                  <Handshake className="h-7 w-7 text-[#002868] dark:text-[#7eb3ff]" aria-hidden />
-                  Partners
-                </h2>
-                <p className="mt-2 max-w-lg text-sm text-muted-foreground">
-                  Brands and collaborators riding with us on this build — logos coming soon.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-            {/* One flex row duplicated end-to-end with uniform gaps so translateX(-50%) loops cleanly */}
-            <div className="mh-partners-marquee-track gap-14 sm:gap-16">
-              {Array.from({ length: 16 }, (_, i) => (
-                <div
-                  key={i}
-                  className="flex h-[4.25rem] w-[11rem] shrink-0 items-center justify-center rounded-xl border-2 border-dashed border-[#002868]/35 bg-background/90 px-4 font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground shadow-inner dark:border-[#7eb3ff]/30 dark:bg-card/80 sm:h-[5rem] sm:w-[13rem]"
-                  {...(i >= 8 ? { "aria-hidden": true as const } : {})}
-                >
-                  Coming soon
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 

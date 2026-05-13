@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { useTheme } from "@/components/theme-provider"
 import Link from "next/link"
 import { ExternalLink, Facebook, Linkedin, Palette, ArrowRight, ArrowDown } from "lucide-react"
+import { SITE_URL } from "@/lib/site"
 
 const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
 const HUIX_THEME_MARKETPLACE = "https://marketplace.visualstudio.com/items?itemName=huix-2099.huix-2099-theme"
@@ -408,13 +409,13 @@ export default function HuixThemePage() {
                 HUIX-2099 — Monrovia, Liberia
               </h2>
               <a
-                href="https://huix-2099.vercel.app/"
+                href={SITE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                 style={{ fontFamily: monoFont }}
               >
-                https://huix-2099.vercel.app/
+                {SITE_URL.replace(/^https:\/\//, "")}
               </a>
             </div>
           </div>

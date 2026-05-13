@@ -1,14 +1,22 @@
 import type { ReactNode } from "react"
 import type { Metadata } from "next"
+import { SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "Huixor",
+  title: {
+    absolute: "Huixor — multi-device web preview for Windows | HUIX-2099 Liberia",
+  },
   description:
-    "Huixor is a professional Windows desktop app for multi-device web preview — phones, tablets, watches, multi-monitor desktop, and VR — using WPF, .NET 8, and WebView2 (Chrome DevTools Protocol). Portable single .exe.",
+    "Huixor: professional Windows desktop app for multi-device web preview (phones, tablets, watches, multi-monitor, VR) — WPF, .NET 8, WebView2. From HUIX-2099, Monrovia, Liberia — Victor Edet Coleman.",
+  keywords: ["Huixor", "HUIX-2099", "Victor Edet Coleman", "web preview Windows", "Liberia software", "WebView2"],
+  alternates: { canonical: `${SITE_URL}/products/huixor` },
   openGraph: {
     title: "Huixor | HUIX-2099",
     description:
-      "Professional multi-device web preview. Up to 8 panels, synced scroll, VR scene, portable Windows .exe.",
+      "Multi-device web preview for Windows — HUIX-2099, Liberia.",
+    url: `${SITE_URL}/products/huixor`,
+    type: "website",
+    siteName: "HUIX-2099",
   },
 }
 

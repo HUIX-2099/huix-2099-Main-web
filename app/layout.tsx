@@ -42,6 +42,12 @@ export const metadata: Metadata = {
   keywords: [
     "HUIX-2099",
     "HUIX 2099",
+    "HUIX-THEME",
+    "HUIX THEME VS Code extension",
+    "Monrovia Hustle 3D",
+    "Monrovia Hustle voice cast",
+    "Typelr",
+    "Huixor",
     "Liberia technology company",
     "African tech startup",
     "VR development Africa",
@@ -219,6 +225,9 @@ const jsonLd = {
     "Software Development",
     "Digital Engineering",
     "Immersive Technology",
+    "Monrovia Hustle 3D",
+    "HUIX-THEME VS Code extension",
+    "Liberian narrative games",
   ],
   areaServed: {
     "@type": "GeoCircle",
@@ -232,6 +241,20 @@ const jsonLd = {
   slogan: "Building the Digital Future of Africa",
 }
 
+const jsonLdWebSite = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "HUIX-2099",
+  url: "https://huix2099.com/",
+  description:
+    "Official site for HUIX-2099 — Liberia-based studio (Victor Edet Coleman, Founder & CTO): Monrovia Hustle 3D, HUIX-THEME, Huixor, Typelr, and XR/3D work.",
+  publisher: {
+    "@type": "Organization",
+    name: "HUIX-2099",
+    url: "https://huix2099.com",
+  },
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -243,6 +266,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
         />
       </head>
       <body

@@ -2,12 +2,22 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { SITE_URL } from "@/lib/site"
 import { ArrowLeft, Smartphone, HeartHandshake } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Donate — Monrovia Hustle 3D | HUIX-2099",
+  title: {
+    absolute: "Donate — Monrovia Hustle 3D | HUIX-2099 Liberia",
+  },
   description:
-    "Support Monrovia Hustle 3D with Mobile Money or Orange Money. Your donation helps HUIX-2099 finish this Liberian narrative RPG.",
+    "Support Monrovia Hustle 3D with Mobile Money or Orange Money — HUIX-2099 Liberian narrative RPG concept led by Victor Edet Coleman.",
+  keywords: ["Monrovia Hustle donate", "HUIX-2099", "Victor Edet Coleman", "Liberia game donation", "Orange Money"],
+  alternates: { canonical: `${SITE_URL}/products/monrovia-hustle/donate` },
+  openGraph: {
+    title: "Donate — Monrovia Hustle 3D | HUIX-2099",
+    url: `${SITE_URL}/products/monrovia-hustle/donate`,
+    type: "website",
+  },
 }
 
 const DONATION_MSISDN_DISPLAY = "0776800064"

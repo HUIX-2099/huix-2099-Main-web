@@ -1,5 +1,7 @@
+import type { Metadata } from "next"
 import { teamMembers } from "../data"
 import { notFound } from "next/navigation"
+import { SITE_URL } from "@/lib/site"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
@@ -9,6 +11,58 @@ export function generateStaticParams() {
     return teamMembers.map((member) => ({
         id: member.id,
     }))
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    const { id } = await params
+    const member = teamMembers.find((m) => m.id === id)
+    if (!member) {
+        return { title: { absolute: "Team | HUIX-2099" } }
+    }
+
+    const canonical = `${SITE_URL}/team/${member.id}`
+    const voiceTitle = member.voiceProfile
+        ? `${member.name} — Monrovia Hustle 3D voice cast · ${member.role} | HUIX-2099 Liberia`
+        : `${member.name} — ${member.role} | HUIX-2099 Liberia`
+
+    const rawDesc = member.voiceProfile
+        ? `${member.name} is on the Monrovia Hustle 3D voice cast (${member.role}). ${member.tagline} HUIX-2099, Monrovia, Liberia — led by Victor Edet Coleman, Founder & CTO.`
+        : `${member.name}, ${member.role} at HUIX-2099. ${member.tagline} ${member.location}.`
+
+    const description = rawDesc.length > 165 ? `${rawDesc.slice(0, 162)}…` : rawDesc
+
+    const keywords = [
+        member.name,
+        "HUIX-2099",
+        "Victor Edet Coleman",
+        "Liberia",
+        "Monrovia",
+        "Monrovia Hustle 3D",
+        member.role,
+        member.focus,
+        ...(member.voiceProfile ? ["Monrovia Hustle voice cast", "Liberian voice actor", "HUIX voice cast"] : []),
+    ]
+
+    return {
+        title: {
+            absolute: voiceTitle,
+        },
+        description,
+        keywords,
+        alternates: { canonical },
+        openGraph: {
+            title: member.voiceProfile ? `${member.name} · Monrovia Hustle 3D voice` : member.name,
+            description: member.tagline,
+            url: canonical,
+            type: "profile",
+            siteName: "HUIX-2099",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: member.name,
+            description: member.tagline,
+        },
+    }
 }
 
 export default async function TeamMemberPage({ params }: { params: Promise<{ id: string }> }) {

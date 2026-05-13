@@ -21,6 +21,7 @@ import {
   shotSrc,
   type HuixorShotGroup,
 } from "@/lib/huixor-media"
+import { SITE_URL } from "@/lib/site"
 import {
   Collapsible,
   CollapsibleContent,
@@ -1329,12 +1330,12 @@ export default function HuixorPage() {
                   </li>
                   <li>
                     <a
-                      href="https://huix-2099.vercel.app/"
+                      href={SITE_URL}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
                     >
-                      huix-2099.vercel.app
+                      {SITE_URL.replace(/^https:\/\//, "")}
                     </a>
                   </li>
                 </ul>

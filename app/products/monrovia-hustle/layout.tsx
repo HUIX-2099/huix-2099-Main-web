@@ -1,17 +1,39 @@
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
+import { SITE_URL } from "@/lib/site"
+import { GeoWelcomeBanner } from "@/components/geo-welcome-banner"
 
 export const metadata: Metadata = {
-  title: "Monrovia Hustle 3D — Liberian narrative RPG hub",
+  title: {
+    absolute: "Monrovia Hustle 3D — Liberian narrative RPG | HUIX-2099 · Victor Edet Coleman",
+  },
   description:
-    "HUIX-2099's public hub for Monrovia Hustle 3D: a Liberian-led slice-of-life narrative urban RPG set in Monrovia — Warning this is a concept. Lead developer: Victor Edet Coleman.",
+    "Monrovia Hustle 3D hub: Liberian slice-of-life narrative urban RPG concept from HUIX-2099 — Monrovia streets, voice cast, concept dossier. Lead developer Victor Edet Coleman (Founder & CTO), Liberia.",
+  keywords: [
+    "Monrovia Hustle 3D",
+    "HUIX-2099",
+    "Victor Edet Coleman",
+    "Liberia narrative game",
+    "Monrovia RPG",
+    "Liberian voice cast",
+    "West Africa indie game",
+  ],
+  alternates: { canonical: `${SITE_URL}/products/monrovia-hustle` },
   openGraph: {
     title: "Monrovia Hustle 3D | HUIX-2099",
     description:
-      "Explore the story, features, and vision — authentic Monrovia streets, branching hustle, comic-book narrative. Built in Liberia.",
+      "Liberian-led narrative RPG concept — Monrovia, voice cast, concept page. Victor Edet Coleman.",
+    url: `${SITE_URL}/products/monrovia-hustle`,
+    type: "website",
+    siteName: "HUIX-2099",
   },
 }
 
 export default function MonroviaHustleLayout({ children }: { children: ReactNode }) {
-  return <div className="min-h-screen bg-background text-foreground">{children}</div>
+  return (
+    <>
+      <div className="min-h-screen bg-background text-foreground">{children}</div>
+      <GeoWelcomeBanner />
+    </>
+  )
 }

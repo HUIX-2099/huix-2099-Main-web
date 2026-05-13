@@ -335,6 +335,25 @@ export const teamMembers = [
             pipeline: "Dry office ambience; voice sits forward with light room tone so Ma/help talk stays intimate on close framing.",
         },
     },
+    {
+        id: "quinn-win-liberia",
+        name: "Quinn",
+        role: "Friend · office space for the prototype",
+        title: "Win Liberia — space to build Monrovia Hustle 3D",
+        badge: "11",
+        image: "/Team/quinn-huix-partner.svg",
+        photos: [{ id: "01", image: "/Team/quinn-huix-partner.svg", caption: "Quinn — friend who shared office space for the prototype" }],
+        tagline: "Our friend Quinn gave HUIX a room to build — not software access, not a vendor login — real desk space.",
+        bio: "Quinn is a friend of the studio, not a code package or an “access SKU.” He opened office space so HUIX-2099 could build the Monrovia Hustle 3D prototype with a door that closes and a desk that stays put. We still talk about Win Liberia / Cread on the build because that is the lane we file work under — but the human story is simpler: a friend trusted us with space. This page is a thank-you and a straight credit line; swap the portrait when Quinn is happy with a photo.",
+        focus: "Office space · prototype build · Win Liberia (friend network)",
+        location: "Liberia",
+        email: "huixtech2099@gmail.com",
+        status: "Friend & space supporter · HUIX Archive",
+        linkedin: null,
+        facebook: null,
+        phone: null,
+        googleSearch: null,
+    },
     ]
 
 export type TeamMember = (typeof teamMembers)[number]

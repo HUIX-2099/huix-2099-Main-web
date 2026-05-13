@@ -397,7 +397,7 @@ Since Huixor is open source, contributions are welcome:
 - **LinkedIn:** [HUIX 2099](https://www.linkedin.com/company/109222370/)
 - **Facebook:** [HUIX 2099](https://web.facebook.com/huix2099)
 - **YouTube:** [HUIX 2099](https://www.youtube.com/@HUIX-2099)
-- **Website:** [huix-2099.vercel.app](https://huix-2099.vercel.app/)
+- **Website:** [huix2099.com](https://huix2099.com/)
 
 ### Known Limitations (Beta)
 
