@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
-import { ChevronLeft } from "lucide-react"
+import { ChevronLeft, Headphones, Mic2, Volume2 } from "lucide-react"
 
 export function generateStaticParams() {
     return teamMembers.map((member) => ({
@@ -32,6 +32,15 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ id:
                         <div className="w-48 h-48 md:w-64 md:h-64 shrink-0 rounded-2xl overflow-hidden border border-border bg-muted relative">
                             <img src={member.image} alt={`${member.name} — HUIX-2099 · ${member.role}`} className="w-full h-full object-cover object-top" />
                             <div className="absolute inset-0 border border-foreground/10 rounded-2xl pointer-events-none" />
+                            {member.voiceProfile && (
+                                <div
+                                    className="absolute bottom-3 right-3 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/95 text-[#BF0A30] shadow-md dark:bg-background/90"
+                                    title="Voice cast — Monrovia Hustle 3D"
+                                    aria-hidden
+                                >
+                                    <Volume2 className="h-5 w-5" strokeWidth={2.25} />
+                                </div>
+                            )}
                         </div>
 
                         <div className="flex-1 text-center md:text-left">
@@ -45,6 +54,14 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ id:
                                 {" · "}
                                 {member.location}
                             </p>
+                            {member.voiceProfile && (
+                                <p className="mb-4 flex flex-wrap items-center justify-center gap-2 md:justify-start">
+                                    <span className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-muted/50 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                                        <Volume2 className="h-3.5 w-3.5 shrink-0 text-[#BF0A30]" aria-hidden />
+                                        Monrovia Hustle 3D · Voice cast
+                                    </span>
+                                </p>
+                            )}
                             <p className="text-lg md:text-xl text-muted-foreground font-medium mb-6 max-w-2xl">{member.tagline}</p>
 
                             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-4">
@@ -85,6 +102,53 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ id:
                         <p className="text-foreground/90 leading-relaxed text-lg mb-10 max-w-3xl">
                             {member.bio}
                         </p>
+
+                        {member.voiceProfile && (
+                            <div className="mb-10 rounded-2xl border border-border/80 bg-gradient-to-b from-muted/35 to-muted/15 p-6 md:p-8 dark:from-muted/25 dark:to-muted/10">
+                                <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-border bg-card text-[#BF0A30] shadow-sm dark:bg-card/80">
+                                            <Volume2 className="h-6 w-6" strokeWidth={2} aria-hidden />
+                                        </span>
+                                        <div>
+                                            <h2 className="text-xl font-bold text-foreground font-sans">Voice design</h2>
+                                            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+                                                Direction · tone · mix
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="grid gap-6 md:grid-cols-1 md:gap-8">
+                                    <div>
+                                        <h3 className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#002868] dark:text-[#89b8ff]">
+                                            <Mic2 className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                                            Direction &amp; character
+                                        </h3>
+                                        <p className="text-[15px] leading-[1.75] text-foreground/90 md:text-base">
+                                            {member.voiceProfile.design}
+                                        </p>
+                                    </div>
+                                    {member.voiceProfile.tone && (
+                                        <div className="rounded-xl border border-border/60 bg-background/40 p-4 dark:bg-background/20">
+                                            <h3 className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+                                                <Volume2 className="h-3.5 w-3.5 shrink-0 text-[#BF0A30]" aria-hidden />
+                                                Tone palette
+                                            </h3>
+                                            <p className="text-[15px] leading-[1.75] text-foreground/90 md:text-base">{member.voiceProfile.tone}</p>
+                                        </div>
+                                    )}
+                                    {member.voiceProfile.pipeline && (
+                                        <div className="rounded-xl border border-border/60 bg-background/40 p-4 dark:bg-background/20">
+                                            <h3 className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+                                                <Headphones className="h-3.5 w-3.5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
+                                                Capture &amp; in-engine mix
+                                            </h3>
+                                            <p className="text-[15px] leading-[1.75] text-foreground/90 md:text-base">{member.voiceProfile.pipeline}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
 
                         {member.photos.length > 1 && (
                             <div className="mb-12">

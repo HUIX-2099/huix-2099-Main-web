@@ -1,5 +1,12 @@
 const WULWYN_AVATAR = "https://scontent.fmlw1-2.fna.fbcdn.net/v/t1.6435-9/53121401_10156204857453437_4904719181628309504_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeHM7VGP9lGvyVYSK7M-N7OPtyAmpe0yAEC3ICal7TIAQAlKnT9aru1Vra9ERu2ERftuf6IhMNQco4jjEhKBidka&_nc_ohc=SYJ_JtOEynwQ7kNvwEvzNt7&_nc_oc=Adr07kDph0gtEgDOQvhk0fPuJfD8yIQCW-tRlQntnwr2NJWgcB0da0ukKWRA-_lfK4s&_nc_zt=23&_nc_ht=scontent.fmlw1-2.fna&_nc_gid=leeCcpZhuqHH2j4XhF0Row&_nc_ss=7a32e&oh=00_AfzRDlNsrFWbsEoG0PgHvPw2I3IJDZvA7zUIBbRjWOgeCw&oe=69E7DA12"
 
+/** Shown on /team/[id] for Monrovia Hustle voice cast — direction, tone, pipeline */
+export type TeamMemberVoiceProfile = {
+    design: string
+    tone?: string
+    pipeline?: string
+}
+
 function googleProfileSearch(query: string) {
     return `https://www.google.com/search?q=${encodeURIComponent(query)}`
 }
@@ -64,7 +71,12 @@ export const teamMembers = [
         linkedin: null,
         facebook: "https://www.facebook.com/profile.php?id=61572485499528",
         phone: null,
-        googleSearch: googleProfileSearch("Dominic Rockson voice actor Monrovia Hustle 3D Jboy Liberia HUIX-2099")
+        googleSearch: googleProfileSearch("Dominic Rockson voice actor Monrovia Hustle 3D Jboy Liberia HUIX-2099"),
+        voiceProfile: {
+            design: "Jboy is written as young Monrovia under pressure — quick cover for fatigue, code-switch between corner confidence and quieter doubt at home. Direction keeps reads conversational and close: sidewalk rhythm, not trailer polish.",
+            tone: "Warm mid-register with street edge; comic beats stay dry, mission dialogue stays lean and playable.",
+            pipeline: "Studio capture → light cleanup → Godot dialogue bus with ducking around street ambience so lines stay legible on foot.",
+        },
     },
     {
         id: "arthur-kollie",
@@ -108,7 +120,12 @@ export const teamMembers = [
         linkedin: null,
         facebook: "https://www.facebook.com/profile.php?id=61572485499528",
         phone: null,
-        googleSearch: googleProfileSearch("David Neor Jr voice actor DC Young Monrovia Hustle 3D HUIX-2099 Liberia")
+        googleSearch: googleProfileSearch("David Neor Jr voice actor DC Young Monrovia Hustle 3D HUIX-2099 Liberia"),
+        voiceProfile: {
+            design: "DC Young sits in the mission spine — phone pressure, corner energy, and timing that sells the hustle loop. Direction pushes forward motion: shorter breaths, confident attack, room for humour without losing threat.",
+            tone: "Street-forward, athletic delivery; peaks on callouts and mission hand-offs.",
+            pipeline: "Tight close-mic stack for phone beats; slightly wider profile for street-facing barks so the same actor reads clear in both contexts.",
+        },
     },
     {
         id: "johnette-talkpa",
@@ -134,6 +151,11 @@ export const teamMembers = [
         facebook: "https://www.facebook.com/profile.php?id=61572485499528",
         phone: null,
         googleSearch: googleProfileSearch("Johnette Talkpa voice actor Angel Monrovia Hustle 3D HUIX-2099 Liberia"),
+        voiceProfile: {
+            design: "Angel carries chapter-one gravity — stability, ambition, and receipts colliding without melodrama. Sessions favour emotional honesty over performance volume; silence and micro-pauses are part of the design.",
+            tone: "Tender, tired clarity; intimacy over projection.",
+            pipeline: "Gentle de-essing and level ride so breakup beats land in comic and bedroom hubs without fighting UI or music beds.",
+        },
     },
     {
         id: "thomas",
@@ -190,7 +212,12 @@ export const teamMembers = [
         linkedin: null,
         facebook: "https://www.facebook.com/profile.php?id=61572485499528",
         phone: null,
-        googleSearch: googleProfileSearch("Jerry D Kollie voice actor Monrovia Hustle 3D voice cast HUIX-2099 Liberia")
+        googleSearch: googleProfileSearch("Jerry D Kollie voice actor Monrovia Hustle 3D voice cast HUIX-2099 Liberia"),
+        voiceProfile: {
+            design: "Cast-concept and VO lanes stay flexible — Jerry's reads support prototype episodes where tone has to establish a character fast. Direction prioritises texture and presence over long exposition.",
+            tone: "Grounded, adaptable register for slice and vertical-slice experiments.",
+            pipeline: "Reference takes for story cards; final passes fold into the same Godot dialogue chain as shipped mission VO.",
+        },
     },
     {
         id: "felix-sowoma",
@@ -216,6 +243,11 @@ export const teamMembers = [
         facebook: "https://www.facebook.com/profile.php?id=61572485499528",
         phone: null,
         googleSearch: googleProfileSearch("Felix J K Sowoma voice actor Monrovia Hustle 3D Jayboy uncle HUIX-2099 Liberia"),
+        voiceProfile: {
+            design: "Jayboy's uncle is family weight in the mix — protection, expectation, and the pull of fast money. Voice design leans on authority without caricature: lived-in Monrovia cadence, slower pacing than street peers.",
+            tone: "Warm baritone leaning authoritative; room for humour when the script turns.",
+            pipeline: "Controlled dynamics so counsel scenes sit above ambient bed; light low-mid presence for phone and interior dialogue.",
+        },
     },
     ]
 
