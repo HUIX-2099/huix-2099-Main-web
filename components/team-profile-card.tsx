@@ -60,7 +60,11 @@ export function TeamProfileCard(props: TeamProfileCardProps) {
               </span>
             </div>
             <p className="mb-2 text-sm font-medium text-muted-foreground">
-              {member.location} • {member.role}
+              <span className="font-semibold text-foreground/90">HUIX-2099</span>
+              {" · "}
+              {member.role}
+              {" · "}
+              {member.location}
             </p>
             <p className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">{tagline}</p>
           </div>

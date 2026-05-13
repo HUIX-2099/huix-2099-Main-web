@@ -1,5 +1,9 @@
 const WULWYN_AVATAR = "https://scontent.fmlw1-2.fna.fbcdn.net/v/t1.6435-9/53121401_10156204857453437_4904719181628309504_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeHM7VGP9lGvyVYSK7M-N7OPtyAmpe0yAEC3ICal7TIAQAlKnT9aru1Vra9ERu2ERftuf6IhMNQco4jjEhKBidka&_nc_ohc=SYJ_JtOEynwQ7kNvwEvzNt7&_nc_oc=Adr07kDph0gtEgDOQvhk0fPuJfD8yIQCW-tRlQntnwr2NJWgcB0da0ukKWRA-_lfK4s&_nc_zt=23&_nc_ht=scontent.fmlw1-2.fna&_nc_gid=leeCcpZhuqHH2j4XhF0Row&_nc_ss=7a32e&oh=00_AfzRDlNsrFWbsEoG0PgHvPw2I3IJDZvA7zUIBbRjWOgeCw&oe=69E7DA12"
 
+function googleProfileSearch(query: string) {
+    return `https://www.google.com/search?q=${encodeURIComponent(query)}`
+}
+
 export const teamMembers = [
     {
         id: "victor",
@@ -47,9 +51,9 @@ export const teamMembers = [
         role: "Playable Protagonist",
         title: "Main Character",
         badge: "03",
-        image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Dominc%20Rockson.jpeg",
+        image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Dominc%20Rockson.png",
         photos: [
-            { id: "01", image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Dominc%20Rockson.jpeg", caption: "Dominic Rockson (Voice Talent)" }
+            { id: "01", image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Dominc%20Rockson.png", caption: "Dominic Rockson (Voice Talent)" }
         ],
         tagline: "Sidewalk calculus",
         bio: "Twenty-four on a thin wage. Carey and Benson know his stride — hustle as survival math, receipts as morality. Jboy is brought to life by the voice talent of Dominic Rockson, whose performance captures the raw energy and cultural depth of Monrovia's streets.",
@@ -60,7 +64,7 @@ export const teamMembers = [
         linkedin: null,
         facebook: "https://www.facebook.com/profile.php?id=61572485499528",
         phone: null,
-        googleSearch: null
+        googleSearch: googleProfileSearch("Dominic Rockson voice actor Monrovia Hustle 3D Jboy Liberia HUIX-2099")
     },
     {
         id: "arthur-kollie",
@@ -68,8 +72,8 @@ export const teamMembers = [
         role: "Cast Concept · HUIX Archive",
         title: "HUIX Archive",
         badge: "04",
-        image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Arthur%20B.%20Kollie.jpeg",
-        photos: [{ id: "01", image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Arthur%20B.%20Kollie.jpeg", caption: "Arthur" }],
+        image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Arthur%20B.%20Kollie.png",
+        photos: [{ id: "01", image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Arthur%20B.%20Kollie.png", caption: "Arthur" }],
         tagline: "Concept Tier 01",
         bio: "A key figure in the Monrovia Hustle narrative landscape, shaping the city's social and political undercurrents. Representing the established weight of the city, his concept points toward high-stakes interactions and structural pressure.",
         focus: "Narrative · Influence",
@@ -79,7 +83,7 @@ export const teamMembers = [
         linkedin: null,
         facebook: "https://www.facebook.com/profile.php?id=61572485499528",
         phone: null,
-        googleSearch: null
+        googleSearch: googleProfileSearch("Arthur B Kollie Monrovia Hustle 3D voice cast HUIX-2099 Liberia")
     },
     {
         id: "david",
@@ -104,7 +108,7 @@ export const teamMembers = [
         linkedin: null,
         facebook: "https://www.facebook.com/profile.php?id=61572485499528",
         phone: null,
-        googleSearch: null
+        googleSearch: googleProfileSearch("David Neor Jr voice actor DC Young Monrovia Hustle 3D HUIX-2099 Liberia")
     },
     {
         id: "johnette-talkpa",
@@ -129,7 +133,7 @@ export const teamMembers = [
         linkedin: null,
         facebook: "https://www.facebook.com/profile.php?id=61572485499528",
         phone: null,
-        googleSearch: null,
+        googleSearch: googleProfileSearch("Johnette Talkpa voice actor Angel Monrovia Hustle 3D HUIX-2099 Liberia"),
     },
     {
         id: "thomas",
@@ -186,7 +190,7 @@ export const teamMembers = [
         linkedin: null,
         facebook: "https://www.facebook.com/profile.php?id=61572485499528",
         phone: null,
-        googleSearch: null
+        googleSearch: googleProfileSearch("Jerry D Kollie voice actor Monrovia Hustle 3D voice cast HUIX-2099 Liberia")
     },
     {
         id: "felix-sowoma",
@@ -211,7 +215,7 @@ export const teamMembers = [
         linkedin: null,
         facebook: "https://www.facebook.com/profile.php?id=61572485499528",
         phone: null,
-        googleSearch: null,
+        googleSearch: googleProfileSearch("Felix J K Sowoma voice actor Monrovia Hustle 3D Jayboy uncle HUIX-2099 Liberia"),
     },
     ]
 

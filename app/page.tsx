@@ -7,6 +7,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { CustomCursor } from "@/components/custom-cursor";
 import { ParallaxReveal, ParallaxImage, ParallaxText, ParallaxFloat, ParallaxStagger, ParallaxStaggerItem } from "@/components/parallax";
+import { GoogleDiscoveryRow } from "@/components/google-discovery";
 import { ArrowRight, Monitor, Palette, Sparkles, ExternalLink, Gamepad2 } from "lucide-react";
 
 const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace';
@@ -25,6 +26,9 @@ const latestProducts = [
     openSource: true,
     href: "/products/huix-theme",
     external: "https://marketplace.visualstudio.com/items?itemName=huix-2099.huix-2099-theme",
+    creditLine: "HUIX-2099 · Victor Edet Coleman — Founder & CTO — led the HUIX-THEME VS Code extension.",
+    googleLabel: "HUIX-THEME · HUIX-2099 · Victor Edet Coleman",
+    googleQuery: "HUIX-THEME VS Code extension HUIX-2099 Victor Edet Coleman Founder CTO Liberia",
   },
   {
     id: 2,
@@ -38,6 +42,9 @@ const latestProducts = [
     status: "Development" as const,
     openSource: true,
     href: "/products/huixor",
+    creditLine: "HUIX-2099 · Victor Edet Coleman — Founder & CTO — engineering lead on HUIXOR.",
+    googleLabel: "HUIXOR · HUIX-2099 · Victor Edet Coleman",
+    googleQuery: "HUIXOR HUIX-2099 WPF WebView2 multi-device preview Victor Edet Coleman Liberia",
   },
   {
     id: 3,
@@ -46,12 +53,15 @@ const latestProducts = [
     icon: Gamepad2,
     platform: "PC · Studio hub",
     description:
-      "Warning this is a concept. Liberian narrative urban RPG — led by Victor Edet Coleman at HUIX-2099.",
+      "Warning: concept slice. Liberian narrative urban RPG — street hustle loop, tone-first casting, Monrovia as a lived-in open map.",
     image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
     year: "2026",
     status: "Development" as const,
     openSource: false,
     href: "/products/monrovia-hustle",
+    creditLine: "HUIX-2099 · Victor Edet Coleman — Founder & CTO — narrative & technical lead on Monrovia Hustle 3D.",
+    googleLabel: "Monrovia Hustle 3D · HUIX-2099 · Victor Edet Coleman",
+    googleQuery: "Monrovia Hustle 3D HUIX-2099 Victor Edet Coleman Liberian narrative urban RPG Liberia",
   },
 ];
 
@@ -282,10 +292,11 @@ export default function Home() {
               const Icon = product.icon;
               return (
                 <ParallaxReveal key={product.id} direction="up" delay={0.1 + idx * 0.08}>
-                  <Link
-                    href={product.href}
-                    className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-foreground/20 hover:shadow-lg"
-                  >
+                  <article className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-foreground/20 hover:shadow-lg">
+                    <Link
+                      href={product.href}
+                      className="flex min-h-0 flex-1 flex-col text-inherit no-underline outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    >
                     {/* Image */}
                     <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-muted/20 border-b border-border/50">
                       {product.image ? (
@@ -345,6 +356,12 @@ export default function Home() {
                         <p className="text-sm leading-relaxed text-muted-foreground line-clamp-2">
                           {product.description}
                         </p>
+                        <p
+                          className="mt-2 text-[10px] leading-snug text-muted-foreground/95"
+                          style={{ fontFamily: monoFont }}
+                        >
+                          {product.creditLine}
+                        </p>
                       </div>
 
                       <div className="mt-4 flex items-center justify-between">
@@ -368,7 +385,9 @@ export default function Home() {
                         </span>
                       </div>
                     </div>
-                  </Link>
+                    </Link>
+                    <GoogleDiscoveryRow googleQuery={product.googleQuery} googleLabel={product.googleLabel} />
+                  </article>
                 </ParallaxReveal>
               );
             })}
