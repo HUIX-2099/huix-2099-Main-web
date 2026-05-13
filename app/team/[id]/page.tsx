@@ -19,13 +19,17 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ id:
         notFound()
     }
 
+    const voiceCastSectionHref = "/products/monrovia-hustle/concept#voice-actors"
+    const backHref = member.voiceProfile ? voiceCastSectionHref : "/team"
+    const backLabel = member.voiceProfile ? "Back to Voice Cast" : "Back to Team"
+
     return (
         <>
             <Navbar />
             <main className="min-h-screen pt-32 pb-24 px-4 bg-background selection:bg-foreground selection:text-background">
                 <div className="max-w-4xl mx-auto">
-                    <Link href="/team" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground mb-12 transition-colors">
-                        <ChevronLeft className="w-4 h-4" /> Back to Team
+                    <Link href={backHref} className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground mb-12 transition-colors">
+                        <ChevronLeft className="w-4 h-4" /> {backLabel}
                     </Link>
 
                     <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 mb-12">
@@ -98,7 +102,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ id:
                     </div>
 
                     <div className="bg-card border border-border rounded-3xl p-8 md:p-12 shadow-sm">
-                        <h2 className="text-2xl font-bold mb-6 text-foreground font-sans">Biography</h2>
+                        <h2 className="text-2xl font-bold mb-6 text-foreground font-sans">Mission</h2>
                         <p className="text-foreground/90 leading-relaxed text-lg mb-10 max-w-3xl">
                             {member.bio}
                         </p>

@@ -56,6 +56,13 @@ const WORKSPACE_FILES = [
 ] as const
 
 const CAST_CONCEPT_DIR = "/products/Monrovia_hustle_Demo_Campane/cast_concept"
+const BLAMO_CHARACTER_SRC = `${CAST_CONCEPT_DIR}/CHARACTERS/BLAMO.jpeg`
+const JAYBOY_CHARACTER_SRC = `${CAST_CONCEPT_DIR}/CHARACTERS/JAYBOY.jpeg`
+const DC_CHARACTER_SRC = `${CAST_CONCEPT_DIR}/CHARACTERS/DC.jpeg`
+const TRAPPER_CHARACTER_SRC = `${CAST_CONCEPT_DIR}/CHARACTERS/Trapper.jpeg`
+const ANGEL_CHARACTER_SRC = `${CAST_CONCEPT_DIR}/CHARACTERS/angel.jpeg`
+const UNCLE_FLOMO_CHARACTER_SRC = `${CAST_CONCEPT_DIR}/CHARACTERS/uncle_flomo.jpeg`
+const JAYBOY_PA_CHARACTER_SRC = `${CAST_CONCEPT_DIR}/CHARACTERS/${encodeURIComponent("jayboy pa.jpeg")}`
 
 function ws(name: string) {
   return `${WORKSPACE_DIR}/${encodeURIComponent(name)}`
@@ -247,53 +254,68 @@ const TAGS = ["Single-player", "Slice-of-life", "Narrative", "Open world", "Libe
 
 const CAST = [
   {
-    name: "Dominic Rockson",
-    role: "Voice Actor · Jayboy",
-    epithet: "Playable protagonist · Sidewalk calculus",
+    name: "Jayboy",
+    role: "Main character · voiced by Dominic Rockson",
+    epithet: "Playable protagonist · age 24 · Jboy / JBOY / JBoy",
     imageSrc: cc("Dominc Rockson.png"),
+    hoverImageSrc: JAYBOY_CHARACTER_SRC,
+    hoverImageAlt:
+      "Jayboy — Monrovia Hustle 3D playable protagonist (Jboy / JBOY / JBoy in scripts), age 24 — voiced by Dominic Rockson",
     imageAlt: "Dominic Rockson — Monrovia Hustle 3D voice cast, Jayboy playable protagonist — HUIX-2099 Liberia",
-    googleLabel: "Dominic Rockson · Monrovia Hustle 3D voice cast",
-    googleQuery: "Dominic Rockson voice actor Monrovia Hustle 3D Jayboy Liberia HUIX-2099",
+    googleLabel: "Dominic Rockson · Jayboy · Monrovia Hustle 3D voice cast",
+    googleQuery: "Dominic Rockson Jayboy Monrovia Hustle 3D main character Jboy Liberia HUIX-2099",
     href: "/team/jboy",
   },
   {
     name: "Arthur B. Kollie",
-    role: "Cast Concept · HUIX Archive",
-    epithet: "Concept Tier 01",
+    role: "Voice Actor · Blamo",
+    epithet: "Smart-watch fence · Trapper's chain",
     imageSrc: cc("Arthur B. Kollie.png"),
-    imageAlt: "Arthur B. Kollie — Monrovia Hustle 3D voice cast and cast concept — HUIX-2099 Liberia",
-    googleLabel: "Arthur B. Kollie · Monrovia Hustle voice cast",
-    googleQuery: "Arthur B Kollie Monrovia Hustle 3D voice cast HUIX-2099 Liberia",
+    hoverImageSrc: BLAMO_CHARACTER_SRC,
+    hoverImageAlt:
+      "Blamo — Monrovia Hustle 3D character (3D render), smart-watch fence in Trapper's chain — voiced by Arthur B. Kollie",
+    imageAlt: "Arthur B. Kollie — Monrovia Hustle 3D voice cast, Blamo — HUIX-2099 Liberia",
+    googleLabel: "Arthur B. Kollie · Monrovia Hustle voice cast · Blamo",
+    googleQuery: "Arthur B Kollie voice actor Blamo Monrovia Hustle 3D HUIX-2099 Liberia",
     href: "/team/arthur-kollie",
   },
   {
     name: "David Neor Jr.",
-    role: "Voice Actor · DC",
-    epithet: "DC Young · mission spine",
+    role: "Voice Actor · DC (DC Young)",
+    epithet: "Trapper's sneaker contact · same street chain",
     imageSrc: cc("David Neor Jr.png"),
+    hoverImageSrc: DC_CHARACTER_SRC,
+    hoverImageAlt:
+      "DC (DC Young) — Monrovia Hustle 3D character; Trapper's brother and sneaker contact on the Tenneh phone mission chain — voiced by David Neor Jr.",
     imageAlt: "David Neor Jr. — Monrovia Hustle 3D voice cast, DC Young — HUIX-2099 Liberia",
-    googleLabel: "David Neor Jr. · Monrovia Hustle voice cast",
-    googleQuery: "David Neor Jr voice actor DC Young Monrovia Hustle 3D HUIX-2099 Liberia",
+    googleLabel: "David Neor Jr. · Monrovia Hustle voice cast · DC Young",
+    googleQuery: "David Neor Jr voice actor DC Young Monrovia Hustle 3D Trapper sneaker Tenneh Liberia HUIX-2099",
     href: "/team/david",
   },
   {
     name: "Jerry D Kollie",
-    role: "Voice Actor · Cast Concept",
-    epithet: "Voice talent",
+    role: "Voice Actor · Trapper",
+    epithet: "Street connect · Broad Street hub · club world",
     imageSrc: cc("Jerry D Kollie.png"),
-    imageAlt: "Jerry D Kollie — Monrovia Hustle 3D voice cast — HUIX-2099 Liberia",
-    googleLabel: "Jerry D Kollie · Monrovia Hustle voice cast",
-    googleQuery: "Jerry D Kollie voice actor Monrovia Hustle 3D voice cast HUIX-2099 Liberia",
+    hoverImageSrc: TRAPPER_CHARACTER_SRC,
+    hoverImageAlt:
+      "Trapper — Monrovia Hustle 3D character; Jayboy's street connect (TennehPhoneMission hub) — voiced by Jerry D Kollie",
+    imageAlt: "Jerry D Kollie — Monrovia Hustle 3D voice cast, Trapper — HUIX-2099 Liberia",
+    googleLabel: "Jerry D Kollie · Monrovia Hustle voice cast · Trapper",
+    googleQuery: "Jerry D Kollie voice actor Trapper Monrovia Hustle 3D TennehPhoneMission Liberia HUIX-2099",
     href: "/team/jerry-kollie",
   },
   {
     name: "Alfred M. Nyeswa",
-    role: "Voice Actor · Jayboy's Father",
-    epithet: "The voice of wisdom and pressure",
+    role: "Voice Actor · Jayboy Pa",
+    epithet: "LISTEN · Pa · straight talk",
     imageSrc: cc("Alfred M. Nyeswa.png"),
-    imageAlt: "Alfred M. Nyeswa — Monrovia Hustle 3D voice cast, Jayboy father — HUIX-2099 Liberia",
-    googleLabel: "Alfred M. Nyeswa · Monrovia Hustle voice cast",
-    googleQuery: "Alfred M Nyeswa voice actor Monrovia Hustle 3D Jayboy father HUIX-2099 Liberia",
+    hoverImageSrc: JAYBOY_PA_CHARACTER_SRC,
+    hoverImageAlt:
+      "Jayboy Pa — Monrovia Hustle 3D character; Jayboy's father (Pa, Liberian English) — voiced by Alfred M. Nyeswa",
+    imageAlt: "Alfred M. Nyeswa — Monrovia Hustle 3D voice cast, Jayboy Pa — HUIX-2099 Liberia",
+    googleLabel: "Alfred M. Nyeswa · Monrovia Hustle voice cast · Jayboy Pa",
+    googleQuery: "Alfred M Nyeswa voice actor Jayboy Pa father Monrovia Hustle 3D Liberia HUIX-2099",
     href: "/team/alfred-nyeswa",
   },
   {
@@ -308,22 +330,28 @@ const CAST = [
   },
   {
     name: "Felix J. K. Sowoma",
-    role: "Voice Actor · Jayboy's uncle",
-    epithet: "Family weight · street wisdom",
+    role: "Voice Actor · Uncle Flomo",
+    epithet: "Legit path · office scene landing",
     imageSrc: cc("felix J. K. Sowoma.png"),
-    imageAlt: "Felix J. K. Sowoma — Monrovia Hustle 3D voice cast, Jayboy uncle — HUIX-2099 Liberia",
-    googleLabel: "Felix J. K. Sowoma · Monrovia Hustle voice cast",
-    googleQuery: "Felix J K Sowoma voice actor Monrovia Hustle 3D Jayboy uncle HUIX-2099 Liberia",
+    hoverImageSrc: UNCLE_FLOMO_CHARACTER_SRC,
+    hoverImageAlt:
+      "Uncle Flomo — Monrovia Hustle 3D character; Jayboy's uncle, family mentor vs Trapper's hustle world — voiced by Felix J. K. Sowoma",
+    imageAlt: "Felix J. K. Sowoma — Monrovia Hustle 3D voice cast, Uncle Flomo — HUIX-2099 Liberia",
+    googleLabel: "Felix J. K. Sowoma · Monrovia Hustle voice cast · Uncle Flomo",
+    googleQuery: "Felix J K Sowoma voice actor Uncle Flomo Monrovia Hustle 3D Jayboy mentor Liberia HUIX-2099",
     href: "/team/felix-sowoma",
   },
   {
     name: "Johnette Talkpa",
     role: "Voice Actor · Angel",
-    epithet: "Love priced in LD",
+    epithet: "Jayboy's ex · bedroom thread · club confrontation",
     imageSrc: cc("Johnette Talkpa.png"),
+    hoverImageSrc: ANGEL_CHARACTER_SRC,
+    hoverImageAlt:
+      "Angel — Monrovia Hustle 3D character; Jayboy's ex / love interest — voiced by Johnette Talkpa",
     imageAlt: "Johnette Talkpa — Monrovia Hustle 3D voice cast, Angel — HUIX-2099 Liberia",
-    googleLabel: "Johnette Talkpa · Monrovia Hustle voice cast",
-    googleQuery: "Johnette Talkpa voice actor Angel Monrovia Hustle 3D HUIX-2099 Liberia",
+    googleLabel: "Johnette Talkpa · Monrovia Hustle voice cast · Angel",
+    googleQuery: "Johnette Talkpa voice actor Angel Monrovia Hustle 3D Jayboy club HUIX-2099 Liberia",
     href: "/team/johnette-talkpa",
   },
 ] as const
@@ -688,7 +716,7 @@ export default function MonroviaHustleConceptPage() {
                         {"hoverImageSrc" in c && (
                           <Image
                             src={c.hoverImageSrc as string}
-                            alt={`${c.name} — hover view`}
+                            alt={(c as { hoverImageAlt?: string }).hoverImageAlt ?? `${c.name} — hover view`}
                             fill
                             className="absolute inset-0 object-cover object-top transition-all duration-500 ease-out opacity-0 group-hover:opacity-100 group-hover:scale-[1.03]"
                             sizes="(max-width:640px) 100vw, (max-width:1280px) 50vw, 25vw"
