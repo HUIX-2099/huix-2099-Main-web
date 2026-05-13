@@ -249,11 +249,11 @@ const TAGS = ["Single-player", "Slice-of-life", "Narrative", "Open world", "Libe
 
 const CAST = [
   {
-    name: "Jboy",
-    role: "Playable protagonist",
-    epithet: "Sidewalk calculus",
+    name: "Dominic Rockson",
+    role: "Voice Actor · Jayboy",
+    epithet: "Playable protagonist · Sidewalk calculus",
     imageSrc: cc("Dominc Rockson.jpeg"),
-    imageAlt: "Dominic Rockson — Voice talent for Jboy",
+    imageAlt: "Dominic Rockson — Voice talent for Jayboy (playable protagonist)",
     href: "/team/jboy",
   },
   {
