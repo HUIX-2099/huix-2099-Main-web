@@ -363,17 +363,17 @@ const CAST = [
     href: "/team/felix-sowoma",
   },
   {
-    name: "Johnette Talkpa",
+    name: "Johnett S. Talkpa",
     role: "Voice Actor · Angel",
     epithet: "Jayboy's ex · bedroom thread · club confrontation",
-    imageSrc: cc("Johnette Talkpa.png"),
+    imageSrc: cc("Johnett S. Talkpa.png"),
     hoverImageSrc: ANGEL_CHARACTER_SRC,
     hoverImageAlt:
-      "Angel — Monrovia Hustle 3D character; Jayboy's ex / love interest — voiced by Johnette Talkpa",
-    imageAlt: "Johnette Talkpa — Monrovia Hustle 3D voice cast, Angel — HUIX-2099 Liberia",
-    googleLabel: "Johnette Talkpa · Monrovia Hustle voice cast · Angel",
-    googleQuery: "Johnette Talkpa voice actor Angel Monrovia Hustle 3D Jayboy club HUIX-2099 Liberia",
-    href: "/team/johnette-talkpa",
+      "Angel — Monrovia Hustle 3D character; Jayboy's ex / love interest — voiced by Johnett S. Talkpa",
+    imageAlt: "Johnett S. Talkpa — Monrovia Hustle 3D voice cast, Angel — HUIX-2099 Liberia",
+    googleLabel: "Johnett S. Talkpa · Monrovia Hustle voice cast · Angel",
+    googleQuery: "Johnett S Talkpa voice actor Angel Monrovia Hustle 3D Jayboy club HUIX-2099 Liberia",
+    href: "/team/johnett-s-talkpa",
   },
 ] as const
 

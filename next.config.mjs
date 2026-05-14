@@ -6,6 +6,15 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/team/johnette-talkpa",
+        destination: "/team/johnett-s-talkpa",
+        permanent: true,
+      },
+    ]
+  },
   async headers() {
     return [
       {

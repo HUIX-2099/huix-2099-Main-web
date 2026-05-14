@@ -158,12 +158,12 @@ export const teamMembers = [
         },
     },
     {
-        id: "johnette-talkpa",
-        name: "Johnette Talkpa",
+        id: "johnett-s-talkpa",
+        name: "Johnett S. Talkpa",
         role: "Voice Actor · Angel",
         title: "Monrovia Hustle 3D — Angel",
         badge: "06",
-        image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Johnette%20Talkpa.png",
+        image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Johnett%20S.%20Talkpa.png",
         photos: [
             {
                 id: "01",
@@ -172,12 +172,12 @@ export const teamMembers = [
             },
             {
                 id: "02",
-                image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Johnette%20Talkpa.png",
-                caption: "Johnette Talkpa (voice talent)",
+                image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/Johnett%20S.%20Talkpa.png",
+                caption: "Johnett S. Talkpa (voice talent)",
             },
         ],
         tagline: "Love interest turned complicated · sharp in the club",
-        bio: "Johnette Talkpa voices Angel in Monrovia Hustle 3D. Angel is Jayboy's ex and love interest — the emotional thread in his bedroom and later a sharp confrontation in the club. In StoryState she is described as a love interest turned complicated; in the club she has already broken up with him and is money-focused — not written as a cartoon villain, but not on his side emotionally anymore.",
+        bio: "Johnett S. Talkpa voices Angel in Monrovia Hustle 3D. Angel is Jayboy's ex and love interest — the emotional thread in his bedroom and later a sharp confrontation in the club. In StoryState she is described as a love interest turned complicated; in the club she has already broken up with him and is money-focused — not written as a cartoon villain, but not on his side emotionally anymore.",
         focus: "Voice · Romance thread · Club confrontation",
         location: "Monrovia, Liberia",
         email: "huixtech2099@gmail.com",
@@ -185,7 +185,7 @@ export const teamMembers = [
         linkedin: null,
         facebook: "https://www.facebook.com/profile.php?id=61572485499528",
         phone: null,
-        googleSearch: googleProfileSearch("Johnette Talkpa voice actor Angel Monrovia Hustle 3D HUIX-2099 Liberia"),
+        googleSearch: googleProfileSearch("Johnett S Talkpa voice actor Angel Monrovia Hustle 3D HUIX-2099 Liberia"),
         voiceProfile: {
             design: "Angel bridges intimate bedroom beats and a harder club register — the same person, different safety. Direction keeps the turn believable: tenderness first, then boundaries that read as self-protection, not cruelty for sport.",
             tone: "Soft exhaustion at home; clipped clarity in the club when money and receipts are on the table.",
