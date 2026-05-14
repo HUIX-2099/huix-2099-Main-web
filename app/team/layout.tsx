@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     absolute: "Team & voice cast — HUIX-2099 · Liberia",
   },
   description:
-    "HUIX-2099 team and Monrovia Hustle 3D voice cast: Victor Edet Coleman (Founder & CTO), Wulwyn Porte L (CEO), Dominic Rockson (Jayboy), and the full Liberia-led cast — HUIX-2099, Monrovia.",
+    "HUIX-2099 team and Monrovia Hustle 3D voice cast: Victor Edet Coleman (Founder & CTO, Jayboy), Dominic Rockson (sound engineer), and the full Liberia-led cast — HUIX-2099, Monrovia.",
   keywords: [
     "HUIX-2099 team",
     "Victor Edet Coleman",

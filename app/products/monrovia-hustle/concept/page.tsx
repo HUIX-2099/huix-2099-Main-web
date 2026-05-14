@@ -26,6 +26,7 @@ import {
   Route,
   Scale,
   Palette,
+  Headphones,
   ExternalLink,
 } from "lucide-react"
 
@@ -275,17 +276,17 @@ const TAGS = ["Single-player", "Slice-of-life", "Narrative", "Open world", "Libe
 
 const CAST = [
   {
-    name: "Jayboy",
-    role: "Main character · voiced by Dominic Rockson",
+    name: "Victor Edet Coleman",
+    role: "Founder & CTO · Voice — Jayboy (Jboy)",
     epithet: "Playable protagonist · age 24 · Jboy / JBOY / JBoy",
-    imageSrc: cc("Dominc Rockson.png"),
+    imageSrc: VICTOR_IMAGE,
     hoverImageSrc: JAYBOY_CHARACTER_SRC,
     hoverImageAlt:
-      "Jayboy — Monrovia Hustle 3D playable protagonist (Jboy / JBOY / JBoy in scripts), age 24 — voiced by Dominic Rockson",
-    imageAlt: "Dominic Rockson — Monrovia Hustle 3D voice cast, Jayboy playable protagonist — HUIX-2099 Liberia",
-    googleLabel: "Dominic Rockson · Jayboy · Monrovia Hustle 3D voice cast",
-    googleQuery: "Dominic Rockson Jayboy Monrovia Hustle 3D main character Jboy Liberia HUIX-2099",
-    href: "/team/jboy",
+      "Jayboy — Monrovia Hustle 3D playable protagonist (Jboy / JBOY / JBoy in scripts), age 24 — voiced by Victor Edet Coleman",
+    imageAlt: "Victor Edet Coleman — Monrovia Hustle 3D voice cast, Jayboy playable protagonist — HUIX-2099 Liberia",
+    googleLabel: "Victor Edet Coleman · Jayboy · Monrovia Hustle 3D voice cast",
+    googleQuery: "Victor Edet Coleman Jayboy Monrovia Hustle 3D Jboy voice Liberia HUIX-2099",
+    href: "/team/victor",
   },
   {
     name: "Arthur B. Kollie",
@@ -376,6 +377,11 @@ const CAST = [
     href: "/team/johnett-s-talkpa",
   },
 ] as const
+
+const DOMINIC_SOUND_IMAGE = cc("Dominc Rockson.png")
+const DOMINIC_SOUND_HREF = "/team/dominic-rockson"
+const DOMINIC_SOUND_GOOGLE_QUERY = "Dominic Rockson sound engineer Monrovia Hustle 3D Liberia HUIX-2099"
+const DOMINIC_SOUND_GOOGLE_LABEL = "Dominic Rockson · Monrovia Hustle 3D · Sound engineer"
 
 function SectionTitle({ children }: { children: ReactNode }) {
   return (
@@ -695,7 +701,11 @@ export default function MonroviaHustleConceptPage() {
               <SectionTitle>Monrovia Hustle 3D — voice cast</SectionTitle>
               <p className="mb-8 max-w-none text-[15px] leading-[1.85] text-muted-foreground lg:mb-10 lg:text-[16px]">
                 Monrovia Hustle 3D voice cast for HUIX-2099 (Liberia): each card opens the team profile; the Google row runs a search tuned to that performer and
-                the game&apos;s voice cast. Casting stays open — Facebook, socials, and Gmail on each profile.
+                the game&apos;s voice cast. Jayboy is voiced by Victor Edet Coleman (Founder &amp; CTO). Technical audio credits live in{" "}
+                <a href="#sound-audio" className="font-medium text-[#002868] underline decoration-[#002868]/35 underline-offset-2 dark:text-[#89b8ff]">
+                  Sound &amp; audio
+                </a>{" "}
+                below. Casting stays open — Facebook, socials, and Gmail on each profile.
               </p>
               <div className="grid w-full min-w-0 justify-items-stretch gap-6 [grid-template-columns:repeat(auto-fill,minmax(min(100%,16rem),1fr))] sm:gap-7 md:gap-8 [&>*]:min-w-0">
                 {CAST.map((c) => (
@@ -755,6 +765,72 @@ export default function MonroviaHustleConceptPage() {
                   </article>
                 ))}
               </div>
+              </section>
+
+              <section id="sound-audio" className="scroll-mt-28 border-t border-border pt-12 dark:border-border lg:pt-14" aria-label="Sound and audio">
+                <div className="mb-6 flex items-center gap-4 lg:mb-8 lg:gap-6">
+                  <Headphones className="h-7 w-7 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
+                  <h2
+                    id="sound-audio-heading"
+                    className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.14em] text-[#002868] dark:text-[#89b8ff] lg:text-xs"
+                    style={{ fontFamily: MONO }}
+                  >
+                    Sound &amp; audio
+                  </h2>
+                  <div className="h-px min-w-[2rem] flex-1 bg-foreground/10 dark:bg-foreground/15" aria-hidden />
+                </div>
+                <p className="mb-8 max-w-none text-[15px] leading-[1.85] text-muted-foreground lg:mb-10 lg:text-[16px]">
+                  Mix, capture, and in-engine clarity for the prototype — a separate lane from the voice cast cards.{" "}
+                  <strong className="text-foreground">Jayboy</strong> is performed by{" "}
+                  <strong className="text-foreground">Victor Edet Coleman</strong>;{" "}
+                  <strong className="text-foreground">Dominic Rockson</strong> is the sound engineer on Monrovia Hustle 3D.
+                </p>
+                <div className="grid w-full min-w-0 justify-items-stretch gap-6 [grid-template-columns:repeat(auto-fill,minmax(min(100%,16rem),1fr))] sm:gap-7 md:gap-8 [&>*]:min-w-0">
+                  <article className="group relative flex min-h-0 min-w-0 w-full max-w-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#002868]/45 hover:shadow-lg hover:shadow-[#002868]/[0.08] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] dark:hover:border-[#7eb3ff]/35 dark:hover:shadow-[#000]/40">
+                    <div
+                      className="absolute inset-x-0 top-0 z-10 h-[3px] bg-gradient-to-r from-[#002868] via-[#BF0A30] to-[#002868] opacity-90 transition-opacity duration-300 group-hover:opacity-100"
+                      aria-hidden
+                    />
+                    <Link
+                      href={DOMINIC_SOUND_HREF}
+                      className="relative z-0 flex min-h-0 min-w-0 flex-1 flex-col text-inherit no-underline outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    >
+                      <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-muted/50">
+                        <Image
+                          src={DOMINIC_SOUND_IMAGE}
+                          alt="Dominic Rockson — Monrovia Hustle 3D sound engineer — HUIX-2099 Liberia"
+                          fill
+                          className="object-cover object-top transition-all duration-500 ease-out group-hover:scale-[1.03]"
+                          sizes="(max-width:640px) 100vw, (max-width:1280px) 50vw, 25vw"
+                        />
+                        <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent pt-16" />
+                        <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground drop-shadow-sm">
+                          Dominic Rockson · sound
+                        </span>
+                        <MonroviaGameLogoMark />
+                      </div>
+                      <div className="relative flex flex-1 flex-col p-5 sm:p-6">
+                        <div className="mb-3 flex items-start justify-between gap-2">
+                          <h3 className="text-lg font-black uppercase tracking-tight text-foreground sm:text-xl">Dominic Rockson</h3>
+                        </div>
+                        <p
+                          className="text-[10px] font-bold uppercase leading-snug tracking-[0.12em] text-[#002868] dark:text-[#89b8ff]"
+                          style={{ fontFamily: MONO }}
+                        >
+                          Sound Engineer · Monrovia Hustle 3D
+                        </p>
+                        <p className="mt-3 text-sm font-semibold italic leading-snug text-foreground/95 sm:text-base">
+                          &ldquo;Capture, mix, and clarity for the slice&rdquo;
+                        </p>
+                        <div className="mt-auto pt-4 flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-[#002868] opacity-0 transition-opacity group-hover:opacity-100 dark:text-[#89b8ff]">
+                          <span>View Profile</span>
+                          <ArrowRight className="h-3 w-3" />
+                        </div>
+                      </div>
+                    </Link>
+                    <GoogleDiscoveryRow googleQuery={DOMINIC_SOUND_GOOGLE_QUERY} googleLabel={DOMINIC_SOUND_GOOGLE_LABEL} />
+                  </article>
+                </div>
               </section>
 
               <section id="artists" className="scroll-mt-28" aria-label="Art and artists">
