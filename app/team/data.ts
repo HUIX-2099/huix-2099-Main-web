@@ -18,9 +18,9 @@ export const teamMembers = [
         role: "Founder & CTO · Voice — Jayboy (Jboy)",
         title: "Chief Technology Officer",
         badge: "01",
-        image: "/Team/VICTOR.jpeg",
+        image: "/products/Monrovia_hustle_Demo_Campane/developer/Victor%20Edet%20Coleman.png",
         photos: [
-            { id: "01", image: "/Team/VICTOR.jpeg", caption: "CTO" },
+            { id: "01", image: "/products/Monrovia_hustle_Demo_Campane/developer/Victor%20Edet%20Coleman.png", caption: "CTO" },
             {
                 id: "02",
                 image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/CHARACTERS/JAYBOY.jpeg",

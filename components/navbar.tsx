@@ -247,7 +247,7 @@ export function Navbar() {
                 </div>
               </div>
               {/* Dynamic Tagline or Logo */}
-              {pathname === "/products/monrovia-hustle" && mounted ? (
+              {(pathname === "/products/monrovia-hustle" || pathname === "/products/monrovia-hustle/concept") && mounted ? (
                 <>
                   <div className="flex h-3 sm:h-4 w-px bg-border" />
                   <div className="flex text-[9px] uppercase tracking-[0.1em] text-muted-foreground flex-shrink-0" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>

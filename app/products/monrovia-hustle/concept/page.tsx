@@ -28,7 +28,9 @@ import {
   Palette,
   Headphones,
   ExternalLink,
+  Lock,
 } from "lucide-react"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
 export const metadata: Metadata = {
   title: {
@@ -625,6 +627,44 @@ export default function MonroviaHustleConceptPage() {
               <p className="mb-2 max-w-none text-[15px] leading-[1.8] text-muted-foreground lg:text-[16px]">
                 Use the carousel above: trailer first, then stills that try to show <strong className="text-foreground/90">character on street, environment reads, HUD / prompts</strong> — not only menus. Quality varies by capture pass; some tiles are workspace references.
               </p>
+              </section>
+
+              <section id="game-screens" className="scroll-mt-28">
+              <SectionTitle>Game Screens</SectionTitle>
+              <p className="mb-6 max-w-none text-[15px] leading-[1.8] text-muted-foreground lg:text-[16px]">
+                Preview of upcoming levels and in-game locations. Content is currently locked for this early prototype.
+              </p>
+              <div className="w-full relative px-12 sm:px-14">
+                <Carousel opts={{ align: "start" }} className="w-full">
+                  <CarouselContent>
+                    {Array.from({ length: 6 }).map((_, index) => (
+                      <CarouselItem key={index} className="sm:basis-1/2 lg:basis-1/3">
+                        <div className="p-1">
+                          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm dark:border-border/60">
+                            <Image 
+                              src={galleryItems[1].src as string} 
+                              alt="Locked Screen" 
+                              fill 
+                              className="object-cover blur-[6px] opacity-40 grayscale"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-background/20" />
+                            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                              <div className="flex size-14 items-center justify-center rounded-full border border-border/60 bg-background/80 shadow-sm backdrop-blur-md">
+                                <Lock className="size-6 text-muted-foreground/80" />
+                              </div>
+                              <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground" style={{ fontFamily: MONO }}>
+                                Locked · Level {index + 1}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="-left-4 sm:-left-6" />
+                  <CarouselNext className="-right-4 sm:-right-6" />
+                </Carousel>
+              </div>
               </section>
 
               <section id="about-developer" className="scroll-mt-28">
