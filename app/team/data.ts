@@ -180,10 +180,10 @@ export const teamMembers = [
         bio: "Johnett S. Talkpa voices Angel in Monrovia Hustle 3D. Angel is Jayboy's ex and love interest — the emotional thread in his bedroom and later a sharp confrontation in the club. In StoryState she is described as a love interest turned complicated; in the club she has already broken up with him and is money-focused — not written as a cartoon villain, but not on his side emotionally anymore.",
         focus: "Voice · Romance thread · Club confrontation",
         location: "Monrovia, Liberia",
-        email: "huixtech2099@gmail.com",
+        email: "talkpajohnett@gmail.com",
         status: "Voice Talent · HUIX Archive",
         linkedin: null,
-        facebook: "https://www.facebook.com/profile.php?id=61572485499528",
+        facebook: "https://www.facebook.com/johnett.s.talkpa",
         phone: null,
         googleSearch: googleProfileSearch("Johnett S Talkpa voice actor Angel Monrovia Hustle 3D HUIX-2099 Liberia"),
         voiceProfile: {
