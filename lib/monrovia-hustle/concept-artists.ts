@@ -17,6 +17,7 @@ export type MonroviaConceptArtist = {
   discipline: string
   imageSrc: string
   imageAlt: string
+  videoSrc?: string
   /** Short blurb on the concept page card */
   summary: string
   facebookHref: string
@@ -30,6 +31,7 @@ export const monroviaConceptArtists = [
     name: "Bucky Raw",
     discipline: "Music partnership · Marketing & promotion",
     imageSrc: musicArtistSrc("bucky raw.jpeg"),
+    videoSrc: "/products/Monrovia_hustle_Demo_Campane/video/bucky.mp4",
     imageAlt: "Bucky Raw — Monrovia Hustle 3D music and marketing partner",
     summary:
       "Bucky Raw and his team partner with HUIX-2099 on Monrovia Hustle 3D: authentic Liberian sound for the slice, plus real marketing muscle — they help promote the game, shape how it shows up to players and press, and back the build with street-credible reach.",

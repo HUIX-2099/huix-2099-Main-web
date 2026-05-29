@@ -113,6 +113,13 @@ function MonroviaGameLogoMark({ className }: { className?: string }) {
 const galleryItems: ConceptGalleryItem[] = [
   {
     kind: "video",
+    src: "/products/Monrovia_hustle_Demo_Campane/video/11.mp4",
+    posterSrc: CAPSULE_ART,
+    alt: "Monrovia Hustle 3D Gameplay Video",
+    autoPlay: true,
+  },
+  {
+    kind: "video",
     posterSrc: CAPSULE_ART,
     alt: "Monrovia Hustle trailer on YouTube",
   },
@@ -901,68 +908,119 @@ export default function MonroviaHustleConceptPage() {
               <div className="grid w-full min-w-0 grid-cols-1 gap-6 md:grid-cols-2 md:gap-6 lg:gap-8">
                 {monroviaConceptArtists.map((a) => {
                   const artistHref = monroviaConceptArtistPageHref(a.slug)
+                  const hasVideo = "videoSrc" in a && a.videoSrc
                   return (
-                  <article
-                    key={a.slug}
-                    className="group flex min-h-0 w-full min-w-0 flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] sm:flex-row"
-                  >
-                    <div className="relative aspect-[16/10] w-full min-w-0 shrink-0 overflow-hidden bg-muted/50 sm:w-2/5 lg:w-1/3">
-                      <ClickToViewImage
-                        src={a.imageSrc}
-                        alt={a.imageAlt}
-                        triggerClassName="absolute inset-0 block size-full"
-                        showViewHint
-                        viewHintPlacement="bottom"
+                    <article
+                      key={a.slug}
+                      className={cn(
+                        "group min-h-0 w-full min-w-0 overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04]",
+                        hasVideo ? "grid grid-cols-1 md:grid-cols-3 col-span-full" : "flex flex-col sm:flex-row"
+                      )}
+                    >
+                      {/* Video Column (only rendered if hasVideo is true) */}
+                      {hasVideo && (
+                        <div className="relative aspect-square w-full min-w-0 overflow-hidden bg-muted/50">
+                          <video
+                            src={a.videoSrc}
+                            poster={a.imageSrc}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            controls
+                            className="size-full object-cover"
+                          />
+                          <MonroviaGameLogoMark />
+                        </div>
+                      )}
+
+                      {/* Image Column */}
+                      <div
+                        className={cn(
+                          "relative bg-muted/50 overflow-hidden min-w-0",
+                          hasVideo
+                            ? "aspect-square w-full border-t md:border-t-0 md:border-l border-border/60"
+                            : "aspect-[16/10] w-full shrink-0 sm:w-2/5 lg:w-1/3"
+                        )}
                       >
-                        <Image
+                        <ClickToViewImage
                           src={a.imageSrc}
-                          alt=""
-                          fill
-                          className="object-contain object-center transition-transform duration-500 ease-out group-hover:scale-[1.02] bg-muted/30"
-                          sizes="(max-width:640px) 100vw, (max-width:1024px) 40vw, 33vw"
-                        />
-                      </ClickToViewImage>
-                      <Link
-                        href={artistHref}
-                        className="absolute bottom-3 left-3 z-30 rounded-md border border-border/80 bg-background/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-foreground shadow-sm transition hover:border-[#BF0A30]/50 hover:text-[#BF0A30] sm:text-[11px]"
-                      >
-                        More info
-                      </Link>
-                      <MonroviaGameLogoMark />
-                    </div>
-                    <div className="flex flex-1 flex-col p-5 sm:p-6 lg:p-8">
-                      <Link href={artistHref} className="block w-fit max-w-full rounded-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-[#4285F4]/50 focus-visible:ring-offset-2">
-                        <h3 className="text-lg font-black uppercase tracking-tight text-foreground transition-colors group-hover:text-[#002868] sm:text-xl lg:text-2xl dark:group-hover:text-[#89b8ff]">
-                          {a.name}
-                        </h3>
-                      </Link>
-                      <p
-                        className="mt-2 text-[10px] font-bold uppercase leading-snug tracking-[0.12em] text-[#002868] dark:text-[#89b8ff]"
-                        style={{ fontFamily: MONO }}
-                      >
-                        {a.discipline}
-                      </p>
-                      <p className="mt-4 text-[13px] leading-[1.75] text-muted-foreground sm:text-[14px] sm:leading-[1.8] lg:text-[15px] lg:leading-[1.8]">{a.summary}</p>
-                      <div className="mt-5 flex flex-col gap-3">
-                        <StoreLink href={artistHref} className="inline-flex w-fit text-[13px] font-semibold">
-                          Full artist page →
-                        </StoreLink>
-                        <a
-                          href={a.facebookHref}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex w-fit max-w-full items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-[12px] font-semibold text-foreground shadow-sm transition hover:border-[#1877F2]/40 hover:bg-muted/50"
+                          alt={a.imageAlt}
+                          triggerClassName="absolute inset-0 block size-full"
+                          showViewHint
+                          viewHintPlacement="bottom"
                         >
-                          <Facebook className="h-4 w-4 shrink-0 text-[#1877F2]" aria-hidden />
-                          <span className="min-w-0">Facebook</span>
-                          <ExternalLink className="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden />
-                        </a>
-                        <p className="text-[11px] font-medium italic text-muted-foreground sm:text-[12px]">
-                          Credits update as partners join — no implied endorsement yet.
-                        </p>
+                          <Image
+                            src={a.imageSrc}
+                            alt=""
+                            fill
+                            className={cn(
+                              "object-center transition-transform duration-500 ease-out group-hover:scale-[1.02]",
+                              hasVideo ? "object-cover" : "object-contain bg-muted/30"
+                            )}
+                            sizes={hasVideo ? "(max-width:768px) 100vw, 33vw" : "(max-width:640px) 100vw, (max-width:1024px) 40vw, 33vw"}
+                          />
+                        </ClickToViewImage>
+                        {hasVideo && (
+                          <Link
+                            href={artistHref}
+                            className="absolute bottom-3 left-3 z-30 rounded-md border border-border/80 bg-background/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-foreground shadow-sm transition hover:border-[#BF0A30]/50 hover:text-[#BF0A30] sm:text-[11px]"
+                          >
+                            More info
+                          </Link>
+                        )}
+                        {!hasVideo && (
+                          <>
+                            <Link
+                              href={artistHref}
+                              className="absolute bottom-3 left-3 z-30 rounded-md border border-border/80 bg-background/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-foreground shadow-sm transition hover:border-[#BF0A30]/50 hover:text-[#BF0A30] sm:text-[11px]"
+                            >
+                              More info
+                            </Link>
+                            <MonroviaGameLogoMark />
+                          </>
+                        )}
                       </div>
-                    </div>
-                  </article>
+
+                      {/* Text Column */}
+                      <div
+                        className={cn(
+                          "flex flex-1 flex-col p-5 sm:p-6 lg:p-8",
+                          hasVideo && "border-t md:border-t-0 md:border-l border-border/60 justify-center"
+                        )}
+                      >
+                        <Link href={artistHref} className="block w-fit max-w-full rounded-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-[#4285F4]/50 focus-visible:ring-offset-2">
+                          <h3 className="text-lg font-black uppercase tracking-tight text-foreground transition-colors group-hover:text-[#002868] sm:text-xl lg:text-2xl dark:group-hover:text-[#89b8ff]">
+                            {a.name}
+                          </h3>
+                        </Link>
+                        <p
+                          className="mt-2 text-[10px] font-bold uppercase leading-snug tracking-[0.12em] text-[#002868] dark:text-[#89b8ff]"
+                          style={{ fontFamily: MONO }}
+                        >
+                          {a.discipline}
+                        </p>
+                        <p className="mt-4 text-[13px] leading-[1.75] text-muted-foreground sm:text-[14px] sm:leading-[1.8] lg:text-[15px] lg:leading-[1.8]">{a.summary}</p>
+                        <div className="mt-5 flex flex-wrap gap-3">
+                          <StoreLink href={artistHref} className="inline-flex w-fit text-[13px] font-semibold">
+                            Full artist page →
+                          </StoreLink>
+                          <a
+                            href={a.facebookHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex w-fit max-w-full items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-[12px] font-semibold text-foreground shadow-sm transition hover:border-[#1877F2]/40 hover:bg-muted/50"
+                          >
+                            <Facebook className="h-4 w-4 shrink-0 text-[#1877F2]" aria-hidden />
+                            <span className="min-w-0">Facebook</span>
+                            <ExternalLink className="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden />
+                          </a>
+                          <p className="text-[11px] font-medium italic text-muted-foreground sm:text-[12px] w-full">
+                            Credits update as partners join — no implied endorsement yet.
+                          </p>
+                        </div>
+                      </div>
+                    </article>
                   )
                 })}
               </div>

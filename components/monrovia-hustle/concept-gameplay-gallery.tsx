@@ -6,7 +6,7 @@ import { Play } from "lucide-react"
 import { ClickToViewImage } from "@/components/click-to-view-image"
 
 export type ConceptGalleryItem =
-  | { kind: "video"; posterSrc: string; alt: string }
+  | { kind: "video"; src?: string; posterSrc: string; alt: string; autoPlay?: boolean }
   | { kind: "image"; src: string; alt: string }
 
 type Props = {
@@ -33,31 +33,44 @@ export function ConceptGameplayGallery({ items, trailerHref, variant = "default"
         className={`relative w-full max-w-full min-w-0 overflow-hidden border border-black/15 bg-black shadow-[0_4px_24px_-4px_rgba(0,0,0,0.35)] dark:border-white/[0.08] dark:shadow-[0_8px_40px_-8px_rgba(0,0,0,0.6)] ${hero ? "aspect-video min-h-[220px] sm:min-h-[300px] md:min-h-[360px] lg:min-h-[420px] xl:min-h-[460px] 2xl:min-h-[500px]" : "aspect-video"}`}
       >
         {current.kind === "video" ? (
-          <a href={trailerHref} target="_blank" rel="noopener noreferrer" className="group relative block size-full">
-            <Image
-              src={current.posterSrc}
-              alt={current.alt}
-              fill
-              className="object-cover opacity-92 transition duration-300 group-hover:opacity-100 group-hover:scale-[1.01]"
-              sizes={hero ? "100vw" : "(max-width:1024px) 100vw, 72vw"}
-              priority
+          current.src ? (
+            <video
+              src={current.src}
+              poster={current.posterSrc}
+              autoPlay={current.autoPlay ?? true}
+              loop
+              muted
+              playsInline
+              controls
+              className="size-full object-cover"
             />
-            {/* Dim vignette */}
-            <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.5)_100%)] opacity-70" aria-hidden />
-            <span className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/25 transition duration-300 group-hover:bg-black/38">
-              <span
-                className={`relative flex items-center justify-center rounded-full bg-gradient-to-b from-white/95 to-white/78 text-black shadow-[0_12px_40px_rgba(0,0,0,0.45)] ring-4 ring-[#BF0A30] ring-offset-4 ring-offset-black/55 transition duration-300 group-hover:scale-105 group-hover:ring-offset-[#BF0A30]/40 ${hero ? "size-[5.25rem] sm:size-28 md:size-32" : "size-16"}`}
-              >
-                <Play className={`fill-black text-black drop-shadow-sm ${hero ? "ml-1 size-12 sm:size-14 md:size-16" : "ml-0.5 h-7 w-7"}`} aria-hidden />
-              </span>
-              <span className="flex flex-col items-center gap-1 text-center drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                <span className={`font-bold uppercase tracking-[0.2em] text-white ${hero ? "text-[12px] sm:text-[13px]" : "text-[11px]"}`}>
-                  Play trailer
+          ) : (
+            <a href={trailerHref} target="_blank" rel="noopener noreferrer" className="group relative block size-full">
+              <Image
+                src={current.posterSrc}
+                alt={current.alt}
+                fill
+                className="object-cover opacity-92 transition duration-300 group-hover:opacity-100 group-hover:scale-[1.01]"
+                sizes={hero ? "100vw" : "(max-width:1024px) 100vw, 72vw"}
+                priority
+              />
+              {/* Dim vignette */}
+              <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.5)_100%)] opacity-70" aria-hidden />
+              <span className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/25 transition duration-300 group-hover:bg-black/38">
+                <span
+                  className={`relative flex items-center justify-center rounded-full bg-gradient-to-b from-white/95 to-white/78 text-black shadow-[0_12px_40px_rgba(0,0,0,0.45)] ring-4 ring-[#BF0A30] ring-offset-4 ring-offset-black/55 transition duration-300 group-hover:scale-105 group-hover:ring-offset-[#BF0A30]/40 ${hero ? "size-[5.25rem] sm:size-28 md:size-32" : "size-16"}`}
+                >
+                  <Play className={`fill-black text-black drop-shadow-sm ${hero ? "ml-1 size-12 sm:size-14 md:size-16" : "ml-0.5 h-7 w-7"}`} aria-hidden />
                 </span>
-                {hero && <span className="text-[11px] font-normal text-white/85">Opens on YouTube in a new tab</span>}
+                <span className="flex flex-col items-center gap-1 text-center drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                  <span className={`font-bold uppercase tracking-[0.2em] text-white ${hero ? "text-[12px] sm:text-[13px]" : "text-[11px]"}`}>
+                    Play trailer
+                  </span>
+                  {hero && <span className="text-[11px] font-normal text-white/85">Opens on YouTube in a new tab</span>}
+                </span>
               </span>
-            </span>
-          </a>
+            </a>
+          )
         ) : (
           <ClickToViewImage
             src={current.src}
