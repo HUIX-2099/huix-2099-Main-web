@@ -113,7 +113,7 @@ function MonroviaGameLogoMark({ className }: { className?: string }) {
 const galleryItems: ConceptGalleryItem[] = [
   {
     kind: "video",
-    src: "/products/Monrovia_hustle_Demo_Campane/video/11.mp4",
+    src: "https://youtu.be/GUPVn-m8Dr8",
     posterSrc: CAPSULE_ART,
     alt: "Monrovia Hustle 3D Gameplay Video",
     autoPlay: true,
@@ -414,6 +414,9 @@ function StoreLink(props: React.ComponentProps<typeof Link>) {
 }
 
 export default function MonroviaHustleConceptPage() {
+  const firstImageItem = galleryItems.find((item) => item.kind === "image")
+  const fallbackImageSrc = firstImageItem && firstImageItem.kind === "image" ? firstImageItem.src : "/placeholder.jpg"
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
@@ -649,7 +652,7 @@ export default function MonroviaHustleConceptPage() {
                         <div className="p-1">
                           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm dark:border-border/60">
                             <Image 
-                              src={galleryItems[1].src as string} 
+                              src={fallbackImageSrc} 
                               alt="Locked Screen" 
                               fill 
                               className="object-cover blur-[6px] opacity-40 grayscale"

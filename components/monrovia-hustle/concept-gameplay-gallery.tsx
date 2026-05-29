@@ -16,6 +16,12 @@ type Props = {
   variant?: "default" | "hero"
 }
 
+function getYouTubeId(url: string): string | null {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+  const match = url.match(regExp)
+  return match && match[2].length === 11 ? match[2] : null
+}
+
 function thumbSource(item: ConceptGalleryItem) {
   return item.kind === "video" ? item.posterSrc : item.src
 }
@@ -34,16 +40,31 @@ export function ConceptGameplayGallery({ items, trailerHref, variant = "default"
       >
         {current.kind === "video" ? (
           current.src ? (
-            <video
-              src={current.src}
-              poster={current.posterSrc}
-              autoPlay={current.autoPlay ?? true}
-              loop
-              muted
-              playsInline
-              controls
-              className="size-full object-cover"
-            />
+            (() => {
+              const ytId = getYouTubeId(current.src)
+              if (ytId) {
+                return (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&loop=1&playlist=${ytId}&controls=1`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="size-full border-0"
+                  />
+                )
+              }
+              return (
+                <video
+                  src={current.src}
+                  poster={current.posterSrc}
+                  autoPlay={current.autoPlay ?? true}
+                  loop
+                  muted
+                  playsInline
+                  controls
+                  className="size-full object-cover"
+                />
+              )
+            })()
           ) : (
             <a href={trailerHref} target="_blank" rel="noopener noreferrer" className="group relative block size-full">
               <Image

@@ -77,16 +77,43 @@ export default async function MonroviaConceptArtistPage({ params }: { params: Pr
         </Link>
 
         <div className="mb-10 overflow-hidden rounded-2xl border border-border/70 bg-muted/30 dark:bg-muted/15">
-          <div className="relative aspect-[16/10] w-full bg-muted/50">
-            <Image
-              src={artist.imageSrc}
-              alt={artist.imageAlt}
-              fill
-              className="object-contain object-center"
-              sizes="(max-width:768px) 100vw, 48rem"
-              priority
-            />
-          </div>
+          {artist.videoSrc ? (
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              <div className="relative aspect-square w-full bg-muted/50">
+                <video
+                  src={artist.videoSrc}
+                  poster={artist.imageSrc}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
+                  className="size-full object-cover"
+                />
+              </div>
+              <div className="relative aspect-square w-full bg-muted/50 border-t md:border-t-0 md:border-l border-border/70">
+                <Image
+                  src={artist.imageSrc}
+                  alt={artist.imageAlt}
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width:768px) 100vw, 24rem"
+                  priority
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="relative aspect-[16/10] w-full bg-muted/50">
+              <Image
+                src={artist.imageSrc}
+                alt={artist.imageAlt}
+                fill
+                className="object-contain object-center"
+                sizes="(max-width:768px) 100vw, 48rem"
+                priority
+              />
+            </div>
+          )}
         </div>
 
         <p
