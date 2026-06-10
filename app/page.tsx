@@ -6,9 +6,13 @@ import { HeroSection } from "@/components/hero-section";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { CustomCursor } from "@/components/custom-cursor";
-import { ParallaxReveal, ParallaxImage, ParallaxText, ParallaxFloat, ParallaxStagger, ParallaxStaggerItem } from "@/components/parallax";
+import { ParallaxReveal, ParallaxText } from "@/components/parallax";
 import { GoogleDiscoveryRow } from "@/components/google-discovery";
-import { ArrowRight, Monitor, Palette, Sparkles, ExternalLink, Gamepad2 } from "lucide-react";
+import { BoardingPass } from "@/components/boarding-pass";
+import { TiltCard } from "@/components/tilt-card";
+import { AmbientGlow } from "@/components/ambient-glow";
+import Image from "next/image";
+import { ArrowRight, ArrowUpRight, Monitor, Palette, Sparkles, ExternalLink, Gamepad2, Target, Users, FlaskConical, Handshake, LayoutGrid } from "lucide-react";
 
 const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace';
 
@@ -292,7 +296,8 @@ export default function Home() {
               const Icon = product.icon;
               return (
                 <ParallaxReveal key={product.id} direction="up" delay={0.1 + idx * 0.08}>
-                  <article className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-foreground/20 hover:shadow-lg">
+                  <AmbientGlow src={product.image} className="h-full">
+                  <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-foreground/20 hover:shadow-lg">
                     <Link
                       href={product.href}
                       className="flex min-h-0 flex-1 flex-col text-inherit no-underline outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -388,6 +393,7 @@ export default function Home() {
                     </Link>
                     <GoogleDiscoveryRow googleQuery={product.googleQuery} googleLabel={product.googleLabel} />
                   </article>
+                  </AmbientGlow>
                 </ParallaxReveal>
               );
             })}
@@ -412,27 +418,138 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Explore Section - Premium bento grid */}
+      <section className="py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
+        <div className="max-w-7xl mx-auto">
+          <ParallaxReveal direction="up">
+            <div className="mb-10 lg:mb-14 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <div>
+                <div
+                  className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4"
+                  style={{ fontFamily: monoFont }}
+                >
+                  SECTION · 05 — EXPLORE
+                </div>
+                <h2
+                  className="text-4xl lg:text-6xl font-bold uppercase tracking-[0.06em]"
+                  style={{ fontFamily: "Mohican, sans-serif" }}
+                >
+                  DISCOVER HUIX-2099
+                </h2>
+              </div>
+              <p className="max-w-xs text-sm text-muted-foreground leading-relaxed">
+                The story, people, research, and work behind a Liberia-based studio building the
+                digital future of Africa.
+              </p>
+            </div>
+          </ParallaxReveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:auto-rows-[minmax(168px,1fr)]">
+            {/* Featured image tile — Our Story */}
+            <ParallaxReveal direction="up" className="sm:col-span-2 lg:col-span-2 lg:row-span-2">
+              <TiltCard max={6} className="h-full">
+              <Link href="/about#our-story" className="group relative block h-full min-h-[340px] overflow-hidden rounded-3xl border border-border">
+                <Image
+                  src="/icons/browser-icon.png"
+                  alt="HUIX-2099"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/55 to-background/10" />
+                <div className="absolute inset-0 flex flex-col justify-between p-7">
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="rounded-full border border-border/60 bg-background/40 px-3 py-1 text-[9px] uppercase tracking-[0.2em] text-foreground/80 backdrop-blur"
+                      style={{ fontFamily: monoFont }}
+                    >
+                      01 · Featured
+                    </span>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full border border-border/60 bg-background/40 text-foreground backdrop-blur transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                      <ArrowUpRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                  <div>
+                    <h3
+                      className="text-3xl lg:text-4xl font-bold uppercase tracking-wide"
+                      style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.05em" }}
+                    >
+                      Our Story
+                    </h3>
+                    <p className="mt-2 max-w-sm text-sm text-muted-foreground leading-relaxed">
+                      How HUIX-2099 began in Monrovia, Liberia — and where we&apos;re headed.
+                    </p>
+                  </div>
+                </div>
+              </Link>
+              </TiltCard>
+            </ParallaxReveal>
+
+            {/* Icon tiles */}
+            {[
+              { n: "02", title: "Mission & Values", desc: "What drives our work and culture.", href: "/about#mission-and-values", icon: Target, span: "lg:col-span-2" },
+              { n: "03", title: "Team", desc: "Leadership & voice cast.", href: "/team", icon: Users, span: "lg:col-span-1" },
+              { n: "04", title: "Research", desc: "Immersive tech & heritage.", href: "/research", icon: FlaskConical, span: "lg:col-span-1" },
+              { n: "05", title: "Partners", desc: "Collaborate and build together.", href: "/partners", icon: Handshake, span: "lg:col-span-2" },
+              { n: "06", title: "Showcase", desc: "Selected products & prototypes.", href: "/showcase", icon: LayoutGrid, span: "lg:col-span-2" },
+            ].map((card) => (
+              <ParallaxReveal key={card.href} direction="up" className={card.span}>
+                <TiltCard max={7} className="h-full">
+                <Link href={card.href} className="group relative flex h-full min-h-[168px] flex-col justify-between overflow-hidden rounded-3xl border border-border bg-card/40 p-6 transition-all duration-300 hover:border-foreground/30 hover:bg-card">
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-foreground/[0.05] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="relative flex items-start justify-between">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-background/40">
+                      <card.icon className="h-5 w-5" strokeWidth={1.6} />
+                    </span>
+                    <span
+                      className="text-[28px] font-bold leading-none text-foreground/10"
+                      style={{ fontFamily: "Mohican, sans-serif" }}
+                    >
+                      {card.n}
+                    </span>
+                  </div>
+                  <div className="relative mt-6">
+                    <div className="flex items-center gap-2">
+                      <h3
+                        className="text-lg font-bold uppercase tracking-wide"
+                        style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.05em" }}
+                      >
+                        {card.title}
+                      </h3>
+                      <ArrowRight className="h-4 w-4 -translate-x-1 text-muted-foreground opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
+                    </div>
+                    <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{card.desc}</p>
+                  </div>
+                </Link>
+                </TiltCard>
+              </ParallaxReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section - Editorial Document Style */}
       <section className="py-12 sm:py-16 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center">
-            {/* Left - Large Number */}
-            <ParallaxText speed={0.3} direction="up">
-              <div className="flex items-baseline gap-4">
-                <span
-                  className="text-[150px] lg:text-[220px] font-bold leading-none text-foreground/10"
-                  style={{ fontFamily: 'Mohican, sans-serif' }}
-                >
-                  0
-                </span>
-                <span
-                  className="text-[150px] lg:text-[220px] font-bold leading-none text-foreground/10"
-                  style={{ fontFamily: 'Mohican, sans-serif' }}
-                >
-                  5
-                </span>
-              </div>
-            </ParallaxText>
+            {/* Left - Boarding pass to the future */}
+            <ParallaxReveal direction="up">
+              <BoardingPass
+                href="/contact"
+                tone="invert"
+                airline="HUIX-2099 · BOARDING PASS"
+                flight="DEST · 2099"
+                from={{ code: "NOW", label: "present day" }}
+                to={{ code: "2099", label: "the future" }}
+                rows={[
+                  { label: "Gate", value: "A-01" },
+                  { label: "Seat", value: "YOU" },
+                  { label: "Status", value: "Boarding" },
+                ]}
+                id="HX-2099-FUTURE-BRD"
+                cta="Board now"
+              />
+            </ParallaxReveal>
 
             {/* Right - Content */}
             <ParallaxReveal direction="right">
@@ -441,7 +558,7 @@ export default function Home() {
                   className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4"
                   style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}
                 >
-                  SECTION · 05 — CONTACT
+                  SECTION · 06 — CONTACT
                 </div>
                 <h2
                   className="text-4xl lg:text-5xl font-bold mb-6 uppercase tracking-[0.1em]"

@@ -11,7 +11,12 @@ import { TeamProfileCard } from "@/components/team-profile-card"
 export default function TeamPage() {
   const [searchQuery, setSearchQuery] = useState("")
 
-  const filteredMembers = teamMembers.filter((member) => {
+  // Only show core leadership: Victor and Wulwyn (Port)
+  const visibleMembers = teamMembers.filter((member) =>
+    ["victor", "wulwyn"].includes(member.id),
+  )
+
+  const filteredMembers = visibleMembers.filter((member) => {
     const term = searchQuery.toLowerCase()
     return (
       member.name.toLowerCase().includes(term) ||

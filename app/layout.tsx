@@ -8,6 +8,7 @@ import { VRImmersePrompt } from "@/components/vr-immerse-prompt"
 import { ChatBot } from "@/components/chat-bot"
 import { CookieConsent } from "@/components/cookie-consent"
 import { SocialSidebar } from "@/components/social-sidebar"
+import { LoadingScreen } from "@/components/loading-screen"
 
 import "./globals.css"
 
@@ -140,19 +141,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icons/HUIX 2099 dark logo icon version.jpg", type: "image/jpeg", sizes: "512x512", media: "(prefers-color-scheme: dark)" },
-      { url: "/icons/HUIX 2099 light logo icon version.jpg", type: "image/jpeg", sizes: "512x512", media: "(prefers-color-scheme: light)" },
-      { url: "/icons/HUIX 2099 dark logo icon version.jpg", type: "image/jpeg", sizes: "192x192", media: "(prefers-color-scheme: dark)" },
-      { url: "/icons/HUIX 2099 light logo icon version.jpg", type: "image/jpeg", sizes: "192x192", media: "(prefers-color-scheme: light)" },
+      { url: "/icons/browser-icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/icons/browser-icon.png", type: "image/png", sizes: "192x192" },
+      { url: "/icons/browser-icon.png", type: "image/png", sizes: "32x32" },
     ],
-    shortcut: [
-      { url: "/icons/HUIX 2099 dark logo icon version.jpg", type: "image/jpeg", sizes: "192x192", media: "(prefers-color-scheme: dark)" },
-      { url: "/icons/HUIX 2099 light logo icon version.jpg", type: "image/jpeg", sizes: "192x192", media: "(prefers-color-scheme: light)" },
-    ],
-    apple: [
-      { url: "/icons/HUIX 2099 dark logo icon version.jpg", type: "image/jpeg", sizes: "180x180", media: "(prefers-color-scheme: dark)" },
-      { url: "/icons/HUIX 2099 light logo icon version.jpg", type: "image/jpeg", sizes: "180x180", media: "(prefers-color-scheme: light)" },
-    ],
+    shortcut: [{ url: "/icons/browser-icon.png", type: "image/png", sizes: "192x192" }],
+    apple: [{ url: "/icons/browser-icon.png", type: "image/png", sizes: "180x180" }],
   },
   manifest: "/manifest.json",
   verification: {
@@ -264,6 +258,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
       <head>
         <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme')||'system';var d=t==='system'?(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):t;if(d==='dark'){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}}catch(e){}})();`,
+          }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
@@ -276,6 +275,7 @@ export default function RootLayout({
         className={`${inter.className} ${inter.variable} antialiased overflow-x-hidden`}
       >
         <ThemeProvider>
+          <LoadingScreen />
           <CustomCursor />
           <VRImmersePrompt />
           <SocialSidebar />

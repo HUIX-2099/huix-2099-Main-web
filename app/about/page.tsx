@@ -361,7 +361,7 @@ export default function AboutPage() {
             transition={{ duration: 0.4 }}
           >
             {/* Cardholder Section */}
-            <section className="py-12 bg-[#202020]">
+            <section id="our-story" className="scroll-mt-24 py-12 bg-[#202020]">
               <div className="max-w-6xl mx-auto px-4 lg:px-8 lg:ml-24">
                 <div className="grid lg:grid-cols-2 gap-8 items-center">
                   {/* Card */}
@@ -733,7 +733,7 @@ export default function AboutPage() {
         </section>
 
         {/* Mission & Values Section */}
-        <section className="px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 lg:pt-12 pb-8 sm:pb-10 bg-background">
+        <section id="mission-and-values" className="scroll-mt-24 px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 lg:pt-12 pb-8 sm:pb-10 bg-background">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

@@ -10,6 +10,12 @@
   font-display: swap;
 }
 
+/* Mohican is a tight display face — add consistent breathing room between
+   letters everywhere it's used (site-wide), overriding cramped inline values. */
+[style*="Mohican"] {
+  letter-spacing: 0.1em !important;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {

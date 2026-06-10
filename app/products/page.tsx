@@ -2,6 +2,7 @@
 
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { AmbientGlow } from "@/components/ambient-glow"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
@@ -62,6 +63,8 @@ interface Product {
   platform: string
   description: string
   image?: string
+  /** Hex accent (6-digit) used for the page-wide ambient glow on hover. */
+  accent?: string
   year: string
   status: "Live" | "Development" | "Concept"
   technologies: string[]
@@ -83,6 +86,7 @@ const products: Product[] = [
     description:
       "Premium dark VS Code theme with satellite hardware background and ultra-sharp neon syntax colors. Clean, minimal design with maximum code visibility.",
     image: "/products/huix-theme/Media/logo.png",
+    accent: "#84cc16",
     year: "2024",
     status: "Live",
     technologies: ["VS Code", "Theme", "Neon Syntax"],
@@ -101,6 +105,7 @@ const products: Product[] = [
     description:
       "Multi-device web preview in one window — up to 8 panels, VR stage, synced scroll, CDP emulation. Portable .exe.",
     image: "/products/huixor/Huixor.ico",
+    accent: "#10b981",
     year: "2026",
     status: "Development",
     technologies: ["WPF", ".NET 8", "WebView2", "CDP"],
@@ -117,6 +122,7 @@ const products: Product[] = [
     platform: "Windows · macOS · Android",
     description: "Warning: concept slice. Liberian narrative urban RPG — Monrovia as a lived-in open map.",
     image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
+    accent: "#2563eb",
     year: "2026",
     status: "Development",
     technologies: [],
@@ -141,8 +147,14 @@ export default function ProductsPage() {
   const router = useRouter()
   const [filter, setFilter] = useState("all")
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
+  const [hoveredId, setHoveredId] = useState<number | null>(null)
 
   const filteredProducts = filter === "all" ? products : products.filter((p) => p.category === filter)
+
+  const activeAccent = hoveredId ? products.find((p) => p.id === hoveredId)?.accent : undefined
+  const ambientBackground = activeAccent
+    ? `radial-gradient(70% 55% at 50% -8%, ${activeAccent}38, transparent 60%), radial-gradient(45% 45% at 85% 110%, ${activeAccent}24, transparent 70%), radial-gradient(45% 45% at 12% 95%, ${activeAccent}1f, transparent 70%)`
+    : undefined
 
   const getProductPage = (product: Product): string | null => {
     if (product.detailPage) return product.detailPage
@@ -189,6 +201,14 @@ export default function ProductsPage() {
 
   return (
     <>
+      {/* Page-wide ambient glow — takes on the hovered product's color (YouTube ambient style) */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-700 ease-out"
+        style={{ opacity: hoveredId ? 1 : 0, background: ambientBackground }}
+      />
+
+      <div className="relative z-10">
       <Navbar />
 
       {/* Hero Section */}
@@ -375,18 +395,20 @@ export default function ProductsPage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
+                className="grid grid-cols-1 gap-5 sm:grid-cols-2 landscape:grid-cols-4 lg:grid-cols-4"
               >
                 {filteredProducts.map((product, index) => {
                   const CategoryIcon = getCategoryIcon(product.category)
                   return (
+                    <AmbientGlow key={product.id} src={product.image} className="h-full">
                     <motion.article
-                      key={product.id}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.08 }}
                       viewport={{ once: true }}
-                      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-foreground/20 hover:shadow-lg"
+                      onMouseEnter={() => setHoveredId(product.id)}
+                      onMouseLeave={() => setHoveredId((cur) => (cur === product.id ? null : cur))}
+                      className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card/90 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-foreground/25 hover:shadow-2xl"
                     >
                       <motion.div
                         onClick={() => handleProductSelect(product)}
@@ -555,6 +577,7 @@ export default function ProductsPage() {
                       </motion.div>
                       <GoogleDiscoveryRow googleQuery={product.googleQuery} googleLabel={product.googleLabel} />
                     </motion.article>
+                    </AmbientGlow>
                   )
                 })}
 
@@ -627,6 +650,8 @@ export default function ProductsPage() {
                       transition={{ delay: index * 0.02 }}
                       viewport={{ once: true }}
                       onClick={() => handleProductSelect(product)}
+                      onMouseEnter={() => setHoveredId(product.id)}
+                      onMouseLeave={() => setHoveredId((cur) => (cur === product.id ? null : cur))}
                       className="grid cursor-pointer grid-cols-1 gap-2 border-b border-border/30 px-4 py-4 transition-colors last:border-b-0 hover:bg-card/30 md:grid-cols-[50px_1fr_100px_100px_90px_60px] md:gap-4 group"
                     >
                       <div
@@ -731,6 +756,7 @@ export default function ProductsPage() {
       </section>
 
       <Footer />
+      </div>
     </>
   )
 }

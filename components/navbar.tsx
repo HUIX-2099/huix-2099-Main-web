@@ -107,67 +107,144 @@ export function Navbar() {
     setShowSearch(false)
   }, [pathname])
 
-  const navItems = [
+  type MegaCard = { title: string; desc: string; href: string; img: string }
+  type MegaColumn = { label: string; links: { label: string; href: string }[] }
+  type Mega = {
+    featuredLabel: string
+    featured: MegaCard[]
+    cta: { title: string; href: string }
+    columns: MegaColumn[]
+  }
+  type NavItem = {
+    id: string
+    label: string
+    href: string
+    icon: typeof Home
+    mega?: Mega
+  }
+
+  const navItems: NavItem[] = [
     {
       id: "home",
       label: "HOME",
       href: "/",
-      index: "00",
       icon: Home,
-      dropdown: [
-        { label: "FAQ", href: "/#faq", index: "01" },
-        { label: "WHY CHOOSE US", href: "/#why-choose-us", index: "02" },
-        { label: "DOCUMENTATION", href: "/#documentation", index: "03" },
-      ]
+      mega: {
+        featuredLabel: "WELCOME",
+        featured: [
+          {
+            title: "HUIX-2099",
+            desc: "Building the digital future of Africa",
+            href: "/",
+            img: "/products/Monrovia_hustle_Demo_Campane/huix2099.png",
+          },
+        ],
+        cta: { title: "Start a Project", href: "/contact" },
+        columns: [
+          {
+            label: "EXPLORE",
+            links: [
+              { label: "FAQ", href: "/faq" },
+              { label: "Why Choose Us", href: "/#why-choose-us" },
+              { label: "Documentation", href: "/#documentation" },
+            ],
+          },
+          {
+            label: "QUICK LINKS",
+            links: [
+              { label: "Products", href: "/products" },
+              { label: "Pricing", href: "/pricing" },
+              { label: "Contact", href: "/contact" },
+            ],
+          },
+        ],
+      },
     },
     {
       id: "about",
       label: "ABOUT",
       href: "/about",
-      index: "01",
       icon: Info,
-      dropdown: [
-        { label: "OUR STORY", href: "/about#our-story", index: "01" },
-        { label: "TEAM", href: "/team", index: "02" },
-        { label: "MISSION & VALUES", href: "/about#mission-and-values", index: "03" },
-      ]
+      mega: {
+        featuredLabel: "THE STUDIO",
+        featured: [
+          {
+            title: "Our Story",
+            desc: "How HUIX-2099 began in Monrovia",
+            href: "/about#our-story",
+            img: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
+          },
+        ],
+        cta: { title: "Meet the Team", href: "/team" },
+        columns: [
+          {
+            label: "COMPANY",
+            links: [
+              { label: "Our Story", href: "/about#our-story" },
+              { label: "Team", href: "/team" },
+              { label: "Mission & Values", href: "/about#mission-and-values" },
+            ],
+          },
+          {
+            label: "MORE",
+            links: [
+              { label: "Partners", href: "/partners" },
+              { label: "Research", href: "/research" },
+              { label: "Showcase", href: "/showcase" },
+            ],
+          },
+        ],
+      },
     },
     {
       id: "company",
       label: "COMPANY",
       href: "#",
-      index: "02",
       icon: Building2,
-      mega: true,
+      mega: {
+        featuredLabel: "FROM THE STUDIO",
+        featured: [
+          {
+            title: "Monrovia Hustle 3D",
+            desc: "Liberian narrative game",
+            href: "/products/monrovia-hustle",
+            img: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
+          },
+          {
+            title: "Huixor",
+            desc: "Immersive desktop app",
+            href: "/products/huixor",
+            img: "/products/huixor/lightmode.jpg",
+          },
+        ],
+        cta: { title: "Explore Products", href: "/products" },
+        columns: [
+          {
+            label: "COMPANY",
+            links: [
+              { label: "About", href: "/about" },
+              { label: "Team", href: "/team" },
+              { label: "Pricing", href: "/pricing" },
+              { label: "Contact", href: "/contact" },
+              { label: "Partners", href: "/partners" },
+            ],
+          },
+          {
+            label: "LEARN MORE",
+            links: [
+              { label: "FAQ's", href: "/faq" },
+              { label: "Research", href: "/research" },
+              { label: "Showcase", href: "/showcase" },
+            ],
+          },
+        ],
+      },
     },
     {
       id: "contact",
       label: "CONTACT",
       href: "/contact",
-      index: "03",
       icon: Phone,
-    },
-  ]
-
-
-  // Company mega dropdown: Products, Projects, Pricing (with sub-links)
-  const companySections = [
-    {
-      label: "PRODUCTS",
-      href: "/products",
-      links: [
-        { label: "ALL PRODUCTS", href: "/products", index: "01" },
-        { label: "SOFTWARE", href: "/products#Software", index: "02" },
-        { label: "WEBSITES", href: "/products#Website", index: "03" },
-        { label: "APPS", href: "/products#App", index: "04" },
-        { label: "GAMES", href: "/products#Game", index: "05", featured: true },
-      ],
-    },
-
-    {
-      label: "PRICING",
-      href: "/pricing",
-      links: [{ label: "PRICING", href: "/pricing", index: "01" }],
     },
   ]
 
@@ -239,6 +316,14 @@ export function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group shrink-0">
               <div className="flex items-center gap-2">
+                <Image
+                  src="/icons/browser-icon.png"
+                  alt="HUIX-2099 logo"
+                  width={28}
+                  height={28}
+                  priority
+                  className="h-6 w-6 sm:h-7 sm:w-7 rounded-md object-contain"
+                />
                 <div
                   className="whitespace-nowrap leading-none text-sm sm:text-base font-bold transition-all duration-300"
                   style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.15em' }}
@@ -278,86 +363,28 @@ export function Navbar() {
                 <div
                   key={item.id}
                   className="relative"
-                  onMouseEnter={() => (item.dropdown || item.mega) && setOpenDropdown(item.id)}
+                  onMouseEnter={() => item.mega && setOpenDropdown(item.id)}
                 >
                   <Link
                     href={item.href}
                     onClick={(e) => {
-                      if (item.mega) e.preventDefault()
+                      if (item.href === "#") e.preventDefault()
                     }}
-                    className={`font-bold flex items-center gap-1.5 lg:gap-2 px-2 lg:px-3 xl:px-4 py-2 text-[10px] lg:text-[11px] uppercase tracking-[0.12em] lg:tracking-[0.14em] transition-colors group ${
+                    title={item.label}
+                    aria-label={item.label}
+                    className={`flex items-center gap-1 px-3 lg:px-4 py-2 transition-colors group ${
                       pathname === item.href || (item.href !== "#" && pathname.startsWith(item.href + "/"))
                         ? "text-foreground"
                         : "text-muted-foreground hover:text-foreground"
                     }`}
-                    style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
                   >
-                    <span className="text-[8px] lg:text-[9px] opacity-50 hidden xl:inline">[{item.index}]</span>
-                    {item.icon && <item.icon className="w-3.5 h-3.5 opacity-80" />}
-                    <span>{item.label}</span>
-                    {(item.dropdown || item.mega) && (
+                    {item.icon && <item.icon className="w-5 h-5" />}
+                    {item.mega && (
                       <ChevronDown
                         className={`h-3 w-3 transition-transform duration-200 ${openDropdown === item.id ? "rotate-180" : ""}`}
                       />
                     )}
                   </Link>
-
-                  {/* Desktop Dropdown (regular items only) */}
-                  <AnimatePresence>
-                    {item.dropdown && openDropdown === item.id && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -8 }}
-                        transition={{ duration: 0.15 }}
-                        className="absolute left-0 top-full mt-0 w-64 bg-background border border-border shadow-lg"
-                      >
-                        <div className="px-4 py-2 border-b border-border bg-card/50">
-                          <div className="flex items-center justify-between" style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}>
-                            <span className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground">
-                              {item.label} · INDEX
-                            </span>
-                            <span className="text-[9px] text-muted-foreground/60">
-                              {item.dropdown.length} ITEMS
-                            </span>
-                          </div>
-                        </div>
-                        <div className="py-2">
-                          {item.dropdown.map((subItem, subIdx) => (
-                            <motion.div
-                              key={subItem.href + subItem.label}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: subIdx * 0.03 }}
-                            >
-                              <Link
-                                href={subItem.href}
-                                className={`flex items-center justify-between px-4 py-2.5 text-[11px] uppercase tracking-[0.1em] transition-all group hover:bg-card ${
-                                  (subItem as any).featured ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                                }`}
-                                style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
-                              >
-                                <span className="flex items-center gap-3">
-                                  <span className="text-[9px] opacity-40">[{subItem.index}]</span>
-                                  <span>{subItem.label}</span>
-                                  {(subItem as any).featured && (
-                                    <span className="px-1.5 py-0.5 text-[8px] bg-foreground/10 rounded">★</span>
-                                  )}
-                                </span>
-                                <ArrowRight className="h-3 w-3 opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0 transition-all" />
-                              </Link>
-                            </motion.div>
-                          ))}
-                        </div>
-                        <div className="px-4 py-2 border-t border-border bg-card/30">
-                          <div className="flex items-center justify-between text-[8px] text-muted-foreground/50 uppercase tracking-[0.1em]" style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}>
-                            <span>NAV · {item.id.toUpperCase()}</span>
-                            <span>→</span>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </div>
               ))}
               
@@ -482,53 +509,95 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Company mega dropdown - full navbar width, logo left / links right */}
+        {/* Mega menu - full navbar width, featured cards left / link columns right */}
         <AnimatePresence>
-          {openDropdown === "company" && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.15 }}
-              className="absolute left-0 right-0 top-full -mt-px z-50 bg-background border-x border-b border-border shadow-lg"
-            >
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row gap-8 lg:gap-12 justify-center lg:justify-start">
-                {/* Right: Products, Projects, Pricing sections */}
-                <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 max-w-4xl">
-                  {companySections.map((section) => (
-                    <div key={section.label}>
-                      <Link
-                        href={section.href}
-                        className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground border-b border-border pb-1.5 mb-3 inline-block"
-                        style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
-                      >
-                        {section.label}
-                      </Link>
-                      <ul className="space-y-1">
-                        {section.links.map((link) => (
-                          <li key={link.href + link.label}>
-                            <Link
-                              href={link.href}
-                              className={`flex items-center gap-2 py-1.5 text-[11px] uppercase tracking-[0.1em] transition-colors hover:text-foreground ${
-                                link.featured ? "text-foreground" : "text-muted-foreground"
-                              }`}
-                              style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
-                            >
-                              <span className="text-[9px] opacity-50">[{link.index}]</span>
-                              <span>{link.label}</span>
-                              {link.featured && (
-                                <span className="px-1 py-0.5 text-[7px] bg-foreground/10 rounded">★</span>
-                              )}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+          {(() => {
+            const active = navItems.find((i) => i.id === openDropdown && i.mega)
+            if (!active || !active.mega) return null
+            const mega = active.mega
+            return (
+              <motion.div
+                key={active.id}
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.15 }}
+                className="absolute left-0 right-0 top-full -mt-px z-50 bg-background border-x border-b border-border shadow-xl"
+              >
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col lg:flex-row gap-8 lg:gap-12">
+                  {/* Left: featured cards + CTA */}
+                  <div className="flex-1">
+                    <div
+                      className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4"
+                      style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
+                    >
+                      {mega.featuredLabel}
                     </div>
-                  ))}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      {mega.featured.map((card) => (
+                        <Link key={card.href + card.title} href={card.href} className="group flex flex-col">
+                          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-border bg-card">
+                            <Image
+                              src={card.img}
+                              alt={card.title}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 240px"
+                              className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                          </div>
+                          <div className="mt-3">
+                            <div className="text-sm font-semibold text-foreground leading-snug">
+                              {card.title}
+                            </div>
+                            <div className="text-xs text-muted-foreground mt-0.5">{card.desc}</div>
+                          </div>
+                        </Link>
+                      ))}
+
+                      {/* Big CTA card */}
+                      <Link
+                        href={mega.cta.href}
+                        className="group relative flex flex-col justify-between rounded-xl border border-border bg-card p-5 min-h-[180px] transition-colors hover:bg-card/60"
+                      >
+                        <span className="self-end flex h-9 w-9 items-center justify-center rounded-full bg-foreground text-background transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                          <ArrowRight className="h-4 w-4 -rotate-45" />
+                        </span>
+                        <span className="text-2xl font-semibold leading-tight text-foreground">
+                          {mega.cta.title}
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Right: link columns */}
+                  <div className="flex gap-12 lg:gap-16 lg:border-l lg:border-border lg:pl-12">
+                    {mega.columns.map((col) => (
+                      <div key={col.label}>
+                        <div
+                          className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4"
+                          style={{ fontFamily: "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace" }}
+                        >
+                          {col.label}
+                        </div>
+                        <ul className="space-y-3">
+                          {col.links.map((link) => (
+                            <li key={link.href + link.label}>
+                              <Link
+                                href={link.href}
+                                className="text-lg text-foreground/90 hover:text-foreground transition-colors"
+                              >
+                                {link.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          )}
+              </motion.div>
+            )
+          })()}
         </AnimatePresence>
       </div>
     </nav>

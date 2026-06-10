@@ -4,58 +4,137 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ExternalLink } from "lucide-react"
+import { TiltCard } from "@/components/tilt-card"
+import {
+  Check,
+  Mail,
+  ArrowRight,
+  Globe,
+  Smartphone,
+  Layers,
+  Monitor,
+  Boxes,
+  Clapperboard,
+  GitBranch,
+  type LucideIcon,
+} from "lucide-react"
 
 const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
+const CONTACT_EMAIL = "huixtech2099@gmail.com"
 
-const pricingPlans = [
+type Plan = {
+  id: string
+  title: string
+  subtitle: string
+  description: string
+  features: string[]
+  icon: LucideIcon
+  popular?: boolean
+}
+
+const plans: Plan[] = [
   {
-    id: "0 1", title: "Website Development", subtitle: "Webseitenentwicklung", items: [
-      { name: "Static website", price: 500, desc: "Fast, clean landing pages and portfolios" },
-      { name: "Dynamic (system included)", price: 1500, desc: "Full CMS, auth, and database integration" },
-    ]
+    id: "01",
+    title: "Website Development",
+    subtitle: "Webseitenentwicklung",
+    description: "Fast, clean marketing sites and full dynamic platforms with CMS, auth, and databases.",
+    icon: Globe,
+    features: [
+      "Landing pages & portfolios",
+      "CMS & content management",
+      "Authentication & database",
+      "SEO-optimized & responsive",
+      "Analytics & performance tuning",
+    ],
   },
   {
-    id: "0 2", title: "App", subtitle: "Anwendungsentwicklung", items: [
-      { name: "Static app", price: 600, desc: "Lightweight mobile applications" },
-      { name: "Dynamic (system included)", price: 2000, desc: "Full-featured with backend services" },
-    ]
+    id: "02",
+    title: "App Development",
+    subtitle: "Anwendungsentwicklung",
+    description: "Cross-platform mobile apps with full backend services and real-time features.",
+    icon: Smartphone,
+    features: [
+      "iOS & Android",
+      "Full backend services",
+      "Real-time & push notifications",
+      "Offline support",
+      "App store deployment",
+    ],
+    popular: true,
   },
   {
-    id: "0 3", title: "PWA & Full Stack", subtitle: "Vollständige Lösung", items: [
-      { name: "PWA or full project (all-in)", price: 3000, desc: "End-to-end progressive web application" },
-    ]
+    id: "03",
+    title: "PWA & Full Stack",
+    subtitle: "Vollständige Lösung",
+    description: "End-to-end progressive web applications built to scale from day one.",
+    icon: Layers,
+    features: [
+      "Offline-first PWA",
+      "Full-stack architecture",
+      "Scalable cloud backend",
+      "API design & integration",
+      "Ongoing maintenance",
+    ],
   },
   {
-    id: "0 4", title: "Native Software", subtitle: "Desktop Software", items: [
-      { name: "Windows or other desktop OS", price: 1000, desc: "Native desktop application development" },
-    ]
+    id: "04",
+    title: "Native Software",
+    subtitle: "Desktop Software",
+    description: "High-performance native desktop applications for Windows, macOS, and Linux.",
+    icon: Monitor,
+    features: [
+      "Cross-platform desktop",
+      "Native performance",
+      "Auto-updates",
+      "System & hardware integration",
+    ],
   },
   {
-    id: "0 5", title: "XR · VR · AR", subtitle: "Immersive Erlebnisse", items: [
-      { name: "Articulated visualization (VR & AR)", price: 200, desc: "3D scenes and spatial experiences" },
-    ]
+    id: "05",
+    title: "XR · VR · AR",
+    subtitle: "Immersive Erlebnisse",
+    description: "Spatial, immersive experiences and 3D visualization for the web and headsets.",
+    icon: Boxes,
+    features: [
+      "3D scenes & spatial UX",
+      "VR & AR visualization",
+      "WebXR experiences",
+      "Interactive walkthroughs",
+    ],
   },
   {
-    id: "0 6", title: "Animation", subtitle: "Bewegtbild", items: [
-      { name: "Simple animation", price: 300, desc: "Motion graphics and animated content" },
-    ]
-  },
-  {
-    id: "0 7", title: "Open Source & Collaboration", subtitle: "Zusammenarbeit", items: [
-      { name: "Developer & engineer collaboration", price: null, desc: "Free for open source contributors" },
-    ]
+    id: "06",
+    title: "Animation & Motion",
+    subtitle: "Bewegtbild",
+    description: "Motion graphics, animated brand content, and explainer videos.",
+    icon: Clapperboard,
+    features: [
+      "Motion graphics",
+      "Animated brand content",
+      "Explainer videos",
+      "UI micro-interactions",
+    ],
   },
 ]
+
+function mailtoFor(planTitle: string) {
+  const subject = encodeURIComponent(`HUIX-2099 — Inquiry: ${planTitle}`)
+  const body = encodeURIComponent(
+    `Hi HUIX-2099 team,\n\nI'm interested in your "${planTitle}" service. Here are some details about my project:\n\n- Overview:\n- Goals:\n- Timeline:\n- Budget range:\n\nLooking forward to hearing from you.`,
+  )
+  return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
+}
 
 export default function PricingPage() {
   return (
     <>
       <Navbar />
 
-      {/* Hero — Editorial Style */}
-      <section className="border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-border">
+        {/* ambient glow */}
+        <div className="pointer-events-none absolute -top-40 left-1/2 h-[420px] w-[820px] -translate-x-1/2 rounded-full bg-foreground/[0.05] blur-[120px]" />
+        <div className="relative max-w-7xl mx-auto px-4 lg:px-8">
           <div
             className="flex items-center justify-between py-4 border-b border-border/50 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50"
             style={{ fontFamily: monoFont }}
@@ -68,196 +147,253 @@ export default function PricingPage() {
             <div className="flex items-center gap-3">
               <span>CAT NO · PRC-001</span>
               <span className="h-px w-4 bg-border/50" />
-              <span>ALL USD</span>
+              <span>CUSTOM QUOTES</span>
             </div>
           </div>
-          <div className="py-16 lg:py-24">
-            <div className="grid lg:grid-cols-2 gap-12 items-end">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+          <div className="py-16 lg:py-24 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-4 py-1.5 text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-8"
+                style={{ fontFamily: monoFont }}
               >
-                <div
-                  className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-4"
-                  style={{ fontFamily: monoFont }}
-                >
-                  [PRICING] TRANSPARENT RATES
-                </div>
-                <h1
-                  className="text-5xl lg:text-7xl font-bold mb-6 leading-[0.9]"
-                  style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.05em" }}
-                >
-                  P r i c i n g
-                </h1>
-                <div className="h-px w-20 bg-foreground/20 mb-6" />
-                <p className="text-base text-muted-foreground leading-relaxed max-w-md">
-                  Transparent rates for website development, apps, PWA, native software, VR/AR
-                  visualization, and animation. All prices in USD.
-                </p>
-              </motion.div>
-              {/* Right — Large decorative numbers */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="hidden lg:block text-right"
+                <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
+                Tailored to your project
+              </div>
+              <h1
+                className="text-6xl sm:text-7xl lg:text-8xl font-bold leading-[0.9] mb-6"
+                style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.04em" }}
               >
-                <div className="text-[180px] font-bold leading-[0.8] text-foreground/[0.04] select-none" style={{ fontFamily: "Mohican, sans-serif" }}>
-                  0 7
-                </div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/40 mt-2" style={{ fontFamily: monoFont }}>
-                  Service Categories
-                </div>
-              </motion.div>
-            </div>
+                PRICING
+              </h1>
+              <p className="mx-auto max-w-xl text-base text-muted-foreground leading-relaxed">
+                Every project is unique, so we quote each one individually. Pick the service that
+                fits, send us the details, and we&apos;ll reply with a tailored proposal.
+              </p>
+              <a
+                href={mailtoFor("General inquiry")}
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-xs uppercase tracking-[0.12em] text-background hover:opacity-90 transition-opacity"
+                style={{ fontFamily: monoFont }}
+              >
+                <Mail className="h-4 w-4" />
+                Email for info
+              </a>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Pricing — Editorial Magazine Layout */}
+      {/* Plans */}
       <section className="py-16 lg:py-24 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <div
-            className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-16"
+            className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-12 text-center"
             style={{ fontFamily: monoFont }}
           >
-            [0 1] PLANS BY CATEGORY
+            [0 1] SERVICES BY CATEGORY
           </div>
 
-          {/* Editorial Grid — Scattered big-number layout inspired by magazine contents */}
-          <div className="space-y-0">
-            {pricingPlans.map((plan, planIndex) => (
-              <motion.div
-                key={plan.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: planIndex * 0.05 }}
-                className="group border-b border-border/50 last:border-b-0"
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-[120px_1fr_1fr] gap-4 lg:gap-8 py-8 lg:py-12 items-start">
-                  {/* Large number */}
-                  <div>
-                    <div
-                      className="text-[80px] lg:text-[100px] font-bold leading-[0.85] text-foreground/80 group-hover:text-foreground transition-colors"
-                      style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.02em" }}
-                    >
-                      {plan.id}
-                    </div>
-                  </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+            {plans.map((plan, i) => {
+              const Icon = plan.icon
+              return (
+                <TiltCard key={plan.id} max={6} className={`h-full ${plan.popular ? "lg:-translate-y-3" : ""}`}>
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: i * 0.05 }}
+                  className={`group relative flex h-full flex-col overflow-hidden rounded-3xl p-7 transition-all duration-300 ${
+                    plan.popular
+                      ? "bg-foreground text-background shadow-2xl ring-1 ring-foreground"
+                      : "border border-border bg-card/40 hover:border-foreground/30 hover:bg-card"
+                  }`}
+                >
+                  {/* hover sheen (non-featured) */}
+                  {!plan.popular && (
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-foreground/[0.05] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  )}
 
-                  {/* Title & subtitle */}
-                  <div className="lg:pt-4">
-                    <h3
-                      className="text-xl lg:text-2xl font-bold mb-1 uppercase tracking-wide"
-                      style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.08em" }}
+                  {plan.popular && (
+                    <span
+                      className="absolute right-6 top-6 rounded-full bg-background px-3 py-1 text-[9px] font-bold uppercase tracking-[0.15em] text-foreground"
+                      style={{ fontFamily: monoFont }}
                     >
-                      {plan.title}
-                    </h3>
+                      Most Requested
+                    </span>
+                  )}
+
+                  <div className="relative">
                     <div
-                      className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/50 mb-4"
+                      className={`flex h-12 w-12 items-center justify-center rounded-2xl border ${
+                        plan.popular ? "border-background/20 bg-background/10" : "border-border bg-background/40"
+                      }`}
+                    >
+                      <Icon className="h-6 w-6" strokeWidth={1.6} />
+                    </div>
+
+                    <div
+                      className={`mt-5 text-[10px] uppercase tracking-[0.15em] ${
+                        plan.popular ? "text-background/60" : "text-muted-foreground/60"
+                      }`}
                       style={{ fontFamily: monoFont }}
                     >
                       {plan.subtitle}
                     </div>
-                    <div className="h-px w-12 bg-border mb-4" />
+                    <h3
+                      className="mt-1 text-2xl font-bold uppercase tracking-wide"
+                      style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.05em" }}
+                    >
+                      {plan.title}
+                    </h3>
+                    <p className={`mt-3 text-sm leading-relaxed ${plan.popular ? "text-background/70" : "text-muted-foreground"}`}>
+                      {plan.description}
+                    </p>
+
+                    <div className={`my-6 h-px w-full ${plan.popular ? "bg-background/15" : "bg-border"}`} />
+
+                    <ul className="space-y-3">
+                      {plan.features.map((f) => (
+                        <li key={f} className="flex items-start gap-3 text-sm">
+                          <span
+                            className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
+                              plan.popular ? "bg-background/15" : "bg-foreground/10"
+                            }`}
+                          >
+                            <Check className="h-3 w-3" strokeWidth={2.5} />
+                          </span>
+                          <span className={plan.popular ? "text-background/90" : "text-foreground/90"}>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  {/* Items / Prices */}
-                  <div className="lg:pt-4 space-y-4">
-                    {plan.items.map((item, i) => (
-                      <div key={i} className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span
-                              className="text-[9px] text-muted-foreground/40"
-                              style={{ fontFamily: monoFont }}
-                            >
-                              [{String(i + 1).padStart(2, "0")}]
-                            </span>
-                            <span className="text-sm text-foreground font-medium">{item.name}</span>
-                          </div>
-                          <p className="text-[12px] text-muted-foreground/60 leading-relaxed pl-7" style={{ fontFamily: monoFont }}>
-                            {item.desc}
-                          </p>
-                        </div>
-                        <div
-                          className="text-2xl lg:text-3xl font-bold text-foreground shrink-0 tabular-nums"
-                          style={{ fontFamily: "Mohican, sans-serif" }}
-                        >
-                          {item.price != null ? (
-                            <>
-                              <span className="text-sm text-muted-foreground/50 mr-1">$</span>
-                              {item.price.toLocaleString()}
-                            </>
-                          ) : (
-                            <span className="text-lg text-muted-foreground/60">Free</span>
-                          )}
-                        </div>
-                      </div>
-                    ))}
+                  <div className="relative mt-8 pt-2">
+                    <a
+                      href={mailtoFor(plan.title)}
+                      className={`flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-xs uppercase tracking-[0.12em] transition-all ${
+                        plan.popular
+                          ? "bg-background text-foreground hover:opacity-90"
+                          : "border border-border text-foreground hover:bg-foreground hover:text-background"
+                      }`}
+                      style={{ fontFamily: monoFont }}
+                    >
+                      <Mail className="h-4 w-4" />
+                      Email for info
+                    </a>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+                </TiltCard>
+              )
+            })}
+          </div>
+
+          {/* Open source / collaboration banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45 }}
+            className="group relative mt-6 flex flex-col gap-6 overflow-hidden rounded-3xl border border-dashed border-border bg-card/30 p-8 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div className="flex items-start gap-5">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-border bg-background/40">
+                <GitBranch className="h-6 w-6" strokeWidth={1.6} />
+              </div>
+              <div>
+                <h3
+                  className="text-xl font-bold uppercase tracking-wide"
+                  style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.05em" }}
+                >
+                  Open Source & Collaboration
+                </h3>
+                <p className="mt-1.5 max-w-xl text-sm text-muted-foreground leading-relaxed">
+                  Building something open or want to collaborate as a developer or engineer? We work
+                  with the community — reach out and let&apos;s create together.
+                </p>
+              </div>
+            </div>
+            <a
+              href={mailtoFor("Open Source & Collaboration")}
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-border px-7 py-3.5 text-xs uppercase tracking-[0.12em] text-foreground transition-all hover:bg-foreground hover:text-background"
+              style={{ fontFamily: monoFont }}
+            >
+              Let&apos;s collaborate
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Notes */}
+      <section className="py-12 border-b border-border bg-card/20">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+          <div
+            className="text-[9px] uppercase tracking-[0.15em] text-muted-foreground/60 mb-6"
+            style={{ fontFamily: monoFont }}
+          >
+            [0 2] HOW PRICING WORKS
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              "Every project is quoted individually based on scope and complexity.",
+              "Email us the service you need and we'll send a tailored proposal.",
+              "PWA = Progressive Web App; full project scope can be quoted end-to-end.",
+              "Open source collaboration for developers and engineers is welcome.",
+            ].map((note, i) => (
+              <div
+                key={i}
+                className="flex gap-3 rounded-2xl border border-border bg-background/40 p-5 text-sm text-muted-foreground"
+              >
+                <span
+                  className="text-[10px] text-muted-foreground/50 pt-0.5"
+                  style={{ fontFamily: monoFont }}
+                >
+                  0{i + 1}
+                </span>
+                <span style={{ fontFamily: monoFont }}>{note}</span>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Notes */}
-      <section className="py-10 border-b border-border bg-card/20">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div
-            className="text-[9px] uppercase tracking-[0.15em] text-muted-foreground/60 mb-4"
-            style={{ fontFamily: monoFont }}
-          >
-            [0 2] NOTES
-          </div>
-          <ul className="space-y-2 text-sm text-muted-foreground" style={{ fontFamily: monoFont }}>
-            <li className="flex gap-3">
-              <span className="text-foreground/50">·</span>
-              All listed prices are in USD unless noted.
-            </li>
-            <li className="flex gap-3">
-              <span className="text-foreground/50">·</span>
-              PWA = Progressive Web App; full project scope can be quoted.
-            </li>
-            <li className="flex gap-3">
-              <span className="text-foreground/50">·</span>
-              Native software: Windows, macOS, Linux, or other desktop OS.
-            </li>
-            <li className="flex gap-3">
-              <span className="text-foreground/50">·</span>
-              Open source collaboration for developers and engineers: free.
-            </li>
-          </ul>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="py-12 lg:py-16">
+      <section className="py-14 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-8 border border-border rounded-lg bg-card">
-            <div>
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-10 lg:p-14 text-center">
+            <div className="pointer-events-none absolute -bottom-24 left-1/2 h-[300px] w-[600px] -translate-x-1/2 rounded-full bg-foreground/[0.05] blur-[100px]" />
+            <div className="relative">
               <h2
-                className="text-xl font-bold uppercase tracking-wide mb-2"
-                style={{ fontFamily: "Mohican, sans-serif" }}
+                className="text-3xl lg:text-4xl font-bold uppercase tracking-wide mb-3"
+                style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.05em" }}
               >
                 Ready to start a project?
               </h2>
-              <p className="text-sm text-muted-foreground" style={{ fontFamily: monoFont }}>
-                Contact us for a custom quote or to discuss scope.
+              <p className="mx-auto max-w-md text-sm text-muted-foreground mb-8" style={{ fontFamily: monoFont }}>
+                Email us for a custom quote or to discuss scope — we reply within 24–48 hours.
               </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <a
+                  href={mailtoFor("General inquiry")}
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-8 py-4 text-sm uppercase tracking-[0.12em] text-background hover:opacity-90 transition-opacity"
+                  style={{ fontFamily: monoFont }}
+                >
+                  <Mail className="h-5 w-5" />
+                  Email for info
+                </a>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-8 py-4 text-sm uppercase tracking-[0.12em] hover:bg-background transition-colors"
+                  style={{ fontFamily: monoFont }}
+                >
+                  Contact page
+                </Link>
+              </div>
             </div>
-            <Link
-              href="/contact"
-              className="flex items-center gap-2 px-8 py-4 bg-foreground text-background text-sm uppercase tracking-[0.12em] hover:opacity-90 transition-opacity shrink-0"
-              style={{ fontFamily: monoFont }}
-            >
-              <ExternalLink className="h-5 w-5" />
-              Contact
-            </Link>
           </div>
           <div
             className="mt-8 pt-6 border-t border-border flex items-center justify-between text-[9px] uppercase tracking-[0.12em] text-muted-foreground/40"
