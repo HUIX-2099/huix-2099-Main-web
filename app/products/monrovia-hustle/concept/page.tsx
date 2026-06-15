@@ -4,7 +4,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { ConceptGameplayGallery, type ConceptGalleryItem } from "@/components/monrovia-hustle/concept-gameplay-gallery"
+import { MonroviaConceptHero } from "@/components/monrovia-hustle/concept-hero"
+import { MonroviaCastShowcase, type MonroviaCastMember } from "@/components/monrovia-hustle/monrovia-cast-showcase"
+import { MonroviaConceptSpecCard } from "@/components/monrovia-hustle/concept-spec-card"
 import { ClickToViewImage } from "@/components/click-to-view-image"
 import { GoogleDiscoveryRow } from "@/components/google-discovery"
 import { monroviaConceptArtists, monroviaConceptArtistPageHref, MONROVIA_CONCEPT_ARTISTS_HREF } from "@/lib/monrovia-hustle/concept-artists"
@@ -13,22 +15,16 @@ import { cn } from "@/lib/utils"
 import {
   ArrowLeft,
   Youtube,
-  Play,
   ArrowRight,
-  HeartHandshake,
   Twitter,
   Instagram,
   Facebook,
-  Monitor,
-  HardDrive,
-  Cpu,
-  ListChecks,
-  Route,
-  Scale,
   Palette,
-  Headphones,
   ExternalLink,
   Lock,
+  MessageCircleWarning,
+  Target,
+  Cpu,
 } from "lucide-react"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
@@ -66,18 +62,10 @@ const FACEBOOK_INFO =
 const VICTOR_IMAGE = `/products/Monrovia_hustle_Demo_Campane/developer/${encodeURIComponent("Victor Edet Coleman.png")}`
 const VICTOR_FACEBOOK_REEL_HREF = "https://www.facebook.com/reel/988259967072643"
 const CAPSULE_ART = "/products/Monrovia_hustle_Demo_Campane/herosection.png"
+const GAME_SCREEN_PLACEHOLDER = "/products/Monrovia_hustle_Demo_Campane/1nmdB.jpg"
 /** Monrovia Hustle mark on cast / partner cards (matches hub gate branding). */
 const MH_GAME_LOGO = "/products/Monrovia_hustle_Demo_Campane/lighticon.png"
 const MONO = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' as const
-
-const WORKSPACE_DIR = "/products/Monrovia_hustle_Demo_Campane/images"
-
-const WORKSPACE_FILES = [
-  "WhatsApp Image 2026-05-04 at 11.57.51 PM.jpeg",
-  "WhatsApp Image 2026-05-04 at 11.57.52 PM.jpeg",
-  "WhatsApp Image 2026-05-04 at 11.57.52 PM (1).jpeg",
-  "WhatsApp Image 2026-05-04 at 11.57.52 PM (2).jpeg",
-] as const
 
 const CAST_CONCEPT_DIR = "/products/Monrovia_hustle_Demo_Campane/cast_concept"
 const BLAMO_CHARACTER_SRC = `${CAST_CONCEPT_DIR}/CHARACTERS/BLAMO.jpeg`
@@ -87,10 +75,6 @@ const TRAPPER_CHARACTER_SRC = `${CAST_CONCEPT_DIR}/CHARACTERS/Trapper.jpeg`
 const ANGEL_CHARACTER_SRC = `${CAST_CONCEPT_DIR}/CHARACTERS/angel.jpeg`
 const UNCLE_FLOMO_CHARACTER_SRC = `${CAST_CONCEPT_DIR}/CHARACTERS/uncle_flomo.jpeg`
 const JAYBOY_PA_CHARACTER_SRC = `${CAST_CONCEPT_DIR}/CHARACTERS/${encodeURIComponent("jayboy pa.jpeg")}`
-
-function ws(name: string) {
-  return `${WORKSPACE_DIR}/${encodeURIComponent(name)}`
-}
 
 function cc(name: string) {
   return `${CAST_CONCEPT_DIR}/${encodeURIComponent(name)}`
@@ -109,28 +93,6 @@ function MonroviaGameLogoMark({ className }: { className?: string }) {
     </div>
   )
 }
-
-const galleryItems: ConceptGalleryItem[] = [
-  {
-    kind: "video",
-    src: "https://youtu.be/GUPVn-m8Dr8",
-    posterSrc: CAPSULE_ART,
-    alt: "Monrovia Hustle 3D Gameplay Video",
-    autoPlay: true,
-  },
-  {
-    kind: "video",
-    posterSrc: CAPSULE_ART,
-    alt: "Monrovia Hustle trailer on YouTube",
-  },
-  { kind: "image", src: "/products/Monrovia_hustle_Demo_Campane/1nmdB.jpg", alt: "In-engine snapshot" },
-  { kind: "image", src: "/products/Monrovia_hustle_Demo_Campane/huix2099.png", alt: "Studio stamp on mock build" },
-  ...WORKSPACE_FILES.map((filename, index) => ({
-    kind: "image" as const,
-    src: ws(filename),
-    alt: `Workspace reference ${index + 1}`,
-  })),
-]
 
 type SocialChannel = {
   label: string
@@ -253,7 +215,7 @@ function StudioContactStrip({
         })}
       </div>
       <a
-        href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Play%20the%20concept%20%2F%20Wishlist`}
+        href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Studio%20inquiry`}
         className={cn(
           "flex min-w-0 items-center rounded-[2px] border border-border/80 bg-muted/30 transition hover:bg-muted/50",
           card
@@ -392,6 +354,36 @@ const DOMINIC_SOUND_HREF = "/team/dominic-rockson"
 const DOMINIC_SOUND_GOOGLE_QUERY = "Dominic Rockson sound engineer Monrovia Hustle 3D Liberia HUIX-2099"
 const DOMINIC_SOUND_GOOGLE_LABEL = "Dominic Rockson · Monrovia Hustle 3D · Sound engineer"
 
+const castMembers: MonroviaCastMember[] = [
+  ...CAST.map((c) => ({
+    id: c.href.replace(/^\/team\//, ""),
+    name: c.name,
+    role: c.role,
+    epithet: c.epithet,
+    imageSrc: c.imageSrc,
+    imageAlt: c.imageAlt,
+    href: c.href,
+    googleQuery: c.googleQuery,
+    googleLabel: c.googleLabel,
+    lane: "voice" as const,
+    ...("hoverImageSrc" in c && c.hoverImageSrc
+      ? { hoverImageSrc: c.hoverImageSrc, hoverImageAlt: (c as { hoverImageAlt?: string }).hoverImageAlt }
+      : {}),
+  })),
+  {
+    id: "dominic-rockson",
+    name: "Dominic Rockson",
+    role: "Sound Engineer · Monrovia Hustle 3D",
+    epithet: "Capture, mix, and clarity for the slice",
+    imageSrc: DOMINIC_SOUND_IMAGE,
+    imageAlt: "Dominic Rockson — Monrovia Hustle 3D sound engineer — HUIX-2099 Liberia",
+    href: DOMINIC_SOUND_HREF,
+    googleQuery: DOMINIC_SOUND_GOOGLE_QUERY,
+    googleLabel: DOMINIC_SOUND_GOOGLE_LABEL,
+    lane: "audio",
+  },
+]
+
 function SectionTitle({ children }: { children: ReactNode }) {
   return (
     <div className="mb-6 flex items-center gap-4 lg:mb-8 lg:gap-6">
@@ -414,91 +406,33 @@ function StoreLink(props: React.ComponentProps<typeof Link>) {
 }
 
 export default function MonroviaHustleConceptPage() {
-  const firstImageItem = galleryItems.find((item) => item.kind === "image")
-  const fallbackImageSrc = firstImageItem && firstImageItem.kind === "image" ? firstImageItem.src : "/placeholder.jpg"
-
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <Navbar />
 
-      <main className="w-full min-w-0 pb-28 pt-[5.75rem] sm:pt-28 lg:pb-36">
+      <main className="w-full min-w-0 overflow-x-hidden pb-28 pt-[4.5rem] sm:pt-[5.25rem] lg:pb-36">
         <div className="w-full min-w-0 max-w-none px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14">
           <Link
             href={MH_HUB}
-            className="mb-8 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground hover:text-[#002868] lg:mb-12 dark:hover:text-[#89b8ff]"
+            className="mb-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground hover:text-[#002868] lg:mb-5 dark:hover:text-[#89b8ff]"
             style={{ fontFamily: MONO }}
           >
             <ArrowLeft className="h-3.5 w-3.5" aria-hidden />
             All games · Hub
           </Link>
 
-          <div className="mb-10 xl:hidden">
-            <div className="rounded-xl border border-border/70 bg-card/50 p-5 shadow-sm dark:border-border/60 dark:bg-muted/15">
-              <StudioContactStrip heading="Studio &amp; community" />
-            </div>
-          </div>
-
-          {/*
-            Single full-width column so body sections (developer card, cast grid, etc.) span the padded shell — no narrow “main + sidebar” strip leaving empty space on the right. Studio + tags sit in a full-width row under the hero on xl+.
-          */}
           <div className="grid w-full min-w-0 grid-cols-1 gap-12 xl:gap-y-14">
             <div className="min-w-0 w-full max-w-full">
-              {/* Store title row */}
-              <div className="mb-8 flex flex-wrap items-end justify-between gap-x-10 gap-y-6 border-b border-border/60 pb-8 lg:mb-12 lg:pb-10 xl:gap-x-16">
-                <div className="max-w-none">
-                  <p className="mb-3 inline-flex items-center rounded-sm border border-[#002868]/30 bg-[#002868]/[0.07] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#002868] dark:border-[#89b8ff]/35 dark:bg-[#10223a]/80 dark:text-[#89b8ff]" style={{ fontFamily: MONO }}>
-                    Concept · early prototype
-                  </p>
-                  <h1 className="text-[clamp(1.85rem,3.8vw,3.35rem)] font-normal lowercase leading-[1.08] tracking-tight text-foreground [font-variant-ligatures:none]">
-                    monrovia hustle<span className="text-muted-foreground/90"> </span>
-                    <span className="text-[0.92em] text-muted-foreground">3d</span>
-                  </h1>
-                  <p className="mt-5 text-[15px] font-medium leading-[1.65] text-foreground/95 sm:text-[16px] lg:text-[17px] lg:leading-[1.7]">
-                    <strong className="text-foreground">Monrovia Hustle 3D</strong> is a playable concept — a vertical slice of the world, systems, and story
-                    we want to build at full scale. In plain English:{" "}
-                    <span className="text-muted-foreground">
-                      a Monrovia-set story game about street hustle, family pressure, and choosing your lane — part open-street slice, part mission-driven
-                      drama.
-                    </span>
-                  </p>
-                  <p className="mt-3 text-[13px] italic leading-relaxed text-muted-foreground sm:text-[14px]">
-                    Not a finished AAA retail product — an honest prototype to prove direction and gather signal.
-                  </p>
-                </div>
-                <div className="hidden shrink-0 text-right text-[11px] uppercase leading-relaxed tracking-[0.16em] text-muted-foreground sm:block lg:text-[12px]" style={{ fontFamily: MONO }}>
-                  HUIX-2099
-                  <br />
-                  <span className="opacity-75">concept 01 · archive 2026</span>
-                </div>
-              </div>
+              <MonroviaConceptHero
+                posterSrc={CAPSULE_ART}
+                youtubeChannelUrl={MH_YOUTUBE_URL}
+                className="mb-10 pb-10 lg:mb-14 lg:pb-14"
+              />
+            </div>
 
-              <div className="mb-8 flex flex-wrap items-center gap-3 lg:mb-10 xl:gap-4">
-                <a
-                  href={MH_YOUTUBE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-11 items-center justify-center gap-2 border border-border bg-[#BF0A30] px-5 text-[12px] font-bold uppercase tracking-wide text-white shadow-sm transition hover:bg-[#a00828]"
-                >
-                  <Play className="size-4 fill-white" aria-hidden />
-                  Watch trailer
-                </a>
-                <a
-                  href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Play%20the%20concept%20%2F%20Wishlist`}
-                  className="inline-flex h-11 items-center justify-center gap-2 border border-[#002868]/45 bg-[#002868]/10 px-5 text-[12px] font-bold uppercase tracking-wide text-foreground transition hover:bg-[#002868]/18 dark:border-[#89b8ff]/40 dark:bg-[#10223a]/60 dark:hover:bg-[#10223a]/90"
-                >
-                  Play the concept · Request access
-                </a>
-                <Link
-                  href="#download"
-                  className="inline-flex h-11 items-center justify-center border border-border bg-background px-5 text-[12px] font-semibold uppercase tracking-wide text-foreground transition hover:bg-muted/60"
-                >
-                  Demo &amp; download
-                </Link>
-              </div>
-
-              {/* Steam-style hero media (trailer first) */}
-              <div className="mb-14 w-full min-w-0 max-w-full rounded-xl border border-border/70 bg-card/40 p-2 shadow-sm backdrop-blur dark:border-border/60 dark:bg-muted/10 lg:mb-16 lg:p-3">
-                <ConceptGameplayGallery items={galleryItems} trailerHref={MH_YOUTUBE_URL} variant="hero" />
+            <div className="mb-2 xl:hidden">
+              <div className="rounded-xl border border-border/70 bg-card/50 p-5 shadow-sm dark:border-border/60 dark:bg-muted/15">
+                <StudioContactStrip heading="Studio &amp; community" />
               </div>
             </div>
 
@@ -528,91 +462,83 @@ export default function MonroviaHustleConceptPage() {
 
             <div className="min-w-0 w-full max-w-full">
               <div className="grid w-full min-w-0 grid-cols-1 gap-12 lg:gap-14 xl:gap-16">
-              <section>
+              <section id="concept-spec" className="scroll-mt-28">
+              <MonroviaConceptSpecCard hubHref={MH_HUB} />
+              </section>
+
+              <section id="concept-framing" className="scroll-mt-28">
               <SectionTitle>About this concept</SectionTitle>
-              <div className="space-y-8 text-[16px] leading-[1.85] text-muted-foreground sm:text-[17px] sm:leading-[1.85] lg:max-w-none">
-                <p className="text-foreground/95">
-                  <strong className="text-foreground">Label for players:</strong> treat this page and build as{" "}
-                  <strong className="text-foreground">concept / early prototype</strong>, not a finished boxed product. Expect a Liberian urban hustle drama in
-                  Godot on Windows, with comic sequences, a small 3D hub, and an open-street block — stitched together as a vertical slice.
-                </p>
-                <p>
-                  The{" "}
-                  <StoreLink href={MH_HUB}>public hub</StoreLink>{" "}
-                  stays lighter on spoilers; here we spell out what&apos;s in the slice, how you&apos;re meant to play it, what comes next, and how partners can
-                  reach the studio.
-                </p>
-              </div>
-              </section>
-
-              <section>
-              <SectionTitle>What&apos;s in this build</SectionTitle>
-              <ul className="max-w-none space-y-3 rounded-xl border border-border/70 bg-card/30 p-6 text-[15px] leading-[1.75] shadow-sm dark:border-border/60 dark:bg-muted/10 sm:p-8 lg:text-[16px]">
-                <li className="flex gap-3">
-                  <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
-                  <span className="min-w-0 flex-1">
-                    <strong className="text-foreground">Intended path from the main menu:</strong> Play — content-warning / rating slides — intro comic
-                    (slideshow) — <strong className="text-foreground">Jboy&apos;s bedroom</strong> hub (phone, story beats, find the key, exit toward the street) — loading —{" "}
-                    <strong className="text-foreground">the Street</strong> open block in third person with interaction prompts and UI hints.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
-                  <span className="min-w-0 flex-1">
-                    <strong className="text-foreground">Street loop:</strong> side &ldquo;hustles&rdquo; (pickup / drop-off / bike / street-sell-style zones) that pay{" "}
-                    <strong className="text-foreground">LD</strong> and tie into broader Uncle Flomo-style trust in the full design.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
-                  <span className="min-w-0 flex-1">
-                    <strong className="text-foreground">Mission spine (concept):</strong> the Tenneh phone thread — talk to Trapper, Tenneh, back to Trapper, Blamo
-                    (phone deal / money-split beat with an <strong className="text-foreground">Orange Money–style</strong> flavour), DC Young, Musu, then close with Trapper; waypoint / &ldquo;yellow arrow&rdquo; prompting, <strong className="text-foreground">E to interact</strong>, voiced lines.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
-                  <span className="min-w-0 flex-1">
-                    <strong className="text-foreground">Story menu:</strong> &ldquo;Story&rdquo; cards can jump episodes (intro, room, Angel comic, house, street, club, office, opening room) — the full experience is intentionally{" "}
-                    <strong className="text-foreground">menu-driven episodes plus the street chain</strong>, not only one straight line.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
-                  <span className="min-w-0 flex-1">
-                    <strong className="text-foreground">Controls:</strong> keyboard/mouse for this Windows slice; touch and mobile performance are roadmap targets, not promises in this drop.
-                  </span>
-                </li>
-              </ul>
-              </section>
-
-              <section>
-              <SectionTitle>Roadmap · what&apos;s next</SectionTitle>
-              <p className="mb-4 max-w-none text-[15px] leading-[1.8] text-muted-foreground lg:text-[16px]">
-                Only items we intend to keep chipping at — not a hype list:
-              </p>
-              <ul className="max-w-none list-outside list-disc space-y-2 rounded-xl border border-border/70 bg-card/30 p-6 ps-8 text-[15px] leading-[1.75] text-muted-foreground marker:text-[#BF0A30] shadow-sm dark:border-border/60 dark:bg-muted/10 lg:text-[16px]">
-                <li>Mobile-capable build and performance pass once funding allows</li>
-                <li>More story chapters, polish passes, and clearer signposting between comic · room · street · club · office modes</li>
-                <li>Formal waitlist / newsletter and cleaner installer distribution</li>
-                <li>Partners for marketing, localization, and compliance where real brands appear as fiction</li>
-              </ul>
-              </section>
-
-              <section>
-              <SectionTitle>Why it can feel like &ldquo;many demos in one&rdquo;</SectionTitle>
-              <div className="max-w-none space-y-4 rounded-xl border border-border/70 bg-card/30 p-6 text-[15px] leading-[1.85] text-muted-foreground shadow-sm dark:border-border/60 dark:bg-muted/10 sm:p-8 lg:text-[16px]">
-                <div className="flex gap-3">
-                  <Route className="mt-0.5 h-5 w-5 shrink-0 text-[#BF0A30]" aria-hidden />
-                  <p className="min-w-0 flex-1">
-                    Jumping between comic, bedroom hub, open street, and later club / office beats is a lot of modes for one download. Without heavy
-                    hand-holding, some players read that as scattered — for a <strong className="text-foreground">vertical slice</strong>, that&apos;s normal, not a logic failure.
+              <div className="space-y-8 border border-border bg-muted/20 p-8 text-[15px] leading-[1.85] text-foreground/90 shadow-sm dark:bg-muted/15 sm:p-10 sm:text-[16px] lg:p-12">
+                <div>
+                  <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">Vision first</h3>
+                  <p>
+                    <strong className="text-foreground">Monrovia Hustle 3D</strong> is a playable concept: a vertical slice of Monrovia flavour, the hustle
+                    loop, feel, and world we intend to scale when we have stronger tools, more time, and ideally a team. That&apos;s not an excuse — it&apos;s
+                    how a lot of serious games start.
                   </p>
                 </div>
-                <p>
-                  <strong className="text-foreground">Simple genre tag:</strong> story-led 3D third-person life / hustle sim — open(ish) street plus scripted mission chain, light economy (LD / wallet), and branching narrative toward club, uncle, and path choice. Closer to{" "}
-                  <strong className="text-foreground">narrative adventure with errands</strong> than a pure shooter or racer.
-                </p>
+                <div>
+                  <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">What you&apos;re really hearing</h3>
+                  <p>
+                    This isn&apos;t a AAA-studio product yet. It&apos;s a proof of concept built solo on tight hardware, meant to show the direction clearly so we
+                    can grow it with the right support — without overpromising a &ldquo;finished&rdquo; commercial box today.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">Reality (context, not a flex)</h3>
+                  <p className="text-muted-foreground">
+                    Right now it&apos;s solo development on minimal hardware. This release is about proving the idea, collecting feedback and metrics, and
+                    shipping honesty — not claiming we&apos;re already a full retail game.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">What we&apos;re looking for</h3>
+                  <p>
+                    Partners and investors who care about representation and West African urban stories — and who can help with{" "}
+                    <strong className="text-foreground">funding, polish, and distribution</strong> (mobile readiness, performance, marketing). Use the studio
+                    contact strip above or{" "}
+                    <a
+                      href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Studio%20inquiry`}
+                      className="font-semibold text-[#002868] underline decoration-[#002868]/35 underline-offset-2 hover:decoration-[#BF0A30] dark:text-[#7eb3ff]"
+                    >
+                      email the studio
+                    </a>{" "}
+                    for slice details, roadmap, and partnership conversations.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-border bg-card/60 p-6 dark:bg-card/30">
+                  <div className="mb-2 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-foreground">
+                    <MessageCircleWarning className="h-4 w-4 text-[#BF0A30]" aria-hidden />
+                    If the tone gets mocked
+                  </div>
+                  <p className="text-muted-foreground">
+                    Critics often mix up <strong className="text-foreground">not finished</strong> with <strong className="text-foreground">not serious</strong>.
+                    The frame here is intentional: serious direction, early-stage execution — which is normal for a vertical slice.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-foreground">
+                    <Target className="h-4 w-4 text-[#002868] dark:text-[#7eb3ff]" aria-hidden />
+                    Concept-launch goals (concrete, not vague)
+                  </h3>
+                  <ul className="list-inside list-disc space-y-2 text-muted-foreground marker:text-[#BF0A30]">
+                    <li>Downloads / plays of the build</li>
+                    <li>Watch time on trailer or average session length</li>
+                    <li>Short survey signal (e.g. &ldquo;Would you play weekly?&rdquo;)</li>
+                    <li>Waitlist interest for a mobile-capable release</li>
+                    <li>One tight trailer (30–60s) that sells the promise</li>
+                  </ul>
+                </div>
+                <div className="rounded-xl border border-[#002868]/25 bg-[#002868]/[0.06] p-6 dark:border-[#7eb3ff]/20 dark:bg-[#002868]/10">
+                  <div className="mb-2 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-foreground">
+                    <Cpu className="h-4 w-4 text-[#002868] dark:text-[#7eb3ff]" aria-hidden />
+                    On the workstation (i7 · 4&nbsp;GB RAM)
+                  </div>
+                  <p className="leading-relaxed text-muted-foreground">
+                    Godot is a strong fit for low RAM, but 4&nbsp;GB is tight — lean scenes, compressed audio and textures, and testing on a minimum-spec profile
+                    are part of the discipline. That lines up with &ldquo;concept,&rdquo; not a flaw in the pitch.
+                  </p>
+                </div>
               </div>
               </section>
 
@@ -632,13 +558,6 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section>
-              <SectionTitle>Screenshots &amp; media</SectionTitle>
-              <p className="mb-2 max-w-none text-[15px] leading-[1.8] text-muted-foreground lg:text-[16px]">
-                Use the carousel above: trailer first, then stills that try to show <strong className="text-foreground/90">character on street, environment reads, HUD / prompts</strong> — not only menus. Quality varies by capture pass; some tiles are workspace references.
-              </p>
-              </section>
-
               <section id="game-screens" className="scroll-mt-28">
               <SectionTitle>Game Screens</SectionTitle>
               <p className="mb-6 max-w-none text-[15px] leading-[1.8] text-muted-foreground lg:text-[16px]">
@@ -652,7 +571,7 @@ export default function MonroviaHustleConceptPage() {
                         <div className="p-1">
                           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm dark:border-border/60">
                             <Image 
-                              src={fallbackImageSrc} 
+                              src={GAME_SCREEN_PLACEHOLDER} 
                               alt="Locked Screen" 
                               fill 
                               className="object-cover blur-[6px] opacity-40 grayscale"
@@ -748,142 +667,24 @@ export default function MonroviaHustleConceptPage() {
               </section>
 
               <section id="voice-actors" className="scroll-mt-28">
-              <SectionTitle>Monrovia Hustle 3D — voice cast</SectionTitle>
+              <SectionTitle>Monrovia Hustle 3D — cast &amp; audio</SectionTitle>
               <p className="mb-8 max-w-none text-[15px] leading-[1.85] text-muted-foreground lg:mb-10 lg:text-[16px]">
-                Monrovia Hustle 3D voice cast for HUIX-2099 (Liberia): each card opens the team profile; the Google row runs a search tuned to that performer and
-                the game&apos;s voice cast. Jayboy is voiced by Victor Edet Coleman (Founder &amp; CTO). Technical audio credits live in{" "}
-                <a href="#sound-audio" className="font-medium text-[#002868] underline decoration-[#002868]/35 underline-offset-2 dark:text-[#89b8ff]">
-                  Sound &amp; audio
-                </a>{" "}
-                below. Casting stays open — Facebook, socials, and Gmail on each profile.
+                Hover a name or photo to preview in-game characters for the voice cast — click through to team profiles or Google.{" "}
+                <strong className="text-foreground">Jayboy</strong> is performed by{" "}
+                <strong className="text-foreground">Victor Edet Coleman</strong>.
               </p>
-              <div className="grid w-full min-w-0 justify-items-stretch gap-6 [grid-template-columns:repeat(auto-fill,minmax(min(100%,16rem),1fr))] sm:gap-7 md:gap-8 [&>*]:min-w-0">
-                {CAST.map((c) => (
-                  <article
-                    key={c.name}
-                    className="group relative flex min-h-0 min-w-0 w-full max-w-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#BF0A30]/40 hover:shadow-lg hover:shadow-[#BF0A30]/[0.08] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] dark:hover:border-[#BF0A30]/35 dark:hover:shadow-[#000]/40"
-                  >
-                    <div
-                      className="absolute inset-x-0 top-0 z-10 h-[3px] bg-gradient-to-r from-[#BF0A30] via-[#002868] to-[#BF0A30] opacity-90 transition-opacity duration-300 group-hover:opacity-100"
-                      aria-hidden
-                    />
-                    <Link
-                      href={c.href}
-                      className="relative z-0 flex min-h-0 min-w-0 flex-1 flex-col text-inherit no-underline outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                    >
-                      <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-muted/50">
-                        <Image
-                          src={c.imageSrc}
-                          alt={c.imageAlt}
-                          fill
-                          className={cn(
-                            "object-cover object-top transition-all duration-500 ease-out group-hover:scale-[1.03]",
-                            "hoverImageSrc" in c && "group-hover:opacity-0"
-                          )}
-                          sizes="(max-width:640px) 100vw, (max-width:1280px) 50vw, 25vw"
-                        />
-                        {"hoverImageSrc" in c && (
-                          <Image
-                            src={c.hoverImageSrc as string}
-                            alt={(c as { hoverImageAlt?: string }).hoverImageAlt ?? `${c.name} — hover view`}
-                            fill
-                            className="absolute inset-0 object-cover object-top transition-all duration-500 ease-out opacity-0 group-hover:opacity-100 group-hover:scale-[1.03]"
-                            sizes="(max-width:640px) 100vw, (max-width:1280px) 50vw, 25vw"
-                          />
-                        )}
-                        <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent pt-16" />
-                        <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground drop-shadow-sm">
-                          {c.name} · voice cast
-                        </span>
-                        <MonroviaGameLogoMark />
-                      </div>
-                      <div className="relative flex flex-1 flex-col p-5 sm:p-6">
-                        <div className="mb-3 flex items-start justify-between gap-2">
-                          <h3 className="text-lg font-black uppercase tracking-tight text-foreground sm:text-xl">{c.name}</h3>
-                        </div>
-                        <p className="text-[10px] font-bold uppercase leading-snug tracking-[0.12em] text-[#BF0A30] dark:text-[#ff6b6b]" style={{ fontFamily: MONO }}>
-                          {c.role}
-                        </p>
-                        <p className="mt-3 text-sm font-semibold italic leading-snug text-foreground/95 sm:text-base">&ldquo;{c.epithet}&rdquo;</p>
-                        <div className="mt-auto pt-4 flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-[#BF0A30] dark:text-[#ff6b6b] opacity-0 group-hover:opacity-100 transition-opacity">
-                          <span>View Profile</span>
-                          <ArrowRight className="h-3 w-3" />
-                        </div>
-                      </div>
-                    </Link>
-                    <GoogleDiscoveryRow googleQuery={c.googleQuery} googleLabel={c.googleLabel} />
-                  </article>
-                ))}
-              </div>
+              <MonroviaCastShowcase
+                members={castMembers}
+                audioIntro={{
+                  id: "sound-audio",
+                  title: "Sound & audio",
+                  description:
+                    "Mix, capture, and in-engine clarity for the prototype — a separate lane from the voice cast. Dominic Rockson is the sound engineer on Monrovia Hustle 3D.",
+                }}
+              />
               </section>
 
-              <section id="sound-audio" className="scroll-mt-28 border-t border-border pt-12 dark:border-border lg:pt-14" aria-label="Sound and audio">
-                <div className="mb-6 flex items-center gap-4 lg:mb-8 lg:gap-6">
-                  <Headphones className="h-7 w-7 shrink-0 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
-                  <h2
-                    id="sound-audio-heading"
-                    className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.14em] text-[#002868] dark:text-[#89b8ff] lg:text-xs"
-                    style={{ fontFamily: MONO }}
-                  >
-                    Sound &amp; audio
-                  </h2>
-                  <div className="h-px min-w-[2rem] flex-1 bg-foreground/10 dark:bg-foreground/15" aria-hidden />
-                </div>
-                <p className="mb-8 max-w-none text-[15px] leading-[1.85] text-muted-foreground lg:mb-10 lg:text-[16px]">
-                  Mix, capture, and in-engine clarity for the prototype — a separate lane from the voice cast cards.{" "}
-                  <strong className="text-foreground">Jayboy</strong> is performed by{" "}
-                  <strong className="text-foreground">Victor Edet Coleman</strong>;{" "}
-                  <strong className="text-foreground">Dominic Rockson</strong> is the sound engineer on Monrovia Hustle 3D.
-                </p>
-                <div className="grid w-full min-w-0 justify-items-stretch gap-6 [grid-template-columns:repeat(auto-fill,minmax(min(100%,16rem),1fr))] sm:gap-7 md:gap-8 [&>*]:min-w-0">
-                  <article className="group relative flex min-h-0 min-w-0 w-full max-w-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-gradient-to-b from-card via-card/95 to-muted/30 shadow-sm ring-1 ring-black/[0.03] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#002868]/45 hover:shadow-lg hover:shadow-[#002868]/[0.08] dark:from-card/80 dark:via-card/60 dark:to-muted/25 dark:ring-white/[0.04] dark:hover:border-[#7eb3ff]/35 dark:hover:shadow-[#000]/40">
-                    <div
-                      className="absolute inset-x-0 top-0 z-10 h-[3px] bg-gradient-to-r from-[#002868] via-[#BF0A30] to-[#002868] opacity-90 transition-opacity duration-300 group-hover:opacity-100"
-                      aria-hidden
-                    />
-                    <Link
-                      href={DOMINIC_SOUND_HREF}
-                      className="relative z-0 flex min-h-0 min-w-0 flex-1 flex-col text-inherit no-underline outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                    >
-                      <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-muted/50">
-                        <Image
-                          src={DOMINIC_SOUND_IMAGE}
-                          alt="Dominic Rockson — Monrovia Hustle 3D sound engineer — HUIX-2099 Liberia"
-                          fill
-                          className="object-cover object-top transition-all duration-500 ease-out group-hover:scale-[1.03]"
-                          sizes="(max-width:640px) 100vw, (max-width:1280px) 50vw, 25vw"
-                        />
-                        <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent pt-16" />
-                        <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground drop-shadow-sm">
-                          Dominic Rockson · sound
-                        </span>
-                        <MonroviaGameLogoMark />
-                      </div>
-                      <div className="relative flex flex-1 flex-col p-5 sm:p-6">
-                        <div className="mb-3 flex items-start justify-between gap-2">
-                          <h3 className="text-lg font-black uppercase tracking-tight text-foreground sm:text-xl">Dominic Rockson</h3>
-                        </div>
-                        <p
-                          className="text-[10px] font-bold uppercase leading-snug tracking-[0.12em] text-[#002868] dark:text-[#89b8ff]"
-                          style={{ fontFamily: MONO }}
-                        >
-                          Sound Engineer · Monrovia Hustle 3D
-                        </p>
-                        <p className="mt-3 text-sm font-semibold italic leading-snug text-foreground/95 sm:text-base">
-                          &ldquo;Capture, mix, and clarity for the slice&rdquo;
-                        </p>
-                        <div className="mt-auto pt-4 flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-[#002868] opacity-0 transition-opacity group-hover:opacity-100 dark:text-[#89b8ff]">
-                          <span>View Profile</span>
-                          <ArrowRight className="h-3 w-3" />
-                        </div>
-                      </div>
-                    </Link>
-                    <GoogleDiscoveryRow googleQuery={DOMINIC_SOUND_GOOGLE_QUERY} googleLabel={DOMINIC_SOUND_GOOGLE_LABEL} />
-                  </article>
-                </div>
-              </section>
-
-              <section id="artists" className="scroll-mt-28" aria-label="Art and artists">
+              <section id="artists" className="scroll-mt-28 border-t border-border pt-12 dark:border-border lg:pt-14" aria-label="Art and artists">
               <div className="mb-6 flex items-center gap-4 lg:mb-8 lg:gap-6">
                 <Palette className="h-7 w-7 shrink-0 text-[#BF0A30]" aria-hidden />
                 <h2
@@ -1028,161 +829,8 @@ export default function MonroviaHustleConceptPage() {
                 })}
               </div>
               </section>
-
-              <section>
-              <SectionTitle>Partners &amp; investors</SectionTitle>
-              <div className="max-w-none space-y-6 border border-border bg-[#002868]/[0.06] p-7 text-[15px] leading-[1.85] dark:bg-[#10223a]/50 sm:p-9 lg:text-[16px]">
-                <div className="flex gap-3">
-                  <Scale className="mt-0.5 h-5 w-5 shrink-0 text-[#BF0A30]" aria-hidden />
-                  <div className="min-w-0 flex-1">
-                    <p className="font-semibold text-foreground">Problem / opportunity</p>
-                    <p className="mt-2 text-muted-foreground">
-                      West African cities — and Monrovia specifically — are under-represented as lived-in spaces in story-led games. A hustle-forward urban
-                      drama with real cultural texture addresses players and press hungry for that authenticity, without defaulting to Hollywood clichés.
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">What we&apos;re looking for</p>
-                  <ul className="mt-3 list-outside list-disc space-y-2 ps-6 text-muted-foreground marker:text-[#002868] dark:marker:text-[#89b8ff]">
-                    <li>
-                      <strong className="text-foreground">Funding:</strong> early-stage / project-scale conversations to move from solo prototype to a shippable
-                      slice and small team (specific rounds discussed privately).
-                    </li>
-                    <li>
-                      <strong className="text-foreground">Collaborators:</strong> character art, environment polish, engineering for performance and mobile, audio
-                      production.
-                    </li>
-                    <li>
-                      <strong className="text-foreground">Distribution:</strong> platform and marketing partners who understand narrative indies and emerging
-                      markets — not vague &ldquo;support,&rdquo; but concrete paths to players.
-                    </li>
-                  </ul>
-                </div>
-                <p className="text-[14px] text-muted-foreground">
-                  Contact:{" "}
-                  <a href={`mailto:${STUDIO_EMAIL}`} className="font-medium text-[#002868] underline dark:text-[#89b8ff]">
-                    {STUDIO_EMAIL}
-                  </a>
-                  {" · "}
-                  Socials in the studio strip above — no implied endorsement by real-world brands referenced in-fiction unless we publish a formal partnership.
-                </p>
-              </div>
-              </section>
-
-              <section>
-              <SectionTitle>System requirements (prototype)</SectionTitle>
-              <div className="grid gap-8 sm:grid-cols-2 lg:gap-10 xl:gap-12">
-                <div className="border border-border bg-muted/40 p-7 text-[13px] dark:bg-card/70 lg:p-9 lg:text-[14px]">
-                  <p className="mb-6 flex items-center gap-2 font-bold uppercase tracking-wider text-foreground" style={{ fontFamily: MONO }}>
-                    <Monitor className="h-4 w-4 text-[#002868] dark:text-[#89b8ff]" aria-hidden />
-                    Minimum
-                  </p>
-                  <ul className="space-y-3 text-muted-foreground">
-                    <li>
-                      <span className="text-muted-foreground">OS:</span> Windows 10 (64-bit) or newer
-                    </li>
-                    <li>
-                      <span className="text-muted-foreground">Processor:</span> Dual-core concept build
-                    </li>
-                    <li>
-                      <span className="text-muted-foreground">Memory:</span> 8 GB RAM
-                    </li>
-                    <li>
-                      <span className="text-muted-foreground">Graphics:</span> DirectX 11 class GPU
-                    </li>
-                    <li className="flex gap-2">
-                      <HardDrive className="mt-0.5 h-3.5 w-3.5 shrink-0 opacity-70" aria-hidden />
-                      <span className="min-w-0 flex-1">
-                        <span className="text-muted-foreground">Storage:</span> TBD — installer ships via studio email
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="border border-border bg-muted/40 p-7 text-[13px] dark:bg-card/70 lg:p-9 lg:text-[14px]">
-                  <p className="mb-6 flex items-center gap-2 font-bold uppercase tracking-wider text-foreground" style={{ fontFamily: MONO }}>
-                    <Cpu className="h-4 w-4 text-[#BF0A30]" aria-hidden />
-                    Recommended
-                  </p>
-                  <ul className="space-y-3 text-muted-foreground">
-                    <li>
-                      <span className="text-muted-foreground">OS:</span> Windows 11
-                    </li>
-                    <li>
-                      <span className="text-muted-foreground">Processor:</span> Quad-core
-                    </li>
-                    <li>
-                      <span className="text-muted-foreground">Memory:</span> 16 GB RAM
-                    </li>
-                    <li>
-                      <span className="text-muted-foreground">Graphics:</span> GTX 1060 / RX 580 class or better
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              </section>
-
-              <section>
-              <SectionTitle>Community &amp; backers</SectionTitle>
-              <div className="rounded-sm border border-[#002868]/25 bg-[#002868]/[0.07] p-7 dark:border-[#4a7ab8]/30 dark:bg-[#10223a]/90 lg:p-9">
-                <HeartHandshake className="mb-3 h-8 w-8 text-[#BF0A30]" aria-hidden />
-                <p className="max-w-none text-[14px] leading-relaxed text-muted-foreground lg:text-[15px] lg:leading-[1.85]">
-                  Backers and collaborators roll into credits and partner strips as the campaign formalizes. Drop a donation or join the mailing
-                  thread via demo access.
-                </p>
-                <StoreLink href="/products/monrovia-hustle/donate" className="mt-4 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
-                  Support the campaign <ArrowRight className="h-4 w-4" />
-                </StoreLink>
-              </div>
-              </section>
               </div>
             </div>
-          </div>
-
-          {/* Bottom “Steam purchase bar” analogue */}
-          <section id="download" className="scroll-mt-28 mt-14 border-t border-border bg-muted/30 py-8 dark:bg-muted/20">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground" style={{ fontFamily: MONO }}>
-                  Concept build · demo / press
-                </p>
-                <h2 className="mt-2 text-xl font-bold uppercase tracking-tight text-foreground">Play the concept · get access</h2>
-                <p className="mt-2 max-w-none text-[14px] text-muted-foreground">
-                  Windows installers ship when QA clears. Email for invite links, wishlist placement, or a supervised walkthrough — not a mass-market store drop yet.
-                </p>
-              </div>
-              <div className="flex shrink-0 flex-wrap gap-3">
-                <a
-                  href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Demo%20%2F%20Press`}
-                  className="inline-flex items-center gap-2 bg-[#BF0A30] px-6 py-3 text-[12px] font-bold uppercase tracking-[0.15em] text-white shadow-sm hover:bg-[#a00828]"
-                >
-                  <Play className="h-4 w-4 fill-white" />
-                  Request concept build
-                </a>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 border border-border bg-card px-6 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-foreground transition hover:bg-muted/50"
-                >
-                  Contact studio
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-          </section>
-
-          <div
-            className="mt-10 max-w-none space-y-3 border-t border-border pt-8 text-[11px] leading-relaxed text-muted-foreground"
-            aria-label="Legal and privacy notes"
-          >
-            <p>
-              <strong className="text-foreground/85">Privacy:</strong> Demo requests and wishlist replies use studio email ({STUDIO_EMAIL}); we
-              don&apos;t sell addresses. If we add analytics or marketing capture, we&apos;ll publish a short policy on this site.
-            </p>
-            <p>
-              <strong className="text-foreground/85">Trademarks:</strong> Names of real companies, carriers, or payment brands (e.g. Orange Money) that
-              appear in dialogue or UI are fictional uses for world-building; trademarks belong to their owners and do not imply partnership or
-              endorsement unless we state otherwise.
-            </p>
           </div>
         </div>
       </main>

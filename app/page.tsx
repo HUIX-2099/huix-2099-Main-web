@@ -11,6 +11,8 @@ import { GoogleDiscoveryRow } from "@/components/google-discovery";
 import { BoardingPass } from "@/components/boarding-pass";
 import { TiltCard } from "@/components/tilt-card";
 import { AmbientGlow } from "@/components/ambient-glow";
+import { HuixWorldMap } from "@/components/huix-world-map";
+import { HuixTestimonialsSection } from "@/components/huix-testimonials";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Monitor, Palette, Sparkles, ExternalLink, Gamepad2, Target, Users, FlaskConical, Handshake, LayoutGrid } from "lucide-react";
 
@@ -418,6 +420,8 @@ export default function Home() {
         </div>
       </section>
 
+      <HuixTestimonialsSection />
+
       {/* Explore Section - Premium bento grid */}
       <section className="py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
         <div className="max-w-7xl mx-auto">
@@ -527,6 +531,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <HuixWorldMap
+        sectionLabel="[07] WHERE WE BUILD"
+        title="MONROVIA · GLOBAL"
+        description="Built in Liberia's capital — HUIX-2099 ships software, games, and tools with roots in Monrovia and reach across West Africa and the Americas."
+      />
 
       {/* CTA Section - Editorial Document Style */}
       <section className="py-12 sm:py-16 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">

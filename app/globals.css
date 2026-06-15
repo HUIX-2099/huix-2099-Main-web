@@ -507,3 +507,21 @@ html {
   background-size: 200% 100%;
   animation: skeleton-loading 2s infinite;
 }
+
+/* MapLibre — match HUIX theme */
+.maplibregl-ctrl-attrib,
+.maplibregl-ctrl-attrib a {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+  font-size: 9px !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+.maplibregl-ctrl-group {
+  border-radius: 0.5rem !important;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+}
+.maplibregl-canvas {
+  outline: none;
+}

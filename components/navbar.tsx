@@ -23,6 +23,12 @@ export function Navbar() {
   const { resolvedTheme } = useTheme()
   const pathname = usePathname()
   const { isVRSupported, isActualVRHeadset, deviceType: vrDeviceType, deviceName, enterVR, isInVR } = useWebXR()
+  const isMonroviaRoute =
+    pathname === "/products/monrovia-hustle" || pathname === "/products/monrovia-hustle/concept"
+  const monroviaLogoSrc =
+    mounted && resolvedTheme === "dark"
+      ? "/products/Monrovia_hustle_Demo_Campane/dark_mode_logo.png"
+      : "/products/Monrovia_hustle_Demo_Campane/light_mode_logo.png"
 
   // Google Cardboard VR Icon
   const CardboardIcon = ({ className }: { className?: string }) => (
@@ -145,8 +151,8 @@ export function Navbar() {
             label: "EXPLORE",
             links: [
               { label: "FAQ", href: "/faq" },
-              { label: "Why Choose Us", href: "/#why-choose-us" },
-              { label: "Documentation", href: "/#documentation" },
+              { label: "Why Choose Us", href: "/about#mission-and-values" },
+              { label: "Documentation", href: "/research" },
             ],
           },
           {
@@ -316,12 +322,14 @@ export function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group shrink-0">
               <div className="flex items-center gap-2">
-                <Image
+                {/* Native img avoids next/image SSR/client attribute mismatches (data-nimg, etc.) */}
+                <img
                   src="/icons/browser-icon.png"
                   alt="HUIX-2099 logo"
                   width={28}
                   height={28}
-                  priority
+                  decoding="async"
+                  fetchPriority="high"
                   className="h-6 w-6 sm:h-7 sm:w-7 rounded-md object-contain"
                 />
                 <div
@@ -332,17 +340,15 @@ export function Navbar() {
                 </div>
               </div>
               {/* Dynamic Tagline or Logo */}
-              {(pathname === "/products/monrovia-hustle" || pathname === "/products/monrovia-hustle/concept") && mounted ? (
+              {isMonroviaRoute ? (
                 <>
                   <div className="flex h-3 sm:h-4 w-px bg-border" />
                   <div className="flex text-[9px] uppercase tracking-[0.1em] text-muted-foreground flex-shrink-0" style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' }}>
                     <div className="relative w-24 sm:w-28 h-5 sm:h-6 flex items-center">
-                      <Image
-                        src={resolvedTheme === 'dark' ? '/products/Monrovia_hustle_Demo_Campane/dark_mode_logo.png' : '/products/Monrovia_hustle_Demo_Campane/light_mode_logo.png'}
+                      <img
+                        src={monroviaLogoSrc}
                         alt="Monrovia Hustle 3D"
-                        fill
-                        className="object-contain object-left"
-                        priority
+                        className="h-full w-full object-contain object-left"
                       />
                     </div>
                   </div>

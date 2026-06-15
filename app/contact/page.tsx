@@ -6,6 +6,7 @@ import { useTheme } from "@/components/theme-provider"
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { Twitter, Instagram, Facebook, Youtube, Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle, ArrowUpRight } from "lucide-react"
+import { HuixWorldMap } from "@/components/huix-world-map"
 
 const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
 
@@ -424,6 +425,13 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <HuixWorldMap
+        sectionLabel="[05] FIND US"
+        title="MONROVIA HQ"
+        description="Visit us in Monrovia, Liberia — or connect from anywhere. We work with partners across West Africa, the United States, and the global diaspora."
+        mapHeight="min(480px, 65vh)"
+      />
 
       {/* Bottom Meta Strip */}
       <section className="border-t border-border py-6 px-4 lg:px-8">

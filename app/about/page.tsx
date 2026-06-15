@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, Twitter, Instagram, Facebook, Youtube } from "lucide-react"
 
-type TabId = "huix-2099" | "huix-horizen" | "virtual-past"
+type TabId = "huix-2099" | "huix-or" | "monrovia-hustle"
 
 interface CardDesign {
   bgColor: string
@@ -84,93 +84,93 @@ const tabsContent: TabContent[] = [
     ]
   },
   {
-    id: "huix-horizen",
-    label: "HUIX-HORIZEN",
-    shortLabel: "HORIZEN",
+    id: "huix-or",
+    label: "HUIX OR",
+    shortLabel: "HUIXOR",
     card: {
       bgColor: "#0a0a0a",
-      accentColor: "#ff5a00",
+      accentColor: "#22C55E",
       mainText: "HUIX",
-      subText: "HORIZEN",
+      subText: "OR",
       codes: {
-        topLeft: ["SN-HRZ-2099", "REV-A3", "LIC 53698-LBR"],
-        topRight: ["2099", "HORIZEN"],
-        bottomCodes: ["VR · AR · XR", "PHONE‑BASED", "R&D"]
+        topLeft: ["SN-HXR-2099", "REV-B1", "LIC-LBR-002"],
+        topRight: ["2099", "HUIXOR"],
+        bottomCodes: ["BROWSER · VR", "DEVTOOLS", "v1.0"]
       },
       systemInfo: [
-        { label: "Platform", value: "Phone‑Based Immersion" },
-        { label: "Use Cases", value: "VR/AR + Arch Sim" },
-        { label: "Stack", value: "Unity XR · OpenXR" },
-        { label: "Tracking", value: "3DOF Sensors" },
-        { label: "Status", value: "R&D / Prototyping", highlight: true },
+        { label: "Product", value: "HUIXOR Browser" },
+        { label: "Use Cases", value: "DevTools · VR Preview" },
+        { label: "Stack", value: "Desktop · WebView" },
+        { label: "Platform", value: "Windows" },
+        { label: "Status", value: "Live / Beta", highlight: true },
         { label: "Built", value: "Liberia", highlight: true }
       ]
     },
     sections: [
       {
         number: "01",
-        title: "Phone‑Based Immersive Platform",
-        subtitle: "HUIX Horizon / HUIX‑HORIZEN",
+        title: "HUIXOR — dev browser & VR preview",
+        subtitle: "HUIX OR product line",
         content: [
-          "HUIX Horizon (also referred to as HUIX‑HORIZEN) is a phone‑based immersive reality platform being developed under HUIX‑2099. It is designed to turn modern smartphones into practical tools for VR, AR, and architectural & engineering simulation—without requiring expensive headsets.",
-          "The system targets professional outcomes: accurate spatial perception, real stereo rendering, stable head tracking, and a clean immersive UI layer suitable for design review, education, and field demonstrations.",
-          "HUIX Horizon is in active research and development and is ready for early testing, prototyping, and experimentation with partners."
+          "HUIXOR is HUIX-2099's desktop browser and developer preview shell — built to inspect responsive layouts, device presets, and VR-ready views without juggling a pile of separate tools.",
+          "It targets designers and engineers who need a fast loop: resize, screenshot, compare against DevTools, and jump into immersive preview when a build supports it.",
+          "Explore the full product page for media, feature breakdown, download, and community feedback."
         ]
       },
       {
         number: "02",
-        title: "System Architecture (High‑Level)",
-        subtitle: "Stereo · Sensors · Interaction",
+        title: "Why it sits in the studio stack",
+        subtitle: "Tooling for how we ship",
         content: [
-          "Core stereo rendering uses independent left/right eye cameras with correct IPD spacing, adjustable field of view, and distortion correction to preserve depth perception (avoiding “fake split‑screen”).",
-          "Motion is driven by phone sensors (gyroscope/accelerometer; magnetometer optional) with sensor fusion for low‑latency 3DOF head tracking. The default interaction model supports gaze selection, head‑based cursor, and optional voice commands, with Bluetooth controller support as an option.",
-          "HUIX Horizon is being built as a modular Unity plugin system (camera prefab, sensor input module, UI framework, spatial audio helpers). A full technical overview is available in the whitepaper."
+          "HUIXOR is part of the same pipeline that powers Monrovia Hustle 3D and client work — honest tooling built in Liberia for global-quality output.",
+          "Window layout, navigation tabs, device presets, and VR preview modes are documented on the product hub with screenshots and a downloadable build.",
+          "Partners and testers can request access or file feedback directly from the HUIXOR page."
         ]
       }
     ]
   },
   {
-    id: "virtual-past",
-    label: "VIRTUAL PAST LIBERIA",
-    shortLabel: "VPL",
+    id: "monrovia-hustle",
+    label: "MONROVIA HUSTLE INFO",
+    shortLabel: "MH-3D",
     card: {
       bgColor: "#0a0a0a",
-      accentColor: "#8B4513",
-      mainText: "VIRTUAL",
-      subText: "PAST",
+      accentColor: "#BF0A30",
+      mainText: "MONROVIA",
+      subText: "HUSTLE",
       codes: {
-        topLeft: ["SN-VPL-2024", "REV-B2", "HER-LBR-001"],
-        topRight: ["2024", "HERITAGE"],
-        bottomCodes: ["3D · SCAN · VR", "CULTURE", "v1.5"]
+        topLeft: ["SN-MH3D-01", "REV-C1", "LIC-LBR-003"],
+        topRight: ["2026", "CONCEPT"],
+        bottomCodes: ["3D · NARRATIVE", "LIBERIA", "GODOT"]
       },
       systemInfo: [
-        { label: "Initiative", value: "Heritage Preservation" },
-        { label: "Region", value: "Liberia" },
-        { label: "Technology", value: "Photogrammetry" },
-        { label: "Sites", value: "12+ Documented" },
-        { label: "VR Tours", value: "Available", highlight: true },
-        { label: "Education", value: "Active", highlight: true }
+        { label: "Franchise", value: "Monrovia Hustle 3D" },
+        { label: "Region", value: "Monrovia, Liberia" },
+        { label: "Genre", value: "Urban narrative RPG" },
+        { label: "Engine", value: "Godot · Windows" },
+        { label: "Concept 01", value: "Live dossier", highlight: true },
+        { label: "Studio", value: "HUIX-2099", highlight: true }
       ]
     },
     sections: [
       {
         number: "01",
-        title: "Preserving Cultural Heritage",
-        subtitle: "Digital Heritage Initiative",
+        title: "Monrovia Hustle 3D — franchise hub",
+        subtitle: "Liberia's first game line from HUIX-2099",
         content: [
-          "Virtual Past Liberia is our cultural heritage preservation initiative, using cutting-edge technology to document, reconstruct, and share Liberia's rich historical legacy with the world.",
-          "Through 3D scanning, photogrammetry, and immersive reconstruction, we're creating digital twins of historical sites, artifacts, and cultural landmarks. These digital preservations ensure that Liberia's heritage remains accessible for future generations.",
-          "The project serves both educational and cultural tourism purposes, allowing people worldwide to experience Liberian history through immersive virtual tours and interactive exhibits."
+          "Monrovia Hustle 3D is a Liberian-led narrative game franchise — street hustle, family pressure, and choosing your lane in a Monrovia-set urban drama.",
+          "The public hub stays spoiler-light; Concept 01 is the playable vertical slice with trailer, voice cast, spec sheet, and a timed Windows build drop.",
+          "Press, players, and partners start on the franchise page, then drill into the Concept 01 dossier for cast, art credits, and download."
         ]
       },
       {
         number: "02",
-        title: "Impact & Community",
-        subtitle: "Building Connections",
+        title: "What's live today",
+        subtitle: "Concept 01 · not retail yet",
         content: [
-          "Virtual Past Liberia bridges the gap between historical preservation and modern technology, making cultural education engaging and accessible. Schools, museums, and cultural institutions can integrate our content into their programs.",
-          "We work closely with local historians, community elders, and cultural organizations to ensure authenticity and respect in our reconstructions. Every project is a collaboration that honors the stories and significance of the sites we document.",
-          "Beyond preservation, the initiative creates economic opportunities through cultural tourism and positions Liberia as a leader in African digital heritage innovation."
+          "Concept 01 includes a Godot Windows slice — intro comic, bedroom hub, open-street loop, Tenneh phone mission chain, and Liberian voice cast in-engine.",
+          "Three additional franchise slots are reserved on the hub as locked placeholders while future beats are in development.",
+          "Visit the concept page for gameplay trailer, developer notes, and the June 2026 build unlock."
         ]
       }
     ]
@@ -312,7 +312,7 @@ export default function AboutPage() {
 
         {/* Header with Tab Switcher */}
         <header className="border-b border-border">
-          <div className="max-w-6xl mx-auto px-4 lg:px-8 lg:ml-24">
+          <div className="max-w-6xl mx-auto px-4 lg:px-8 xl:ml-24">
             {/* Top Meta */}
             <div 
               className="flex items-center justify-between py-4 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50"
@@ -362,8 +362,8 @@ export default function AboutPage() {
           >
             {/* Cardholder Section */}
             <section id="our-story" className="scroll-mt-24 py-12 bg-[#202020]">
-              <div className="max-w-6xl mx-auto px-4 lg:px-8 lg:ml-24">
-                <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div className="max-w-6xl mx-auto px-4 lg:px-8 xl:ml-24">
+                <div className="grid lg:grid-cols-2 gap-8 items-center justify-items-center lg:justify-items-stretch">
                   {/* Card */}
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -421,7 +421,7 @@ export default function AboutPage() {
                 key={section.number} 
                 className={`py-16 lg:py-24 border-b border-border ${sectionIndex % 2 === 1 ? 'bg-card/30' : ''}`}
               >
-                <div className="max-w-6xl mx-auto px-4 lg:px-8 lg:ml-24">
+                <div className="max-w-6xl mx-auto px-4 lg:px-8 xl:ml-24">
                   <div className="grid lg:grid-cols-[140px_280px_1fr] gap-8 lg:gap-12">
                     {/* Large Number */}
                     <div>
@@ -483,7 +483,7 @@ export default function AboutPage() {
 
             {/* CTA Section */}
             <section className="py-16 lg:py-20">
-              <div className="max-w-6xl mx-auto px-4 lg:px-8 lg:ml-24">
+              <div className="max-w-6xl mx-auto px-4 lg:px-8 xl:ml-24">
                 <div className="grid lg:grid-cols-[140px_1fr] gap-8 lg:gap-12">
                   <div>
                     <motion.div
@@ -504,16 +504,16 @@ export default function AboutPage() {
                         style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.08em' }}
                       >
                         {activeTab === "huix-2099" && "Ready to build the future?"}
-                        {activeTab === "huix-horizen" && "Transform your designs"}
-                        {activeTab === "virtual-past" && "Preserve your heritage"}
+                        {activeTab === "huix-or" && "Try HUIXOR"}
+                        {activeTab === "monrovia-hustle" && "Explore Monrovia Hustle 3D"}
                       </h3>
                       <p className="text-muted-foreground text-sm max-w-md">
                         {activeTab === "huix-2099" && "Get in touch to discuss how HUIX-2099 can help bring your vision to life."}
-                        {activeTab === "huix-horizen" && "See how HUIX-HORIZEN can revolutionize your architectural presentations."}
-                        {activeTab === "virtual-past" && "Partner with us to document and share your cultural heritage digitally."}
+                        {activeTab === "huix-or" && "Download HUIXOR, browse screenshots, and see how the dev browser fits your workflow."}
+                        {activeTab === "monrovia-hustle" && "Franchise hub, Concept 01 dossier, trailer, cast, and the Windows build drop."}
                       </p>
                     </div>
-                    <Link href={activeTab === "huix-2099" ? "/contact" : activeTab === "huix-horizen" ? "/huix-horizen" : "/virtual-past-liberia"}>
+                    <Link href={activeTab === "huix-2099" ? "/contact" : activeTab === "huix-or" ? "/products/huixor" : "/products/monrovia-hustle/concept"}>
                       <motion.button
                         whileHover={{ x: 4 }}
                         className="flex items-center gap-3 px-6 py-3 bg-foreground text-background text-[11px] uppercase tracking-[0.12em]"
@@ -532,7 +532,7 @@ export default function AboutPage() {
 
         {/* Footer Meta */}
         <section className="py-6 px-4 lg:px-8 border-t border-border">
-          <div className="max-w-6xl mx-auto lg:ml-24">
+          <div className="max-w-6xl mx-auto px-4 xl:ml-24">
             <div 
               className="flex items-center justify-between text-[8px] uppercase tracking-[0.12em] text-muted-foreground/40"
               style={{ fontFamily: monoFont }}
@@ -547,187 +547,6 @@ export default function AboutPage() {
                 <span className="h-px w-4 bg-border/50" />
                 <span>{new Date().getFullYear()}</span>
               </div>
-            </div>
-          </div>
-        </section>
-      
-        {/* System Flow Section */}
-        <section className="py-8 sm:py-10 lg:py-12 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <div className="mb-6 sm:mb-8 border-b border-border/70 pb-3 sm:pb-4 flex items-end justify-between">
-                <div className="flex items-center gap-3 sm:gap-6">
-                  <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
-                  <div>
-                    <div className="text-[9px] sm:text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.15em] sm:tracking-[0.18em] mb-1">Overview</div>
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">System Flow</h2>
-                  </div>
-                </div>
-                <div className="hidden md:block text-[10px] sm:text-xs text-muted-foreground tracking-widest uppercase">Series / 02 · v1</div>
-              </div>
-            </motion.div>
-
-            <div className="relative grid grid-cols-1 md:grid-cols-3 items-start gap-4 sm:gap-6">
-              {/* Node 1 */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <div className="p-4 sm:p-6 rounded-lg bg-card border border-border">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Company</div>
-                    <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>01</div>
-                  </div>
-                  <div className="h-px w-full bg-border mb-4" />
-                  <div className="text-xl font-bold tracking-[0.15em]" style={{ fontFamily: 'Mohican, sans-serif' }}>HUIX-2099</div>
-                  <p className="text-sm text-muted-foreground mt-2">The studio and engineering company delivering advanced XR, AI and 3D software.</p>
-                </div>
-              </motion.div>
-
-              {/* Center Column (Desktop): Wire + Map + Counties */}
-              <div className="hidden md:flex flex-col items-center justify-center gap-2 -mt-6">
-                <motion.svg
-                  width="120"
-                  height="8"
-                  viewBox="0 0 120 8"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.2 }}
-                  className="text-foreground/50"
-                >
-                  <motion.line
-                    x1="0"
-                    y1="4"
-                    x2="110"
-                    y2="4"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{ duration: 0.7, ease: "easeOut" }}
-                  />
-                  {/* Arrowhead */}
-                  <motion.polyline
-                    points="110,1 120,4 110,7"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    initial={{ pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{ duration: 0.7, ease: "easeOut" }}
-                  />
-                </motion.svg>
-                <div className="w-full flex justify-center py-2">
-                  <video
-                    src="/ready.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-80 h-auto rounded-md"
-                  />
-                </div>
-              </div>
-
-              {/* Node 2 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <div className="p-4 sm:p-6 rounded-lg bg-card border border-border">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">System</div>
-                    <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>02</div>
-                  </div>
-                  <div className="h-px w-full bg-border mb-2" />
-                  <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Funding · Concept Stage · Experimental</div>
-                  <div className="text-xl font-bold tracking-[0.15em]" style={{ fontFamily: 'Mohican, sans-serif' }}>HUIX-HORIZEN</div>
-                  <p className="text-sm text-muted-foreground mt-2">Our modular platform architecture and tools powering immersive products.</p>
-                </div>
-              </motion.div>
-
-              {/* Connector + Map + Counties (Mobile) */}
-              <div className="md:hidden flex flex-col items-center justify-center gap-2 -mt-4">
-                <motion.svg
-                  width="8"
-                  height="36"
-                  viewBox="0 0 8 36"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.2 }}
-                  className="text-foreground/50"
-                >
-                  <motion.line
-                    x1="4"
-                    y1="0"
-                    x2="4"
-                    y2="32"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{ duration: 0.7, ease: "easeOut" }}
-                  />
-                  <motion.polyline
-                    points="1,32 4,36 7,32"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    initial={{ pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{ duration: 0.7, ease: "easeOut" }}
-                  />
-                </motion.svg>
-                <div className="w-full flex justify-center py-2">
-                  <video
-                    src="/ready.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full max-w-[14rem] h-auto rounded-md"
-                  />
-                </div>
-              </div>
-
-              {/* Node 3 */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="md:col-start-3"
-              >
-                <div className="p-4 sm:p-6 rounded-lg bg-card border border-border">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Product</div>
-                    <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif' }}>03</div>
-                  </div>
-                  <div className="h-px w-full bg-border mb-2" />
-                  <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Concept · Development Stage · 0 Funding</div>
-                  <div className="text-xl font-bold">Virtual Past Liberia</div>
-                  <p className="text-sm text-muted-foreground mt-2">A flagship immersive heritage experience built on HUIX-HORIZEN.</p>
-                </div>
-              </motion.div>
             </div>
           </div>
         </section>

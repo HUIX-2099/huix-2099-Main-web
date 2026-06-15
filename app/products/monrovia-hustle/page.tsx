@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
+import { useRef } from "react"
 import Image from "next/image"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
@@ -14,35 +14,14 @@ import {
   BookOpen,
   GitBranch,
   Wallet,
-  HeartHandshake,
-  Expand,
-  Target,
-  Cpu,
-  MessageCircleWarning,
-  Palette,
 } from "lucide-react"
 import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { useTheme } from "next-themes"
 import { ClickToViewImage } from "@/components/click-to-view-image"
 import { MonroviaPassGate } from "@/components/monrovia-hustle/monrovia-pass-gate"
-
-const WORKSPACE_IMAGE_DIR = "/products/Monrovia_hustle_Demo_Campane/images"
-
-/** Filenames under `public/.../images` — URL-encoded when built into src */
-const WORKSPACE_IMAGES = [
-  "WhatsApp Image 2026-05-04 at 11.57.51 PM.jpeg",
-  "WhatsApp Image 2026-05-04 at 11.57.52 PM.jpeg",
-  "WhatsApp Image 2026-05-04 at 11.57.52 PM (1).jpeg",
-  "WhatsApp Image 2026-05-04 at 11.57.52 PM (2).jpeg",
-] as const
-
-function workspaceImageSrc(filename: string) {
-  return `${WORKSPACE_IMAGE_DIR}/${encodeURIComponent(filename)}`
-}
-
-const WORKSPACE_FEATURE = WORKSPACE_IMAGES[0]
-const WORKSPACE_MORE = WORKSPACE_IMAGES.slice(1)
+import { HuixWorldMap } from "@/components/huix-world-map"
+import { FeatureSection } from "@/components/ui/feature-section"
+import { MonroviaMatureSticker } from "@/components/monrovia-hustle/monrovia-mature-sticker"
 
 const CONCEPT_HREF = "/products/monrovia-hustle/concept"
 
@@ -51,15 +30,23 @@ const JAY_BOY_IMAGE = `/products/Monrovia_hustle_Demo_Campane/${encodeURICompone
   "Monrovia Hustle 3D playable concept — 1 GAME JAY BOY.jpg",
 )}`
 
+const GAME_SLOTS = [
+  {
+    id: "01",
+    label: "Concept 01",
+    title: "Monrovia Hustle",
+    subtitle: "Concept · demo",
+    available: true,
+    href: CONCEPT_HREF,
+    image: JAY_BOY_IMAGE,
+  },
+  { id: "02", label: "Concept 02", available: false },
+  { id: "03", label: "Concept 03", available: false },
+  { id: "04", label: "Concept 04", available: false },
+] as const
+
 export default function MonroviaHustlePage() {
   const containerRef = useRef<HTMLElement>(null)
-  
-  const [mounted, setMounted] = useState(false)
-  const { resolvedTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -135,7 +122,7 @@ export default function MonroviaHustlePage() {
           <div className="relative z-20 mx-auto w-full max-w-[min(100vw-2rem,1600px)] px-4 sm:px-6 lg:px-8 h-full flex flex-col items-center justify-start flex-grow">
             
             {/* Top Header Labels */}
-            <div className="w-full max-w-6xl flex justify-between items-start mb-4 lg:mb-0 z-30">
+            <div className="w-full max-w-6xl flex justify-between items-start gap-3 mb-4 lg:mb-0 z-30">
                <div className="bg-[#002868] text-white font-bold px-4 py-1.5 flex items-center gap-2 uppercase tracking-tight text-xs sm:text-sm transform -skew-x-12 translate-x-2 shadow-sm">
                  <span className="skew-x-12 inline-flex items-center gap-2">
                    <Monitor className="w-4 h-4" />
@@ -148,28 +135,26 @@ export default function MonroviaHustlePage() {
                </div>
             </div>
 
-            <p className="relative z-30 mx-auto mt-3 max-w-2xl text-center text-base font-medium leading-snug text-foreground/95 sm:text-lg">
-              <span className="font-semibold text-foreground">Monrovia Hustle 3D</span> is a playable concept — a vertical slice of the world,
-              systems, and story we want to build at full scale.
-            </p>
-            <p className="relative z-30 mx-auto mt-3 max-w-lg text-center text-sm italic leading-snug text-muted-foreground sm:text-base">
-              &ldquo;Warning this is a concept.&rdquo;
-            </p>
-            <p className="relative z-30 mx-auto mt-4 max-w-2xl px-4 text-center text-sm leading-relaxed text-muted-foreground">
-              HUIX-2099&apos;s hub for press, testers, and players. Lead developer:{" "}
-              <Link href="/team/victor" className="font-medium text-[#002868] underline decoration-[#002868]/40 underline-offset-2 hover:decoration-[#002868] dark:text-[#7eb3ff] dark:decoration-[#7eb3ff]/50">
-                Victor Edet Coleman
-              </Link>
-              , Founder &amp; CTO —{" "}
-              <Link href="/team" className="font-medium text-foreground/90 underline underline-offset-2 hover:text-foreground">
-                meet the team
-              </Link>
-              . Deep build notes live on the{" "}
-              <Link href={CONCEPT_HREF} className="font-medium text-[#002868] underline underline-offset-2 dark:text-[#7eb3ff]">
-                concept page
-              </Link>
-              .
-            </p>
+            <div className="relative z-30 mx-auto mt-6 max-w-2xl text-center">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-muted-foreground sm:text-xs">
+                A HUIX-2099 product
+              </p>
+              <h1 className="mt-3 text-3xl font-black uppercase tracking-tighter text-foreground sm:text-4xl md:text-5xl">
+                Monrovia Hustle
+              </h1>
+              <p className="mt-4 text-base font-medium leading-snug text-foreground/95 sm:text-lg">
+                Franchise hub — Liberia&apos;s first game from the studio.
+              </p>
+              <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                Press, players, and partners land here for the Monrovia Hustle line. One live concept today; more franchise beats unlock as they ship.
+                Full dossier for the first game on the{" "}
+                <Link href={CONCEPT_HREF} className="font-medium text-[#002868] underline underline-offset-2 dark:text-[#7eb3ff]">
+                  concept page
+                </Link>
+                .
+              </p>
+              <MonroviaMatureSticker size="md" className="mx-auto mt-6 text-left sm:mx-0" />
+            </div>
 
             {/* Central Subject / Provided Image */}
             <motion.div 
@@ -195,7 +180,16 @@ export default function MonroviaHustlePage() {
           </div>
         </section>
 
-        {/* Franchise — Concept 01 (live) + future entry (locked) */}
+        <HuixWorldMap
+          variant="game"
+          sectionLabel="MH-3D · GLOBAL FOOTPRINT"
+          title="BUILT IN LIBERIA · PLAYED WORLDWIDE"
+          description="Monrovia Hustle 3D is a Liberian-led narrative — rooted in Monrovia with interest across the United States, Nigeria, and the wider diaspora."
+          className="border-t border-[#002868]/20 bg-[#002868]/[0.03] dark:bg-[#10223a]/30"
+          mapHeight="min(500px, 68vh)"
+        />
+
+        {/* Concept dossier — single live entry */}
         <motion.section
           style={{ y: yCards }}
           id="franchise"
@@ -211,355 +205,79 @@ export default function MonroviaHustlePage() {
                 </p>
               </div>
               <h2 id="franchise-heading" className="text-3xl font-black uppercase tracking-tighter text-foreground sm:text-4xl md:text-5xl">
-                Franchise
+                The game
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                Concept 01 is live on the dossier. Additional franchise beats stay under lock until the studio publishes the next lane.
+                One live dossier today — three franchise slots reserved for future beats.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-              {/* Card 1 — Monrovia Hustle concept · demo → concept page */}
-              <article className="group relative flex flex-col overflow-hidden rounded-3xl border border-[#002868]/30 bg-card/80 shadow-[0_10px_45px_-18px_rgba(0,40,104,0.5)] ring-1 ring-black/[0.04] backdrop-blur transition-all duration-500 hover:-translate-y-1.5 hover:border-[#002868]/60 hover:shadow-[0_28px_70px_-20px_rgba(0,40,104,0.6)] dark:bg-card/60 dark:ring-white/[0.06]">
-                {/* Featured key art band */}
-                <Link href={CONCEPT_HREF} className="relative block aspect-[16/11] w-full overflow-hidden">
-                  <Image
-                    src={JAY_BOY_IMAGE}
-                    alt="Monrovia Hustle 3D — JAY BOY key art"
-                    fill
-                    className="object-cover object-top transition-transform duration-[1.4s] ease-out group-hover:scale-[1.06]"
-                    sizes="(max-width:768px) 100vw, 560px"
-                    priority
-                  />
-                  {/* fade into the card body */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card via-card/35 to-transparent dark:from-card dark:via-card/40" />
-                  {/* red accent hairline (matches the art) */}
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-[#BF0A30]/70 to-transparent" />
-                  {/* ambient glow on hover */}
-                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(191,10,48,0.25),transparent_60%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden />
-
-                  {/* top badges */}
-                  <div className="absolute inset-x-0 top-0 flex items-start justify-between p-4">
-                    <span className="rounded-full border border-white/20 bg-black/45 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur-md">
-                      Concept dossier
-                    </span>
-                    <span className="flex items-center gap-1.5 rounded-full border border-white/20 bg-[#BF0A30]/85 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
-                      <span className="h-1.5 w-1.5 rounded-full bg-white animate-[pulse_1.5s_ease-in-out_infinite]" />
-                      Available
-                    </span>
-                  </div>
-
-                  {/* title overlay */}
-                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-[#BF0A30] drop-shadow dark:text-[#ff7b93]">
-                      HUIX-2099 · Concept 01
-                    </p>
-                    <h3 className="mt-1 text-2xl font-black uppercase italic leading-[0.92] tracking-tighter text-foreground drop-shadow-sm sm:text-3xl">
-                      Monrovia Hustle
-                      <br />
-                      Concept · demo
-                    </h3>
-                  </div>
-                </Link>
-
-                {/* Info — below the image */}
-                <div className="flex flex-1 flex-col p-6 sm:p-7">
-                  <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-                    <Gamepad2 className="h-4 w-4 text-[#BF0A30]" aria-hidden />
-                    Game details
-                  </div>
-                  <div className="mt-3 text-2xl font-black uppercase italic tracking-tighter text-foreground sm:text-3xl">
-                    Slice-of-life
-                    <br />
-                    Narrative urban RPG
-                  </div>
-                  <p className="mt-4 text-[12px] leading-relaxed text-muted-foreground sm:text-[13px]">
-                    Concept 01 · HUIX archive · 2026 — age notes, trailer, lead dev, cast &amp; supporters on the concept page.
-                  </p>
-
-                  <div className="mt-6">
-                    <Link
-                      href={CONCEPT_HREF}
-                      className="group/btn inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-[#002868] px-5 py-3 text-[11px] font-black uppercase tracking-[0.15em] text-white shadow-lg shadow-[#002868]/25 transition hover:bg-[#003a8c] hover:shadow-xl hover:shadow-[#002868]/35 sm:w-auto sm:min-w-[11rem]"
-                    >
-                      Full info
-                      <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover/btn:translate-x-1" aria-hidden />
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+              {GAME_SLOTS.map((slot) =>
+                slot.available ? (
+                  <article
+                    key={slot.id}
+                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-[#002868]/35 bg-card/80 shadow-sm ring-1 ring-black/[0.03] transition hover:-translate-y-0.5 hover:border-[#002868]/55 dark:ring-white/[0.05]"
+                  >
+                    <Link href={slot.href!} className="relative block aspect-[4/5] w-full overflow-hidden">
+                      <Image
+                        src={slot.image!}
+                        alt={`${slot.title} — ${slot.subtitle}`}
+                        fill
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width:640px) 50vw, 25vw"
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+                      <span className="absolute left-2 top-2 rounded-full border border-white/20 bg-[#BF0A30]/90 px-2 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider text-white">
+                        Live
+                      </span>
+                      <div className="absolute inset-x-0 bottom-0 p-3">
+                        <p className="font-mono text-[8px] font-bold uppercase tracking-[0.2em] text-[#BF0A30] dark:text-[#ff7b93]">
+                          {slot.label}
+                        </p>
+                        <h3 className="mt-0.5 text-sm font-black uppercase leading-tight tracking-tight text-foreground">
+                          {slot.title}
+                        </h3>
+                      </div>
                     </Link>
-                  </div>
-
-                  <div className="mt-6 flex flex-wrap justify-between gap-3 border-t border-border pt-5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground sm:text-xs">
-                    <span>
-                      Platform <span className="ml-1 font-sans text-sm font-bold text-foreground">PC</span>
-                    </span>
-                    <span>
-                      Engine <span className="ml-1 font-sans text-sm font-bold text-foreground">Godot</span>
-                    </span>
-                  </div>
-                </div>
-              </article>
-
-              {/* Card 2 — locked (no public dossier yet) */}
-              <article
-                className="group relative flex min-h-[360px] flex-col overflow-hidden rounded-3xl border border-dashed border-border bg-muted/20 text-muted-foreground transition-all duration-500 hover:border-foreground/25 dark:bg-muted/5"
-                aria-label="Future franchise entry — not available"
-              >
-                {/* subtle grid texture */}
-                <div
-                  className="pointer-events-none absolute inset-0 opacity-[0.5] [background-image:linear-gradient(to_right,hsl(var(--border)/0.4)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.4)_1px,transparent_1px)] [background-size:28px_28px]"
-                  aria-hidden
-                />
-                <div className="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 bg-background/70 px-6 text-center backdrop-blur-[3px] dark:bg-background/75">
-                  <span className="flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-card/60 shadow-inner">
-                    <Lock className="h-8 w-8 text-foreground/40" strokeWidth={1.25} aria-hidden />
-                  </span>
-                  <p className="font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-foreground/70">Locked</p>
-                  <p className="max-w-xs text-xs leading-relaxed text-muted-foreground">No public content yet — this slot is reserved for a future franchise beat.</p>
-                  <span className="mt-1 rounded-full border border-border bg-card/60 px-3 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-                    Concept 02 · TBA
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col justify-end p-6 opacity-30 sm:p-7" aria-hidden>
-                  <div className="text-2xl font-black uppercase italic tracking-tighter">
-                    Slice-of-life
-                    <br />
-                    Narrative urban RPG
-                  </div>
-                  <div className="mt-6 flex flex-wrap justify-between gap-3 border-t border-border pt-5 font-mono text-[10px] uppercase tracking-widest sm:text-xs">
-                    <span>Platform —</span>
-                    <span>Engine —</span>
-                  </div>
-                </div>
-              </article>
+                    <div className="flex flex-col gap-2 p-3 pt-2">
+                      <p className="text-[10px] leading-snug text-muted-foreground line-clamp-2">{slot.subtitle}</p>
+                      <Link
+                        href={slot.href!}
+                        className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.12em] text-[#002868] dark:text-[#89b8ff]"
+                      >
+                        Full info
+                        <ArrowRight className="h-3 w-3" />
+                      </Link>
+                    </div>
+                  </article>
+                ) : (
+                  <article
+                    key={slot.id}
+                    className="relative flex flex-col overflow-hidden rounded-2xl border border-dashed border-border bg-muted/15"
+                    aria-label={`${slot.label} — locked`}
+                  >
+                    <div className="relative flex aspect-[4/5] flex-col items-center justify-center px-3">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card/60">
+                        <Lock className="h-4 w-4 text-muted-foreground/50" strokeWidth={1.25} aria-hidden />
+                      </span>
+                      <p className="mt-2 font-mono text-[8px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Locked</p>
+                    </div>
+                  </article>
+                ),
+              )}
             </div>
           </div>
         </motion.section>
 
-        {/* Art & artists — ties to concept page credits */}
-        <section aria-label="Art and artists" className="border-t border-border bg-[#002868]/[0.04] py-12 dark:bg-[#10223a]/40">
-          <div className="mx-auto flex w-full max-w-[min(100vw-2rem,1600px)] flex-col justify-between gap-6 px-6 sm:flex-row sm:items-center lg:px-8">
-            <div className="flex gap-4">
-              <Palette className="h-10 w-10 shrink-0 text-[#002868] dark:text-[#7eb3ff]" aria-hidden />
-              <div>
-                <h2 className="text-xl font-black uppercase tracking-tighter text-foreground sm:text-2xl">Art &amp; artists</h2>
-                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                  Art direction, key art, and rolling collaborator credits — see who shapes the look on the concept page.
-                </p>
-              </div>
-            </div>
-            <Link
-              href={`${CONCEPT_HREF}#artists`}
-              className="inline-flex shrink-0 items-center gap-2 self-start rounded-lg border border-[#002868]/45 bg-[#002868]/10 px-5 py-3 text-[11px] font-black uppercase tracking-[0.15em] text-foreground transition hover:border-[#002868] hover:bg-[#002868]/18 dark:border-[#7eb3ff]/35 dark:bg-[#10223a]/50 dark:hover:bg-[#10223a]/80 sm:self-center"
-            >
-              View art &amp; credits
-              <ArrowRight className="h-4 w-4 text-[#BF0A30]" aria-hidden />
-            </Link>
-          </div>
-        </section>
-
-        {/* About the game — hub narrative (studio stills sit beside the headline, not a separate section) */}
-        <section className="mt-12 w-full border-t border-border bg-[#fafafa] py-20 text-foreground transition-colors duration-300 dark:bg-background lg:py-32">
-          <div className="mx-auto w-full max-w-[min(100vw-2rem,2200px)] px-5 font-sans sm:px-8 md:px-12 lg:px-14">
-            <div className="mb-6 grid gap-8 lg:mb-10 lg:grid-cols-12 lg:items-start lg:gap-x-10 lg:gap-y-0 xl:gap-x-12">
-              <div
-                className={`self-start ${
-                  WORKSPACE_IMAGES.length > 0 && WORKSPACE_FEATURE
-                    ? "lg:col-span-6 xl:col-span-5"
-                    : "lg:col-span-12"
-                }`}
-              >
-                <div className="mb-8 flex h-8 items-center justify-between text-xs font-bold uppercase tracking-widest text-muted-foreground/70 lg:mb-10">
-                  <div>HUIX-2099 · MONROVIA HUSTLE 3D</div>
-                  <div className="relative flex h-8 w-8 items-center justify-center rounded">
-                    {mounted && (
-                      <Image
-                        src={
-                          resolvedTheme === "dark"
-                            ? "/products/Monrovia_hustle_Demo_Campane/darkicon.png"
-                            : "/products/Monrovia_hustle_Demo_Campane/lighticon.png"
-                        }
-                        alt=""
-                        fill
-                        className="object-contain"
-                        priority
-                      />
-                    )}
-                  </div>
-                </div>
-
-                <h3 className="mb-4 text-5xl font-black tracking-tighter text-foreground sm:text-6xl md:text-7xl" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
-                  Monrovia Hustle 3D
-                </h3>
-                <p className="mb-4 font-serif text-xl italic text-muted-foreground sm:text-2xl">&ldquo;Warning this is a concept.&rdquo;</p>
-                <p className="text-[15px] font-medium leading-[1.75] text-foreground/90 sm:text-base">
-                  A Monrovia-set story game about street hustle, family pressure, and choosing your lane — part open-street slice, part mission-driven drama.
-                </p>
-              </div>
-
-              {WORKSPACE_IMAGES.length > 0 && WORKSPACE_FEATURE ? (
-                <>
-                  <div className="flex min-w-0 flex-col gap-3 self-start lg:col-span-6 xl:col-span-7">
-                    <div>
-                      <p id="mh-workspace-heading" className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground sm:text-[11px]">
-                        Workspace · production stills
-                      </p>
-                      <p className="mt-1 max-w-xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
-                        From the HUIX-2099 desk — layout passes, environment reads, and in-engine snapshots as this RPG takes shape. Click a photo to view
-                        full size.
-                      </p>
-                    </div>
-                    <ClickToViewImage
-                      src={workspaceImageSrc(WORKSPACE_FEATURE)}
-                      alt={`Monrovia Hustle 3D workspace still 1 of ${WORKSPACE_IMAGES.length}`}
-                      triggerClassName="group relative aspect-video w-full overflow-hidden rounded-2xl border border-border/80 bg-muted shadow-lg ring-1 ring-black/[0.05] transition hover:border-[#002868]/40 dark:border-border dark:ring-white/[0.06] dark:hover:border-[#7eb3ff]/35"
-                      viewHintPlacement="bottom"
-                    >
-                      <Image
-                        src={workspaceImageSrc(WORKSPACE_FEATURE)}
-                        alt=""
-                        fill
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                        sizes="(max-width:1024px) 100vw, 52vw"
-                        priority={false}
-                      />
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent dark:from-background/95" />
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-2 bg-gradient-to-t from-black/80 to-transparent px-4 pb-4 pt-14 text-white">
-                        <div>
-                          <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/85">Monrovia Hustle 3D</p>
-                          <p className="text-sm font-semibold tracking-tight">Studio desk · ref 01</p>
-                        </div>
-                        <span className="rounded-md border border-white/25 bg-black/35 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white/95 backdrop-blur-sm">
-                          HUIX-2099
-                        </span>
-                      </div>
-                    </ClickToViewImage>
-                  </div>
-
-                  {WORKSPACE_MORE.length > 0 && (
-                    <div className="col-span-full mt-4 grid grid-cols-3 gap-2 sm:mt-5 sm:gap-3 lg:mt-4 lg:max-w-none lg:gap-4">
-                      {WORKSPACE_MORE.map((filename, index) => {
-                        const refIndex = index + 2
-                        const alt = `Monrovia Hustle 3D workspace still ${refIndex} of ${WORKSPACE_IMAGES.length}`
-                        return (
-                          <motion.div
-                            key={filename}
-                            initial={{ opacity: 0, y: 12 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-20px" }}
-                            transition={{ duration: 0.4, delay: index * 0.05 }}
-                            className="min-w-0"
-                          >
-                            <ClickToViewImage
-                              src={workspaceImageSrc(filename)}
-                              alt={alt}
-                              showViewHint={false}
-                              triggerClassName="group relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-border/70 bg-muted/30 shadow-sm ring-1 ring-black/[0.04] transition duration-300 hover:border-[#002868]/35 hover:shadow-md dark:border-border dark:hover:border-[#7eb3ff]/30"
-                            >
-                              <div
-                                className="pointer-events-none absolute inset-x-0 top-0 z-10 h-0.5 bg-gradient-to-r from-[#002868] via-[#BF0A30] to-[#002868] opacity-90"
-                                aria-hidden
-                              />
-                              <Image
-                                src={workspaceImageSrc(filename)}
-                                alt=""
-                                fill
-                                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
-                                sizes="(max-width:640px) 33vw, 20vw"
-                              />
-                              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent" />
-                              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-center justify-between gap-1 px-1.5 pb-1.5 pt-8 sm:px-2 sm:pb-2">
-                                <span className="font-mono text-[8px] font-bold uppercase tracking-wider text-white drop-shadow-md sm:text-[9px]">
-                                  Ref · {String(refIndex).padStart(2, "0")}
-                                </span>
-                                <span className="flex items-center gap-0.5 rounded bg-white/10 px-1 py-0.5 font-mono text-[7px] font-bold uppercase text-white/95 backdrop-blur-sm sm:gap-1 sm:px-1.5 sm:text-[8px]">
-                                  <Expand className="size-2.5 shrink-0 opacity-90 sm:size-3" aria-hidden />
-                                  Open
-                                </span>
-                              </div>
-                            </ClickToViewImage>
-                          </motion.div>
-                        )
-                      })}
-                    </div>
-                  )}
-                </>
-              ) : null}
-            </div>
-
-            <div className="space-y-8 text-[15px] font-medium leading-[1.8] text-foreground/85 sm:text-base">
-              <div>
-                <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">Vision first</h4>
-                <p>
-                  <strong className="text-foreground">Monrovia Hustle 3D</strong> is a playable concept: a vertical slice of Monrovia flavour, the hustle
-                  loop, feel, and world we intend to scale when we have stronger tools, more time, and ideally a team. That&apos;s not an excuse — it&apos;s
-                  how a lot of serious games start.
-                </p>
-              </div>
-              <div>
-                <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">What you&apos;re really hearing</h4>
-                <p>
-                  This isn&apos;t a AAA-studio product yet. It&apos;s a proof of concept built solo on tight hardware, meant to show the direction clearly so we
-                  can grow it with the right support — without overpromising a &ldquo;finished&rdquo; commercial box today.
-                </p>
-              </div>
-              <div>
-                <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">Reality (context, not a flex)</h4>
-                <p className="text-muted-foreground">
-                  Right now it&apos;s solo development on minimal hardware. This release is about proving the idea, collecting feedback and metrics, and
-                  shipping honesty — not claiming we&apos;re already a full retail game.
-                </p>
-              </div>
-              <div>
-                <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">What we&apos;re looking for</h4>
-                <p>
-                  Partners and investors who care about representation and West African urban stories — and who can help with{" "}
-                  <strong className="text-foreground">funding, polish, and distribution</strong> (mobile readiness, performance, marketing). The{" "}
-                  <Link
-                    href={CONCEPT_HREF}
-                    className="font-semibold text-[#002868] underline decoration-[#002868]/35 underline-offset-2 hover:decoration-[#BF0A30] dark:text-[#7eb3ff]"
-                  >
-                    concept dossier
-                  </Link>{" "}
-                  spells out the slice, roadmap, and how to reach us.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-border bg-card/60 p-6 sm:p-8 dark:bg-card/30">
-                <div className="mb-2 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-foreground">
-                  <MessageCircleWarning className="h-4 w-4 text-[#BF0A30]" aria-hidden />
-                  If the tone gets mocked
-                </div>
-                <p className="text-muted-foreground">
-                  Critics often mix up <strong className="text-foreground">not finished</strong> with <strong className="text-foreground">not serious</strong>.
-                  The frame here is intentional: serious direction, early-stage execution — which is normal for a vertical slice.
-                </p>
-              </div>
-
-              <div>
-                <h4 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-foreground">
-                  <Target className="h-4 w-4 text-[#002868] dark:text-[#7eb3ff]" aria-hidden />
-                  Concept-launch goals (concrete, not vague)
-                </h4>
-                <ul className="list-inside list-disc space-y-2 text-muted-foreground marker:text-[#BF0A30]">
-                  <li>Downloads / plays of the build</li>
-                  <li>Watch time on trailer or average session length</li>
-                  <li>Short survey signal (e.g. &ldquo;Would you play weekly?&rdquo;)</li>
-                  <li>Waitlist interest for a mobile-capable release</li>
-                  <li>One tight trailer (30–60s) that sells the promise</li>
-                </ul>
-              </div>
-
-              <div className="rounded-2xl border border-[#002868]/25 bg-[#002868]/[0.06] p-6 dark:border-[#7eb3ff]/20 dark:bg-[#002868]/10">
-                <div className="mb-2 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-foreground">
-                  <Cpu className="h-4 w-4 text-[#002868] dark:text-[#7eb3ff]" aria-hidden />
-                  On the workstation (i7 · 4&nbsp;GB RAM)
-                </div>
-                <p className="text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
-                  Godot is a strong fit for low RAM, but 4&nbsp;GB is tight — lean scenes, compressed audio and textures, and testing on a minimum-spec profile
-                  are part of the discipline. That lines up with &ldquo;concept,&rdquo; not a flaw in the pitch.
-                </p>
-              </div>
-
-              <p className="text-muted-foreground">
+        {/* About the game — hub narrative */}
+        <section className="mt-12 w-full border-t border-border bg-[#fafafa] dark:bg-background">
+          <FeatureSection
+            className="px-4 sm:px-6 lg:px-8"
+            mainIcon={<Gamepad2 className="h-7 w-7" aria-hidden />}
+            title="Key features"
+            subtitle={
+              <>
                 Spoiler-light on this hub: economies bite, friendships fracture, missions go gray — full plot and cast bible sit in the{" "}
                 <Link
                   href={CONCEPT_HREF}
@@ -567,84 +285,73 @@ export default function MonroviaHustlePage() {
                 >
                   Concept 01 dossier
                 </Link>
-                .
-              </p>
-            </div>
-
-            <div className="mt-16">
-              <h4 className="mb-8 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-foreground">
-                <Gamepad2 className="h-4 w-4 text-[#BF0A30]" /> Key features
-              </h4>
-              <ul className="grid gap-6 text-[15px] leading-relaxed sm:grid-cols-2 sm:text-base">
-                <li className="flex gap-3 rounded-xl border border-border bg-background/60 p-4 dark:bg-card/40">
-                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#002868]" aria-hidden />
-                  <span>
-                    <strong className="text-foreground">Urban Liberia flavour:</strong> a stylized coastal capital sandbox — neighbourhoods,
-                    markets, and back routes you can roam. Street-level geography and named beats are unpacked in the{" "}
+                . Developer: <strong className="text-foreground">HUIX-2099</strong>. Genre: slice-of-life / narrative urban RPG. Tone: raw, culturally
+                grounded — Liberian Krio and English, mobile-money culture, and a moral compass that asks what receipts versus noise really mean.
+              </>
+            }
+            features={[
+              {
+                icon: <MapPin className="h-5 w-5" aria-hidden />,
+                title: "Urban Liberia flavour",
+                description: (
+                  <>
+                    A stylized coastal capital sandbox — neighbourhoods, markets, and back routes you can roam. Street-level geography and named beats are
+                    unpacked in the{" "}
                     <Link href={CONCEPT_HREF} className="underline decoration-[#002868]/35 underline-offset-2 hover:decoration-[#BF0A30] dark:text-[#7eb3ff]">
                       concept dossier
                     </Link>
                     , not spoilers on this billboard.
-                  </span>
-                </li>
-                <li className="flex gap-3 rounded-xl border border-border bg-background/60 p-4 dark:bg-card/40">
-                  <Users className="mt-0.5 h-5 w-5 shrink-0 text-[#002868]" aria-hidden />
-                  <span>
-                    <strong className="text-foreground">Dynamic street life:</strong> voiced NPCs, market energy, ambient pressure lines —
-                    the city reacts around you.
-                  </span>
-                </li>
-                <li className="flex gap-3 rounded-xl border border-border bg-background/60 p-4 dark:bg-card/40">
-                  <BookOpen className="mt-0.5 h-5 w-5 shrink-0 text-[#002868]" aria-hidden />
-                  <span>
-                    <strong className="text-foreground">Comic-book narrative engine:</strong> emotional beats blend illustrated comics with 3D
-                    gameplay.
-                  </span>
-                </li>
-                <li className="flex gap-3 rounded-xl border border-border bg-background/60 p-4 dark:bg-card/40">
-                  <GitBranch className="mt-0.5 h-5 w-5 shrink-0 text-[#002868]" aria-hidden />
-                  <span>
-                    <strong className="text-foreground">Real choices:</strong> branching dialogue — tough on the corner or low-key —
-                    the city remembers how you hustle.
-                  </span>
-                </li>
-                <li className="flex gap-3 rounded-xl border border-border bg-background/60 p-4 dark:bg-card/40 sm:col-span-2">
-                  <Wallet className="mt-0.5 h-5 w-5 shrink-0 text-[#002868]" aria-hidden />
-                  <span>
-                    <strong className="text-foreground">Live the hustle:</strong> chase in-world currency, errands, side moves — flip value into
-                    wardrobe and branching paths (&ldquo;how far you push it&rdquo; lives in the{" "}
+                  </>
+                ),
+              },
+              {
+                icon: <Users className="h-5 w-5" aria-hidden />,
+                title: "Dynamic street life",
+                description: "Voiced NPCs, market energy, ambient pressure lines — the city reacts around you.",
+              },
+              {
+                icon: <BookOpen className="h-5 w-5" aria-hidden />,
+                title: "Comic-book narrative engine",
+                description: "Emotional beats blend illustrated comics with 3D gameplay.",
+              },
+              {
+                icon: <GitBranch className="h-5 w-5" aria-hidden />,
+                title: "Real choices",
+                description: "Branching dialogue — tough on the corner or low-key — the city remembers how you hustle.",
+              },
+              {
+                icon: <Wallet className="h-5 w-5" aria-hidden />,
+                title: "Live the hustle",
+                description: (
+                  <>
+                    Chase in-world currency, errands, side moves — flip value into wardrobe and branching paths (&ldquo;how far you push it&rdquo; lives in
+                    the{" "}
                     <Link href={CONCEPT_HREF} className="underline decoration-[#002868]/35 underline-offset-2 hover:decoration-[#BF0A30] dark:text-[#7eb3ff]">
                       sealed notes
                     </Link>
                     ).
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="mt-16 rounded-2xl border border-border bg-foreground/[0.03] p-8 sm:p-10">
-              <h4 className="mb-4 text-sm font-bold uppercase tracking-wide text-foreground">Vibe &amp; tone</h4>
-              <p className="text-[15px] leading-relaxed text-foreground/85 sm:text-base">
-                Developer: <strong className="text-foreground">HUIX-2099</strong>. Genre: slice-of-life / narrative urban RPG. Tone: raw, culturally
-                grounded — Liberian Krio and English, mobile-money culture, and a moral compass that asks what receipts versus noise really mean.
-              </p>
-            </div>
-
-            <div className="mt-12 flex gap-3 rounded-2xl border border-[#002868]/30 bg-[#002868]/5 p-8 dark:bg-[#002868]/10 sm:p-10">
-              <HeartHandshake className="mt-1 h-8 w-8 shrink-0 text-[#BF0A30]" aria-hidden />
-              <div>
-                <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">Why this game matters</h4>
-                <p className="text-[15px] leading-relaxed text-foreground/85 sm:text-base">
-                  Monrovia Hustle 3D is a pioneer concept built to put modern West African street culture on the global gaming map — without
-                  Hollywood clichés. It aims for an honest, on-the-ground read on pressure, pride, and hustle in Liberia&apos;s capital — crafted under{" "}
+                  </>
+                ),
+              },
+            ]}
+            callToAction={{
+              title: "Why this game matters",
+              description: (
+                <>
+                  Monrovia Hustle 3D is a pioneer concept built to put modern West African street culture on the global gaming map — without Hollywood
+                  clichés. It aims for an honest, on-the-ground read on pressure, pride, and hustle in Liberia&apos;s capital — crafted under{" "}
                   <Link href="/team/victor" className="font-semibold text-[#002868] underline underline-offset-2 dark:text-[#7eb3ff]">
                     Victor Edet Coleman
                   </Link>{" "}
                   at HUIX-2099.
-                </p>
-              </div>
-            </div>
-          </div>
+                </>
+              ),
+              actions: [
+                { label: "Concept 01 dossier", href: CONCEPT_HREF },
+                { label: "Meet the team", href: "/team" },
+              ],
+            }}
+          />
         </section>
       </main>
       <Footer />
