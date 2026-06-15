@@ -22,6 +22,8 @@ export const MH_TRAILER_YOUTUBE_ID = "GUPVn-m8Dr8"
 export const MH_TRAILER_YOUTUBE_URL = `https://youtu.be/${MH_TRAILER_YOUTUBE_ID}`
 export const MH_TRAILER_EMBED_URL = `https://www.youtube.com/embed/${MH_TRAILER_YOUTUBE_ID}?autoplay=1&rel=0&modestbranding=1&playsinline=1`
 export const MH_TRAILER_HERO_EMBED_URL = `https://www.youtube.com/embed/${MH_TRAILER_YOUTUBE_ID}?autoplay=1&mute=1&loop=1&playlist=${MH_TRAILER_YOUTUBE_ID}&controls=1&rel=0&modestbranding=1&playsinline=1`
+/** Hidden behind hero — same trailer, no chrome, drives ambient color bleed */
+export const MH_TRAILER_AMBIENT_EMBED_URL = `https://www.youtube.com/embed/${MH_TRAILER_YOUTUBE_ID}?autoplay=1&mute=1&loop=1&playlist=${MH_TRAILER_YOUTUBE_ID}&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0`
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -64,7 +66,7 @@ export function MonroviaConceptHero({
         initial="hidden"
         animate="visible"
       >
-        <VideoAmbientBackdrop posterSrc={posterSrc} />
+        <VideoAmbientBackdrop posterSrc={posterSrc} youtubeEmbedSrc={MH_TRAILER_AMBIENT_EMBED_URL} />
 
         <div className="relative z-10 mx-auto w-full max-w-[min(100vw,1400px)] px-4 sm:px-6 md:px-8">
           <motion.p
