@@ -153,7 +153,6 @@ export default function MonroviaHustlePage() {
                 </Link>
                 .
               </p>
-              <MonroviaMatureSticker size="md" className="mx-auto mt-6 text-left sm:mx-0" />
             </div>
 
             {/* Central Subject / Provided Image */}
@@ -272,6 +271,9 @@ export default function MonroviaHustlePage() {
 
         {/* About the game — hub narrative */}
         <section className="mt-12 w-full border-t border-border bg-[#fafafa] dark:bg-background">
+          <div className="mx-auto w-full max-w-[min(100vw-2rem,1200px)] px-4 pb-8 pt-10 sm:px-6 lg:px-8">
+            <MonroviaMatureSticker size="md" />
+          </div>
           <FeatureSection
             className="px-4 sm:px-6 lg:px-8"
             mainIcon={<Gamepad2 className="h-7 w-7" aria-hidden />}

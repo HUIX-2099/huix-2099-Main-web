@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/dialog"
 import { VideoAmbientBackdrop } from "@/components/monrovia-hustle/video-ambient-backdrop"
 import { ConceptDownloadButton } from "@/components/monrovia-hustle/concept-download-button"
-import { MonroviaMatureSticker } from "@/components/monrovia-hustle/monrovia-mature-sticker"
 
 const MONO = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' as const
 
@@ -68,7 +67,15 @@ export function MonroviaConceptHero({
         <VideoAmbientBackdrop posterSrc={posterSrc} />
 
         <div className="relative z-10 mx-auto w-full max-w-[min(100vw,1400px)] px-4 sm:px-6 md:px-8">
-          <div className="grid w-full min-w-0 grid-cols-1 items-center gap-8 text-center sm:text-left lg:gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] xl:gap-12">
+          <motion.p
+            variants={itemVariants}
+            className="mb-6 hidden text-right text-[11px] uppercase leading-relaxed tracking-[0.16em] text-muted-foreground sm:mb-8 sm:block lg:absolute lg:right-6 lg:top-0 lg:mb-0 lg:text-[12px] xl:right-8"
+            style={{ fontFamily: MONO }}
+          >
+            HUIX-2099 · concept 01 · archive 2026
+          </motion.p>
+
+          <div className="grid w-full min-w-0 grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-center lg:gap-10 xl:gap-12">
             <div className="flex min-w-0 flex-col items-center gap-5 sm:items-start lg:gap-6">
               <motion.div variants={itemVariants} className="space-y-4">
                 <p
@@ -94,7 +101,6 @@ export function MonroviaConceptHero({
                 <p className="text-[13px] italic leading-relaxed text-muted-foreground sm:text-[14px]">
                   Not a finished AAA retail product — an honest prototype to prove direction and gather signal.
                 </p>
-                <MonroviaMatureSticker size="md" className="mx-auto pt-1 text-left sm:mx-0" />
               </motion.div>
 
               <motion.div variants={itemVariants} className="w-full space-y-4">
@@ -123,17 +129,9 @@ export function MonroviaConceptHero({
                   </Button>
                 </div>
               </motion.div>
-
-              <motion.p
-                variants={itemVariants}
-                className="hidden w-full text-right text-[11px] uppercase leading-relaxed tracking-[0.16em] text-muted-foreground sm:block lg:text-[12px]"
-                style={{ fontFamily: MONO }}
-              >
-                HUIX-2099 · concept 01 · archive 2026
-              </motion.p>
             </div>
 
-            <motion.div variants={itemVariants} className="mx-auto w-full min-w-0 xl:mx-0">
+            <motion.div variants={itemVariants} className="mx-auto w-full min-w-0 lg:mx-0 lg:justify-self-end">
               <div className="mb-3 flex flex-wrap items-center justify-center gap-2 sm:justify-start sm:gap-3" style={{ fontFamily: MONO }}>
                 <Play className="h-3.5 w-3.5 shrink-0 text-[#BF0A30]" aria-hidden />
                 <span className="text-[9px] uppercase tracking-[0.18em] text-muted-foreground/70">

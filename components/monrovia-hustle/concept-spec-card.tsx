@@ -101,8 +101,6 @@ export function MonroviaConceptSpecCard({
         </div>
       </div>
 
-      <MonroviaMatureSticker size="md" className="mb-8" />
-
       <ConceptDownloadButton variant="card" className="mb-8" />
 
       <div className="grid gap-8 lg:grid-cols-[2fr_3fr]">
@@ -127,6 +125,10 @@ export function MonroviaConceptSpecCard({
                   Jumping between comic, bedroom hub, street, and later club / office beats can feel like many demos in one — normal for a vertical slice,
                   not a logic failure.
                 </p>
+              </div>
+              <div className="space-y-3 border-t border-border/60 pt-5">
+                <Label className="text-sm font-medium text-foreground">Content rating</Label>
+                <MonroviaMatureSticker size="md" className="max-w-none sm:max-w-[280px]" />
               </div>
             </div>
           </div>
