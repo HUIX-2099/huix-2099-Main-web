@@ -5,15 +5,14 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { motion } from "framer-motion"
 import { Search } from "lucide-react"
-import { teamMembers } from "./data"
+import { teamMembers, HUIX_COMPANY_TEAM_IDS } from "./data"
 import { TeamProfileCard } from "@/components/team-profile-card"
 
 export default function TeamPage() {
   const [searchQuery, setSearchQuery] = useState("")
 
-  // Only show core leadership: Victor and Wulwyn (Port)
   const visibleMembers = teamMembers.filter((member) =>
-    ["victor", "wulwyn"].includes(member.id),
+    HUIX_COMPANY_TEAM_IDS.includes(member.id as (typeof HUIX_COMPANY_TEAM_IDS)[number]),
   )
 
   const filteredMembers = visibleMembers.filter((member) => {
@@ -39,10 +38,11 @@ export default function TeamPage() {
                   01
                 </div>
                 <div>
-                  <div className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Team</div>
+                  <div className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">HUIX-2099 · Company</div>
                   <h1 className="text-2xl font-bold text-foreground md:text-3xl" style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.25em" }}>
-                    TEAM
+                    HUIX TEAM
                   </h1>
+                  <p className="mt-2 max-w-md text-sm text-muted-foreground">Studio leadership — Liberia-based company team only.</p>
                 </div>
               </div>
 
@@ -63,7 +63,7 @@ export default function TeamPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 items-start gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto grid max-w-4xl grid-cols-1 items-start gap-6 sm:gap-8 md:grid-cols-2">
             {filteredMembers.map((member, index) => (
               <TeamProfileCard key={member.id} variant="member" member={member} index={index} />
             ))}

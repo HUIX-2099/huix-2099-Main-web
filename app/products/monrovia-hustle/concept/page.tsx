@@ -1,16 +1,14 @@
-import type { Metadata } from "next"
 import type { ComponentType, ReactNode } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { MonroviaConceptHero } from "@/components/monrovia-hustle/concept-hero"
+import { ConceptVoiceCastVideo } from "@/components/monrovia-hustle/concept-voice-cast-video"
 import { MonroviaCastShowcase, type MonroviaCastMember } from "@/components/monrovia-hustle/monrovia-cast-showcase"
 import { MonroviaConceptSpecCard } from "@/components/monrovia-hustle/concept-spec-card"
 import { ClickToViewImage } from "@/components/click-to-view-image"
-import { GoogleDiscoveryRow } from "@/components/google-discovery"
 import { monroviaConceptArtists, monroviaConceptArtistPageHref, MONROVIA_CONCEPT_ARTISTS_HREF } from "@/lib/monrovia-hustle/concept-artists"
-import { SITE_URL } from "@/lib/site"
 import { cn } from "@/lib/utils"
 import {
   ArrowLeft,
@@ -28,31 +26,6 @@ import {
 } from "lucide-react"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "Concept 01 — Monrovia Hustle 3D dossier | voice cast · trailer · HUIX-2099 Liberia",
-  },
-  description:
-    "Monrovia Hustle 3D Concept 01: playable vertical slice, trailer, screenshots, voice cast (Jayboy, Trapper, DC, Angel, Uncle Flomo, Jayboy Pa), lead developer Victor Edet Coleman — HUIX-2099, Monrovia, Liberia.",
-  keywords: [
-    "Monrovia Hustle 3D concept",
-    "Monrovia Hustle voice cast",
-    "HUIX-2099",
-    "Victor Edet Coleman",
-    "Liberia game concept",
-    "Monrovia RPG",
-    "Jayboy voice actor",
-  ],
-  alternates: { canonical: `${SITE_URL}/products/monrovia-hustle/concept` },
-  openGraph: {
-    title: "Monrovia Hustle 3D — Concept 01 | HUIX-2099",
-    description: "Playable concept, voice cast, trailer — Liberia.",
-    url: `${SITE_URL}/products/monrovia-hustle/concept`,
-    type: "article",
-    siteName: "HUIX-2099",
-  },
-}
-
 const MH_YOUTUBE_URL = "https://www.youtube.com/@HUIX-2099"
 const MH_HUB = "/products/monrovia-hustle"
 const STUDIO_EMAIL = "huixtech2099@gmail.com"
@@ -60,7 +33,6 @@ const FACEBOOK_PAGE_HREF = "https://www.facebook.com/profile.php?id=615724854995
 const FACEBOOK_INFO =
   "HUIX-2099 on Facebook — dev snapshots, reels, build teasers, and community comments."
 const VICTOR_IMAGE = `/products/Monrovia_hustle_Demo_Campane/developer/${encodeURIComponent("Victor Edet Coleman.png")}`
-const VICTOR_FACEBOOK_REEL_HREF = "https://www.facebook.com/reel/988259967072643"
 const CAPSULE_ART = "/products/Monrovia_hustle_Demo_Campane/herosection.png"
 const GAME_SCREEN_PLACEHOLDER = "/products/Monrovia_hustle_Demo_Campane/1nmdB.jpg"
 /** Monrovia Hustle mark on cast / partner cards (matches hub gate branding). */
@@ -243,7 +215,7 @@ function StudioContactStrip({
   )
 }
 
-const TAGS = ["Single-player", "Slice-of-life", "Narrative", "Open world", "Liberia", "Godot", "Comic story", "Street RPG"]
+const TAGS = ["Single-player", "Slice-of-life", "Narrative", "Open world", "Liberia", "Comic story", "Street RPG"]
 
 const CAST = [
   {
@@ -535,7 +507,7 @@ export default function MonroviaHustleConceptPage() {
                     On the workstation (i7 · 4&nbsp;GB RAM)
                   </div>
                   <p className="leading-relaxed text-muted-foreground">
-                    Godot is a strong fit for low RAM, but 4&nbsp;GB is tight — lean scenes, compressed audio and textures, and testing on a minimum-spec profile
+                    Our workstation profile is modest (i7 · 4&nbsp;GB RAM) — lean scenes, compressed audio and textures, and testing on a minimum-spec profile
                     are part of the discipline. That lines up with &ldquo;concept,&rdquo; not a flaw in the pitch.
                   </p>
                 </div>
@@ -596,80 +568,12 @@ export default function MonroviaHustleConceptPage() {
               </div>
               </section>
 
-              <section id="about-developer" className="scroll-mt-28">
-              <SectionTitle>About the developer</SectionTitle>
-              <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-                <div className="grid w-full min-w-0 grid-cols-1 gap-8 p-6 sm:p-8 lg:grid-cols-3 lg:gap-0 lg:items-stretch lg:p-0">
-                  <div className="relative min-h-[20rem] w-full min-w-0 overflow-hidden bg-muted/30 sm:min-h-[22rem] md:min-h-[24rem] lg:min-h-[26rem] lg:border-r lg:border-border">
-                    <ClickToViewImage
-                      src={VICTOR_IMAGE}
-                      alt="Portrait of Victor Edet Coleman"
-                      triggerClassName="absolute inset-0 block size-full"
-                      viewHintPlacement="bottom"
-                    >
-                      <Image
-                        src={VICTOR_IMAGE}
-                        alt=""
-                        fill
-                        className="object-cover object-center"
-                        sizes="(max-width:1024px) 100vw, 66vw"
-                        priority={false}
-                      />
-                    </ClickToViewImage>
-                  </div>
-                  <div className="flex min-w-0 flex-col justify-center gap-4 lg:border-r lg:border-border lg:px-8 lg:py-10 xl:px-10 xl:py-12">
-                    <StoreLink href="/team/victor" className="text-xl font-bold uppercase tracking-tight lg:text-2xl">
-                      Victor Edet Coleman
-                    </StoreLink>
-                    <p className="text-[15px] text-muted-foreground lg:text-base">
-                      Founder &amp; CTO — HUIX-2099 · Monrovia, Liberia
-                    </p>
-                    <p className="text-[15px] leading-[1.85] text-muted-foreground lg:text-[16px] lg:leading-[1.85]">
-                      Solo lead on <strong className="text-foreground/90">Monrovia Hustle 3D</strong> — 3D game assets, storytelling, graphics and this site,
-                      narrative systems, technical direction, and the rest of the pipeline that gets the concept in players&apos; hands. Thank you to early testers
-                      and friends who file bugs and keep receipts honest; you&apos;ll roll into credits as the campaign formalizes. More on the{" "}
-                      <StoreLink href="/team">team index</StoreLink>.
-                    </p>
-                  </div>
-                  <div className="flex min-w-0 flex-col justify-center gap-4 lg:px-8 lg:py-10 xl:px-10 xl:py-12">
-                    <p
-                      className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground"
-                      style={{ fontFamily: MONO }}
-                    >
-                      Find Victor online
-                    </p>
-                    <GoogleDiscoveryRow
-                      className="rounded-lg px-4 py-3"
-                      googleQuery="Victor Edet Coleman HUIX-2099 Founder CTO Monrovia Hustle 3D Liberia narrative game studio"
-                      googleLabel="Victor Edet Coleman · HUIX-2099 · Founder & CTO"
-                    />
-                    <a
-                      href={VICTOR_FACEBOOK_REEL_HREF}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex min-w-0 items-center gap-3 rounded-lg border border-border bg-muted/25 px-4 py-3 transition hover:border-[#1877F2]/45 hover:bg-muted/45 dark:hover:border-[#1877F2]/35"
-                    >
-                      <span
-                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border/80 bg-background text-[#1877F2] shadow-sm"
-                        aria-hidden
-                      >
-                        <Facebook className="h-5 w-5" />
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Facebook</span>
-                        <span className="mt-0.5 block text-sm font-semibold leading-snug text-foreground">Studio reel</span>
-                      </span>
-                      <ExternalLink className="h-4 w-4 shrink-0 text-muted-foreground opacity-70" aria-hidden />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              </section>
+              <ConceptVoiceCastVideo className="mb-2 lg:mb-4" />
 
               <section id="voice-actors" className="scroll-mt-28">
               <SectionTitle>Monrovia Hustle 3D — cast &amp; audio</SectionTitle>
               <p className="mb-8 max-w-none text-[15px] leading-[1.85] text-muted-foreground lg:mb-10 lg:text-[16px]">
-                Hover a name or photo to preview in-game characters for the voice cast — click through to team profiles or Google.{" "}
+                Hover a name or photo to preview in-game characters — click through to team profiles or Google.{" "}
                 <strong className="text-foreground">Jayboy</strong> is performed by{" "}
                 <strong className="text-foreground">Victor Edet Coleman</strong>.
               </p>

@@ -48,6 +48,7 @@ export function TeamProfileCard(props: TeamProfileCardProps) {
     const tagline = taglineOverride ?? member.tagline
     const focusStr = focusOverride ?? member.focus
     const focusParts = focusStr.split("·").map((s) => s.trim())
+    const hidePhoto = "hidePhoto" in member && member.hidePhoto === true
 
     const TextContent = () => (
       <div className="relative z-10 flex min-h-[250px] w-full flex-1 flex-col justify-between bg-card p-6 sm:p-8">
@@ -134,7 +135,9 @@ export function TeamProfileCard(props: TeamProfileCardProps) {
     return (
       <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }} viewport={{ once: true }}>
         <Link href={`/team/${member.id}`} className={cardClassName}>
-          {imageFirst ? (
+          {hidePhoto ? (
+            <TextContent />
+          ) : imageFirst ? (
             <>
               <ImageContent />
               <TextContent />

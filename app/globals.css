@@ -54,6 +54,9 @@
   --sidebar-ring: #111111;
   /* Fixed mobile bottom tab bar — keep in sync with components/navbar.tsx */
   --mobile-tab-bar-spacing: calc(4.5rem + max(1rem, env(safe-area-inset-bottom, 0px)));
+  --trending-bar-height: 2rem;
+  --navbar-height: 4rem;
+  --site-header-height: calc(var(--trending-bar-height) + var(--navbar-height));
 }
 
 .dark {
@@ -387,6 +390,31 @@ html {
 .py-responsive {
   padding-top: clamp(2rem, 1.5rem + 2vw, 4rem);
   padding-bottom: clamp(2rem, 1.5rem + 2vw, 4rem);
+}
+
+/* Monrovia trending notification — marquee left → right */
+@keyframes huix-marquee-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-huix-marquee-ltr {
+  animation: huix-marquee-ltr 32s linear infinite;
+}
+
+.mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-huix-marquee-ltr {
+    animation: none;
+  }
 }
 
 /* Safe area padding for notched devices */

@@ -5,10 +5,10 @@ import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { CustomCursor } from "@/components/custom-cursor"
 import { VRImmersePrompt } from "@/components/vr-immerse-prompt"
-import { ChatBot } from "@/components/chat-bot"
 import { CookieConsent } from "@/components/cookie-consent"
 import { SocialSidebar } from "@/components/social-sidebar"
 import { LoadingScreen } from "@/components/loading-screen"
+import { productItemListJsonLd } from "@/lib/seo"
 
 import "./globals.css"
 
@@ -171,6 +171,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://huix2099.com/#organization",
   name: "HUIX-2099",
   alternateName: "HUIX 2099",
   url: "https://huix2099.com",
@@ -221,6 +222,8 @@ const jsonLd = {
     "Immersive Technology",
     "Monrovia Hustle 3D",
     "HUIX-THEME VS Code extension",
+    "Huixor",
+    "Typelr",
     "Liberian narrative games",
   ],
   areaServed: {
@@ -241,13 +244,13 @@ const jsonLdWebSite = {
   name: "HUIX-2099",
   url: "https://huix2099.com/",
   description:
-    "Official site for HUIX-2099 — Liberia-based studio (Victor Edet Coleman, Founder & CTO): Monrovia Hustle 3D, HUIX-THEME, Huixor, Typelr, and XR/3D work.",
-  publisher: {
-    "@type": "Organization",
-    name: "HUIX-2099",
-    url: "https://huix2099.com",
-  },
+    "Official site for HUIX-2099 — Liberia-based studio: Monrovia Hustle 3D, HUIX-THEME, Huixor, Typelr, and XR/3D work from Monrovia.",
+  publisher: { "@id": "https://huix2099.com/#organization" },
+  inLanguage: "en",
+  about: { "@id": "https://huix2099.com/#organization" },
 }
+
+const jsonLdProducts = productItemListJsonLd()
 
 export default function RootLayout({
   children,
@@ -270,6 +273,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdProducts) }}
+        />
       </head>
       <body
         className={`${inter.className} ${inter.variable} antialiased overflow-x-hidden`}
@@ -290,7 +297,6 @@ export default function RootLayout({
               style={{ height: "var(--mobile-tab-bar-spacing)" }}
             />
           </main>
-          <ChatBot />
           <CookieConsent />
           <Analytics />
 

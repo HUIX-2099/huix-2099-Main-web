@@ -9,6 +9,7 @@ import { useTheme } from "./theme-provider"
 import { motion, AnimatePresence } from "framer-motion"
 import { usePathname } from "next/navigation"
 import { useWebXR } from "@/hooks/use-webxr"
+import { TrendingNotificationBar } from "@/components/monrovia-hustle/trending-notification-bar"
 
 export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
@@ -314,7 +315,9 @@ export function Navbar() {
 
   return (
     <>
-      <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled ? 'bg-background/98 backdrop-blur-md shadow-sm' : 'bg-background/95 backdrop-blur'}`}>
+      <header className="sticky top-0 z-50 w-full">
+        <TrendingNotificationBar />
+        <nav className={`w-full transition-all duration-300 ${scrolled ? 'bg-background/98 backdrop-blur-md shadow-sm' : 'bg-background/95 backdrop-blur'}`}>
         {/* Main Nav - onMouseLeave here so Company mega dropdown stays open when moving from link to panel */}
       <div className="border-b border-border relative" onMouseLeave={() => setOpenDropdown(null)}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -607,6 +610,7 @@ export function Navbar() {
         </AnimatePresence>
       </div>
     </nav>
+    </header>
 
     {/* Mobile Bottom Tab Bar (lg:hidden) */}
     <div

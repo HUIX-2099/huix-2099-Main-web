@@ -11,37 +11,28 @@ function googleProfileSearch(query: string) {
     return `https://www.google.com/search?q=${encodeURIComponent(query)}`
 }
 
+export const HUIX_COMPANY_TEAM_IDS = ["victor", "wulwyn"] as const
+
 export const teamMembers = [
     {
         id: "victor",
         name: "Victor Edet Coleman",
-        role: "Founder & CTO · Voice — Jayboy (Jboy)",
+        role: "Founder & CTO",
         title: "Chief Technology Officer",
         badge: "01",
+        hidePhoto: true,
         image: "/products/Monrovia_hustle_Demo_Campane/developer/Victor%20Edet%20Coleman.png",
-        photos: [
-            { id: "01", image: "/products/Monrovia_hustle_Demo_Campane/developer/Victor%20Edet%20Coleman.png", caption: "CTO" },
-            {
-                id: "02",
-                image: "/products/Monrovia_hustle_Demo_Campane/cast_concept/CHARACTERS/JAYBOY.jpeg",
-                caption: "Jayboy (in-fiction) · playable protagonist — voiced by Victor Edet Coleman",
-            },
-        ],
-        tagline: "Lead dev on the slice · voice for Jayboy — pride vs path, hustle or a legit lane",
-        bio: "Chief Technology Officer driving HUIX-2099's technical vision. Architects and builds HUIX-HORIZEN and Virtual Past Liberia—platforms that enable Liberia and the region to imagine, prototype, and build the future through XR, 3D visualization, and immersive systems. On Monrovia Hustle 3D he is also the voice of Jayboy (Jboy / JBOY / JBoy in scripts): a young man in Monrovia caught between family and the street — proud at the start, learning to listen as Ma, Trapper, and Uncle Flomo pull him toward different lanes. Dominic Rockson is the sound engineer on the build; Victor performs Jayboy in the VO track.",
-        focus: "XR · 3D · Systems · Jayboy voice performance",
+        photos: [] as { id: string; image: string; caption: string }[],
+        tagline: "Technical vision, product architecture, and the studio build pipeline.",
+        bio: "Chief Technology Officer driving HUIX-2099's technical vision. Architects HUIX-HORIZEN, Virtual Past Liberia, and the studio's immersive product line — XR, 3D visualization, and systems built in Liberia for global-quality output.",
+        focus: "XR · 3D · Systems · Technical direction",
         location: "Monrovia, Liberia",
         email: "huixtech2099@gmail.com",
-        status: "Technical Leadership · Voice cast (Jayboy) · HUIX Archive",
+        status: "Technical Leadership · HUIX Archive",
         linkedin: "https://www.linkedin.com/in/victor-coleman-4731701a5/",
         facebook: "https://www.facebook.com/victor.coleman.745874",
         phone: "+231776800064, +231887544923",
         googleSearch: "https://www.google.com/search?q=huix+2099+victor&oq=huix+2099+victor&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQIxgnMgcIAhAAGO8FMgcIAxAAGO8FMgcIBBAAGO8FMgcIBRAAGO8FMgcIBhAAGO8F0gEINTg3OWowajeoAgCwAgA&sourceid=chrome&ie=UTF-8",
-        voiceProfile: {
-            design: "Jayboy is written between family pull and street noise — pride versus Uncle Flomo's legit lane, hustle versus listening. Direction keeps reads playable: pride lands without cartoon bravado, doubt lands without losing forward motion.",
-            tone: "Warm mid-register with street edge; Ma-and-Uncle scenes get room to breathe; mission spine stays lean.",
-            pipeline: "Studio capture → light cleanup → Godot dialogue bus with ducking around street ambience so Jboy stays legible on foot and in hub beats — shaped with Dominic Rockson on the sound-engineering pass.",
-        },
     },
     {
         id: "wulwyn",
@@ -77,7 +68,7 @@ export const teamMembers = [
             },
         ],
         tagline: "Capture, mix, and clarity for the slice",
-        bio: "Dominic Rockson is the sound engineer on Monrovia Hustle 3D — capture, cleanup, and in-engine mix so dialogue, street ambience, and club beds stay legible in Godot. Jayboy's voice performance is by Victor Edet Coleman (Founder & CTO); Dominic works the technical audio lane so those reads land cleanly in the build.",
+        bio: "Dominic Rockson is the sound engineer on Monrovia Hustle 3D — capture, cleanup, and in-engine mix so dialogue, street ambience, and club beds stay legible in the build. Jayboy's voice performance is by Victor Edet Coleman (Founder & CTO); Dominic works the technical audio lane so those reads land cleanly in the prototype.",
         focus: "Sound engineering · Dialogue mix · Studio capture",
         location: "Monrovia, Liberia",
         email: "huixtech2099@gmail.com",

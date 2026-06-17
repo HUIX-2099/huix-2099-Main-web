@@ -4,12 +4,13 @@ import Link from "next/link"
 import Image from "next/image"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { JsonLd } from "@/components/seo/json-ld"
 import {
   getMonroviaConceptArtist,
   monroviaConceptArtists,
   MONROVIA_CONCEPT_ARTISTS_HREF,
 } from "@/lib/monrovia-hustle/concept-artists"
-import { SITE_URL } from "@/lib/site"
+import { breadcrumbJsonLd, buildPageMetadata, personJsonLd, siteUrl } from "@/lib/seo"
 import { ChevronLeft, ExternalLink, Facebook } from "lucide-react"
 
 const MONO = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' as const
@@ -24,37 +25,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!artist) {
     return { title: { absolute: "Artist | HUIX-2099" } }
   }
-  const canonical = `${SITE_URL}/products/monrovia-hustle/concept/artists/${slug}`
-  const descriptionBase = `${artist.summary} Victor Edet Coleman · HUIX-2099.`
+  const descriptionBase = `${artist.summary} Monrovia Hustle 3D · HUIX-2099, Monrovia, Liberia.`
   const description =
     descriptionBase.length > 168 ? `${descriptionBase.slice(0, 165).trim()}…` : descriptionBase
-  return {
-    title: {
-      absolute: `${artist.name} · Monrovia Hustle 3D — Art & artists | HUIX-2099 Liberia`,
-    },
+  return buildPageMetadata({
+    title: `${artist.name} · Monrovia Hustle 3D — Art & artists | HUIX-2099 Liberia`,
     description,
+    path: `/products/monrovia-hustle/concept/artists/${slug}`,
     keywords: [
       artist.name,
       "Monrovia Hustle 3D",
       "HUIX-2099",
-      "Victor Edet Coleman",
       "Liberia music game",
       artist.discipline,
+      "Monrovia Hustle artists",
     ],
-    alternates: { canonical },
-    openGraph: {
-      title: `${artist.name} · Monrovia Hustle 3D`,
-      description: artist.summary,
-      url: canonical,
-      type: "article",
-      siteName: "HUIX-2099",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${artist.name} | HUIX-2099`,
-      description: artist.summary,
-    },
-  }
+    image: artist.imageSrc,
+    imageAlt: artist.imageAlt,
+    type: "article",
+  })
 }
 
 export default async function MonroviaConceptArtistPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -64,8 +53,31 @@ export default async function MonroviaConceptArtistPage({ params }: { params: Pr
     notFound()
   }
 
+  const artistPath = `/products/monrovia-hustle/concept/artists/${slug}`
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Products", path: "/products" },
+      { name: "Monrovia Hustle 3D", path: "/products/monrovia-hustle" },
+      { name: "Concept 01", path: "/products/monrovia-hustle/concept" },
+      { name: artist.name, path: artistPath },
+    ]),
+    {
+      ...personJsonLd({
+        name: artist.name,
+        jobTitle: artist.discipline,
+        url: siteUrl(artistPath),
+        image: artist.imageSrc,
+        sameAs: [artist.facebookHref],
+      }),
+      description: artist.summary,
+      knowsAbout: ["Monrovia Hustle 3D", "Liberian music", "HUIX-2099"],
+    },
+  ]
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <JsonLd data={jsonLd} />
       <Navbar />
       <main className="mx-auto w-full min-w-0 max-w-3xl px-4 pb-24 pt-28 sm:px-6 lg:px-8 lg:pb-32 lg:pt-32">
         <Link

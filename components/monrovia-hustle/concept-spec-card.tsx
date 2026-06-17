@@ -17,7 +17,7 @@ const SLICE_FEATURES = [
   "Street loop hustles paying LD with interaction prompts and UI hints",
   "Tenneh phone mission chain — Trapper, Blamo, DC Young, voiced waypoint beats",
   "Story menu jumps episodes (comic, room, street, club, office) — not one straight line",
-  "Keyboard / mouse on Windows — Godot vertical slice",
+  "Keyboard / mouse on Windows — playable vertical slice",
 ] as const
 
 const ROADMAP_ITEMS = [
@@ -84,7 +84,7 @@ export function MonroviaConceptSpecCard({
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
             Treat this build as a <strong className="font-medium text-foreground">concept / early prototype</strong>, not a finished boxed product. A
-            Liberian urban hustle drama in Godot on Windows — comic sequences, a small 3D hub, and an open-street block stitched as one honest slice. The{" "}
+            Liberian urban hustle drama on Windows — comic sequences, a small 3D hub, and an open-street block stitched as one honest slice. The{" "}
             <Link
               href={hubHref}
               className="font-medium text-[#002868] underline decoration-[#002868]/35 underline-offset-2 dark:text-[#89b8ff] dark:decoration-[#89b8ff]/40"
@@ -110,8 +110,8 @@ export function MonroviaConceptSpecCard({
             <p className="mb-4 text-xs text-muted-foreground">Hard facts for this drop — not retail spec fiction.</p>
             <div className="space-y-4 text-sm text-muted-foreground">
               <div className="space-y-1">
-                <Label className="text-sm font-medium text-foreground">Engine</Label>
-                <p>Godot · Windows 10/11 (64-bit)</p>
+                <Label className="text-sm font-medium text-foreground">Platform</Label>
+                <p>Windows 10/11 (64-bit)</p>
               </div>
               <div className="space-y-1">
                 <Label className="text-sm font-medium text-foreground">Genre lane</Label>

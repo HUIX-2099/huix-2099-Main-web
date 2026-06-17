@@ -1,42 +1,32 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next"
+import { SITE_URL } from "@/lib/site"
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://huix2099.com'
-
   return {
     rules: [
       {
-        userAgent: '*',
-        allow: '/',
-        disallow: ['/api/', '/_next/', '/private/'],
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/", "/_next/", "/private/"],
       },
       {
-        userAgent: 'Googlebot',
-        allow: '/',
+        userAgent: "Googlebot",
+        allow: "/",
       },
       {
-        userAgent: 'Bingbot',
-        allow: '/',
+        userAgent: "Bingbot",
+        allow: "/",
+      },
+      {
+        userAgent: "DuckDuckBot",
+        allow: "/",
+      },
+      {
+        userAgent: "Slurp",
+        allow: "/",
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

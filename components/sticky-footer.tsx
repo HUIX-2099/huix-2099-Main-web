@@ -61,7 +61,6 @@ const footerLinkGroups: FooterLinkGroup[] = [
     links: [
       { title: "Contact", href: "/contact" },
       { title: "FAQ", href: "/faq" },
-      { title: "HUIX Assistant", href: "/huix-assistant" },
       { title: "Email studio", href: `mailto:${STUDIO_EMAIL}`, external: true },
     ],
   },

@@ -6,6 +6,8 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { ChevronLeft, Headphones, Mic2, Volume2 } from "lucide-react"
+import { JsonLd } from "@/components/seo/json-ld"
+import { breadcrumbJsonLd, personJsonLd, siteUrl } from "@/lib/seo"
 
 export function generateStaticParams() {
     return teamMembers.map((member) => ({
@@ -26,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         : `${member.name} — ${member.role} | HUIX-2099 Liberia`
 
     const rawDesc = member.voiceProfile
-        ? `${member.name} is on the Monrovia Hustle 3D voice cast (${member.role}). ${member.tagline} HUIX-2099, Monrovia, Liberia — led by Victor Edet Coleman, Founder & CTO.`
+        ? `${member.name} is on the Monrovia Hustle 3D voice cast (${member.role}). ${member.tagline} HUIX-2099, Monrovia, Liberia.`
         : `${member.name}, ${member.role} at HUIX-2099. ${member.tagline} ${member.location}.`
 
     const description = rawDesc.length > 165 ? `${rawDesc.slice(0, 162)}…` : rawDesc
@@ -73,12 +75,30 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ id:
         notFound()
     }
 
+    const hidePhoto = "hidePhoto" in member && member.hidePhoto === true
+
     const voiceCastSectionHref = "/products/monrovia-hustle/concept#voice-actors"
     const backHref = member.voiceProfile ? voiceCastSectionHref : "/team"
     const backLabel = member.voiceProfile ? "Back to Voice Cast" : "Back to Team"
 
+    const memberUrl = siteUrl(`/team/${member.id}`)
+    const personLd = personJsonLd({
+      name: member.name,
+      jobTitle: member.title || member.role,
+      url: memberUrl,
+      email: member.email,
+      image: hidePhoto ? undefined : member.image,
+      sameAs: [member.linkedin, member.facebook, member.googleSearch].filter(Boolean) as string[],
+    })
+    const breadcrumbLd = breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Team", path: "/team" },
+      { name: member.name, path: `/team/${member.id}` },
+    ])
+
     return (
         <>
+            <JsonLd data={[personLd, breadcrumbLd]} />
             <Navbar />
             <main className="min-h-screen pt-32 pb-24 px-4 bg-background selection:bg-foreground selection:text-background">
                 <div className="max-w-4xl mx-auto">
@@ -86,7 +106,8 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ id:
                         <ChevronLeft className="w-4 h-4" /> {backLabel}
                     </Link>
 
-                    <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 mb-12">
+                    <div className={`flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 mb-12 ${hidePhoto ? "md:flex-col md:items-start" : ""}`}>
+                        {!hidePhoto && (
                         <div className="w-48 h-48 md:w-64 md:h-64 shrink-0 rounded-2xl overflow-hidden border border-border bg-muted relative">
                             <img src={member.image} alt={`${member.name} — HUIX-2099 · ${member.role}`} className="w-full h-full object-cover object-top" />
                             <div className="absolute inset-0 border border-foreground/10 rounded-2xl pointer-events-none" />
@@ -100,8 +121,9 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ id:
                                 </div>
                             )}
                         </div>
+                        )}
 
-                        <div className="flex-1 text-center md:text-left">
+                        <div className={`flex-1 text-center md:text-left ${hidePhoto ? "w-full" : ""}`}>
                             <h1 className="text-4xl md:text-5xl font-bold mb-2 text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.05em' }}>
                                 {member.name}
                             </h1>

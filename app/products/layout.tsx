@@ -1,31 +1,44 @@
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
-import { SITE_URL } from "@/lib/site"
+import { JsonLd } from "@/components/seo/json-ld"
+import {
+  breadcrumbJsonLd,
+  buildPageMetadata,
+  productItemListJsonLd,
+} from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "Products — HUIX-2099 · Liberia",
-  },
+export const metadata: Metadata = buildPageMetadata({
+  title: "Products — HUIX-2099 · Liberia",
   description:
-    "HUIX-2099 products: Monrovia Hustle 3D narrative RPG concept, HUIX-THEME VS Code extension by Victor Edet Coleman, Huixor multi-device preview, Typelr Liberian typing trainer — built in Monrovia, Liberia.",
+    "HUIX-2099 products: Monrovia Hustle 3D Liberian narrative RPG (Concept 01, trailer, voice cast), HUIX-THEME VS Code extension, Huixor multi-device web preview for Windows, Typelr Liberian typing trainer — built in Monrovia, Liberia.",
+  path: "/products",
   keywords: [
     "HUIX-2099 products",
     "Monrovia Hustle 3D",
     "HUIX-THEME VS Code",
-    "Victor Edet Coleman",
-    "Huixor",
+    "Huixor Windows",
     "Typelr Liberia",
     "Liberia software",
+    "Liberia game studio",
+    "Monrovia tech products",
   ],
-  alternates: { canonical: `${SITE_URL}/products` },
-  openGraph: {
-    title: "Products | HUIX-2099",
-    description: "Games, themes, and tools from HUIX-2099 — Liberia.",
-    url: `${SITE_URL}/products`,
-    type: "website",
-  },
-}
+  image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
+  imageAlt: "HUIX-2099 products — Monrovia Hustle 3D and studio tools",
+})
+
+const jsonLd = [
+  breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Products", path: "/products" },
+  ]),
+  productItemListJsonLd(),
+]
 
 export default function ProductsLayout({ children }: { children: ReactNode }) {
-  return children
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      {children}
+    </>
+  )
 }

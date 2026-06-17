@@ -18,7 +18,6 @@ import {
 import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ClickToViewImage } from "@/components/click-to-view-image"
-import { MonroviaPassGate } from "@/components/monrovia-hustle/monrovia-pass-gate"
 import { HuixWorldMap } from "@/components/huix-world-map"
 import { FeatureSection } from "@/components/ui/feature-section"
 import { MonroviaMatureSticker } from "@/components/monrovia-hustle/monrovia-mature-sticker"
@@ -63,10 +62,6 @@ export default function MonroviaHustlePage() {
   // Note: overflow-clip allows sticky elements inside the body to still work correctly,
   // unlike overflow-hidden which breaks the scrolling context layout.
   return (
-    <MonroviaPassGate
-      logoSrc="/products/Monrovia_hustle_Demo_Campane/lighticon.png"
-      logoAlt="Monrovia Hustle 3D"
-    >
     <div className="flex flex-col min-h-screen bg-background text-foreground overflow-clip selection:bg-[#002868] selection:text-white">
       <Navbar />
       
@@ -358,6 +353,5 @@ export default function MonroviaHustlePage() {
       </main>
       <Footer />
     </div>
-    </MonroviaPassGate>
   )
 }

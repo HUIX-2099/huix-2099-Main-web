@@ -141,13 +141,13 @@ const tabsContent: TabContent[] = [
       codes: {
         topLeft: ["SN-MH3D-01", "REV-C1", "LIC-LBR-003"],
         topRight: ["2026", "CONCEPT"],
-        bottomCodes: ["3D · NARRATIVE", "LIBERIA", "GODOT"]
+        bottomCodes: ["3D · NARRATIVE", "LIBERIA", "CONCEPT"]
       },
       systemInfo: [
         { label: "Franchise", value: "Monrovia Hustle 3D" },
         { label: "Region", value: "Monrovia, Liberia" },
         { label: "Genre", value: "Urban narrative RPG" },
-        { label: "Engine", value: "Godot · Windows" },
+        { label: "Platform", value: "Windows PC" },
         { label: "Concept 01", value: "Live dossier", highlight: true },
         { label: "Studio", value: "HUIX-2099", highlight: true }
       ]
@@ -168,7 +168,7 @@ const tabsContent: TabContent[] = [
         title: "What's live today",
         subtitle: "Concept 01 · not retail yet",
         content: [
-          "Concept 01 includes a Godot Windows slice — intro comic, bedroom hub, open-street loop, Tenneh phone mission chain, and Liberian voice cast in-engine.",
+          "Concept 01 includes a Windows playable slice — intro comic, bedroom hub, open-street loop, Tenneh phone mission chain, and Liberian voice cast in-engine.",
           "Three additional franchise slots are reserved on the hub as locked placeholders while future beats are in development.",
           "Visit the concept page for gameplay trailer, developer notes, and the June 2026 build unlock."
         ]

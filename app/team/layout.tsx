@@ -1,70 +1,54 @@
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
-import { SITE_URL } from "@/lib/site"
-import { teamMembers } from "./data"
+import { JsonLd } from "@/components/seo/json-ld"
+import { breadcrumbJsonLd, buildPageMetadata, ORG_ID, siteUrl } from "@/lib/seo"
+import { teamMembers, HUIX_COMPANY_TEAM_IDS } from "./data"
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "Team & voice cast — HUIX-2099 · Liberia",
-  },
+export const metadata: Metadata = buildPageMetadata({
+  title: "HUIX Team — HUIX-2099 · Liberia",
   description:
-    "HUIX-2099 team and Monrovia Hustle 3D voice cast: Victor Edet Coleman (Founder & CTO, Jayboy), Dominic Rockson (sound engineer), and the full Liberia-led cast — HUIX-2099, Monrovia.",
+    "HUIX-2099 company team — Victor Edet Coleman (Founder & CTO) and Wulwyn Porte L (CEO & Co-founder). Liberia-based studio leadership.",
+  path: "/team",
   keywords: [
     "HUIX-2099 team",
     "Victor Edet Coleman",
+    "Wulwyn Porte L",
     "Founder CTO Liberia",
-    "Monrovia Hustle 3D voice cast",
-    "HUIX voice actors Liberia",
-    "Monrovia game studio",
+    "HUIX company leadership",
+    "Monrovia tech studio",
   ],
-  alternates: { canonical: `${SITE_URL}/team` },
-  openGraph: {
-    title: "Team & voice cast | HUIX-2099",
-    description: "Leadership, collaborators, and Monrovia Hustle 3D voice talent — Liberia-based studio HUIX-2099.",
-    url: `${SITE_URL}/team`,
-    type: "website",
-  },
-}
+})
 
 const teamJsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "HUIX-2099 Team & Voice Cast",
-  url: `${SITE_URL}/team`,
-  description:
-    "Leadership, collaborators, and the Monrovia Hustle 3D voice cast at HUIX-2099.",
-  about: { "@type": "Organization", name: "HUIX-2099", url: SITE_URL },
+  name: "HUIX-2099 Team",
+  url: siteUrl("/team"),
+  description: "Company leadership at HUIX-2099 — Liberia-based immersive technology studio.",
+  about: { "@id": ORG_ID },
   hasPart: teamMembers
-    .filter((m) => ["victor", "wulwyn"].includes(m.id))
+    .filter((m) => HUIX_COMPANY_TEAM_IDS.includes(m.id as (typeof HUIX_COMPANY_TEAM_IDS)[number]))
     .map((m) => ({
       "@type": "Person",
       name: m.name,
       jobTitle: m.title || m.role,
-      url: `${SITE_URL}/team/${m.id}`,
-      worksFor: { "@type": "Organization", name: "HUIX-2099", url: SITE_URL },
+      url: siteUrl(`/team/${m.id}`),
+      worksFor: { "@id": ORG_ID },
     })),
 }
 
-const breadcrumbJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-    { "@type": "ListItem", position: 2, name: "Team", item: `${SITE_URL}/team` },
-  ],
-}
+const jsonLd = [
+  breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Team", path: "/team" },
+  ]),
+  teamJsonLd,
+]
 
 export default function TeamLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(teamJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       {children}
     </>
   )
