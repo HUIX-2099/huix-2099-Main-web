@@ -18,7 +18,7 @@ import {
 import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ClickToViewImage } from "@/components/click-to-view-image"
-import { HuixWorldMap } from "@/components/huix-world-map"
+import { LiberiaCountiesMap } from "@/components/monrovia-hustle/liberia-counties-map"
 import { FeatureSection } from "@/components/ui/feature-section"
 import { MonroviaMatureSticker } from "@/components/monrovia-hustle/monrovia-mature-sticker"
 
@@ -173,15 +173,6 @@ export default function MonroviaHustlePage() {
 
           </div>
         </section>
-
-        <HuixWorldMap
-          variant="game"
-          sectionLabel="MH-3D · GLOBAL FOOTPRINT"
-          title="BUILT IN LIBERIA · PLAYED WORLDWIDE"
-          description="Monrovia Hustle 3D is a Liberian-led narrative — rooted in Monrovia with interest across the United States, Nigeria, and the wider diaspora."
-          className="border-t border-[#002868]/20 bg-[#002868]/[0.03] dark:bg-[#10223a]/30"
-          mapHeight="min(500px, 68vh)"
-        />
 
         {/* Concept dossier — single live entry */}
         <motion.section
@@ -350,6 +341,14 @@ export default function MonroviaHustlePage() {
             }}
           />
         </section>
+
+        <LiberiaCountiesMap
+          sectionLabel="MH-3D · LIBERIA MAP"
+          title="ROOTED IN MONROVIA · ALL 15 COUNTIES"
+          description="The game world starts in Liberia's capital — every county marked on the map. Monrovia is where Monrovia Hustle 3D lives."
+          className="border-t border-[#002868]/20 bg-[#002868]/[0.03] dark:bg-[#10223a]/30"
+          mapHeight="min(520px, 65vh)"
+        />
       </main>
       <Footer />
     </div>
