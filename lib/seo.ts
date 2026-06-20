@@ -70,10 +70,11 @@ export const SEO_PRODUCTS: SeoProductDef[] = [
     ],
     image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
     schemaType: "VideoGame",
-    operatingSystem: "Windows 10, Windows 11",
+    operatingSystem: "Windows 10, Windows 11, Android",
     applicationCategory: "Game",
     genre: "Narrative urban RPG",
     trailerUrl: "https://www.youtube.com/watch?v=GUPVn-m8Dr8",
+    downloadUrl: "https://www.mediafire.com/folder/3ku6a6q4qnjps/M-hustle",
     status: "Concept",
   },
   {

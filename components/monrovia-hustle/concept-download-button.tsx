@@ -1,19 +1,25 @@
 "use client"
 
 import * as React from "react"
-import { Download, Lock } from "lucide-react"
+import { Apple, Download, ExternalLink, Lock, Monitor, Smartphone } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
 const MONO = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' as const
 
-/** Local midnight — playable build unlocks 20 June 2026 */
+/** Local midnight — Windows build unlocks 20 June 2026 */
 export const MH_CONCEPT_DOWNLOAD_RELEASE = new Date(2026, 5, 20, 0, 0, 0, 0)
 
 export const MH_CONCEPT_DOWNLOAD_LABEL = "20 June 2026"
 
-/** Update when the Windows build is hosted */
-export const MH_CONCEPT_DOWNLOAD_HREF = "/products/Monrovia_hustle_Demo_Campane/Monrovia_Hustle_3D_Concept_01.zip"
+/** Windows build — MediaFire */
+export const MH_CONCEPT_DOWNLOAD_HREF = "https://www.mediafire.com/folder/3ku6a6q4qnjps/M-hustle"
+export const MH_CONCEPT_DOWNLOAD_HOST = "MediaFire"
+
+/** Android build — Google Drive */
+export const MH_CONCEPT_ANDROID_HREF =
+  "https://drive.google.com/file/d/1HmP9c-uFQqzFCl9d8TJlBOKPiOCpEL9w/view?usp=drive_link"
+export const MH_CONCEPT_ANDROID_HOST = "Google Drive"
 
 type TimeLeft = {
   total: number
@@ -22,6 +28,50 @@ type TimeLeft = {
   minutes: number
   seconds: number
 }
+
+type PlatformId = "windows" | "android" | "ios"
+
+type PlatformConfig = {
+  id: PlatformId
+  label: string
+  shortLabel: string
+  host: string
+  href?: string
+  Icon: typeof Monitor
+  /** windows = countdown gate; android = live; ios = pending */
+  availability: "countdown" | "live" | "pending"
+  pendingNote?: string
+}
+
+const PLATFORMS: PlatformConfig[] = [
+  {
+    id: "windows",
+    label: "Download for Windows",
+    shortLabel: "Windows",
+    host: MH_CONCEPT_DOWNLOAD_HOST,
+    href: MH_CONCEPT_DOWNLOAD_HREF,
+    Icon: Monitor,
+    availability: "countdown",
+  },
+  {
+    id: "android",
+    label: "Download for Android",
+    shortLabel: "Android",
+    host: MH_CONCEPT_ANDROID_HOST,
+    href: MH_CONCEPT_ANDROID_HREF,
+    Icon: Smartphone,
+    availability: "live",
+  },
+  {
+    id: "ios",
+    label: "iOS release pending",
+    shortLabel: "iOS",
+    host: "App Store",
+    Icon: Apple,
+    availability: "pending",
+    pendingNote: "Release pending",
+  },
+]
 
 function getTimeLeft(target: Date): TimeLeft {
   const total = Math.max(0, target.getTime() - Date.now())
@@ -39,20 +89,16 @@ function pad(n: number) {
 }
 
 export type ConceptDownloadButtonProps = {
-  downloadHref?: string
   releaseAt?: Date
   className?: string
-  /** compact = hero row; default = card block with full countdown grid */
   variant?: "compact" | "card"
 }
 
 export function ConceptDownloadButton({
-  downloadHref = MH_CONCEPT_DOWNLOAD_HREF,
   releaseAt = MH_CONCEPT_DOWNLOAD_RELEASE,
   className,
   variant = "compact",
 }: ConceptDownloadButtonProps) {
-  /** Defer Date.now() until after mount — avoids SSR/client hydration mismatch */
   const [timeLeft, setTimeLeft] = React.useState<TimeLeft | null>(null)
 
   React.useEffect(() => {
@@ -62,8 +108,14 @@ export function ConceptDownloadButton({
     return () => window.clearInterval(id)
   }, [releaseAt])
 
-  const isLive = timeLeft !== null && timeLeft.total <= 0
-  const showCountdown = timeLeft === null || timeLeft.total > 0
+  const windowsLive = timeLeft !== null && timeLeft.total <= 0
+  const showWindowsCountdown = timeLeft === null || timeLeft.total > 0
+
+  const isPlatformLive = (platform: PlatformConfig) => {
+    if (platform.availability === "live") return true
+    if (platform.availability === "countdown") return windowsLive
+    return false
+  }
 
   const countdown = (
     <div
@@ -76,10 +128,10 @@ export function ConceptDownloadButton({
       aria-busy={timeLeft === null}
       aria-label={
         timeLeft === null
-          ? "Loading countdown to download"
-          : isLive
-            ? "Download available now"
-            : `${timeLeft.days} days, ${timeLeft.hours} hours, ${timeLeft.minutes} minutes, ${timeLeft.seconds} seconds until download`
+          ? "Loading countdown to Windows download"
+          : windowsLive
+            ? "Windows download available now"
+            : `${timeLeft.days} days, ${timeLeft.hours} hours, ${timeLeft.minutes} minutes, ${timeLeft.seconds} seconds until Windows download`
       }
     >
       {(
@@ -113,6 +165,26 @@ export function ConceptDownloadButton({
     </div>
   )
 
+  const platformButtons = (
+    <div
+      className={cn(
+        "flex flex-col gap-2",
+        variant === "compact" ? "w-full sm:flex-row sm:flex-wrap sm:items-center" : "gap-3",
+      )}
+    >
+      {PLATFORMS.map((platform) => (
+        <PlatformDownloadButton
+          key={platform.id}
+          platform={platform}
+          isLive={isPlatformLive(platform)}
+          windowsUnlockLabel={MH_CONCEPT_DOWNLOAD_LABEL}
+          size={variant === "card" ? "lg" : "default"}
+          className={variant === "card" ? "w-full sm:w-auto" : undefined}
+        />
+      ))}
+    </div>
+  )
+
   if (variant === "card") {
     return (
       <div
@@ -121,66 +193,86 @@ export function ConceptDownloadButton({
           className,
         )}
       >
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-5">
           <div className="min-w-0">
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground" style={{ fontFamily: MONO }}>
-              Windows build · Concept 01
+              Concept 01 builds · Windows · Android · iOS
             </p>
             <p className="mt-1 text-sm font-medium text-foreground">
-              {isLive ? "Download is live" : `Unlocks ${MH_CONCEPT_DOWNLOAD_LABEL}`}
+              Android is live on Google Drive · Windows unlocks {MH_CONCEPT_DOWNLOAD_LABEL} · iOS release pending
             </p>
-            {!showCountdown ? null : <div className="mt-3">{countdown}</div>}
+            {showWindowsCountdown ? <div className="mt-3">{countdown}</div> : null}
           </div>
-          <DownloadButtonCore isLive={isLive} downloadHref={downloadHref} size="lg" className="w-full shrink-0 sm:w-auto" />
+          {platformButtons}
         </div>
       </div>
     )
   }
 
   return (
-    <div className={cn("flex flex-col items-center gap-2 sm:items-start", className)}>
+    <div className={cn("flex flex-col items-center gap-3 sm:items-start", className)}>
+      {platformButtons}
       <div className="flex flex-col items-center gap-2 sm:flex-row sm:items-center sm:gap-4">
-        <DownloadButtonCore isLive={isLive} downloadHref={downloadHref} />
-        {showCountdown && countdown}
+        {showWindowsCountdown && countdown}
       </div>
-      {showCountdown && (
-        <p className="text-[11px] text-muted-foreground" style={{ fontFamily: MONO }}>
-          Unlocks {MH_CONCEPT_DOWNLOAD_LABEL} · Windows · Concept 01
-        </p>
-      )}
+      <p className="text-center text-[11px] text-muted-foreground sm:text-left" style={{ fontFamily: MONO }}>
+        {showWindowsCountdown
+          ? `Windows unlocks ${MH_CONCEPT_DOWNLOAD_LABEL} · Android live · iOS pending`
+          : `${MH_CONCEPT_DOWNLOAD_HOST} · Windows · ${MH_CONCEPT_ANDROID_HOST} · Android · iOS pending`}
+      </p>
     </div>
   )
 }
 
-function DownloadButtonCore({
+function PlatformDownloadButton({
+  platform,
   isLive,
-  downloadHref,
+  windowsUnlockLabel,
   size = "default",
   className,
 }: {
+  platform: PlatformConfig
   isLive: boolean
-  downloadHref: string
+  windowsUnlockLabel: string
   size?: "default" | "lg"
   className?: string
 }) {
-  if (isLive) {
+  const { Icon, label, href, host, availability, pendingNote } = platform
+  const isExternal = href ? /^https?:\/\//i.test(href) : false
+
+  if (isLive && href) {
     return (
       <Button
         asChild
         size={size === "lg" ? "lg" : "default"}
         className={cn(
-          "gap-2 border-0 bg-[#002868] font-bold uppercase tracking-wide text-white hover:bg-[#001a4d] dark:bg-[#1a4a8a] dark:hover:bg-[#153d75]",
+          "gap-2 border-0 font-bold uppercase tracking-wide text-white",
+          platform.id === "android"
+            ? "bg-[#3DDC84] text-[#0d2b1a] hover:bg-[#34c977]"
+            : "bg-[#002868] hover:bg-[#001a4d] dark:bg-[#1a4a8a] dark:hover:bg-[#153d75]",
           size === "default" && "h-11 px-5 text-[12px]",
           className,
         )}
       >
-        <a href={downloadHref} download>
-          <Download className="size-4" aria-hidden />
-          Download build
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={`${label} — ${host}`}
+        >
+          <Icon className="size-4 shrink-0" aria-hidden />
+          <Download className="size-4 shrink-0" aria-hidden />
+          {label}
+          {isExternal ? <ExternalLink className="size-3.5 shrink-0 opacity-80" aria-hidden /> : null}
         </a>
       </Button>
     )
   }
+
+  const lockedTitle =
+    availability === "pending"
+      ? pendingNote ?? "Release pending"
+      : `Windows available ${windowsUnlockLabel}`
 
   return (
     <Button
@@ -188,7 +280,7 @@ function DownloadButtonCore({
       disabled
       size={size === "lg" ? "lg" : "default"}
       aria-disabled="true"
-      title={`Available ${MH_CONCEPT_DOWNLOAD_LABEL}`}
+      title={lockedTitle}
       className={cn(
         "cursor-not-allowed gap-2 border border-border/80 bg-muted/40 font-bold uppercase tracking-wide text-muted-foreground opacity-100",
         size === "default" && "h-11 px-5 text-[12px]",
@@ -196,7 +288,8 @@ function DownloadButtonCore({
       )}
     >
       <Lock className="size-4 shrink-0 opacity-70" aria-hidden />
-      Download build
+      <Icon className="size-4 shrink-0 opacity-70" aria-hidden />
+      {availability === "pending" ? pendingNote ?? label : label}
     </Button>
   )
 }

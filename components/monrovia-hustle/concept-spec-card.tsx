@@ -111,7 +111,7 @@ export function MonroviaConceptSpecCard({
             <div className="space-y-4 text-sm text-muted-foreground">
               <div className="space-y-1">
                 <Label className="text-sm font-medium text-foreground">Platform</Label>
-                <p>Windows 10/11 (64-bit)</p>
+                <p>Windows 10/11 (64-bit) · Android (APK on Google Drive) · iOS release pending</p>
               </div>
               <div className="space-y-1">
                 <Label className="text-sm font-medium text-foreground">Genre lane</Label>
