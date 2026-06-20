@@ -12,13 +12,14 @@ export const MH_CONCEPT_DOWNLOAD_RELEASE = new Date(2026, 5, 20, 0, 0, 0, 0)
 
 export const MH_CONCEPT_DOWNLOAD_LABEL = "20 June 2026"
 
-/** Windows build — MediaFire */
-export const MH_CONCEPT_DOWNLOAD_HREF = "https://www.mediafire.com/folder/3ku6a6q4qnjps/M-hustle"
-export const MH_CONCEPT_DOWNLOAD_HOST = "MediaFire"
+/** Windows build — Google Drive */
+export const MH_CONCEPT_DOWNLOAD_HREF =
+  "https://drive.google.com/drive/folders/1QW6XVnWFGTFpdQ1V5J2KMVxqtQzLlC_n"
+export const MH_CONCEPT_DOWNLOAD_HOST = "Google Drive"
 
 /** Android build — Google Drive */
 export const MH_CONCEPT_ANDROID_HREF =
-  "https://drive.google.com/file/d/1HmP9c-uFQqzFCl9d8TJlBOKPiOCpEL9w/view?usp=drive_link"
+  "https://drive.google.com/drive/folders/1IMUgM-7yx7BiY6p0xf7SkzHO3yq0SDCZ"
 export const MH_CONCEPT_ANDROID_HOST = "Google Drive"
 
 type TimeLeft = {

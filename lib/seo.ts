@@ -74,7 +74,7 @@ export const SEO_PRODUCTS: SeoProductDef[] = [
     applicationCategory: "Game",
     genre: "Narrative urban RPG",
     trailerUrl: "https://www.youtube.com/watch?v=GUPVn-m8Dr8",
-    downloadUrl: "https://www.mediafire.com/folder/3ku6a6q4qnjps/M-hustle",
+    downloadUrl: "https://drive.google.com/drive/folders/1QW6XVnWFGTFpdQ1V5J2KMVxqtQzLlC_n",
     status: "Concept",
   },
   {
