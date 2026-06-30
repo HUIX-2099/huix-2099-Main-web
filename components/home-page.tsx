@@ -13,6 +13,7 @@ import { TiltCard } from "@/components/tilt-card";
 import { AmbientGlow } from "@/components/ambient-glow";
 import { HuixWorldMap } from "@/components/huix-world-map";
 import { HuixTestimonialsSection } from "@/components/huix-testimonials";
+import { HuixOasisSection } from "@/components/huix-oasis-section";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Monitor, Palette, Sparkles, ExternalLink, Gamepad2, Target, Users, FlaskConical, Handshake, LayoutGrid } from "lucide-react";
 
@@ -224,36 +225,7 @@ export function HomePage() {
             </ParallaxReveal>
           </div>
 
-          {/* Services Replacement - Show Explore */}
-          <ParallaxReveal direction="up" delay={0.2}>
-            <div className="mt-12 w-full flex flex-col items-center justify-center p-12 sm:p-20 rounded-[32px] bg-card/50 border border-border/50 text-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/20 pointer-events-none" />
-              
-              <div 
-                className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-6 font-mono"
-              >
-                SERVICES · CAPABILITIES
-              </div>
-              
-              <h3 
-                className="text-3xl sm:text-4xl font-bold text-foreground mb-8 uppercase tracking-[0.1em]"
-                style={{ fontFamily: 'Mohican, sans-serif' }}
-              >
-                Discover Our Capabilities
-              </h3>
-              
-              <Link href="/showcase">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-foreground text-background rounded-full font-semibold uppercase tracking-widest text-sm flex items-center gap-3 transition-shadow hover:shadow-lg hover:shadow-foreground/20"
-                >
-                  <span>Show Explore</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-                </motion.button>
-              </Link>
-            </div>
-          </ParallaxReveal>
+          <HuixOasisSection />
         </div>
       </section>
 

@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/policy", 0.35, "yearly"),
     entry("/pricing", 0.65, "monthly"),
     entry("/research", 0.65, "monthly"),
+    entry("/huix-oasis", 0.8, "monthly"),
     entry("/showcase", 0.65, "monthly"),
     entry("/team", 0.85, "weekly"),
     entry("/products", 0.85, "weekly"),
