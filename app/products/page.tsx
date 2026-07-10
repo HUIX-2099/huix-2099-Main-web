@@ -5,8 +5,10 @@ import { Footer } from "@/components/footer"
 import { AmbientGlow } from "@/components/ambient-glow"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
+import type { ReactNode } from "react"
 import { useRouter } from "next/navigation"
 import {
+  Box,
   Grid,
   List,
   Monitor,
@@ -59,7 +61,7 @@ function IconAndroid({ className }: { className?: string }) {
 interface Product {
   id: number
   title: string
-  category: "Software" | "Website" | "App" | "Game" | "Theme" | "Simulation"
+  category: "Software" | "Website" | "App" | "Game" | "Theme" | "Simulation" | "Plugin"
   platform: string
   description: string
   image?: string
@@ -131,6 +133,41 @@ const products: Product[] = [
     googleLabel: "Monrovia Hustle 3D · HUIX-2099 · Victor Edet Coleman",
     googleQuery: "Monrovia Hustle 3D HUIX-2099 Victor Edet Coleman Liberian narrative urban RPG Liberia",
   },
+  {
+    id: 5,
+    title: "Monrovia Hustle · Independence Day",
+    category: "Game",
+    platform: "Racing edition",
+    description:
+      "Independence Day Edition — Liberian keke racing through Monrovia. BUILD. HUSTLE. RECLAIM.",
+    image: "/products/Monrovia_hustle_independence_day_edition/heo.png",
+    accent: "#BF0A30",
+    year: "2026",
+    status: "Development",
+    technologies: ["Racing", "Keke", "Monrovia"],
+    detailPage: "/products/monrovia-hustle-independence-day",
+    creditLine: "HUIX-2099 · Monrovia Hustle franchise — Independence Day racing edition.",
+    googleLabel: "Monrovia Hustle Independence Day Edition HUIX-2099",
+    googleQuery: "Monrovia Hustle Independence Day keke racing Liberia HUIX-2099",
+  },
+  {
+    id: 4,
+    title: "HUIX Character Motion",
+    category: "Plugin",
+    platform: "Blender addon",
+    description:
+      "Monrovia Hustle Edition — type a prompt, your Avaturn/Mixamo character performs it. 51+ animations, keke pack, video mocap beta, GLB export.",
+    image: "/products/Huix-character-motion plugin/hclogo.png",
+    accent: "#F97316",
+    year: "2026",
+    status: "Development",
+    technologies: ["Blender", "Avaturn", "Mixamo", "GLB"],
+    detailPage: "/products/huix-character-motion",
+    creditLine:
+      "HUIX-2099 · Monrovia Hustle pipeline — independent animation tooling for Liberian narrative game development.",
+    googleLabel: "HUIX Character Motion Blender addon HUIX-2099",
+    googleQuery: "HUIX Character Motion Blender addon Monrovia Hustle Edition Avaturn Mixamo HUIX-2099",
+  },
 ]
 
 const categories = [
@@ -141,6 +178,7 @@ const categories = [
   { id: "Game", label: "GAMES", icon: Gamepad2, count: products.filter((p) => p.category === "Game").length },
   { id: "Theme", label: "THEMES", icon: Palette, count: products.filter((p) => p.category === "Theme").length },
   { id: "Simulation", label: "SIMS", icon: Cpu, count: products.filter((p) => p.category === "Simulation").length },
+  { id: "Plugin", label: "PLUGINS", icon: Box, count: products.filter((p) => p.category === "Plugin").length },
 ]
 
 export default function ProductsPage() {
@@ -194,6 +232,8 @@ export default function ProductsPage() {
         return Palette
       case "Simulation":
         return Cpu
+      case "Plugin":
+        return Box
       default:
         return Grid
     }

@@ -13,7 +13,6 @@ import { TiltCard } from "@/components/tilt-card";
 import { AmbientGlow } from "@/components/ambient-glow";
 import { HuixWorldMap } from "@/components/huix-world-map";
 import { HuixTestimonialsSection } from "@/components/huix-testimonials";
-import { HuixOasisSection } from "@/components/huix-oasis-section";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Monitor, Palette, Sparkles, ExternalLink, Gamepad2, Target, Users, FlaskConical, Handshake, LayoutGrid } from "lucide-react";
 
@@ -69,6 +68,24 @@ const latestProducts = [
     creditLine: "HUIX-2099 · Victor Edet Coleman — Founder & CTO — narrative & technical lead on Monrovia Hustle 3D.",
     googleLabel: "Monrovia Hustle 3D · HUIX-2099 · Victor Edet Coleman",
     googleQuery: "Monrovia Hustle 3D HUIX-2099 Victor Edet Coleman Liberian narrative urban RPG Liberia",
+  },
+  {
+    id: 4,
+    title: "Monrovia Hustle: Independence Day",
+    category: "Game",
+    icon: Sparkles,
+    platform: "PC · Mobile",
+    description:
+      "Keke racing through Monrovia on Independence Day — build, hustle, reclaim in a Liberian street-racer edition.",
+    image: "/products/Monrovia_hustle_independence_day_edition/heo.png",
+    year: "2026",
+    status: "Development" as const,
+    openSource: false,
+    href: "/products/monrovia-hustle-independence-day",
+    creditLine:
+      "HUIX-2099 · Victor Edet Coleman — Founder & CTO — creative direction on Monrovia Hustle Independence Day.",
+    googleLabel: "Monrovia Hustle Independence Day · HUIX-2099 · Victor Edet Coleman",
+    googleQuery: "Monrovia Hustle Independence Day keke racing HUIX-2099 Liberia",
   },
 ];
 
@@ -224,11 +241,8 @@ export function HomePage() {
               </div>
             </ParallaxReveal>
           </div>
-
-          <HuixOasisSection />
         </div>
       </section>
-
 
       {/* Latest Products Showcase */}
       <section className="border-t border-border bg-background py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
