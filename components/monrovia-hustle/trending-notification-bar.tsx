@@ -10,13 +10,13 @@ import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
 
 const MONO = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' as const
-export const MH_CONCEPT_HREF = "/products/monrovia-hustle/concept"
+export const MH_IDE_HREF = "/products/monrovia-hustle-independence-day"
 
 const MH_LOGO_LIGHT = "/products/Monrovia_hustle_Demo_Campane/light_mode_logo.png"
 const MH_LOGO_DARK = "/products/Monrovia_hustle_Demo_Campane/dark_mode_logo.png"
 
 const TICKER =
-  "TRENDING · Latest — Monrovia Hustle Concept 01 dossier is live · Playable slice · mobile verified · voice cast · Click to jump in"
+  "TRENDING · Monrovia Hustle Independence Day Edition 2026 by Victor Edet Coleman · Join WhatsApp to get the game · Unlocks 26 July 2026 · Click to open"
 
 export function TrendingNotificationBar({ className }: { className?: string }) {
   const pathname = usePathname()
@@ -26,7 +26,7 @@ export function TrendingNotificationBar({ className }: { className?: string }) {
 
   useEffect(() => setMounted(true), [])
 
-  if (pathname === MH_CONCEPT_HREF) return null
+  if (pathname === MH_IDE_HREF) return null
 
   const logoSrc = mounted && resolvedTheme === "dark" ? MH_LOGO_DARK : MH_LOGO_LIGHT
   const items = [TICKER, TICKER, TICKER, TICKER]
@@ -43,9 +43,9 @@ export function TrendingNotificationBar({ className }: { className?: string }) {
       style={{ height: "var(--trending-bar-height, 2rem)" }}
     >
       <Link
-        href={MH_CONCEPT_HREF}
+        href={MH_IDE_HREF}
         className="group flex h-full min-h-0 min-w-0 w-full items-center gap-2.5 px-2 sm:gap-3 sm:px-3"
-        aria-label="Trending: Monrovia Hustle Concept 01 — open dossier"
+        aria-label="Trending: Monrovia Hustle Independence Day Edition — open page"
       >
         <span className="relative z-10 flex shrink-0 items-center gap-2 rounded-sm border border-border/60 bg-background/60 px-1.5 py-0.5 sm:px-2">
           <span className="relative h-4 w-[4.5rem] shrink-0 sm:h-[1.125rem] sm:w-[5rem]">

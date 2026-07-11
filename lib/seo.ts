@@ -125,21 +125,31 @@ export const SEO_PRODUCTS: SeoProductDef[] = [
     id: "monrovia-hustle-independence-day",
     name: "Monrovia Hustle — Independence Day Edition",
     path: "/products/monrovia-hustle-independence-day",
-    title: "Monrovia Hustle Independence Day Edition — Liberian keke racing | HUIX-2099",
+    title:
+      "Monrovia Hustle Independence Day Edition 2026 — Liberian keke racing game by Victor Edet Coleman | HUIX-2099",
     description:
-      "Monrovia Hustle Independence Day Edition — Liberian keke racing from HUIX-2099. BUILD. HUSTLE. RECLAIM. Race tricycle taxis through Monrovia streets with Independence Day festival energy.",
+      "Monrovia Hustle Independence Day Edition (2026) is a Liberian keke racing art game by Victor Edet Coleman of HUIX-2099. BUILD. HUSTLE. RECLAIM. Race tricycle taxis through Monrovia for Liberia Independence Day July 26 2026 — Windows, macOS, iOS, Android.",
     keywords: [
       "Monrovia Hustle Independence Day",
+      "Monrovia Hustle Independence Day 2026",
+      "Monrovia Hustle Independence Day Edition",
+      "Liberia Independence Day game 2026",
+      "July 26 2026 Liberia game",
       "Liberia keke racing game",
-      "Monrovia racing",
-      "tricycle taxi game",
+      "Monrovia racing game",
+      "tricycle taxi game Liberia",
+      "Victor Edet Coleman",
+      "Victor Coleman HUIX-2099",
       "HUIX-2099",
       "Liberian Independence Day game",
-      "West Africa racing",
+      "West Africa racing game",
+      "Monrovia Hustle",
+      "Liberia video game 2026",
+      "keke Monrovia game",
     ],
-    image: "/products/Monrovia_hustle_independence_day_edition/heo.png",
+    image: "/products/Monrovia_hustle_independence_day_edition/Loading_screen.png",
     schemaType: "VideoGame",
-    operatingSystem: "Windows 10, Windows 11",
+    operatingSystem: "Windows, macOS, iOS, Android",
     applicationCategory: "Game",
     genre: "Racing",
     status: "Development",
@@ -320,17 +330,52 @@ export function productItemListJsonLd() {
 }
 
 export function softwareProductJsonLd(product: SeoProductDef) {
+  const personCreator =
+    product.id === "monrovia-hustle-independence-day"
+      ? {
+          "@type": "Person" as const,
+          name: "Victor Edet Coleman",
+          alternateName: ["Victor Coleman", "Victor E. Coleman"],
+          jobTitle: "Founder & CTO",
+          url: siteUrl("/team/victor"),
+          image: siteUrl("/products/Monrovia_hustle_Demo_Campane/developer/Victor%20Edet%20Coleman.png"),
+          worksFor: { "@id": ORG_ID },
+          sameAs: [
+            "https://www.linkedin.com/in/victor-coleman-4731701a5/",
+            "https://www.facebook.com/victor.coleman.745874",
+          ],
+        }
+      : null
+
   const base = {
     "@context": "https://schema.org",
     "@type": product.schemaType,
     name: product.name,
+    alternateName:
+      product.id === "monrovia-hustle-independence-day"
+        ? [
+            "Monrovia Hustle Independence Day Edition 2026",
+            "Monrovia Hustle Independence Day",
+            "MH Independence Day Edition",
+          ]
+        : undefined,
     description: product.description,
     url: siteUrl(product.path),
     image: siteUrl(product.image),
-    author: { "@id": ORG_ID },
+    author: personCreator ?? { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
-    creator: { "@type": "Organization", name: ORG_NAME, url: SITE_URL },
+    creator: personCreator ?? { "@type": "Organization", name: ORG_NAME, url: SITE_URL },
     inLanguage: "en",
+    ...(product.id === "monrovia-hustle-independence-day"
+      ? {
+          keywords:
+            "Monrovia Hustle Independence Day 2026, Liberia Independence Day July 26, keke racing, Victor Edet Coleman, HUIX-2099",
+          gamePlatform: ["PC", "Windows", "macOS", "iOS", "Android"],
+          playMode: "SinglePlayer",
+          datePublished: "2026-07-26",
+          copyrightHolder: personCreator,
+        }
+      : {}),
     ...(product.operatingSystem ? { operatingSystem: product.operatingSystem } : {}),
     ...(product.applicationCategory ? { applicationCategory: product.applicationCategory } : {}),
     ...(product.genre ? { genre: product.genre } : {}),
@@ -338,8 +383,12 @@ export function softwareProductJsonLd(product: SeoProductDef) {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
-      availability: "https://schema.org/OnlineOnly",
+      availability:
+        product.id === "monrovia-hustle-independence-day"
+          ? "https://schema.org/PreOrder"
+          : "https://schema.org/OnlineOnly",
       url: product.externalUrl || product.downloadUrl || siteUrl(product.path),
+      ...(product.id === "monrovia-hustle-independence-day" ? { validFrom: "2026-07-26" } : {}),
     },
   }
 

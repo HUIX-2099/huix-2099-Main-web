@@ -76,7 +76,7 @@ const latestProducts = [
     icon: Sparkles,
     platform: "PC · Mobile",
     description:
-      "Keke racing through Monrovia on Independence Day — build, hustle, reclaim in a Liberian street-racer edition.",
+      "Keke racing art game by Victor Edet Coleman — Monrovia Independence Day Edition 2026. Build, hustle, reclaim.",
     image: "/products/Monrovia_hustle_independence_day_edition/heo.png",
     year: "2026",
     status: "Development" as const,
