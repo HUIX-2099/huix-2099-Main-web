@@ -168,6 +168,23 @@ const products: Product[] = [
     googleLabel: "HUIX Character Motion Blender addon HUIX-2099",
     googleQuery: "HUIX Character Motion Blender addon Monrovia Hustle Edition Avaturn Mixamo HUIX-2099",
   },
+  {
+    id: 6,
+    title: "HUIX Market Liberia",
+    category: "Website",
+    platform: "Web · Mobile",
+    description:
+      "Premium commerce for Liberia and beyond. Stores, sellers, and delivery — onboarded and verified by our team.",
+    image: "/huix-market/huix-market-logo.png",
+    accent: "#6366f1",
+    year: "2026",
+    status: "Live",
+    technologies: ["E-Commerce", "Logistics", "Verification"],
+    link: "https://huix-market.vercel.app/",
+    creditLine: "HUIX-2099 · E-commerce platform connecting Liberian sellers and buyers.",
+    googleLabel: "HUIX Market Liberia · HUIX-2099",
+    googleQuery: "HUIX Market Liberia e-commerce platform HUIX-2099 Liberia sellers marketplace",
+  },
 ]
 
 const categories = [

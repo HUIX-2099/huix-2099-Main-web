@@ -200,6 +200,29 @@ export const SEO_PRODUCTS: SeoProductDef[] = [
     downloadUrl: `${SITE_URL}/products/typelr/install`,
     status: "Live",
   },
+  {
+    id: "huix-market-liberia",
+    name: "HUIX Market Liberia",
+    path: "/products/huix-market-liberia",
+    title: "HUIX Market Liberia — Premium e-commerce platform | HUIX-2099",
+    description:
+      "HUIX Market Liberia: premium e-commerce platform connecting verified sellers and buyers across Liberia and beyond. Integrated logistics, verified merchants, and trusted transactions.",
+    keywords: [
+      "HUIX Market Liberia",
+      "e-commerce Liberia",
+      "Liberia marketplace",
+      "Liberian online shopping",
+      "HUIX-2099 marketplace",
+      "verified sellers Liberia",
+      "Monrovia marketplace",
+      "West Africa e-commerce",
+    ],
+    image: "/huix-market/huix-market-logo.png",
+    schemaType: "WebApplication",
+    applicationCategory: "ECommerce",
+    externalUrl: "https://huix-market.vercel.app/",
+    status: "Live",
+  },
 ]
 
 export const SITE_FAQS = [
