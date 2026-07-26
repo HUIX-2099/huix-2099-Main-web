@@ -4,7 +4,7 @@ import type { ReactNode } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowLeft, AlertTriangle, Smartphone, HeartHandshake, Download, Users, Bell } from "lucide-react"
+import { ArrowLeft, AlertTriangle, Smartphone, HeartHandshake, Download, Users, Bell, Play } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { QRCode } from "@/components/qr-code"
@@ -34,6 +34,8 @@ import {
   MH_IDE_TSHIRT_PRICE_USD,
   MH_IDE_TSHIRT_SKU,
   MH_IDE_TSHIRT_VIDEO,
+  MH_IDE_TRAILER_EMBED_URL,
+  MH_IDE_TRAILER_YOUTUBE_URL,
   MH_IDE_WHATSAPP_URL,
 } from "@/lib/monrovia-hustle-independence"
 
@@ -253,6 +255,40 @@ export default function MonroviaIndependenceDayPage() {
           </div>
         </section>
 
+        {/* Official trailer — YouTube autoplay */}
+        <section className="border-b border-border bg-background px-4 py-10 sm:px-6 sm:py-12 lg:px-10" id="trailer">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-4 flex items-center gap-3">
+              <Play className="h-3.5 w-3.5 text-[#BF0A30]" aria-hidden />
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground" style={{ fontFamily: MONO }}>
+                Official trailer
+              </span>
+              <span className="h-px flex-1 bg-border" />
+              <a
+                href={MH_IDE_TRAILER_YOUTUBE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground transition hover:text-foreground"
+                style={{ fontFamily: MONO }}
+              >
+                YouTube →
+              </a>
+            </div>
+            <div className="relative w-full overflow-hidden border border-border bg-black" style={{ aspectRatio: "16/9" }}>
+              <iframe
+                src={MH_IDE_TRAILER_EMBED_URL}
+                title="Monrovia Hustle Independence Day Edition — official trailer"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full border-0"
+              />
+            </div>
+            <p className="mt-3 text-[11px] uppercase tracking-[0.14em] text-muted-foreground" style={{ fontFamily: MONO }}>
+              Autoplay · tap unmute in the player for sound
+            </p>
+          </div>
+        </section>
+
         {/* Secondary key art */}
         <section className="border-b border-border bg-background">
           <div className="relative w-full overflow-hidden">
@@ -458,7 +494,7 @@ export default function MonroviaIndependenceDayPage() {
         {/* Downloads — locked until 26 July 2026 */}
         <section className="border-b border-border bg-background px-4 py-10 sm:px-6 sm:py-14 lg:px-10" id="downloads">
           <div className="mx-auto max-w-7xl">
-            <SectionMark index="03" title="Build downloads · Windows · macOS · iOS · Android APK" />
+            <SectionMark index="03" title="Build downloads · Windows · Android APK" />
             <div className="mt-6">
               <IdeDownloadPanel />
             </div>

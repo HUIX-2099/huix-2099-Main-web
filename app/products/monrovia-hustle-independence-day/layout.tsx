@@ -8,7 +8,13 @@ import {
   siteUrl,
   softwareProductJsonLd,
 } from "@/lib/seo"
-import { MH_IDE_CREATOR_IMAGE, MH_IDE_CREATOR_NAME, MH_IDE_WHATSAPP_URL } from "@/lib/monrovia-hustle-independence"
+import {
+  MH_IDE_ANDROID_DRIVE_URL,
+  MH_IDE_CREATOR_IMAGE,
+  MH_IDE_CREATOR_NAME,
+  MH_IDE_WINDOWS_DRIVE_URL,
+  MH_IDE_WHATSAPP_URL,
+} from "@/lib/monrovia-hustle-independence"
 
 const product = productByPath("/products/monrovia-hustle-independence-day")!
 
@@ -70,7 +76,7 @@ const faqJsonLd = {
       name: "When can I download Monrovia Hustle Independence Day Edition?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Windows, macOS, iOS, and Android APK builds unlock on 26 July 2026 (Liberia Independence Day). Join the HUIX Games WhatsApp group for updates and the download.",
+        text: "Windows and Android APK builds unlock on 26 July 2026 (Liberia Independence Day). macOS and iOS are not available for this edition.",
       },
     },
     {
@@ -78,7 +84,7 @@ const faqJsonLd = {
       name: "How do I get Monrovia Hustle Independence Day Edition?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: `Join the HUIX Games WhatsApp chat at ${MH_IDE_WHATSAPP_URL} to get the game and release announcements.`,
+        text: `Download from Google Drive: Windows at ${MH_IDE_WINDOWS_DRIVE_URL} · Android at ${MH_IDE_ANDROID_DRIVE_URL}. Join the HUIX Games WhatsApp chat at ${MH_IDE_WHATSAPP_URL} for community updates.`,
       },
     },
   ],

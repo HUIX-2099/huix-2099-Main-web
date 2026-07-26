@@ -1,12 +1,16 @@
 "use client"
 
 import * as React from "react"
-import { Download, Lock } from "lucide-react"
+import Image from "next/image"
+import { Download, ExternalLink, Lock } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
+  MH_IDE_ANDROID_DRIVE_URL,
+  MH_IDE_ANDROID_GUIDE_IMAGE,
   MH_IDE_DOWNLOAD_LABEL,
   MH_IDE_DOWNLOAD_RELEASE,
-  MH_IDE_WHATSAPP_URL,
+  MH_IDE_WINDOWS_DRIVE_URL,
+  MH_IDE_WINDOWS_GUIDE_IMAGE,
 } from "@/lib/monrovia-hustle-independence"
 
 const MONO = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' as const
@@ -19,12 +23,13 @@ type TimeLeft = {
   seconds: number
 }
 
-type PlatformId = "windows" | "mac" | "ios" | "android"
+type PlatformId = "windows" | "android"
 
 type PlatformConfig = {
   id: PlatformId
   label: string
   shortLabel: string
+  href: string
   Icon: (props: { className?: string }) => React.ReactElement
   liveClass: string
 }
@@ -33,14 +38,6 @@ function WindowsIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
       <path d="M3 5.5 10.5 4.4v7.1H3V5.5Zm0 13 7.5 1.1v-7.2H3v6.1ZM11.3 4.3 21 3v8.5h-9.7V4.3Zm0 16.4L21 21v-8.6h-9.7v8.3Z" />
-    </svg>
-  )
-}
-
-function MacIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
-      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11Z" />
     </svg>
   )
 }
@@ -54,40 +51,20 @@ function AndroidIcon({ className }: { className?: string }) {
   )
 }
 
-function IosIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
-      <path d="M16.2 2H7.8A2.8 2.8 0 0 0 5 4.8v14.4A2.8 2.8 0 0 0 7.8 22h8.4a2.8 2.8 0 0 0 2.8-2.8V4.8A2.8 2.8 0 0 0 16.2 2Zm.4 16.8a.4.4 0 0 1-.4.4H7.8a.4.4 0 0 1-.4-.4V5.2c0-.22.18-.4.4-.4h8.4c.22 0 .4.18.4.4v13.6ZM12 19.2a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8Z" />
-    </svg>
-  )
-}
-
 const PLATFORMS: PlatformConfig[] = [
   {
     id: "windows",
     label: "Windows",
     shortLabel: "WIN",
+    href: MH_IDE_WINDOWS_DRIVE_URL,
     Icon: WindowsIcon,
     liveClass: "bg-[#0078D4] text-white hover:bg-[#006cbc]",
-  },
-  {
-    id: "mac",
-    label: "macOS",
-    shortLabel: "MAC",
-    Icon: MacIcon,
-    liveClass: "bg-foreground text-background hover:opacity-90",
-  },
-  {
-    id: "ios",
-    label: "iOS",
-    shortLabel: "iOS",
-    Icon: IosIcon,
-    liveClass: "bg-[#555555] text-white hover:bg-[#444444] dark:bg-[#e8e8e8] dark:text-black dark:hover:bg-white",
   },
   {
     id: "android",
     label: "Android APK",
     shortLabel: "APK",
+    href: MH_IDE_ANDROID_DRIVE_URL,
     Icon: AndroidIcon,
     liveClass: "bg-[#3DDC84] text-[#0d2b1a] hover:bg-[#34c977]",
   },
@@ -108,7 +85,61 @@ function pad(n: number) {
   return n.toString().padStart(2, "0")
 }
 
-/** Windows · macOS · iOS · Android APK — locked until Liberia Independence Day 26 July 2026 */
+function PlatformGuide({
+  platform,
+  title,
+  steps,
+  imageSrc,
+  imageAlt,
+}: {
+  platform: "windows" | "android"
+  title: string
+  steps: string[]
+  imageSrc: string
+  imageAlt: string
+}) {
+  return (
+    <div className="border border-border bg-muted/20">
+      <div className="border-b border-border px-4 py-3 sm:px-5">
+        <p
+          className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground"
+          style={{ fontFamily: MONO }}
+        >
+          {platform === "windows" ? "Windows setup" : "Android setup"}
+        </p>
+        <h4 className="mt-1.5 text-sm font-black uppercase tracking-[0.08em] text-foreground" style={{ fontFamily: MONO }}>
+          {title}
+        </h4>
+      </div>
+      <div className="grid gap-0 lg:grid-cols-2">
+        <ol className="space-y-3 px-4 py-4 text-[13px] leading-relaxed text-foreground/85 sm:px-5 sm:text-sm">
+          {steps.map((step, i) => (
+            <li key={step} className="flex gap-3">
+              <span
+                className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center border border-border bg-background text-[10px] font-bold text-foreground"
+                style={{ fontFamily: MONO }}
+              >
+                {i + 1}
+              </span>
+              <span>{step}</span>
+            </li>
+          ))}
+        </ol>
+        <div className="border-t border-border lg:border-l lg:border-t-0">
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            width={960}
+            height={540}
+            className="h-auto w-full object-cover object-top"
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/** Windows · Android APK — locked until Liberia Independence Day 26 July 2026 */
 export function IdeDownloadPanel({ className }: { className?: string }) {
   const [timeLeft, setTimeLeft] = React.useState<TimeLeft | null>(null)
 
@@ -126,15 +157,15 @@ export function IdeDownloadPanel({ className }: { className?: string }) {
     <div className={cn("border border-border bg-card", className)}>
       <div className="border-b border-border px-4 py-4 sm:px-5">
         <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground" style={{ fontFamily: MONO }}>
-          Build distribution · Multi-platform
+          Build distribution · Windows · Android
         </p>
         <h3 className="mt-2 text-sm font-black uppercase tracking-[0.1em] text-foreground sm:text-base" style={{ fontFamily: MONO }}>
           Download Independence Day Edition
         </h3>
         <p className="mt-2 text-[13px] leading-relaxed text-foreground/80 sm:text-sm">
           {isLive
-            ? "Builds are live — tap your platform to get the game via WhatsApp."
-            : `Windows, macOS, iOS, and Android APK unlock on ${MH_IDE_DOWNLOAD_LABEL} (Liberia Independence Day). Countdown runs from now until release.`}
+            ? "Builds are live on Google Drive — choose your platform below. macOS and iOS are not available for this edition."
+            : `Windows and Android APK unlock on ${MH_IDE_DOWNLOAD_LABEL} (Liberia Independence Day). Countdown runs from now until release.`}
         </p>
       </div>
 
@@ -177,15 +208,15 @@ export function IdeDownloadPanel({ className }: { className?: string }) {
         </div>
       ) : null}
 
-      <div className="grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-4 sm:p-5">
+      <div className="grid gap-3 p-4 sm:grid-cols-2 sm:p-5">
         {PLATFORMS.map((platform) => {
-          const { Icon, label, shortLabel, liveClass } = platform
+          const { Icon, label, shortLabel, liveClass, href } = platform
 
           if (isLive) {
             return (
               <a
                 key={platform.id}
-                href={MH_IDE_WHATSAPP_URL}
+                href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
@@ -197,6 +228,7 @@ export function IdeDownloadPanel({ className }: { className?: string }) {
                 <Icon className="h-5 w-5 shrink-0" />
                 <Download className="h-4 w-4 shrink-0" aria-hidden />
                 {label}
+                <ExternalLink className="h-3.5 w-3.5 shrink-0 opacity-80" aria-hidden />
               </a>
             )
           }
@@ -222,13 +254,41 @@ export function IdeDownloadPanel({ className }: { className?: string }) {
         })}
       </div>
 
+      {isLive ? (
+        <div className="space-y-4 border-t border-border p-4 sm:p-5">
+          <PlatformGuide
+            platform="windows"
+            title="Download all 3 files · run from one folder"
+            imageSrc={MH_IDE_WINDOWS_GUIDE_IMAGE}
+            imageAlt="Google Drive folder showing the three Windows files for Monrovia Hustle Independence Day Edition"
+            steps={[
+              "Open the Windows Google Drive folder and download all 3 files (.exe, .pck, and .console.exe).",
+              "Create a new folder on your PC — for example Monrovia Hustle Independence Day.",
+              "Move all 3 downloaded files into that folder. They must stay together.",
+              "Double-click Monrovia-hustle_independence_day_race.exe to launch the game.",
+            ]}
+          />
+          <PlatformGuide
+            platform="android"
+            title="Single APK install"
+            imageSrc={MH_IDE_ANDROID_GUIDE_IMAGE}
+            imageAlt="Google Drive folder showing the Android APK for Monrovia Hustle Independence Day Edition"
+            steps={[
+              "Open the Android Google Drive folder and download MonroviaHustle_IndependenceDay_v1.apk.",
+              "On your phone, allow installs from unknown sources if prompted.",
+              "Tap the APK file to install, then open the game from your app drawer.",
+            ]}
+          />
+        </div>
+      ) : null}
+
       <div
         className="border-t border-border px-4 py-2.5 text-[9px] uppercase tracking-[0.14em] text-muted-foreground sm:px-5"
         style={{ fontFamily: MONO }}
       >
         {isLive
-          ? "STATUS · LIVE · JOIN WHATSAPP TO RECEIVE BUILD"
-          : `STATUS · LOCKED · RELEASE ${MH_IDE_DOWNLOAD_LABEL} · WIN · MAC · iOS · APK`}
+          ? "STATUS · LIVE · GOOGLE DRIVE · WIN · APK"
+          : `STATUS · LOCKED · RELEASE ${MH_IDE_DOWNLOAD_LABEL} · WIN · APK`}
       </div>
     </div>
   )

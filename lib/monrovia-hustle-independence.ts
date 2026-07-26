@@ -28,9 +28,25 @@ export const MH_IDE_PAYMENT_NOTE = "MH IDE TSHIRT"
 export const MH_IDE_WHATSAPP_URL =
   "https://chat.whatsapp.com/IzrsbvLapPLCj48aCzo23O?s=cl&p=a&ilr=0"
 
-/** Local midnight — Windows / Mac / Android APK unlock Liberia Independence Day */
+/** Local midnight — Windows / Android APK unlock Liberia Independence Day */
 export const MH_IDE_DOWNLOAD_RELEASE = new Date(2026, 6, 26, 0, 0, 0, 0)
 export const MH_IDE_DOWNLOAD_LABEL = "26 July 2026"
+
+/** Google Drive — Windows build folder (3 files: .exe, .pck, .console.exe) */
+export const MH_IDE_WINDOWS_DRIVE_URL =
+  "https://drive.google.com/drive/folders/1pNWjDkQ9lfGYuoYu0Hohy8n7U6ZfP5MD"
+
+/** Google Drive — Android APK */
+export const MH_IDE_ANDROID_DRIVE_URL =
+  "https://drive.google.com/drive/folders/1_xWDho2Qku0bdw5AutMEf94vSfloU9V0"
+
+export const MH_IDE_WINDOWS_GUIDE_IMAGE = `${BASE}/extra/windows.png`
+export const MH_IDE_ANDROID_GUIDE_IMAGE = `${BASE}/extra/android.png`
+
+/** Official trailer — YouTube */
+export const MH_IDE_TRAILER_YOUTUBE_ID = "Hftd3ZGKofo"
+export const MH_IDE_TRAILER_YOUTUBE_URL = `https://youtu.be/${MH_IDE_TRAILER_YOUTUBE_ID}`
+export const MH_IDE_TRAILER_EMBED_URL = `https://www.youtube.com/embed/${MH_IDE_TRAILER_YOUTUBE_ID}?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1`
 
 /** Creator — Victor Edet Coleman */
 export const MH_IDE_CREATOR_NAME = "Victor Edet Coleman"
