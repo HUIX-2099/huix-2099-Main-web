@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, Twitter, Instagram, Facebook, Youtube } from "lucide-react"
 
-type TabId = "huix-2099" | "huix-or" | "monrovia-hustle"
+type TabId = "huix-2099" | "huix-or" | "monrovia-hustle" | "virtual-past-liberia"
 
 interface CardDesign {
   bgColor: string
@@ -171,6 +171,48 @@ const tabsContent: TabContent[] = [
           "Concept 01 includes a Windows playable slice — intro comic, bedroom hub, open-street loop, Tenneh phone mission chain, and Liberian voice cast in-engine.",
           "Three additional franchise slots are reserved on the hub as locked placeholders while future beats are in development.",
           "Visit the concept page for gameplay trailer, developer notes, and the June 2026 build unlock."
+        ]
+      }
+    ]
+  },
+  {
+    id: "virtual-past-liberia",
+    label: "VIRTUAL PAST LIBERIA",
+    shortLabel: "VPL",
+    card: {
+      bgColor: "#0a0a0a",
+      accentColor: "#3b82f6",
+      mainText: "VIRTUAL",
+      subText: "PAST",
+      codes: {
+        topLeft: ["SN-VPL-01", "REV-A1", "LIC-LBR-004"],
+        topRight: ["2026", "RESEARCH"],
+        bottomCodes: ["HERITAGE · XR", "LIBERIA", "EDU"]
+      },
+      systemInfo: [
+        { label: "Project", value: "Virtual Past Liberia" },
+        { label: "Region", value: "Monrovia · Liberia" },
+        { label: "Focus", value: "Heritage Preservation" },
+        { label: "Status", value: "Active / Research", highlight: true }
+      ]
+    },
+    sections: [
+      {
+        number: "01",
+        title: "Immersive Heritage Reconstruction",
+        subtitle: "Project Overview",
+        content: [
+          "Virtual Past Liberia reconstructs historical sites, oral histories, and cultural artifacts using immersive 3D storytelling optimized for low-bandwidth and low-spec devices.",
+          "The program emphasizes community curation, ethical stewardship, and education partnerships to keep cultural context accurate and accessible."
+        ]
+      },
+      {
+        number: "02",
+        title: "Research & Platform",
+        subtitle: "HUIX-HORIZEN Integration",
+        content: [
+          "Work is focused on modular HUIX-HORIZEN scenes, consent-first telemetry, and offline-capable distribution for partner institutions.",
+          "Prototypes, video samples, and early builds are catalogued in the prototypes showcase and research pages."
         ]
       }
     ]
@@ -481,6 +523,63 @@ export default function AboutPage() {
               </section>
             ))}
 
+            {activeTab === "virtual-past-liberia" && (
+              <section className="py-16 lg:py-24">
+                <div className="max-w-6xl mx-auto px-4 lg:px-8 xl:ml-24">
+                  <div className="mb-10 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-center">
+                    <div>
+                      <div className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground mb-3" style={{ fontFamily: monoFont }}>
+                        VPL · Video Preview
+                      </div>
+                      <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.08em' }}>
+                        Virtual Past Liberia in motion
+                      </h2>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Video samples from the Virtual Past Liberia project, showing early immersive storytelling and prototype research footage for heritage preservation in Liberia.
+                      </p>
+                    </div>
+                    <div className="rounded-3xl border border-border bg-black p-6 shadow-xl shadow-black/20">
+                      <div className="grid gap-6">
+                        <div className="rounded-3xl overflow-hidden border border-border bg-black">
+                          <video
+                            controls
+                            playsInline
+                            className="w-full min-h-[220px] bg-black"
+                            src="/vpl/Generate_another_video_explain.mp4"
+                          />
+                          <div className="px-4 py-3 text-xs text-muted-foreground bg-slate-950/70">
+                            Generate another video explain
+                          </div>
+                        </div>
+                        <div className="rounded-3xl overflow-hidden border border-border bg-black">
+                          <video
+                            controls
+                            playsInline
+                            className="w-full min-h-[220px] bg-black"
+                            src="/vpl/Create_an_advertisement_video.mp4"
+                          />
+                          <div className="px-4 py-3 text-xs text-muted-foreground bg-slate-950/70">
+                            Create an advertisement video
+                          </div>
+                        </div>
+                        <div className="rounded-3xl overflow-hidden border border-border bg-black">
+                          <video
+                            controls
+                            playsInline
+                            className="w-full min-h-[220px] bg-black"
+                            src="/vpl/Can_you_generate_one_where_the.mp4"
+                          />
+                          <div className="px-4 py-3 text-xs text-muted-foreground bg-slate-950/70">
+                            Can you generate one where the...
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            )}
+
             {/* CTA Section */}
             <section className="py-16 lg:py-20">
               <div className="max-w-6xl mx-auto px-4 lg:px-8 xl:ml-24">
@@ -506,20 +605,27 @@ export default function AboutPage() {
                         {activeTab === "huix-2099" && "Ready to build the future?"}
                         {activeTab === "huix-or" && "Try HUIXOR"}
                         {activeTab === "monrovia-hustle" && "Explore Monrovia Hustle 3D"}
+                        {activeTab === "virtual-past-liberia" && "Explore Virtual Past Liberia"}
                       </h3>
                       <p className="text-muted-foreground text-sm max-w-md">
                         {activeTab === "huix-2099" && "Get in touch to discuss how HUIX-2099 can help bring your vision to life."}
                         {activeTab === "huix-or" && "Download HUIXOR, browse screenshots, and see how the dev browser fits your workflow."}
                         {activeTab === "monrovia-hustle" && "Franchise hub, Concept 01 dossier, trailer, cast, and the Windows build drop."}
+                        {activeTab === "virtual-past-liberia" && "Research hub, prototypes, and community-curated heritage resources."}
                       </p>
                     </div>
-                    <Link href={activeTab === "huix-2099" ? "/contact" : activeTab === "huix-or" ? "/products/huixor" : "/products/monrovia-hustle/concept"}>
+                    <Link href={
+                      activeTab === "huix-2099" ? "/huix-2099" :
+                      activeTab === "huix-or" ? "/products/huixor" :
+                      activeTab === "monrovia-hustle" ? "/products/monrovia-hustle/concept" :
+                      "/virtual-past-liberia"
+                    }>
                       <motion.button
                         whileHover={{ x: 4 }}
                         className="flex items-center gap-3 px-6 py-3 bg-foreground text-background text-[11px] uppercase tracking-[0.12em]"
                         style={{ fontFamily: monoFont }}
                       >
-                        <span>{activeTab === "huix-2099" ? "Contact Us" : "Learn More"}</span>
+                        <span>Learn More</span>
                         <ArrowRight className="h-4 w-4" />
                       </motion.button>
                     </Link>
