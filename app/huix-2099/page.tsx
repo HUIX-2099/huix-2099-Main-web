@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import Footer from "@/components/footer"
+import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
   title: "HUIX-2099 — About the Studio",
