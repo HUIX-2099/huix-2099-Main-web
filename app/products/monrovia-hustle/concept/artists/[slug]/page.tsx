@@ -59,7 +59,6 @@ export default async function MonroviaConceptArtistPage({ params }: { params: Pr
       { name: "Home", path: "/" },
       { name: "Products", path: "/products" },
       { name: "Monrovia Hustle 3D", path: "/products/monrovia-hustle" },
-      { name: "Concept 01", path: "/products/monrovia-hustle/concept" },
       { name: artist.name, path: artistPath },
     ]),
     {
@@ -85,7 +84,7 @@ export default async function MonroviaConceptArtistPage({ params }: { params: Pr
           className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
         >
           <ChevronLeft className="h-4 w-4 shrink-0" aria-hidden />
-          Art &amp; artists on concept page
+          Art &amp; artists on Monrovia Hustle
         </Link>
 
         <div className="mb-10 overflow-hidden rounded-2xl border border-border/70 bg-muted/30 dark:bg-muted/15">

@@ -1,9 +1,29 @@
 "use client"
 
 import * as React from "react"
-import { Apple, Download, ExternalLink, Lock, Monitor, Smartphone } from "lucide-react"
+import { ExternalLink, Lock } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+
+type BrandIcon = (props: { className?: string; "aria-hidden"?: boolean }) => React.JSX.Element
+
+const WindowsIcon: BrandIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M0 3.449 9.75 2.1v9.451H0zm10.949-1.606L24 0v11.4H10.949zM0 12.6h9.75v9.451L0 20.699zm10.949 0H24V24l-12.9-1.801z" />
+  </svg>
+)
+
+const AndroidIcon: BrandIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M17.523 15.341a1.003 1.003 0 1 1 0-2.006 1.003 1.003 0 0 1 0 2.006m-11.046 0a1.003 1.003 0 1 1 0-2.006 1.003 1.003 0 0 1 0 2.006m11.405-6.02 2.004-3.47a.416.416 0 0 0-.152-.567.416.416 0 0 0-.568.152l-2.03 3.515A12.6 12.6 0 0 0 12 7.83a12.6 12.6 0 0 0-5.136 1.12L4.834 5.436a.416.416 0 0 0-.568-.152.416.416 0 0 0-.152.567l2.004 3.47C2.67 11.187.343 14.659 0 18.761h24c-.344-4.102-2.67-7.574-6.118-9.44" />
+  </svg>
+)
+
+const AppleIcon: BrandIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
+  </svg>
+)
 
 const MONO = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' as const
 
@@ -38,7 +58,7 @@ type PlatformConfig = {
   shortLabel: string
   host: string
   href?: string
-  Icon: typeof Monitor
+  Icon: BrandIcon
   /** windows = countdown gate; android = live; ios = pending */
   availability: "countdown" | "live" | "pending"
   pendingNote?: string
@@ -51,7 +71,7 @@ const PLATFORMS: PlatformConfig[] = [
     shortLabel: "Windows",
     host: MH_CONCEPT_DOWNLOAD_HOST,
     href: MH_CONCEPT_DOWNLOAD_HREF,
-    Icon: Monitor,
+    Icon: WindowsIcon,
     availability: "countdown",
   },
   {
@@ -60,7 +80,7 @@ const PLATFORMS: PlatformConfig[] = [
     shortLabel: "Android",
     host: MH_CONCEPT_ANDROID_HOST,
     href: MH_CONCEPT_ANDROID_HREF,
-    Icon: Smartphone,
+    Icon: AndroidIcon,
     availability: "live",
   },
   {
@@ -68,7 +88,7 @@ const PLATFORMS: PlatformConfig[] = [
     label: "iOS release pending",
     shortLabel: "iOS",
     host: "App Store",
-    Icon: Apple,
+    Icon: AppleIcon,
     availability: "pending",
     pendingNote: "Release pending",
   },
@@ -261,8 +281,7 @@ function PlatformDownloadButton({
           rel="noopener noreferrer"
           title={`${label} — ${host}`}
         >
-          <Icon className="size-4 shrink-0" aria-hidden />
-          <Download className="size-4 shrink-0" aria-hidden />
+          <Icon className="size-[18px] shrink-0" aria-hidden />
           {label}
           {isExternal ? <ExternalLink className="size-3.5 shrink-0 opacity-80" aria-hidden /> : null}
         </a>

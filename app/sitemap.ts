@@ -32,7 +32,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/products/typelr", 0.75, "monthly"),
     entry("/products/typelr/install", 0.7, "monthly"),
     entry("/products/monrovia-hustle", 0.9, "weekly"),
-    entry("/products/monrovia-hustle/concept", 0.9, "weekly"),
     entry("/products/monrovia-hustle-independence-day", 0.85, "weekly"),
     entry("/products/monrovia-hustle/donate", 0.6, "monthly"),
   ]

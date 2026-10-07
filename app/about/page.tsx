@@ -617,7 +617,7 @@ export default function AboutPage() {
                     <Link href={
                       activeTab === "huix-2099" ? "/huix-2099" :
                       activeTab === "huix-or" ? "/products/huixor" :
-                      activeTab === "monrovia-hustle" ? "/products/monrovia-hustle/concept" :
+                      activeTab === "monrovia-hustle" ? "/products/monrovia-hustle" :
                       "/virtual-past-liberia"
                     }>
                       <motion.button

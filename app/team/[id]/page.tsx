@@ -77,7 +77,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ id:
 
     const hidePhoto = "hidePhoto" in member && member.hidePhoto === true
 
-    const voiceCastSectionHref = "/products/monrovia-hustle/concept#voice-actors"
+    const voiceCastSectionHref = "/products/monrovia-hustle#voice-actors"
     const backHref = member.voiceProfile ? voiceCastSectionHref : "/team"
     const backLabel = member.voiceProfile ? "Back to Voice Cast" : "Back to Team"
 

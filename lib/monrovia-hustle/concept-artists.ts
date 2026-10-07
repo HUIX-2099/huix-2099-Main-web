@@ -5,7 +5,8 @@ export function musicArtistSrc(filename: string) {
 }
 
 export const MONROVIA_CONCEPT_PAGE_HREF = "/products/monrovia-hustle/concept"
-export const MONROVIA_CONCEPT_ARTISTS_HREF = `${MONROVIA_CONCEPT_PAGE_HREF}#artists`
+export const MONROVIA_HUB_HREF = "/products/monrovia-hustle"
+export const MONROVIA_CONCEPT_ARTISTS_HREF = `${MONROVIA_HUB_HREF}#artists`
 
 export function monroviaConceptArtistPageHref(slug: string) {
   return `${MONROVIA_CONCEPT_PAGE_HREF}/artists/${slug}`

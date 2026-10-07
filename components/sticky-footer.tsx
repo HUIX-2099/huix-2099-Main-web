@@ -42,7 +42,7 @@ const footerLinkGroups: FooterLinkGroup[] = [
       { title: "HUIX-THEME", href: "/products/huix-theme" },
       { title: "Monrovia Hustle 3D", href: "/products/monrovia-hustle" },
       { title: "Monrovia Hustle · Independence Day", href: "/products/monrovia-hustle-independence-day" },
-      { title: "Monrovia Hustle · Concept", href: "/products/monrovia-hustle/concept" },
+      { title: "Monrovia Hustle · Concept", href: "/products/monrovia-hustle#concept-notes" },
       { title: "HUIX Character Motion", href: "/products/huix-character-motion" },
       { title: "Typelr", href: "/products/typelr" },
     ],

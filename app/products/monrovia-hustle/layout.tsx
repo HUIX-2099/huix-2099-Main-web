@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
-import { GeoWelcomeBanner } from "@/components/geo-welcome-banner"
 import { JsonLd } from "@/components/seo/json-ld"
 import { breadcrumbJsonLd, buildPageMetadata, productByPath, softwareProductJsonLd } from "@/lib/seo"
 
@@ -29,7 +28,6 @@ export default function MonroviaHustleLayout({ children }: { children: ReactNode
     <>
       <JsonLd data={jsonLd} />
       <div className="min-h-screen bg-background text-foreground">{children}</div>
-      <GeoWelcomeBanner />
     </>
   )
 }
