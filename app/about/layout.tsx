@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About HUIX-2099 — Our Story, Mission & Values",
     description:
-      "Liberia-based studio founded in Monrovia in 2024. Our story, mission, and values across VR, XR, AR, AI, and 3D visualization.",
+      "Liberia-based startup founded in Monrovia in 2024. Our story, mission, and values across VR, XR, AR, AI, and 3D visualization.",
     url: `${SITE_URL}/about`,
     type: "website",
     siteName: "HUIX-2099",

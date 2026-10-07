@@ -68,7 +68,7 @@ export default function HuixOasisPage() {
                 HUIX Oasis Research Lab
               </p>
               <p>
-                <span className="text-white/35">Studio · </span>
+                <span className="text-white/35">Startup · </span>
                 HUIX-2099 · Monrovia, Liberia
               </p>
               <p>

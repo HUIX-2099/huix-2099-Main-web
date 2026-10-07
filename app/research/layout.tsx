@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Research & Innovation | HUIX-2099",
     description:
-      "Exploring immersive VR/XR/AR and AI through HUIX-Horizen and Virtual Past Liberia — research from Liberia-based studio HUIX-2099.",
+      "Exploring immersive VR/XR/AR and AI through HUIX-Horizen and Virtual Past Liberia — research from Liberia-based startup HUIX-2099.",
     url: `${SITE_URL}/research`,
     type: "website",
     siteName: "HUIX-2099",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Research & Innovation | HUIX-2099",
     description:
-      "Immersive technology and heritage research from Liberia-based studio HUIX-2099.",
+      "Immersive technology and heritage research from Liberia-based startup HUIX-2099.",
   },
 }
 

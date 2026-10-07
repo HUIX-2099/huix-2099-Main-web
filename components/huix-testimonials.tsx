@@ -1,7 +1,9 @@
 "use client"
 
 import React from "react"
+import Link from "next/link"
 import { motion } from "framer-motion"
+import { ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const MONO = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' as const
@@ -28,7 +30,7 @@ export const huixTestimonials: HuixTestimonial[] = [
     initials: "JM",
   },
   {
-    text: "Rare to see a Liberian studio ship a vertical slice this honest about being a concept. Respect the transparency.",
+    text: "Rare to see a Liberian startup ship a vertical slice this honest about being a concept. Respect the transparency.",
     name: "Priya S.",
     role: "Narrative designer",
     initials: "PS",
@@ -52,7 +54,7 @@ export const huixTestimonials: HuixTestimonial[] = [
     initials: "MO",
   },
   {
-    text: "HUIX-2099's site and product pages feel editorial, not template — you can tell it's studio-built.",
+    text: "HUIX-2099's site and product pages feel editorial, not template — you can tell it's custom-built.",
     name: "Samuel B.",
     role: "Product designer",
     initials: "SB",
@@ -135,14 +137,19 @@ const columnSets: HuixTestimonial[][] = [
   huixTestimonials.filter((_, i) => i % 3 === 2),
 ]
 
-export function HuixTestimonialsSection({ className }: { className?: string }) {
+export function HuixTestimonialsSection({ className, compact = false }: { className?: string; compact?: boolean }) {
   return (
     <section
       className={cn("border-t border-border bg-muted/20 py-14 dark:bg-muted/10 sm:py-16 lg:py-20", className)}
       aria-labelledby="huix-testimonials-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 flex flex-col gap-4 lg:mb-12 lg:flex-row lg:items-end lg:justify-between">
+        <div
+          className={cn(
+            "flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between",
+            !compact && "mb-10 lg:mb-12"
+          )}
+        >
           <div className="max-w-xl">
             <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground" style={{ fontFamily: MONO }}>
               [04] · Community signal
@@ -155,25 +162,40 @@ export function HuixTestimonialsSection({ className }: { className?: string }) {
               What people are saying
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Early reactions from playtesters, builders, and friends around HUIX-2099 — illustrative quotes while the studio
+              Early reactions from playtesters, builders, and friends around HUIX-2099 — illustrative quotes while the startup
               grows its public feedback lane.
             </p>
           </div>
-          <p className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground/60" style={{ fontFamily: MONO }}>
-            Placeholder testimonials · not verified reviews
-          </p>
+          {compact ? (
+            <Link
+              href="/testimonials"
+              className="group inline-flex shrink-0 items-center gap-3 self-start rounded-full bg-[#ff3b1f] py-2 pl-5 pr-2 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-950 transition hover:bg-foreground hover:text-background lg:self-auto"
+              style={{ fontFamily: MONO }}
+            >
+              Read all reviews
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-950 text-[#ff3b1f] transition group-hover:bg-[#ff3b1f] group-hover:text-neutral-950">
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </Link>
+          ) : (
+            <p className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground/60" style={{ fontFamily: MONO }}>
+              Placeholder testimonials · not verified reviews
+            </p>
+          )}
         </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {columnSets.map((set, index) => (
-            <TestimonialsColumn
-              key={index}
-              testimonials={set}
-              duration={14 + index * 4}
-              className={cn(index === 1 && "hidden sm:block", index === 2 && "hidden lg:block")}
-            />
-          ))}
-        </div>
+        {!compact && (
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {columnSets.map((set, index) => (
+              <TestimonialsColumn
+                key={index}
+                testimonials={set}
+                duration={14 + index * 4}
+                className={cn(index === 1 && "hidden sm:block", index === 2 && "hidden lg:block")}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )

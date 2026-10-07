@@ -68,7 +68,6 @@ export default function ResearchPage() {
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { title: 'HUIX-HORIZEN', meta: 'Platform · Experimental', desc: 'Modular XR platform for spatial visualization and collaboration.', href: '/huix-horizen' },
-              { title: 'V i r t u a l  ·  P a s t  ·  L i b e r i a', meta: 'Concept · 0 Funding', desc: 'Immersive cultural reconstruction and architectural storytelling.', href: '/virtual-past-liberia' },
             ].map((item, index) => (
               <motion.a
                 key={item.title}
@@ -90,6 +89,43 @@ export default function ResearchPage() {
                 <p className="text-muted-foreground leading-relaxed text-sm">{item.desc}</p>
               </motion.a>
             ))}
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.06 }}
+              className="md:col-span-1 lg:col-span-2 p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Initiative · Joint Interest</div>
+                <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>02</div>
+              </div>
+              <div className="h-px w-full bg-border mb-4" />
+              <h3 className="text-xl font-bold text-foreground mb-1" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>
+                Virtual Past Liberia × LLM Liberia
+              </h3>
+              <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-4">Two Projects · One Mission · Concept</div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <a href="/virtual-past-liberia" className="block rounded-md border border-border p-4 hover:border-orange-500/60 transition-colors">
+                  <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-orange-500 mb-1">[A] Heritage · XR</div>
+                  <div className="font-semibold text-foreground mb-1">Virtual Past Liberia</div>
+                  <p className="text-muted-foreground leading-relaxed text-sm">Immersive cultural reconstruction and architectural storytelling.</p>
+                </a>
+                <a
+                  href="https://liberia-language-lm.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block rounded-md border border-border p-4 hover:border-orange-500/60 transition-colors"
+                >
+                  <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-orange-500 mb-1">[B] Language · AI · KoloquaLBR</div>
+                  <div className="font-semibold text-foreground mb-1">LLM Liberia ↗</div>
+                  <p className="text-muted-foreground leading-relaxed text-sm">A Liberian language model trained on Liberian English and local languages to preserve and power local voices.</p>
+                </a>
+              </div>
+              <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+                Shared interest: preserving Liberian history, culture, and language — and making it accessible through immersive and AI technology.
+              </p>
+            </motion.div>
           </div>
 
           {/* Medical Implications — Virtual Past Liberia */}

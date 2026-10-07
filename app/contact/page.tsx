@@ -427,9 +427,9 @@ export default function ContactPage() {
       </section>
 
       <HuixWorldMap
-        sectionLabel="[05] FIND US"
-        title="MONROVIA HQ"
-        description="Visit us in Monrovia, Liberia — or connect from anywhere. We work with partners across West Africa, the United States, and the global diaspora."
+        sectionLabel="[05] WHERE WE BUILD"
+        title="MONROVIA · GLOBAL"
+        description="Built in Liberia's capital — HUIX-2099 ships software, games, and tools with roots in Monrovia and reach across West Africa and the Americas."
         mapHeight="min(480px, 65vh)"
       />
 

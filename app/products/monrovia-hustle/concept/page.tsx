@@ -187,7 +187,7 @@ function StudioContactStrip({
         })}
       </div>
       <a
-        href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Studio%20inquiry`}
+        href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Inquiry`}
         className={cn(
           "flex min-w-0 items-center rounded-[2px] border border-border/80 bg-muted/30 transition hover:bg-muted/50",
           card
@@ -404,13 +404,13 @@ export default function MonroviaHustleConceptPage() {
 
             <div className="mb-2 xl:hidden">
               <div className="rounded-xl border border-border/70 bg-card/50 p-5 shadow-sm dark:border-border/60 dark:bg-muted/15">
-                <StudioContactStrip heading="Studio &amp; community" />
+                <StudioContactStrip heading="Team &amp; community" />
               </div>
             </div>
 
             <div className="hidden min-w-0 w-full grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 xl:grid">
               <div className="rounded-xl border border-border/70 bg-card/50 p-6 shadow-sm backdrop-blur-sm dark:border-border/60 dark:bg-muted/15">
-                <StudioContactStrip heading="Studio &amp; community" variant="card" />
+                <StudioContactStrip heading="Team &amp; community" variant="card" />
               </div>
               <div className="rounded-xl border border-border/70 bg-card/40 p-6 shadow-sm dark:border-border/60 dark:bg-muted/10">
                 <p
@@ -467,13 +467,13 @@ export default function MonroviaHustleConceptPage() {
                   <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">What we&apos;re looking for</h3>
                   <p>
                     Partners and investors who care about representation and West African urban stories — and who can help with{" "}
-                    <strong className="text-foreground">funding, polish, and distribution</strong> (mobile readiness, performance, marketing). Use the studio
+                    <strong className="text-foreground">funding, polish, and distribution</strong> (mobile readiness, performance, marketing). Use the team
                     contact strip above or{" "}
                     <a
-                      href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Studio%20inquiry`}
+                      href={`mailto:${STUDIO_EMAIL}?subject=Monrovia%20Hustle%203D%20%E2%80%94%20Inquiry`}
                       className="font-semibold text-[#002868] underline decoration-[#002868]/35 underline-offset-2 hover:decoration-[#BF0A30] dark:text-[#7eb3ff]"
                     >
-                      email the studio
+                      email the team
                     </a>{" "}
                     for slice details, roadmap, and partnership conversations.
                   </p>

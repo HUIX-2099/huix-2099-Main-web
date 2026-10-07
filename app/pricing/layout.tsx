@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     absolute: "Pricing & Services — HUIX-2099 | Custom Quotes, Liberia",
   },
   description:
-    "HUIX-2099 pricing and services: website development, mobile apps, PWA & full-stack, native desktop software, VR/AR/XR immersive experiences, and animation. Every project is quoted individually — email huixtech2099@gmail.com for a tailored proposal. Liberia-based studio in Monrovia.",
+    "HUIX-2099 pricing and services: website development, mobile apps, PWA & full-stack, native desktop software, VR/AR/XR immersive experiences, and animation. Every project is quoted individually — email huixtech2099@gmail.com for a tailored proposal. Liberia-based startup in Monrovia.",
   keywords: [
     "HUIX-2099 pricing",
     "HUIX-2099 services",
@@ -20,15 +20,15 @@ export const metadata: Metadata = {
     "animation motion graphics Liberia",
     "custom software quote Monrovia",
     "web development West Africa",
-    "Monrovia software studio pricing",
+    "Monrovia software startup pricing",
     "hire developers Liberia",
-    "African tech studio services",
+    "African tech startup services",
   ],
   alternates: { canonical: `${SITE_URL}/pricing` },
   openGraph: {
     title: "Pricing & Services | HUIX-2099",
     description:
-      "Website, app, PWA, native software, VR/AR/XR, and animation services from Liberia-based studio HUIX-2099. Custom quotes — email for info.",
+      "Website, app, PWA, native software, VR/AR/XR, and animation services from Liberia-based startup HUIX-2099. Custom quotes — email for info.",
     url: `${SITE_URL}/pricing`,
     type: "website",
     siteName: "HUIX-2099",

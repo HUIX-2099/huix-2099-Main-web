@@ -173,7 +173,7 @@ export function Navbar() {
       href: "/about",
       icon: Info,
       mega: {
-        featuredLabel: "THE STUDIO",
+        featuredLabel: "THE STARTUP",
         featured: [
           {
             title: "Our Story",
@@ -209,7 +209,7 @@ export function Navbar() {
       href: "#",
       icon: Building2,
       mega: {
-        featuredLabel: "FROM THE STUDIO",
+        featuredLabel: "FROM THE STARTUP",
         featured: [
           {
             title: "Monrovia Hustle 3D",

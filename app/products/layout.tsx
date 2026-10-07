@@ -19,11 +19,11 @@ export const metadata: Metadata = buildPageMetadata({
     "Huixor Windows",
     "Typelr Liberia",
     "Liberia software",
-    "Liberia game studio",
+    "Liberia game startup",
     "Monrovia tech products",
   ],
   image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
-  imageAlt: "HUIX-2099 products — Monrovia Hustle 3D and studio tools",
+  imageAlt: "HUIX-2099 products — Monrovia Hustle 3D and developer tools",
 })
 
 const jsonLd = [

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     absolute: "Partners & Collaboration — HUIX-2099 | Liberia Tech Partnerships",
   },
   description:
-    "Partner with HUIX-2099, a Liberia-based technology studio in Monrovia. We collaborate with media, technology, education, research, enterprise, and government partners on VR, XR, AR, AI, and 3D visualization projects across Africa. Email huixtech2099@gmail.com to explore a partnership.",
+    "Partner with HUIX-2099, a Liberia-based technology startup in Monrovia. We collaborate with media, technology, education, research, enterprise, and government partners on VR, XR, AR, AI, and 3D visualization projects across Africa. Email huixtech2099@gmail.com to explore a partnership.",
   keywords: [
     "HUIX-2099 partners",
     "HUIX-2099 partnership",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Partners & Collaboration | HUIX-2099",
     description:
-      "Media, technology, education, and enterprise partnerships with Liberia-based studio HUIX-2099.",
+      "Media, technology, education, and enterprise partnerships with Liberia-based startup HUIX-2099.",
     url: `${SITE_URL}/partners`,
     type: "website",
     siteName: "HUIX-2099",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Partners & Collaboration | HUIX-2099",
-    description: "Partner with Liberia-based studio HUIX-2099 on immersive tech across Africa.",
+    description: "Partner with Liberia-based startup HUIX-2099 on immersive tech across Africa.",
   },
 }
 

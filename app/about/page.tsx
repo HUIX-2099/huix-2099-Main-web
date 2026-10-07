@@ -119,7 +119,7 @@ const tabsContent: TabContent[] = [
       },
       {
         number: "02",
-        title: "Why it sits in the studio stack",
+        title: "Why it sits in the HUIX stack",
         subtitle: "Tooling for how we ship",
         content: [
           "HUIXOR is part of the same pipeline that powers Monrovia Hustle 3D and client work — honest tooling built in Liberia for global-quality output.",
@@ -149,7 +149,7 @@ const tabsContent: TabContent[] = [
         { label: "Genre", value: "Urban narrative RPG" },
         { label: "Platform", value: "Windows PC" },
         { label: "Concept 01", value: "Live dossier", highlight: true },
-        { label: "Studio", value: "HUIX-2099", highlight: true }
+        { label: "Startup", value: "HUIX-2099", highlight: true }
       ]
     },
     sections: [

@@ -124,7 +124,7 @@ export function GeoWelcomeBanner() {
                 </p>
                 <p>
                   Use the hub and concept pages at your pace: trailer, voice cast, build notes. If something lands,
-                  we&apos;re grateful; if you want to reach the studio, the main site contact form is the lane we check.
+                  we&apos;re grateful; if you want to reach the team, the main site contact form is the lane we check.
                 </p>
                 <p className="text-xs text-muted-foreground/90">
                   Country is inferred from your connection (approximate). This Monrovia Hustle pop-up only appears once

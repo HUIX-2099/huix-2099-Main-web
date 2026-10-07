@@ -15,7 +15,7 @@ export const HUIX_HQ: HuixLocation = {
   id: "monrovia",
   name: "Monrovia, Liberia",
   label: "HUIX-2099 HQ",
-  subtitle: "Studio · Monrovia, LBR",
+  subtitle: "Startup · Monrovia, LBR",
   longitude: -10.8074,
   latitude: 6.3004,
   color: "#002868",

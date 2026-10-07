@@ -249,7 +249,7 @@ export default function MonroviaIndependenceDayPage() {
                 <SpecRow onDark label="TYPE" value="RACING / NARRATIVE" />
                 <SpecRow onDark label="PLATFORM" value="PC · MOBILE" />
                 <SpecRow onDark label="STATUS" value="ACTIVE DEV" />
-                <SpecRow onDark label="STUDIO" value="HUIX-2099" />
+                <SpecRow onDark label="STARTUP" value="HUIX-2099" />
               </motion.div>
             </div>
           </div>
@@ -329,7 +329,7 @@ export default function MonroviaIndependenceDayPage() {
                 that treat West African streets as the main character, not a generic backdrop.
               </p>
               <p className="border-l-2 border-border pl-4 text-muted-foreground">
-                This edition sits inside the wider Monrovia Hustle 3D franchise from HUIX-2099 — Liberia-based studio
+                This edition sits inside the wider Monrovia Hustle 3D franchise from HUIX-2099 — Liberia-based startup
                 work that puts Monrovia on the map as a playable city.
               </p>
               <Link

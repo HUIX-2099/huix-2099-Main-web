@@ -48,7 +48,7 @@ const footerLinkGroups: FooterLinkGroup[] = [
     ],
   },
   {
-    label: "Studio",
+    label: "Company",
     links: [
       { title: "About HUIX-2099", href: "/about" },
       { title: "Team", href: "/team" },
@@ -63,7 +63,7 @@ const footerLinkGroups: FooterLinkGroup[] = [
     links: [
       { title: "Contact", href: "/contact" },
       { title: "FAQ", href: "/faq" },
-      { title: "Email studio", href: `mailto:${STUDIO_EMAIL}`, external: true },
+      { title: "Email us", href: `mailto:${STUDIO_EMAIL}`, external: true },
     ],
   },
   {
@@ -112,7 +112,7 @@ export function StickyFooter({ className, ...props }: StickyFooterProps) {
                   </span>
                 </Link>
                 <p className="text-sm leading-relaxed text-muted-foreground md:mt-0">
-                  Liberia-based studio building VR, XR, AR, AI, and immersive software — from Monrovia Hustle 3D and HUIXOR to
+                  Liberia-based startup building VR, XR, AR, AI, and immersive software — from Monrovia Hustle 3D and HUIXOR to
                   themes, tools, and narrative worlds for Africa&apos;s digital future.
                 </p>
                 <p className="text-xs text-muted-foreground">

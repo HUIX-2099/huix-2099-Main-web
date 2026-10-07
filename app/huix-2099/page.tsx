@@ -3,8 +3,8 @@ import Link from "next/link"
 import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
-  title: "HUIX-2099 — About the Studio",
-  description: "HUIX-2099 — Liberia-based studio building XR, AI, and 3D experiences from Monrovia.",
+  title: "HUIX-2099 — About the Startup",
+  description: "HUIX-2099 — Liberia-based startup building XR, AI, and 3D experiences from Monrovia.",
 }
 
 export default function Huix2099Page() {
@@ -12,10 +12,10 @@ export default function Huix2099Page() {
     <>
       <main className="mx-auto max-w-5xl px-6 py-16">
         <div className="max-w-3xl">
-          <div className="mb-4 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Studio · About</div>
+          <div className="mb-4 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Startup · About</div>
           <h1 className="text-4xl font-bold mb-4">HUIX-2099 — Building the Digital Future</h1>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            HUIX-2099 is a Liberia-based technology studio founded in Monrovia in 2024. We design and
+            HUIX-2099 is a Liberia-based technology startup founded in Monrovia in 2024. We design and
             build immersive XR, AI, and 3D visualization projects that celebrate African creativity
             while solving real-world problems through accessible, research-driven software.
           </p>

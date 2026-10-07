@@ -1,292 +1,235 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
-import { useTheme } from "./theme-provider"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, ArrowDown } from "lucide-react"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
+import { LiberiaMapArt } from "@/components/vpl/vpl-archive-backdrop"
+
+const ORANGE = "#ff3b1f"
+const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
+const display = { fontFamily: "Mohican, sans-serif" }
+
+const definition = [
+  { letter: "H", word: "Hyper" },
+  { letter: "U", word: "Unified" },
+  { letter: "I", word: "Intelligent" },
+  { letter: "X", word: "eXperience" },
+]
+
+const cardBase =
+  "group relative flex aspect-[3/4.4] flex-col overflow-hidden rounded-2xl p-4 sm:p-5 transition-shadow hover:shadow-[0_25px_40px_-20px_rgba(0,0,0,0.6)]"
 
 export function HeroSection() {
-  const { resolvedTheme } = useTheme()
-  const sectionRef = useRef<HTMLElement>(null)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  })
-
-  // Use a stable default for SSR, then switch to actual theme on client
-  const isDark = mounted ? resolvedTheme === "dark" : false
-
-  // Parallax transforms
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
-  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15])
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [isDark ? 0.2 : 0.1, 0.8])
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"])
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0])
-
-  const bgImage = isDark
-    ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HUIX%202099%20dark%20logo%20jpg-hsTGc84LzW8UXZuWwFFWi2KEDNl22K.jpg"
-    : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HUIX%202099%20white%20logo%20jpg-l8PO2vmS2QGLye3u4EgPMgyDDxU3jy.jpg"
-
-  const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-screen w-full overflow-hidden bg-background"
-    >
-      {/* Grid Pattern Overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.02] z-[1]"
-        style={{
-          backgroundImage: `linear-gradient(${isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)'} 1px, transparent 1px), linear-gradient(90deg, ${isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)'} 1px, transparent 1px)`,
-          backgroundSize: '80px 80px'
-        }}
-      />
+    <section className="px-3 pb-10 pt-6 sm:px-4">
+      <div className="relative grid items-center gap-10 overflow-hidden rounded-[28px] bg-[#121212] px-6 py-10 text-white shadow-[0_40px_80px_-50px_rgba(0,0,0,0.8)] sm:px-10 lg:min-h-[calc(100svh-9rem)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:px-14 lg:py-14">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+          aria-hidden
+        />
 
-      {/* Parallax Background */}
-      <motion.div
-        className="absolute inset-0 w-full h-[130%] -top-[15%] z-[2]"
-        style={{
-          backgroundImage: `url('${bgImage}')`,
-          backgroundSize: "80%",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          y: backgroundY,
-          scale: backgroundScale,
-        }}
-      />
+        <div className="relative">
+          <div
+            className="mb-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/60"
+            style={{ fontFamily: monoFont }}
+          >
+            <span>HUIX · 2099</span>
+            <span className="h-3 w-px bg-white/30" />
+            <span style={{ color: ORANGE }}>Monrovia · LBR</span>
+            <span className="h-3 w-px bg-white/30" />
+            <span>VR · XR · AR · AI</span>
+          </div>
 
-      {/* Gradient Overlay */}
-      <motion.div
-        className={`absolute inset-0 z-[3] ${isDark ? "bg-black" : "bg-white"}`}
-        style={{ opacity: overlayOpacity }}
-      />
+          <p className="text-sm italic text-white/70" style={{ fontFamily: "Georgia, serif" }}>
+            Hello from Monrovia,
+          </p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mt-3 text-5xl uppercase leading-[0.88] sm:text-6xl lg:text-7xl"
+            style={display}
+          >
+            Building the
+            <br />
+            <span style={{ color: ORANGE }}>digital future</span>
+            <br />
+            of Africa
+          </motion.h1>
 
+          <p className="mt-6 max-w-md text-base leading-relaxed text-white/65">
+            HUIX-2099 merges human creativity with VR, XR, AR, AI, and 3D — building games, tools, and living digital
+            worlds from Liberia for the continent.
+          </p>
 
+          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2" style={{ fontFamily: monoFont }}>
+            {definition.map((d, i) => (
+              <motion.span
+                key={d.letter}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 + i * 0.08 }}
+                className="flex items-baseline gap-1.5 text-[10px] uppercase tracking-[0.14em] text-white/55"
+              >
+                <span className="text-lg font-bold" style={{ ...display, color: ORANGE }}>
+                  {d.letter}
+                </span>
+                {d.word}
+              </motion.span>
+            ))}
+          </div>
 
-      {/* Main Content */}
-      <motion.div
-        className="relative z-10 min-h-screen flex items-center"
-        style={{ y: contentY, opacity: contentOpacity }}
-      >
-        <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 items-center py-16 sm:py-20 lg:py-24">
-
-            {/* Left Panel */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="space-y-8"
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-neutral-950 transition-opacity hover:opacity-90"
+              style={{ background: ORANGE }}
             >
-              {/* Section Number */}
-              <div className="flex items-start gap-4">
-                <div
-                  className="text-[80px] md:text-[100px] font-bold leading-none text-foreground/[0.08]"
-                  style={{ fontFamily: 'Mohican, sans-serif' }}
-                >
-                  01
-                </div>
-              </div>
-
-              {/* Definition Block */}
-              <div className="border-l-2 border-foreground/20 pl-4 sm:pl-6 space-y-3 sm:space-y-4">
-                <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60" style={{ fontFamily: monoFont }}>
-                  THE DEFINITION
-                </div>
-                <div className="space-y-2">
-                  {[
-                    { letter: "H", word: "Hyper" },
-                    { letter: "U", word: "Unified" },
-                    { letter: "I", word: "Intelligent" },
-                    { letter: "X", word: "eXperience" },
-                  ].map((item, index) => (
-                    <motion.div
-                      key={item.letter}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.5 + index * 0.1 }}
-                      className="flex items-baseline gap-3"
-                    >
-                      <span
-                        className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground tracking-[0.1em]"
-                        style={{ fontFamily: 'Mohican, sans-serif' }}
-                      >
-                        {item.letter}
-                      </span>
-                      <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.15em] text-muted-foreground" style={{ fontFamily: monoFont }}>
-                        = {item.word}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Meta Info */}
-              <div className="pt-4 space-y-3" style={{ fontFamily: monoFont }}>
-                <div className="flex items-center gap-3 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50">
-                  <span>[0 1]</span>
-                  <span className="h-px flex-1 bg-border/30" />
-                  <span>DEF</span>
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Merging human creativity with digital innovation to create seamless ecosystems.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Center - Visual Focus Area */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 1 }}
-              className="hidden lg:flex items-center justify-center relative"
+              Explore our work
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-white/85 transition-colors hover:bg-white hover:text-neutral-900"
             >
-              {/* Corner Accents */}
-              <div className="absolute top-0 left-0 w-16 h-16 border-l border-t border-foreground/10" />
-              <div className="absolute top-0 right-0 w-16 h-16 border-r border-t border-foreground/10" />
-              <div className="absolute bottom-0 left-0 w-16 h-16 border-l border-b border-foreground/10" />
-              <div className="absolute bottom-0 right-0 w-16 h-16 border-r border-b border-foreground/10" />
-
-              {/* Center Label */}
-              <div className="text-center">
-                <div className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground/30 mb-2" style={{ fontFamily: monoFont }}>
-                  HUIX-2099
-                </div>
-                <div className="w-24 h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
-              </div>
-            </motion.div>
-
-            {/* Right Panel */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="space-y-8"
-            >
-              {/* Section Number */}
-              <div className="flex items-start justify-end gap-4">
-                <div
-                  className="text-[80px] md:text-[100px] font-bold leading-none text-foreground/[0.1em]"
-                  style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}
-                >
-                  02
-                </div>
-              </div>
-
-              {/* Content Block */}
-              <div className="border-r-2 border-foreground/20 pr-6 text-right space-y-4 max-w-sm ml-auto bg-background/20 backdrop-blur-sm p-4 rounded-tl-xl sm:bg-transparent sm:backdrop-blur-none sm:p-0">
-                <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60" style={{ fontFamily: monoFont }}>
-                  UNIFIED REALITY
-                </div>
-                <h3
-                  className="text-2xl md:text-3xl font-bold text-foreground tracking-[0.1em]"
-                  style={{ fontFamily: 'Mohican, sans-serif' }}
-                >
-                  Building<br />Digital Worlds
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  VR, XR, AR, AI, and 3D visualization merged into one living ecosystem. We build universes powered by next-generation technology.
-                </p>
-              </div>
-
-              {/* CTA */}
-              <div className="pt-4 flex flex-col items-end gap-4">
-                <Link href="/projects">
-                  <motion.button
-                    whileHover={{ x: 4 }}
-                    className="flex items-center gap-3 text-[11px] uppercase tracking-[0.15em] text-foreground hover:text-muted-foreground transition-colors"
-                    style={{ fontFamily: monoFont }}
-                  >
-                    <span>Explore Work</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </motion.button>
-                </Link>
-                <Link href="/contact">
-                  <motion.button
-                    whileHover={{ x: 4 }}
-                    className="flex items-center gap-3 text-[11px] uppercase tracking-[0.15em] text-muted-foreground/60 hover:text-foreground transition-colors"
-                    style={{ fontFamily: monoFont }}
-                  >
-                    <span>Contact</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </motion.button>
-                </Link>
-              </div>
-
-              {/* Meta Info */}
-              <div className="pt-4" style={{ fontFamily: monoFont }}>
-                <div className="flex items-center justify-end gap-3 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50">
-                  <span>VIS</span>
-                  <span className="h-px w-12 bg-border/30" />
-                  <span>[0 2]</span>
-                </div>
-              </div>
-            </motion.div>
+              Contact us
+            </Link>
           </div>
         </div>
-      </motion.div>
 
-      {/* Bottom Meta Bar */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="absolute bottom-0 left-0 right-0 z-20 border-t border-border/30"
-      >
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-between h-14">
-            {/* Left - Scroll Indicator */}
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-              className="flex items-center gap-3 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50"
-              style={{ fontFamily: monoFont }}
-            >
-              <ArrowDown className="h-3 w-3" />
-              <span>Scroll</span>
-            </motion.div>
+        {/* Product cards */}
+        <div className="relative grid grid-cols-3 gap-3 sm:gap-4">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} whileHover={{ y: -8 }}>
+            <Link href="/about" className={`${cardBase} border border-white/10 bg-[#0e0e0e] text-white`}>
+              <span className="relative z-10 text-[11px] text-white/50" style={{ fontFamily: monoFont }}>01</span>
+              <h3 className="relative z-10 mt-2 text-base font-medium leading-tight sm:text-xl">
+                HUIX
+                <br />
+                2099
+              </h3>
+              <span className="relative z-10 mt-1 text-[10px] uppercase tracking-[0.14em] text-white/50" style={{ fontFamily: monoFont }}>Est. 2024 · LBR</span>
+              <img
+                src="/icons/HUIX%202099%20dark%20logo%20icon%20version.jpg"
+                alt="HUIX-2099 logo"
+                className="absolute inset-x-0 bottom-[10%] h-auto w-full scale-[1.5] transition-transform duration-500 group-hover:scale-[1.6]"
+              />
+              <ArrowUpRight className="absolute right-4 top-4 z-10 h-4 w-4 text-white/50 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+            </Link>
+          </motion.div>
 
-            {/* Center - Page Info */}
-            <div className="hidden md:flex items-center gap-4 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/40" style={{ fontFamily: monoFont }}>
-              <span>HOME</span>
-              <span className="h-px w-6 bg-border/30" />
-              <span>p. 0 1</span>
-            </div>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} whileHover={{ y: -8 }}>
+            <Link href="/virtual-past-liberia" className={`${cardBase} text-[#2a0f08]`} style={{ background: ORANGE }}>
+              <LiberiaMapArt className="pointer-events-none absolute -right-6 top-6 w-[95%] text-[#2a0f08] opacity-[0.18]" />
 
-            {/* Right - Tech Stack */}
-            <div className="flex items-center gap-3 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/40" style={{ fontFamily: monoFont }}>
-              <span className="hidden sm:inline">VR · XR · AR · AI</span>
-              <span className="inline-block h-px w-4 bg-border/30" />
-              <span>3D</span>
-            </div>
-          </div>
+              <div className="relative flex items-center justify-between">
+                <span className="text-[11px] text-[#2a0f08]/70" style={{ fontFamily: monoFont }}>02</span>
+                <span
+                  className="bg-[#2a0f08] px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-[0.14em] text-[#ff3b1f] sm:text-[9px]"
+                  style={{ fontFamily: monoFont }}
+                >
+                  VR · Heritage
+                </span>
+                <ArrowUpRight className="h-4 w-4 text-[#2a0f08]/60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#2a0f08]" />
+              </div>
+
+              <div className="relative my-3 flex min-h-0 flex-1 items-center justify-center">
+                <img
+                  src="/vpl/VPL_LIGHT.png"
+                  alt="Virtual Past Liberia logo"
+                  className="h-full w-auto scale-[1.12] object-contain drop-shadow-[0_14px_20px_rgba(0,0,0,0.35)] transition-transform duration-500 group-hover:scale-[1.17] dark:hidden"
+                />
+                <img
+                  src="/vpl/VPL_DARK.png"
+                  alt="Virtual Past Liberia logo"
+                  className="hidden h-full w-auto scale-[1.12] object-contain drop-shadow-[0_14px_20px_rgba(0,0,0,0.35)] transition-transform duration-500 group-hover:scale-[1.17] dark:block"
+                />
+              </div>
+
+              <div className="relative">
+                <div className="flex items-center justify-between text-[8px] uppercase tracking-[0.1em] sm:text-[9px]" style={{ fontFamily: monoFont }}>
+                  <span>
+                    <span className="font-bold">1847</span> → 2099 · VPL-001
+                  </span>
+                  <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden>
+                    <path d="M1 4V1h3M8 1h3v3M11 8v3H8M4 11H1V8" />
+                  </svg>
+                </div>
+                <div
+                  className="mt-1.5 h-2 w-full"
+                  style={{ backgroundImage: "repeating-linear-gradient(-45deg, #2a0f08 0 2.5px, transparent 2.5px 6px)" }}
+                />
+              </div>
+            </Link>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} whileHover={{ y: -8 }}>
+            <Link href="/products/monrovia-hustle" className={`${cardBase} justify-between bg-[#b8d8c8] text-[#16231d]`}>
+              <svg viewBox="0 0 120 100" className="pointer-events-none absolute -right-4 top-10 w-[70%] text-[#16231d]/25" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden>
+                <path d="M40 10 L62 10 L73 29 L62 48 L40 48 L29 29 Z" />
+                <path d="M73 29 L95 29 L106 48 L95 67 L73 67 L62 48 Z" />
+                <path d="M40 48 L62 48 L73 67 L62 86 L40 86 L29 67 Z" />
+              </svg>
+
+              <div className="relative">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] text-[#16231d]/60" style={{ fontFamily: monoFont }}>03</span>
+                  <ArrowUpRight className="h-4 w-4 text-[#16231d]/50 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#16231d]" />
+                </div>
+                <img
+                  src="/products/Monrovia_hustle_Demo_Campane/light_mode_logo.png"
+                  alt="Monrovia Hustle logo"
+                  className="mt-3 h-auto w-[82%] transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <span
+                  className="mt-2 inline-block bg-[#16231d] px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-[0.14em] text-[#b8d8c8] sm:text-[9px]"
+                  style={{ fontFamily: monoFont }}
+                >
+                  3D · Narrative RPG
+                </span>
+              </div>
+
+              <div className="relative">
+                <div className="flex items-center justify-between text-[8px] uppercase tracking-[0.1em] sm:text-[9px]" style={{ fontFamily: monoFont }}>
+                  <span>Story unit · MH-01</span>
+                  <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden>
+                    <path d="M1 4V1h3M8 1h3v3M11 8v3H8M4 11H1V8" />
+                  </svg>
+                </div>
+                <div
+                  className="mt-1.5 h-2 w-full"
+                  style={{ backgroundImage: "repeating-linear-gradient(-45deg, #16231d 0 2.5px, transparent 2.5px 6px)" }}
+                />
+                <div className="mt-2 flex items-end gap-2">
+                  <span className="text-4xl font-bold leading-none tracking-tight sm:text-5xl">26</span>
+                  <span className="pb-1 text-[8px] font-medium leading-tight sm:text-[10px]">
+                    Independence
+                    <br />
+                    Day Edition
+                  </span>
+                </div>
+                <div className="mt-3 flex items-center justify-between border-t border-[#16231d]/40 pt-2 text-[8px] sm:text-[9px]" style={{ fontFamily: monoFont }}>
+                  <span className="flex items-center gap-1.5">
+                    <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden>
+                      <rect x="1" y="1" width="10" height="10" />
+                      <path d="M1 1l10 10M11 1L1 11" />
+                    </svg>
+                    <span className="font-bold">231</span>
+                    <span className="text-[#16231d]/60">Monrovia · LBR</span>
+                  </span>
+                  <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden>
+                    <circle cx="6" cy="6" r="5" />
+                    <path d="M6 1v10M1 6h10" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
         </div>
-      </motion.div>
-
-      {/* Corner Decorations */}
-      <div className="absolute top-20 left-4 lg:left-8 z-20">
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 80 }}
-          transition={{ delay: 1, duration: 0.5 }}
-          className="w-px bg-gradient-to-b from-foreground/20 to-transparent"
-        />
-      </div>
-      <div className="absolute top-20 right-4 lg:right-8 z-20">
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 80 }}
-          transition={{ delay: 1.1, duration: 0.5 }}
-          className="w-px bg-gradient-to-b from-foreground/20 to-transparent"
-        />
       </div>
     </section>
   )

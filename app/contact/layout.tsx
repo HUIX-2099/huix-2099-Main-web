@@ -6,12 +6,12 @@ import { breadcrumbJsonLd, buildPageMetadata, contactPageJsonLd } from "@/lib/se
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact HUIX-2099 — Monrovia, Liberia",
   description:
-    "Contact HUIX-2099 in Monrovia, Liberia — project inquiries, partnerships, product support, and studio contact. Email huixtech2099@gmail.com or use the contact form.",
+    "Contact HUIX-2099 in Monrovia, Liberia — project inquiries, partnerships, product support, and general contact. Email huixtech2099@gmail.com or use the contact form.",
   path: "/contact",
   keywords: [
     "Contact HUIX-2099",
     "HUIX-2099 email",
-    "Liberia tech studio contact",
+    "Liberia tech startup contact",
     "Monrovia software company",
     "HUIX project inquiry",
   ],

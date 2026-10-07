@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     absolute: "Showcase — HUIX-2099 | Games, Apps & Immersive Projects, Liberia",
   },
   description:
-    "Explore the HUIX-2099 showcase: Monrovia Hustle 3D (Liberian narrative game), Huixor (immersive desktop app), HUIX-THEME (VS Code theme), Typelr, and more. Selected products, prototypes, and immersive VR/XR/AR experiences from a Liberia-based studio in Monrovia.",
+    "Explore the HUIX-2099 showcase: Monrovia Hustle 3D (Liberian narrative game), Huixor (immersive desktop app), HUIX-THEME (VS Code theme), Typelr, and more. Selected products, prototypes, and immersive VR/XR/AR experiences from a Liberia-based startup in Monrovia.",
   keywords: [
     "HUIX-2099 showcase",
     "HUIX-2099 projects",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "Huixor app",
     "HUIX-THEME VS Code",
     "Typelr",
-    "Liberia game studio",
+    "Liberia game startup",
     "immersive projects Africa",
     "VR XR AR portfolio Liberia",
     "3D visualization showcase",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Showcase | HUIX-2099",
     description:
-      "Selected games, apps, developer tools, and immersive experiences from Liberia-based studio HUIX-2099.",
+      "Selected games, apps, developer tools, and immersive experiences from Liberia-based startup HUIX-2099.",
     url: `${SITE_URL}/showcase`,
     type: "website",
     siteName: "HUIX-2099",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Showcase | HUIX-2099",
-    description: "Games, apps, and immersive projects from Liberia-based studio HUIX-2099.",
+    description: "Games, apps, and immersive projects from Liberia-based startup HUIX-2099.",
   },
 }
 

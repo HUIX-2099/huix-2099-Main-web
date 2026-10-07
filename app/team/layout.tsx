@@ -7,7 +7,7 @@ import { teamMembers, HUIX_COMPANY_TEAM_IDS } from "./data"
 export const metadata: Metadata = buildPageMetadata({
   title: "HUIX Team — HUIX-2099 · Liberia",
   description:
-    "HUIX-2099 company team — Victor Edet Coleman (Founder & CTO) and Wulwyn Porte L (CEO & Co-founder). Liberia-based studio leadership.",
+    "HUIX-2099 company team — Victor Edet Coleman (Founder & CTO) and Wulwyn Porte L (CEO & Co-founder). Liberia-based startup leadership.",
   path: "/team",
   keywords: [
     "HUIX-2099 team",
@@ -15,7 +15,7 @@ export const metadata: Metadata = buildPageMetadata({
     "Wulwyn Porte L",
     "Founder CTO Liberia",
     "HUIX company leadership",
-    "Monrovia tech studio",
+    "Monrovia tech startup",
   ],
 })
 
@@ -24,7 +24,7 @@ const teamJsonLd = {
   "@type": "CollectionPage",
   name: "HUIX-2099 Team",
   url: siteUrl("/team"),
-  description: "Company leadership at HUIX-2099 — Liberia-based immersive technology studio.",
+  description: "Company leadership at HUIX-2099 — Liberia-based immersive technology startup.",
   about: { "@id": ORG_ID },
   hasPart: teamMembers
     .filter((m) => HUIX_COMPANY_TEAM_IDS.includes(m.id as (typeof HUIX_COMPANY_TEAM_IDS)[number]))

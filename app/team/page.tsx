@@ -42,7 +42,7 @@ export default function TeamPage() {
                   <h1 className="text-2xl font-bold text-foreground md:text-3xl" style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.25em" }}>
                     HUIX TEAM
                   </h1>
-                  <p className="mt-2 max-w-md text-sm text-muted-foreground">Studio leadership — Liberia-based company team only.</p>
+                  <p className="mt-2 max-w-md text-sm text-muted-foreground">Startup leadership — Liberia-based company team only.</p>
                 </div>
               </div>
 
