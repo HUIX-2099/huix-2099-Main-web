@@ -111,10 +111,24 @@ export function HomeClean() {
           <div className="mt-9 grid gap-10 border-t border-border pt-7 sm:grid-cols-12 lg:mt-12 lg:gap-14">
             <div className="flex flex-col gap-9 sm:col-span-7">
               <div>
-                <p className="max-w-lg text-[15px] leading-relaxed text-muted-foreground sm:text-[16px]">
-                  Founded in 2024, we build games, apps, websites, experiments and research — a
-                  technology startup that develops by trial and error, shipping whatever survives.
-                </p>
+                <dl className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+                  <div className="border-l border-foreground/20 pl-4">
+                    <dt className="text-[10px] font-medium uppercase tracking-[0.18em] text-foreground">
+                      Research
+                    </dt>
+                    <dd className="mt-2 text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
+                      Experimenting, testing ideas, trying things to see what works.
+                    </dd>
+                  </div>
+                  <div className="border-l border-foreground/20 pl-4">
+                    <dt className="text-[10px] font-medium uppercase tracking-[0.18em] text-foreground">
+                      Development
+                    </dt>
+                    <dd className="mt-2 text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
+                      Building those ideas into games, apps, websites and products.
+                    </dd>
+                  </div>
+                </dl>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Link
                     href="/products"
