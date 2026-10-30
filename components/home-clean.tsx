@@ -92,7 +92,7 @@ export function HomeClean() {
       <section className="border-b border-border">
         <div className={`${WRAP} pb-14 lg:pb-20`}>
           <div className="flex flex-wrap items-center justify-between gap-3 pt-9 sm:pt-12 lg:pt-14">
-            <p className={EYEBROW}>Independent studio · Monrovia, Liberia</p>
+            <p className={EYEBROW}>R&amp;D startup · Monrovia, Liberia</p>
             <p className="inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/50" />
@@ -102,18 +102,18 @@ export function HomeClean() {
             </p>
           </div>
 
-          <h1 className="mt-8 text-[clamp(2.6rem,7vw,6rem)] font-semibold leading-[0.95] tracking-[-0.04em] lg:mt-10">
-            A Liberia-based studio
+          <h1 className="mt-8 text-[clamp(2.2rem,5.6vw,4.6rem)] font-semibold leading-[0.98] tracking-[-0.035em] lg:mt-10">
+            HUIX-2099 is a Liberia-based
             <br />
-            <span className="text-muted-foreground/45">building digital worlds.</span>
+            <span className="text-muted-foreground/45">R&amp;D and try-and-error startup.</span>
           </h1>
 
           <div className="mt-9 grid gap-10 border-t border-border pt-7 sm:grid-cols-12 lg:mt-12 lg:gap-14">
             <div className="flex flex-col gap-9 sm:col-span-7">
               <div>
                 <p className="max-w-lg text-[15px] leading-relaxed text-muted-foreground sm:text-[16px]">
-                  Founded in 2024, we work across immersive technology, 3D visualisation, games
-                  and software — bringing African stories and engineering to a global stage.
+                  Founded in 2024, we build games, apps, websites, experiments and research — a
+                  technology startup that develops by trial and error, shipping whatever survives.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Link
