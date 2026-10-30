@@ -1,20 +1,12 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Analytics } from "@vercel/analytics/next"
-import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { VRImmersePrompt } from "@/components/vr-immerse-prompt"
 import { CookieConsent } from "@/components/cookie-consent"
 import { productItemListJsonLd } from "@/lib/seo"
 
 import "./globals.css"
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-inter",
-})
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -274,7 +266,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.className} ${inter.variable} antialiased overflow-x-clip`}
+        className="font-sans antialiased overflow-x-clip"
       >
         <ThemeProvider>
           <VRImmersePrompt />
