@@ -1,5 +1,5 @@
 import { permanentRedirect } from "next/navigation"
 
 export default function MonroviaHustleConceptPage() {
-  permanentRedirect("/products/monrovia-hustle")
+  permanentRedirect("/products/monrovia-hustle/prototype")
 }

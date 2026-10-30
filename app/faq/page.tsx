@@ -1,126 +1,142 @@
 "use client"
 
+import { useState } from "react"
+import { Plus } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { motion } from "framer-motion"
-import { useState } from "react"
-import { ChevronDown } from "lucide-react"
+import { CTASection, EYEBROW, PageHero, WRAP } from "@/components/clean-ui"
+
+const faqs = [
+  {
+    question: "What does HUIX-2099 do?",
+    answer:
+      "We are an independent studio in Monrovia building VR, AR, and 3D experiences, games, software, and web platforms. Most of our work combines storytelling with engineering — from Virtual Past Liberia to the Monrovia Hustle game series.",
+  },
+  {
+    question: "Where are you based?",
+    answer:
+      "Monrovia, Liberia. We work with clients and collaborators across West Africa and the diaspora, and we build for global audiences from here.",
+  },
+  {
+    question: "How do I start a project?",
+    answer:
+      "Email huixtech2099@gmail.com with a short description of what you want to build, your timeline, and a rough budget. We reply within 24–48 hours and usually start with a short call to scope the work.",
+  },
+  {
+    question: "How long does a project take?",
+    answer:
+      "Small sites and tools typically take 4–8 weeks. Larger platforms, games, and immersive builds run 3–6 months. You get a detailed timeline after the first conversation, not before.",
+  },
+  {
+    question: "Do you offer maintenance and support?",
+    answer:
+      "Yes. We support everything we ship, with flexible monthly arrangements for updates, hosting, and ongoing development.",
+  },
+  {
+    question: "Can you work with existing systems?",
+    answer:
+      "Yes. We integrate with existing infrastructure, design systems, APIs, and legacy databases. We assess what is already there before proposing a rebuild.",
+  },
+  {
+    question: "What technologies do you use?",
+    answer:
+      "React, Next.js, TypeScript, Three.js, WebXR, .NET and WPF, Python, and modern cloud platforms. The stack follows the project rather than the other way around.",
+  },
+  {
+    question: "Do you provide training and documentation?",
+    answer:
+      "Every handover includes documentation and a walkthrough for your team. For larger systems we can run structured training sessions.",
+  },
+]
 
 export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
-
-  const faqs = [
-    {
-      question: "What services does HUIX-2099 offer?",
-      answer:
-        "HUIX-2099 specializes in Virtual Reality, Augmented Reality, Extended Reality, 3D visualization, AI/Machine Learning integration, app development, animation, and web engineering. We create comprehensive digital solutions for enterprise and consumer applications.",
-    },
-    {
-      question: "Where is HUIX-2099 located?",
-      answer:
-        "We are based in Monrovia, Liberia, and serve clients globally. Our strategic location in West Africa allows us to bridge African innovation with global markets.",
-    },
-    {
-      question: "How do I get started with a project?",
-      answer:
-        "Contact us through our contact form or email huixtech2099@gmail.com with your project requirements. Our team will schedule a consultation to understand your vision and create a tailored solution.",
-    },
-    {
-      question: "What is your typical project timeline?",
-      answer:
-        "Project timelines vary based on scope and complexity. Small projects typically take 4-8 weeks, while larger enterprise solutions may take 3-6 months. We'll provide a detailed timeline after the initial consultation.",
-    },
-    {
-      question: "Do you offer maintenance and support?",
-      answer:
-        "Yes, we provide ongoing maintenance, support, and updates for all deployed projects. We offer flexible support packages tailored to your needs.",
-    },
-    {
-      question: "Can you work with existing systems?",
-      answer:
-        "Absolutely. We specialize in integrating with existing infrastructure and legacy systems. Our team assesses your current setup and creates seamless integration solutions.",
-    },
-    {
-      question: "What technologies do you use?",
-      answer:
-        "We work with cutting-edge technologies including React, Next.js, Three.js, Babylon.js, Python, Node.js, TensorFlow, and various cloud platforms. Our tech stack is tailored to each project's requirements.",
-    },
-    {
-      question: "Do you offer training for deployed solutions?",
-      answer:
-        "Yes, comprehensive training and documentation are included with all projects. We ensure your team is fully equipped to use and maintain the solution.",
-    },
-  ]
 
   return (
     <>
       <Navbar />
 
-      <section className="py-20 px-4 lg:px-8 bg-background">
-        <div className="max-w-4xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-16">
-            <div className="text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-4">
-              Help Center
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">Frequently Asked Questions</h1>
-            <p className="text-xl text-muted-foreground">
-              Find answers to common questions about our services, process, and how we can help your business.
-            </p>
-          </motion.div>
-
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                className="border border-border rounded-lg overflow-hidden"
-              >
-                <button
-                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="w-full px-6 py-4 flex items-center justify-between bg-card hover:bg-secondary transition-colors"
-                >
-                  <span className="text-lg font-semibold text-foreground text-left">{faq.question}</span>
-                  <ChevronDown
-                    className={`h-5 w-5 text-muted-foreground transition-transform flex-shrink-0 ml-4 ${
-                      openIndex === index ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                {openIndex === index && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="px-6 py-4 bg-background border-t border-border text-muted-foreground leading-relaxed"
-                  >
-                    {faq.answer}
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="mt-16 p-8 bg-card border border-border rounded-lg text-center"
-          >
-            <h3 className="text-2xl font-bold text-foreground mb-3">Didn't find your answer?</h3>
-            <p className="text-muted-foreground mb-6">
-              Contact our team directly for more detailed information about our services.
+      <PageHero
+        eyebrow="FAQ · Help centre"
+        title={
+          <>
+            Questions,
+            <br />
+            <span className="text-muted-foreground">answered plainly.</span>
+          </>
+        }
+        description="How we work, what we build, and what to expect when you start a project with HUIX-2099."
+        aside={
+          <div className="border-t border-border pt-6 lg:border-t-0 lg:border-l lg:pl-8">
+            <p className={EYEBROW}>Still stuck?</p>
+            <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
+              Write to us directly and a person — not a bot — will answer.
             </p>
             <a
-              href="/contact"
-              className="inline-block px-6 py-2.5 bg-foreground text-background rounded-lg font-semibold hover:opacity-90 transition-opacity"
+              href="mailto:huixtech2099@gmail.com"
+              className="mt-4 inline-block text-[14px] font-medium underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground"
             >
-              Contact Us
+              huixtech2099@gmail.com
             </a>
-          </motion.div>
+          </div>
+        }
+      />
+
+      <section className={`${WRAP} py-14 lg:py-20`}>
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <p className={EYEBROW}>08 questions</p>
+            <h2 className="mt-3 max-w-xs text-[26px] font-semibold leading-tight tracking-[-0.03em]">
+              The things people ask before we start.
+            </h2>
+          </div>
+
+          <div className="lg:col-span-8">
+            <div className="border-t border-border">
+              {faqs.map((faq, index) => {
+                const open = openIndex === index
+                return (
+                  <div key={faq.question} className="border-b border-border">
+                    <button
+                      onClick={() => setOpenIndex(open ? null : index)}
+                      aria-expanded={open}
+                      className="flex w-full items-start justify-between gap-6 py-5 text-left"
+                    >
+                      <span className="text-[16px] font-medium leading-snug tracking-[-0.01em] sm:text-[17px]">
+                        {faq.question}
+                      </span>
+                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border">
+                        <Plus
+                          className={`h-3.5 w-3.5 transition-transform duration-300 ${open ? "rotate-45" : ""}`}
+                        />
+                      </span>
+                    </button>
+                    <div
+                      className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                        open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="max-w-2xl pb-6 pr-10 text-[14px] leading-relaxed text-muted-foreground">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
         </div>
       </section>
+
+      <CTASection
+        eyebrow="One more thing"
+        title="Ask us anything else."
+        body="If your question is not here, email us. We answer every serious note within 24–48 hours."
+        primary={{ label: "Email HUIX-2099", href: "mailto:huixtech2099@gmail.com" }}
+        secondary={{ label: "Contact page", href: "/contact" }}
+      />
 
       <Footer />
     </>

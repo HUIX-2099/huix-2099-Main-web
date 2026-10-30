@@ -1,85 +1,183 @@
-"use client"
-
-import { useState } from "react"
+import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { motion } from "framer-motion"
-import { Search } from "lucide-react"
+import { CTASection, EYEBROW, H2, PageHero, WRAP } from "@/components/clean-ui"
 import { teamMembers, HUIX_COMPANY_TEAM_IDS } from "./data"
-import { TeamProfileCard } from "@/components/team-profile-card"
+
+const leaders = teamMembers.filter((member) =>
+  HUIX_COMPANY_TEAM_IDS.includes(member.id as (typeof HUIX_COMPANY_TEAM_IDS)[number]),
+)
+
+const collaborators = teamMembers.filter(
+  (member) => !HUIX_COMPANY_TEAM_IDS.includes(member.id as (typeof HUIX_COMPANY_TEAM_IDS)[number]),
+)
+
+function initials(name: string) {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase()
+}
 
 export default function TeamPage() {
-  const [searchQuery, setSearchQuery] = useState("")
-
-  const visibleMembers = teamMembers.filter((member) =>
-    HUIX_COMPANY_TEAM_IDS.includes(member.id as (typeof HUIX_COMPANY_TEAM_IDS)[number]),
-  )
-
-  const filteredMembers = visibleMembers.filter((member) => {
-    const term = searchQuery.toLowerCase()
-    return (
-      member.name.toLowerCase().includes(term) ||
-      member.role.toLowerCase().includes(term) ||
-      member.focus.toLowerCase().includes(term)
-    )
-  })
-
   return (
     <>
       <Navbar />
 
-      <section className="min-h-screen bg-background px-4 py-20">
-        <div className="mx-auto max-w-6xl">
-          {/* Series Header */}
-          <div className="mb-12 border-b border-border/70">
-            <div className="flex flex-col justify-between gap-6 pb-6 md:flex-row md:items-end">
-              <div className="flex shrink-0 items-center gap-6">
-                <div className="text-8xl font-bold leading-none text-foreground/10 lg:text-9xl" style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.1em" }}>
-                  01
-                </div>
-                <div>
-                  <div className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">HUIX-2099 · Company</div>
-                  <h1 className="text-2xl font-bold text-foreground md:text-3xl" style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.25em" }}>
-                    HUIX TEAM
-                  </h1>
-                  <p className="mt-2 max-w-md text-sm text-muted-foreground">Startup leadership — Liberia-based company team only.</p>
-                </div>
+      <PageHero
+        eyebrow="Studio · Monrovia, Liberia"
+        title={
+          <>
+            A small team,
+            <br />
+            <span className="text-muted-foreground">a long horizon.</span>
+          </>
+        }
+        description="HUIX-2099 is led from Monrovia and built with a tight circle of engineers, artists, and voices. Everyone here works on the same thing: making local stories and tools stand at global quality."
+        aside={
+          <div className="rounded-[24px] border border-border bg-secondary/60 p-6">
+            <p className={EYEBROW}>At a glance</p>
+            <dl className="mt-5 space-y-4 text-[14px]">
+              <div className="flex items-baseline justify-between gap-4">
+                <dt className="text-muted-foreground">Founded</dt>
+                <dd className="font-medium">2024</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4">
+                <dt className="text-muted-foreground">Leadership</dt>
+                <dd className="font-medium">02</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4">
+                <dt className="text-muted-foreground">Collaborators</dt>
+                <dd className="font-medium">{String(collaborators.length).padStart(2, "0")}</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4">
+                <dt className="text-muted-foreground">Base</dt>
+                <dd className="font-medium">Monrovia, LR</dd>
+              </div>
+            </dl>
+          </div>
+        }
+      />
+
+      <section className={`${WRAP} py-14 lg:py-20`}>
+        <p className={EYEBROW}>Leadership</p>
+        <div className="mt-8 grid gap-5 lg:grid-cols-2">
+          {leaders.map((member) => (
+            <Link
+              key={member.id}
+              href={`/team/${member.id}`}
+              className="group grid gap-5 rounded-[28px] border border-border bg-card p-4 transition-colors hover:border-foreground/25 sm:grid-cols-[220px_1fr] sm:p-5"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] bg-secondary sm:aspect-auto sm:h-full sm:min-h-[280px]">
+                {member.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-neutral-950 text-white">
+                    <span className="text-[64px] font-semibold leading-none tracking-[-0.06em]">
+                      {initials(member.name)}
+                    </span>
+                    <span className="mt-4 text-[10px] font-medium uppercase tracking-[0.22em] text-white/45">
+                      HUIX-2099 · Monrovia
+                    </span>
+                  </div>
+                )}
               </div>
 
-              {/* Smart Search Bar */}
-              <div className="relative mb-2 w-full flex-1 md:w-auto md:max-w-xs lg:max-w-md">
-                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
-                  <Search className="h-5 w-5 text-muted-foreground" />
+              <div className="flex flex-col justify-between py-1 sm:py-2 sm:pr-2">
+                <div>
+                  <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                    {member.role}
+                  </p>
+                  <h2 className="mt-3 text-[26px] font-semibold leading-[1.1] tracking-[-0.03em] sm:text-[28px]">
+                    {member.name}
+                  </h2>
+                  <p className="mt-4 text-[14px] leading-relaxed text-muted-foreground">{member.tagline}</p>
                 </div>
-                <input
-                  type="text"
-                  placeholder="Search team by name..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full rounded-full border border-border/60 bg-card/50 py-4 pl-12 pr-6 text-sm text-foreground shadow-sm backdrop-blur-sm transition-all focus:border-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/20"
-                  style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, sans-serif" }}
-                />
+                <div className="mt-8">
+                  <div className="flex flex-wrap gap-2">
+                    {member.focus.split("·").map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-border px-3 py-1 text-[11px] text-muted-foreground"
+                      >
+                        {tag.trim()}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium">
+                    View profile
+                    <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </span>
+                </div>
               </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-border">
+        <div className={`${WRAP} py-14 lg:py-20`}>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-xl">
+              <p className={EYEBROW}>Collaborators</p>
+              <h2 className={`mt-3 ${H2}`}>The people behind the work.</h2>
+              <p className="mt-4 text-[14px] leading-relaxed text-muted-foreground">
+                Voice talent, sound, and friends who build with us — including the Monrovia Hustle 3D cast.
+              </p>
             </div>
+            <Link
+              href="/products/monrovia-hustle"
+              className="inline-flex items-center gap-2 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Monrovia Hustle 3D
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </Link>
           </div>
 
-          <div className="mx-auto grid max-w-4xl grid-cols-1 items-start gap-6 sm:gap-8 md:grid-cols-2">
-            {filteredMembers.map((member, index) => (
-              <TeamProfileCard key={member.id} variant="member" member={member} index={index} />
-            ))}
-
-            {filteredMembers.length === 0 && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="col-span-full rounded-xl border border-dashed border-border bg-card/10 py-24 text-center"
-              >
-                <p className="text-sm uppercase tracking-widest text-muted-foreground">No team members match your query.</p>
-              </motion.div>
-            )}
+          <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
+            {collaborators.map((member) => {
+              const hasPhoto = !("hidePhoto" in member && member.hidePhoto === true) && Boolean(member.image)
+              return (
+                <Link key={member.id} href={`/team/${member.id}`} className="group">
+                  <div className="relative aspect-square overflow-hidden rounded-[18px] bg-secondary">
+                    {hasPhoto ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-secondary text-[22px] font-semibold tracking-[-0.02em] text-muted-foreground">
+                        {initials(member.name)}
+                      </div>
+                    )}
+                  </div>
+                  <p className="mt-3 text-[14px] font-medium leading-tight">{member.name}</p>
+                  <p className="mt-1 text-[12px] leading-snug text-muted-foreground">{member.role}</p>
+                </Link>
+              )
+            })}
           </div>
         </div>
       </section>
+
+      <CTASection
+        eyebrow="Join us"
+        title="Build the next one with us."
+        body="We work with engineers, 3D artists, and voices across Liberia and the diaspora. If the work speaks to you, send a note."
+        primary={{ label: "Start a conversation", href: "/contact" }}
+        secondary={{ label: "See our work", href: "/products" }}
+      />
 
       <Footer />
     </>

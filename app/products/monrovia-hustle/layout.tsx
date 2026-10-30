@@ -11,14 +11,14 @@ export const metadata: Metadata = buildPageMetadata({
   path: product.path,
   keywords: product.keywords,
   image: product.image,
-  imageAlt: "Monrovia Hustle 3D — Liberian narrative RPG key art",
+  imageAlt: "Monrovia Hustle — Liberian gaming franchise key art",
 })
 
 const jsonLd = [
   breadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
-    { name: "Monrovia Hustle 3D", path: "/products/monrovia-hustle" },
+    { name: "Monrovia Hustle", path: "/products/monrovia-hustle" },
   ]),
   softwareProductJsonLd(product),
 ]

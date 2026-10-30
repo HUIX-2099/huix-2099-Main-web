@@ -10,10 +10,19 @@
   font-display: swap;
 }
 
+/* Gogono — Virtual Past Liberia wordmark */
+@font-face {
+  font-family: 'Gogono';
+  src: url('/fonts/gogono/gogono.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Mohican is a tight display face — add consistent breathing room between
    letters everywhere it's used (site-wide), overriding cramped inline values. */
 [style*="Mohican"] {
-  letter-spacing: 0.1em !important;
+  letter-spacing: 0.2em !important;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -52,11 +61,11 @@
   --sidebar-accent-foreground: #111111;
   --sidebar-border: #e0e0e0;
   --sidebar-ring: #111111;
-  /* Fixed mobile bottom tab bar — keep in sync with components/navbar.tsx */
-  --mobile-tab-bar-spacing: calc(4.5rem + max(1rem, env(safe-area-inset-bottom, 0px)));
-  --trending-bar-height: 2rem;
+  /* Bottom breathing room for floating UI (consent, banners) on mobile */
+  --mobile-tab-bar-spacing: max(1rem, env(safe-area-inset-bottom, 0px));
+  --trending-bar-height: 0rem;
   --navbar-height: 4rem;
-  --site-header-height: calc(var(--trending-bar-height) + var(--navbar-height));
+  --site-header-height: var(--navbar-height);
 }
 
 .dark {
@@ -534,6 +543,23 @@ html {
   background-image: linear-gradient(90deg, var(--muted) 0%, var(--secondary) 50%, var(--muted) 100%);
   background-size: 200% 100%;
   animation: skeleton-loading 2s infinite;
+}
+
+/* Virtual Past Liberia + homepage — keep display type readable on very small
+   phones (the global h1/h2/h3 shrink rules above are too aggressive for a hero). */
+@media screen and (max-width: 374px) {
+  .vpl-clean h1,
+  .home-clean h1 {
+    font-size: 2.6rem !important;
+  }
+  .vpl-clean h2,
+  .home-clean h2 {
+    font-size: 1.8rem !important;
+  }
+  .vpl-clean h3,
+  .home-clean h3 {
+    font-size: 1.3rem !important;
+  }
 }
 
 /* MapLibre — match HUIX theme */

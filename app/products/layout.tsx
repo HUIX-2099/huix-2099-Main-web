@@ -10,19 +10,18 @@ import {
 export const metadata: Metadata = buildPageMetadata({
   title: "Products — HUIX-2099 · Liberia",
   description:
-    "HUIX-2099 products: Monrovia Hustle 3D Liberian narrative RPG (Concept 01, trailer, voice cast), HUIX-THEME VS Code extension, Huixor multi-device web preview for Windows, Typelr Liberian typing trainer — built in Monrovia, Liberia.",
+    "HUIX-2099 products: Monrovia Hustle 3D Liberian narrative RPG (Concept 01, trailer, voice cast), HUIX-THEME VS Code extension, Huixor multi-device web preview for Windows — built in Monrovia, Liberia.",
   path: "/products",
   keywords: [
     "HUIX-2099 products",
     "Monrovia Hustle 3D",
     "HUIX-THEME VS Code",
     "Huixor Windows",
-    "Typelr Liberia",
     "Liberia software",
     "Liberia game startup",
     "Monrovia tech products",
   ],
-  image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
+  image: "/products/monrovia-hustle/cover/monrovia-hustle-og.jpg",
   imageAlt: "HUIX-2099 products — Monrovia Hustle 3D and developer tools",
 })
 

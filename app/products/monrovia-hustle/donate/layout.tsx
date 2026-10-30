@@ -16,7 +16,7 @@ export const metadata: Metadata = buildPageMetadata({
     "Orange Money Liberia",
     "Monrovia Hustle 3D",
   ],
-  image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
+  image: "/products/monrovia-hustle/cover/monrovia-hustle-og.jpg",
   imageAlt: "Support Monrovia Hustle 3D",
 })
 

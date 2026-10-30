@@ -3,11 +3,8 @@ import type { Metadata, Viewport } from "next"
 import { Analytics } from "@vercel/analytics/next"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
-import { CustomCursor } from "@/components/custom-cursor"
 import { VRImmersePrompt } from "@/components/vr-immerse-prompt"
 import { CookieConsent } from "@/components/cookie-consent"
-import { SocialSidebar } from "@/components/social-sidebar"
-import { LoadingScreen } from "@/components/loading-screen"
 import { productItemListJsonLd } from "@/lib/seo"
 
 import "./globals.css"
@@ -47,7 +44,6 @@ export const metadata: Metadata = {
     "HUIX THEME VS Code extension",
     "Monrovia Hustle 3D",
     "Monrovia Hustle voice cast",
-    "Typelr",
     "Huixor",
     "Liberia technology company",
     "African tech startup",
@@ -223,7 +219,6 @@ const jsonLd = {
     "Monrovia Hustle 3D",
     "HUIX-THEME VS Code extension",
     "Huixor",
-    "Typelr",
     "Liberian narrative games",
   ],
   areaServed: {
@@ -244,7 +239,7 @@ const jsonLdWebSite = {
   name: "HUIX-2099",
   url: "https://huix2099.com/",
   description:
-    "Official site for HUIX-2099 — Liberia-based startup: Monrovia Hustle 3D, HUIX-THEME, Huixor, Typelr, and XR/3D work from Monrovia.",
+    "Official site for HUIX-2099 — Liberia-based startup: Monrovia Hustle 3D, HUIX-THEME, Huixor, and XR/3D work from Monrovia.",
   publisher: { "@id": "https://huix2099.com/#organization" },
   inLanguage: "en",
   about: { "@id": "https://huix2099.com/#organization" },
@@ -258,7 +253,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
+    <html lang="en" suppressHydrationWarning className="overflow-x-clip">
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -279,18 +274,15 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.className} ${inter.variable} antialiased overflow-x-hidden`}
+        className={`${inter.className} ${inter.variable} antialiased overflow-x-clip`}
       >
         <ThemeProvider>
-          <LoadingScreen />
-          <CustomCursor />
           <VRImmersePrompt />
-          <SocialSidebar />
           <main className="flex min-h-dvh w-full min-w-0 flex-col">
             <div className="min-w-0 w-full flex-1">
               {children}
             </div>
-            {/* Space for fixed mobile tab bar + home indicator (see --mobile-tab-bar-spacing in globals.css) */}
+            {/* Bottom breathing room for floating UI + home indicator (see --mobile-tab-bar-spacing in globals.css) */}
             <div
               aria-hidden
               className="shrink-0 bg-background lg:hidden"

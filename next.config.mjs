@@ -18,6 +18,11 @@ const nextConfig = {
         destination: "/team/johnett-s-talkpa",
         permanent: true,
       },
+      {
+        source: "/products/monrovia-hustle-independence-day",
+        destination: "/products/monrovia-hustle/prototype/independence-day",
+        permanent: true,
+      },
     ]
   },
   async headers() {

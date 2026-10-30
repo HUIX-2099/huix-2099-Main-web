@@ -7,14 +7,13 @@ export const metadata: Metadata = {
     absolute: "Showcase — HUIX-2099 | Games, Apps & Immersive Projects, Liberia",
   },
   description:
-    "Explore the HUIX-2099 showcase: Monrovia Hustle 3D (Liberian narrative game), Huixor (immersive desktop app), HUIX-THEME (VS Code theme), Typelr, and more. Selected products, prototypes, and immersive VR/XR/AR experiences from a Liberia-based startup in Monrovia.",
+    "Explore the HUIX-2099 showcase: Monrovia Hustle 3D (Liberian narrative game), Huixor (immersive desktop app), and HUIX-THEME (VS Code theme). Selected products, prototypes, and immersive VR/XR/AR experiences from a Liberia-based startup in Monrovia.",
   keywords: [
     "HUIX-2099 showcase",
     "HUIX-2099 projects",
     "Monrovia Hustle 3D",
     "Huixor app",
     "HUIX-THEME VS Code",
-    "Typelr",
     "Liberia game startup",
     "immersive projects Africa",
     "VR XR AR portfolio Liberia",
@@ -57,7 +56,6 @@ const showcaseJsonLd = {
     { "@type": "CreativeWork", name: "Monrovia Hustle 3D", url: `${SITE_URL}/products/monrovia-hustle` },
     { "@type": "SoftwareApplication", name: "Huixor", url: `${SITE_URL}/products/huixor` },
     { "@type": "SoftwareApplication", name: "HUIX-THEME", url: `${SITE_URL}/products/huix-theme` },
-    { "@type": "SoftwareApplication", name: "Typelr", url: `${SITE_URL}/products/typelr` },
   ],
 }
 

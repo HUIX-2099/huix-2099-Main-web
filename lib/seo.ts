@@ -29,22 +29,22 @@ export type SeoProductDef = {
 export const SEO_PRODUCTS: SeoProductDef[] = [
   {
     id: "monrovia-hustle",
-    name: "Monrovia Hustle 3D",
+    name: "Monrovia Hustle",
     path: "/products/monrovia-hustle",
-    title: "Monrovia Hustle 3D — Liberian narrative RPG | HUIX-2099",
+    title: "Monrovia Hustle — A gaming franchise inspired by Monrovia, Liberia",
     description:
-      "Monrovia Hustle 3D — Liberian slice-of-life narrative urban RPG from HUIX-2099. Franchise hub, Concept 01 playable vertical slice, gameplay trailer, voice cast, mobile field testing, and concept dossier. Built in Monrovia, Liberia.",
+      "Discover Monrovia Hustle, a gaming franchise by HUIX-2099 inspired by Monrovia, Liberia, with immersive exploration, interactive environments, and simulation-driven gameplay.",
     keywords: [
-      "Monrovia Hustle 3D",
-      "Liberia narrative game",
-      "Monrovia RPG",
-      "Liberian voice cast",
+      "Monrovia Hustle",
+      "Monrovia gaming franchise",
+      "Liberia exploration game",
+      "Monrovia simulation game",
+      "Liberian game franchise",
       "HUIX-2099 game",
       "West Africa indie game",
-      "urban RPG Liberia",
       "Monrovia streets game",
     ],
-    image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
+    image: "/products/monrovia-hustle/cover/monrovia-hustle-og.jpg",
     schemaType: "VideoGame",
     operatingSystem: "Windows 10, Windows 11",
     applicationCategory: "Game",
@@ -68,7 +68,7 @@ export const SEO_PRODUCTS: SeoProductDef[] = [
       "HUIX-2099",
       "playable vertical slice",
     ],
-    image: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
+    image: "/products/monrovia-hustle/cover/monrovia-hustle-og.jpg",
     schemaType: "VideoGame",
     operatingSystem: "Windows 10, Windows 11, Android",
     applicationCategory: "Game",
@@ -124,7 +124,7 @@ export const SEO_PRODUCTS: SeoProductDef[] = [
   {
     id: "monrovia-hustle-independence-day",
     name: "Monrovia Hustle — Independence Day Edition",
-    path: "/products/monrovia-hustle-independence-day",
+    path: "/products/monrovia-hustle/prototype/independence-day",
     title:
       "Monrovia Hustle Independence Day Edition 2026 — Liberian keke racing game by Victor Edet Coleman | HUIX-2099",
     description:
@@ -154,75 +154,6 @@ export const SEO_PRODUCTS: SeoProductDef[] = [
     genre: "Racing",
     status: "Development",
   },
-  {
-    id: "huix-character-motion",
-    name: "HUIX Character Motion Plugin",
-    path: "/products/huix-character-motion",
-    title: "HUIX Character Motion — Monrovia Hustle Edition Blender addon | HUIX-2099",
-    description:
-      "HUIX Character Motion Plugin (Monrovia Hustle Edition): Blender addon for Avaturn and Mixamo-style characters — 51+ animations, prompt-driven motion, keke/tuk-tuk pack, video mocap beta, game-ready GLB export. No mocap suit needed.",
-    keywords: [
-      "HUIX Character Motion",
-      "Blender addon",
-      "Monrovia Hustle Edition",
-      "Avaturn Blender",
-      "Mixamo animation",
-      "prompt animation Blender",
-      "keke tuk tuk animation",
-      "HUIX-2099",
-      "Liberia game dev tools",
-    ],
-    image: "/products/Huix-character-motion%20plugin/hclogo.png",
-    schemaType: "SoftwareApplication",
-    operatingSystem: "Windows, macOS, Linux",
-    applicationCategory: "DeveloperApplication",
-    status: "Development",
-  },
-  {
-    id: "typelr",
-    name: "Typelr",
-    path: "/products/typelr",
-    title: "Typelr — Liberian typing trainer | HUIX-2099",
-    description:
-      "Typelr: Windows typing trainer with Liberian counties, names, phrases, and history — levels, XP, badges, and daily challenges. Educational software from HUIX-2099, Monrovia, Liberia.",
-    keywords: [
-      "Typelr",
-      "typing trainer Liberia",
-      "Liberian counties typing",
-      "HUIX-2099",
-      "Monrovia software",
-      "Liberia education app",
-    ],
-    image: "/products/typelr/SPLASH%20SCREEN%20LOGO.jpg",
-    schemaType: "SoftwareApplication",
-    operatingSystem: "Windows 10, Windows 11",
-    applicationCategory: "EducationalApplication",
-    downloadUrl: `${SITE_URL}/products/typelr/install`,
-    status: "Live",
-  },
-  {
-    id: "huix-market-liberia",
-    name: "HUIX Market Liberia",
-    path: "/products/huix-market-liberia",
-    title: "HUIX Market Liberia — Premium e-commerce platform | HUIX-2099",
-    description:
-      "HUIX Market Liberia: premium e-commerce platform connecting verified sellers and buyers across Liberia and beyond. Integrated logistics, verified merchants, and trusted transactions.",
-    keywords: [
-      "HUIX Market Liberia",
-      "e-commerce Liberia",
-      "Liberia marketplace",
-      "Liberian online shopping",
-      "HUIX-2099 marketplace",
-      "verified sellers Liberia",
-      "Monrovia marketplace",
-      "West Africa e-commerce",
-    ],
-    image: "/huix-market/huix-market-logo.png",
-    schemaType: "WebApplication",
-    applicationCategory: "ECommerce",
-    externalUrl: "https://huix-market.vercel.app/",
-    status: "Live",
-  },
 ]
 
 export const SITE_FAQS = [
@@ -239,7 +170,7 @@ export const SITE_FAQS = [
   {
     question: "What products does HUIX-2099 make?",
     answer:
-      "HUIX-2099 builds Monrovia Hustle 3D (Liberian narrative game concept), HUIX-THEME (VS Code extension), Huixor (multi-device web preview for Windows), and Typelr (Liberian typing trainer). See the Products page for full details, trailers, and downloads.",
+      "HUIX-2099 builds Monrovia Hustle 3D (Liberian narrative game concept), HUIX-THEME (VS Code extension), and Huixor (multi-device web preview for Windows). See the Products page for full details, trailers, and downloads.",
   },
   {
     question: "How do I get started with a project?",

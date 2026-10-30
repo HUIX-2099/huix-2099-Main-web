@@ -6,14 +6,13 @@ import { buildPageMetadata, productItemListJsonLd, webPageJsonLd } from "@/lib/s
 export const metadata: Metadata = buildPageMetadata({
   title: "HUIX-2099 | Building the Digital Future of Africa",
   description:
-    "HUIX-2099 — Liberia-based startup in Monrovia building Monrovia Hustle 3D (Liberian narrative RPG), HUIX-THEME VS Code extension, Huixor multi-device web preview, Typelr Liberian typing trainer, and XR/VR/AR/AI solutions across West Africa.",
+    "HUIX-2099 — A Liberia-based studio building digital worlds: software, sites, games and inventions from Monrovia, West Africa.",
   path: "/",
   keywords: [
     "HUIX-2099",
     "Monrovia Hustle 3D",
     "HUIX-THEME",
     "Huixor",
-    "Typelr",
     "Liberia tech company",
     "Monrovia software startup",
     "Liberian narrative game",

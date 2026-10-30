@@ -1,0 +1,13 @@
+2026/10/29-00:23:50.651 4f38 Reusing MANIFEST C:\Users\lenovo\Documents\GitHub\huix-2099-Main-web\.qa\chrome-profile\Default\WebStorage\4\IndexedDB\indexeddb.leveldb/MANIFEST-000001
+2026/10/29-00:23:50.652 4f38 Recovering log #6
+2026/10/29-00:23:50.653 4f38 Reusing old log C:\Users\lenovo\Documents\GitHub\huix-2099-Main-web\.qa\chrome-profile\Default\WebStorage\4\IndexedDB\indexeddb.leveldb/000006.log 
+2026/10/29-00:24:10.337 4b14 Level-0 table #10: started
+2026/10/29-00:24:10.344 4b14 Level-0 table #10: 20223 bytes OK
+2026/10/29-00:24:10.349 4b14 Delete type=0 #6
+2026/10/29-00:24:10.353 4f38 Manual compaction at level-0 from '\x00\x04\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x05\x00\x00\x00' @ 0 : 0; will stop at '\x00\x06\x00\x00\xc8\x0b\x00S\x00W\x00H\x00e\x00a\x00l\x00t\x00h\x00L\x00o\x00g' @ 660 : 1
+2026/10/29-00:24:10.354 4f38 Compacting 1@0 + 1@1 files
+2026/10/29-00:24:10.358 4f38 Generated table #11@0: 211 keys, 2864 bytes
+2026/10/29-00:24:10.358 4f38 Compacted 1@0 + 1@1 files => 2864 bytes
+2026/10/29-00:24:10.362 4f38 compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/10/29-00:24:10.366 4f38 Delete type=2 #10
+2026/10/29-00:24:10.372 4f38 Manual compaction at level-0 from '\x00\x06\x00\x00\xc8\x0b\x00S\x00W\x00H\x00e\x00a\x00l\x00t\x00h\x00L\x00o\x00g' @ 660 : 1 .. '\x00\x05\x00\x00\x00' @ 0 : 0; will stop at (end)

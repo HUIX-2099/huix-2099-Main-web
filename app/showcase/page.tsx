@@ -1,55 +1,56 @@
-"use client"
-
-import { motion } from "framer-motion"
+import type { Metadata } from "next"
 import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { BoardingPass } from "@/components/boarding-pass"
-import { TiltCard } from "@/components/tilt-card"
-import { Mail } from "lucide-react"
+import { CTASection, EYEBROW, PageHero, WRAP } from "@/components/clean-ui"
 
-const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
-const CONTACT_EMAIL = "huixtech2099@gmail.com"
+export const metadata: Metadata = {
+  title: "Showcase — HUIX-2099",
+  description:
+    "Selected work from HUIX-2099 — games, software, developer tools, and immersive experiences built in Monrovia, Liberia.",
+}
 
 type ShowcaseItem = {
   title: string
   category: string
   description: string
   href: string
-  img?: string
+  img: string
+  fit: "cover" | "contain"
   year: string
 }
 
 const items: ShowcaseItem[] = [
   {
     title: "Monrovia Hustle 3D",
-    category: "Game · 3D",
-    description: "A Liberian narrative game with a fully local voice cast and immersive 3D world.",
+    category: "Game · 3D narrative",
+    description:
+      "A Liberian narrative game with a local voice cast and an open, lived-in Monrovia. Currently in development as a playable slice.",
     href: "/products/monrovia-hustle",
-    img: "/products/Monrovia_hustle_Demo_Campane/herosection.png",
-    year: "2025",
+    img: "/products/monrovia-hustle/cover/monrovia-hustle-cover.jpg",
+    fit: "cover",
+    year: "2026",
   },
   {
-    title: "Huixor",
-    category: "App · Immersive",
-    description: "An immersive desktop application blending creativity, tools, and experience.",
+    title: "HUIXOR",
+    category: "Software · Developer tool",
+    description:
+      "Preview a site across eight devices in one window — synced scroll, VR stage, and Chrome DevTools emulation. Built in WPF.",
     href: "/products/huixor",
-    img: "/products/huixor/lightmode.jpg",
-    year: "2025",
+    img: "/products/huixor/screenshorts/Screenshot 2026-04-05 111541.png",
+    fit: "cover",
+    year: "2026",
   },
   {
     title: "HUIX-THEME",
-    category: "Developer Tool",
-    description: "A refined VS Code theme crafted for focus, clarity, and long coding sessions.",
+    category: "Theme · VS Code",
+    description:
+      "A dark VS Code theme with satellite hardware imagery and neon syntax colors — designed for long, focused sessions.",
     href: "/products/huix-theme",
+    img: "/products/huix-theme/Media/logo.png",
+    fit: "contain",
     year: "2024",
-  },
-  {
-    title: "Typelr",
-    category: "Software · Productivity",
-    description: "A typing and productivity tool engineered for speed and flow.",
-    href: "/products/typelr",
-    year: "2025",
   },
 ]
 
@@ -58,121 +59,82 @@ export default function ShowcasePage() {
     <>
       <Navbar />
 
-      {/* Hero */}
-      <section className="border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div
-            className="flex items-center justify-between py-4 border-b border-border/50 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50"
-            style={{ fontFamily: monoFont }}
-          >
-            <div className="flex items-center gap-3">
-              <span>HUIX-2099</span>
-              <span className="h-px w-4 bg-border/50" />
-              <span>S H O W C A S E</span>
-            </div>
-            <span>REF · 04 · SHOWCASE</span>
-          </div>
-          <div className="py-16 lg:py-24 grid lg:grid-cols-2 gap-12 items-end">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-4" style={{ fontFamily: monoFont }}>
-                [SHOWCASE] SELECTED WORK
-              </div>
-              <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-[0.9]" style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.04em" }}>
-                Showcase
-              </h1>
-              <div className="h-px w-20 bg-foreground/20 mb-6" />
-              <p className="text-base text-muted-foreground leading-relaxed max-w-md">
-                A selection of products, prototypes, and immersive experiences built by HUIX-2099 —
-                from games and apps to developer tools.
-              </p>
-            </motion.div>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.2 }} className="hidden lg:block text-right">
-              <div className="text-[180px] font-bold leading-[0.8] text-foreground/[0.04] select-none" style={{ fontFamily: "Mohican, sans-serif" }}>
-                0 4
-              </div>
-              <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/40 mt-2" style={{ fontFamily: monoFont }}>
-                Featured Projects
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Grid */}
-      <section className="py-16 lg:py-24 border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-10" style={{ fontFamily: monoFont }}>
-            [0 1] PROJECTS
-          </div>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {items.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
-              >
-                <TiltCard max={5} scale={1.02}>
-                <BoardingPass
-                  href={item.href}
-                  tone={i % 2 === 1 ? "invert" : "default"}
-                  airline="HUIX-2099 · SHOWCASE"
-                  flight={`RUN-0${i + 1}`}
-                  image={item.img}
-                  from={{ code: "IDEA", label: "concept" }}
-                  to={{ code: "LIVE", label: item.year }}
-                  rows={[
-                    { label: "Project", value: item.title },
-                    { label: "Type", value: item.category },
-                    { label: "Year", value: item.year },
-                  ]}
-                  id={`HX-${item.title.replace(/[^A-Z0-9]/gi, "").toUpperCase().slice(0, 8)}-${item.year}`}
-                  cta="View"
-                />
-                </TiltCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-8 border border-border rounded-lg bg-card">
+      <PageHero
+        eyebrow="Showcase · Selected work"
+        title={
+          <>
+            Things we have
+            <br />
+            <span className="text-muted-foreground">actually shipped.</span>
+          </>
+        }
+        description="Products, prototypes, and immersive experiences made with a small team and a long attention span — from games and desktop software to developer tools."
+        aside={
+          <div className="flex items-end justify-between gap-4 border-t border-border pt-6 lg:border-t-0 lg:border-l lg:pl-8">
             <div>
-              <h2 className="text-xl font-bold uppercase tracking-wide mb-2" style={{ fontFamily: "Mohican, sans-serif" }}>
-                Have a project in mind?
-              </h2>
-              <p className="text-sm text-muted-foreground" style={{ fontFamily: monoFont }}>
-                Let&apos;s build something immersive together.
-              </p>
+              <p className="text-[56px] font-semibold leading-none tracking-[-0.05em]">03</p>
+              <p className="mt-2 text-[12px] text-muted-foreground">Featured projects</p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-              <a
-                href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("HUIX-2099 — Project inquiry")}`}
-                className="flex items-center justify-center gap-2 px-8 py-4 bg-foreground text-background text-sm uppercase tracking-[0.12em] hover:opacity-90 transition-opacity"
-                style={{ fontFamily: monoFont }}
-              >
-                <Mail className="h-5 w-5" />
-                Email for info
-              </a>
-              <Link
-                href="/products"
-                className="flex items-center justify-center gap-2 px-8 py-4 border border-border text-sm uppercase tracking-[0.12em] hover:bg-card transition-colors"
-                style={{ fontFamily: monoFont }}
-              >
-                All products
-              </Link>
-            </div>
+            <Link
+              href="/products"
+              className="group inline-flex items-center gap-2 text-[13px] font-medium"
+            >
+              All work
+              <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
           </div>
-          <div className="mt-8 pt-6 border-t border-border flex items-center justify-between text-[9px] uppercase tracking-[0.12em] text-muted-foreground/40" style={{ fontFamily: monoFont }}>
-            <Link href="/" className="hover:text-foreground/60 transition-colors">← Home</Link>
-            <span>SHOWCASE · HUIX-2099</span>
-          </div>
+        }
+      />
+
+      <section className={`${WRAP} py-14 lg:py-20`}>
+        <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2">
+          {items.map((item) => (
+            <Link key={item.title} href={item.href} className="group block">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-[24px] border border-border bg-secondary">
+                {item.fit === "cover" ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  />
+                ) : (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="absolute inset-0 m-auto max-h-[62%] max-w-[62%] object-contain transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  />
+                )}
+                <span className="absolute left-4 top-4 rounded-full bg-background/85 px-3 py-1 text-[11px] font-medium text-foreground backdrop-blur">
+                  {item.year}
+                </span>
+              </div>
+
+              <div className="mt-5 flex items-start justify-between gap-6">
+                <div>
+                  <p className={EYEBROW}>{item.category}</p>
+                  <h2 className="mt-2 flex items-center gap-2 text-[24px] font-semibold tracking-[-0.03em]">
+                    {item.title}
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+                  </h2>
+                  <p className="mt-3 max-w-md text-[14px] leading-relaxed text-muted-foreground">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
+
+      <CTASection
+        eyebrow="Next project"
+        title="Your idea could be on this page."
+        body="We take on a small number of builds each year — games, products, and immersive experiences with a reason to exist."
+        primary={{ label: "Start a project", href: "/contact" }}
+        secondary={{ label: "Browse products", href: "/products" }}
+      />
 
       <Footer />
     </>

@@ -1,44 +1,42 @@
-"use client"
-
+import type { Metadata } from "next"
+import { ArrowUpRight } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { motion } from "framer-motion"
-import Link from "next/link"
-import { Handshake, Megaphone, Code2, GraduationCap, Building2, Mail } from "lucide-react"
+import { CTASection, EYEBROW, H2, PageHero, SectionHead, WRAP } from "@/components/clean-ui"
 
-const monoFont = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace'
 const CONTACT_EMAIL = "huixtech2099@gmail.com"
+const MAILTO = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+  "HUIX-2099 — Partnership inquiry",
+)}&body=${encodeURIComponent(
+  "Hi HUIX-2099 team,\n\nWe'd like to explore a partnership. Here are some details:\n\n- Organization:\n- Partnership type:\n- What we're proposing:\n\nThanks!",
+)}`
 
-const partners = [
-  {
-    name: "Liberia Digital Insights",
-    type: "Media Partner",
-    description: "Liberia-based media company providing digital insights and news coverage.",
-    since: "2024",
-    logo: "https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/472668615_122151560240327586_8550086386214923478_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=SF3lOYooPasQ7kNvwHETaZD&_nc_oc=Adlnny_O4VfMaY4oSmnRImePSdQmTN96-O1O__70etDyi11M6g5oTLH9VGj3toQ6Nn767nX42Gdv1CW9nWJ8kHl-&_nc_zt=23&_nc_ht=scontent-los2-1.xx&_nc_gid=P9zSunhwMw2iQdBnCiPp7w&oh=00_Afg7kzaGkGYB0HoqaKJ0M1HAvm205lSlte8ifArQM5KXvg&oe=691FFB6D",
-  },
-]
+export const metadata: Metadata = {
+  title: "Partners — HUIX-2099",
+  description:
+    "Media, technology, education, and enterprise partners building immersive work with HUIX-2099 in Monrovia, Liberia.",
+}
 
 const partnershipTypes = [
   {
-    icon: Megaphone,
-    title: "Media & Press",
-    desc: "Coverage, storytelling, and amplifying African tech innovation to wider audiences.",
+    id: "01",
+    title: "Media & press",
+    desc: "Coverage, storytelling, and bringing African tech and culture to wider audiences.",
   },
   {
-    icon: Code2,
+    id: "02",
     title: "Technology",
-    desc: "Joint builds, integrations, and shared engineering on VR/XR, AI, and 3D platforms.",
+    desc: "Joint builds, integrations, and shared engineering across XR, AI, and 3D tooling.",
   },
   {
-    icon: GraduationCap,
-    title: "Education & Research",
-    desc: "Universities and institutions exploring immersive tech, heritage, and digital skills.",
+    id: "03",
+    title: "Education & research",
+    desc: "Universities and institutions exploring immersive heritage, learning, and digital skills.",
   },
   {
-    icon: Building2,
-    title: "Enterprise & Government",
-    desc: "Organizations adopting immersive and digital solutions across West Africa.",
+    id: "04",
+    title: "Enterprise & government",
+    desc: "Organizations adopting immersive and digital systems across West Africa.",
   },
 ]
 
@@ -51,163 +49,135 @@ const benefits = [
 ]
 
 export default function PartnersPage() {
-  const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-    "HUIX-2099 — Partnership inquiry",
-  )}&body=${encodeURIComponent(
-    "Hi HUIX-2099 team,\n\nWe'd like to explore a partnership. Here are some details:\n\n- Organization:\n- Partnership type:\n- What we're proposing:\n\nThanks!",
-  )}`
-
   return (
     <>
       <Navbar />
 
-      {/* Hero */}
-      <section className="border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div
-            className="flex items-center justify-between py-4 border-b border-border/50 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50"
-            style={{ fontFamily: monoFont }}
-          >
-            <div className="flex items-center gap-3">
-              <span>HUIX-2099</span>
-              <span className="h-px w-4 bg-border/50" />
-              <span>P A R T N E R S</span>
-            </div>
-            <span>CAT NO · PTR-001</span>
-          </div>
-          <div className="py-16 lg:py-24 grid lg:grid-cols-2 gap-12 items-end">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-4" style={{ fontFamily: monoFont }}>
-                [PARTNERS] BUILDING TOGETHER
-              </div>
-              <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-[0.9]" style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.04em" }}>
-                Partnerships
-              </h1>
-              <div className="h-px w-20 bg-foreground/20 mb-6" />
-              <p className="text-base text-muted-foreground leading-relaxed max-w-md">
-                We collaborate with media, technology, education, and enterprise partners to drive
-                immersive innovation across Africa and beyond.
-              </p>
-            </motion.div>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.2 }} className="hidden lg:flex justify-end">
-              <Handshake className="h-40 w-40 text-foreground/[0.06]" strokeWidth={1} />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Current partners */}
-      <section className="py-16 lg:py-24 border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-10" style={{ fontFamily: monoFont }}>
-            [0 1] CURRENT PARTNERS
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {partners.map((partner, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="p-8 rounded-2xl bg-card border border-border hover:border-foreground/30 transition-all"
-              >
-                {partner.logo && (
-                  <div className="mb-5 flex justify-center">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={partner.logo} alt={`${partner.name} logo`} className="h-16 w-auto rounded-md object-contain" />
-                  </div>
-                )}
-                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-2" style={{ fontFamily: monoFont }}>
-                  {partner.type}
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-3">{partner.name}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">{partner.description}</p>
-                <div className="pt-4 border-t border-border text-xs text-muted-foreground" style={{ fontFamily: monoFont }}>
-                  Partnership since {partner.since}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Partnership types */}
-      <section className="py-16 lg:py-24 border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-10" style={{ fontFamily: monoFont }}>
-            [0 2] WAYS TO PARTNER
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {partnershipTypes.map((t, i) => (
-              <motion.div
-                key={t.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="rounded-2xl border border-border bg-card/40 p-6 hover:bg-card transition-colors"
-              >
-                <t.icon className="h-7 w-7 text-foreground mb-4" strokeWidth={1.5} />
-                <h3 className="text-base font-bold uppercase tracking-wide mb-2" style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.05em" }}>
-                  {t.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{t.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits + CTA */}
-      <section className="py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
-          <div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-6" style={{ fontFamily: monoFont }}>
-              [0 3] WHY PARTNER WITH US
-            </div>
-            <ul className="space-y-3">
-              {benefits.map((b) => (
-                <li key={b} className="flex items-start gap-3 text-foreground/90">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground" />
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl bg-card border border-border p-10 text-center"
-          >
-            <h2 className="text-3xl font-bold text-foreground mb-3" style={{ fontFamily: "Mohican, sans-serif", letterSpacing: "0.04em" }}>
-              Become a Partner
-            </h2>
-            <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-              Interested in collaborating with HUIX-2099? We&apos;re always looking for innovative
-              partners to grow together.
+      <PageHero
+        eyebrow="Partners · Building together"
+        title={
+          <>
+            Good work is
+            <br />
+            <span className="text-muted-foreground">rarely done alone.</span>
+          </>
+        }
+        description="We collaborate with media, technology, education, and enterprise partners to move immersive work forward across Africa and beyond."
+        aside={
+          <div className="rounded-[24px] bg-foreground p-7 text-background">
+            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-background/50">
+              Open for 2026
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href={mailto}
-                className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-foreground text-background rounded-full text-xs uppercase tracking-[0.12em] hover:opacity-90 transition-opacity"
-                style={{ fontFamily: monoFont }}
-              >
-                <Mail className="h-4 w-4" />
-                Email for info
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3 border border-border rounded-full text-xs uppercase tracking-[0.12em] hover:bg-background transition-colors"
-                style={{ fontFamily: monoFont }}
-              >
-                Contact page
-              </Link>
+            <p className="mt-4 text-[20px] font-medium leading-snug tracking-[-0.02em]">
+              Looking for a build partner in West Africa?
+            </p>
+            <a
+              href={MAILTO}
+              className="group mt-6 inline-flex items-center gap-2 rounded-full bg-background px-5 py-3 text-[13px] font-medium text-foreground transition-transform hover:-translate-y-0.5"
+            >
+              Start a conversation
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        }
+      />
+
+      <section className={`${WRAP} py-14 lg:py-20`}>
+        <SectionHead eyebrow="Current partners" title="Who we build with." />
+        <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          <div className="rounded-[28px] border border-border bg-card p-7 lg:col-span-2">
+            <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+              <div className="flex items-start gap-5">
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[18px] bg-foreground text-[18px] font-semibold tracking-[-0.02em] text-background">
+                  LDI
+                </div>
+                <div>
+                  <p className={EYEBROW}>Media partner · Since 2024</p>
+                  <h3 className="mt-3 text-[24px] font-semibold leading-tight tracking-[-0.03em]">
+                    Liberia Digital Insights
+                  </h3>
+                  <p className="mt-3 max-w-md text-[14px] leading-relaxed text-muted-foreground">
+                    A Liberia-based media company covering technology, business, and culture — helping
+                    local innovation reach the audience it belongs to.
+                  </p>
+                </div>
+              </div>
+              <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-border px-3 py-1.5 text-[11px] text-muted-foreground">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                Active
+              </span>
             </div>
-          </motion.div>
+          </div>
+
+          <div className="flex flex-col justify-between rounded-[28px] border border-dashed border-border p-7">
+            <div>
+              <p className={EYEBROW}>Next</p>
+              <h3 className="mt-3 text-[20px] font-semibold leading-snug tracking-[-0.02em]">
+                Your organization here.
+              </h3>
+              <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
+                We keep the partner list short and the work close. Tell us what you are building.
+              </p>
+            </div>
+            <a
+              href={MAILTO}
+              className="group mt-8 inline-flex items-center gap-2 text-[13px] font-medium"
+            >
+              Become a partner
+              <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+          </div>
         </div>
       </section>
+
+      <section className="border-t border-border">
+        <div className={`${WRAP} py-14 lg:py-20`}>
+          <SectionHead
+            eyebrow="Ways to partner"
+            title="Four ways in."
+            description="Most partnerships start as one project and grow from there."
+          />
+          <div className="mt-10 divide-y divide-border border-y border-border">
+            {partnershipTypes.map((type) => (
+              <div key={type.id} className="grid gap-3 py-7 sm:grid-cols-[64px_220px_1fr] sm:items-baseline sm:gap-6">
+                <span className="text-[11px] font-medium tabular-nums text-muted-foreground/60">{type.id}</span>
+                <h3 className="text-[18px] font-semibold tracking-[-0.02em]">{type.title}</h3>
+                <p className="max-w-xl text-[14px] leading-relaxed text-muted-foreground">{type.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={`${WRAP} py-14 lg:py-20`}>
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <p className={EYEBROW}>Why work with us</p>
+            <h2 className={`mt-3 ${H2}`}>Small enough to care. Serious enough to ship.</h2>
+          </div>
+          <ul className="lg:col-span-7">
+            {benefits.map((benefit, index) => (
+              <li
+                key={benefit}
+                className="flex items-baseline gap-5 border-b border-border py-5 first:border-t first:border-border lg:first:border-t-0 lg:first:pt-0"
+              >
+                <span className="w-6 shrink-0 text-[11px] tabular-nums text-muted-foreground/60">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="text-[15px] leading-relaxed">{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <CTASection
+        eyebrow="Partnership"
+        title="Let's build something that lasts."
+        body="Send a short note about your organization and what you have in mind. We reply within 24–48 hours."
+        primary={{ label: "Email HUIX-2099", href: MAILTO }}
+        secondary={{ label: "Contact page", href: "/contact" }}
+      />
 
       <Footer />
     </>

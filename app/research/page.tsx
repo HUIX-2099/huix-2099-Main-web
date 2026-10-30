@@ -1,233 +1,271 @@
-"use client"
-
+import type { Metadata } from "next"
+import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { motion } from "framer-motion"
+import { CTASection, EYEBROW, H2, PageHero, SectionHead, WRAP } from "@/components/clean-ui"
+
+export const metadata: Metadata = {
+  title: "Research — HUIX-2099",
+  description:
+    "HUIX-2099 research in real-time 3D, spatial computing, heritage reconstruction, and Liberian language technology.",
+}
+
+const focusAreas = [
+  {
+    id: "01",
+    title: "Real-time 3D & XR",
+    desc: "Prototyping spatial interfaces, rendering pipelines, and experiences that run well on modest hardware.",
+  },
+  {
+    id: "02",
+    title: "Procedural worlds",
+    desc: "Tools and workflows for building dense, believable environments without a large art team.",
+  },
+  {
+    id: "03",
+    title: "Cultural visualisation",
+    desc: "Reconstructing architecture and place from archives, photography, and community memory.",
+  },
+  {
+    id: "04",
+    title: "Immersive interaction",
+    desc: "How people move, learn, and collaborate inside spatial systems — including accessibility and comfort.",
+  },
+]
+
+const positives = [
+  "Culturally grounded, immersive storytelling to improve health education and retention.",
+  "Low-bandwidth XR modules for remote wellness outreach in clinics and schools.",
+  "Restorative historical spaces that support stress reduction and mental wellbeing.",
+  "Training scenarios for public-health response and emergency drills.",
+]
+
+const risks = [
+  "Motion sickness and eye strain from prolonged XR use without guidance.",
+  "Access inequity where devices and connectivity are limited in rural areas.",
+  "Cultural misinterpretation when historical content lacks community review.",
+  "Data privacy concerns around biometrics and learning analytics.",
+]
+
+const impacts = [
+  {
+    title: "Economic & creative industries",
+    body: "Catalyse local jobs in 3D, XR, and cultural content production. Enable micro-entrepreneurship around digital heritage, experiential tourism, and education partnerships.",
+  },
+  {
+    title: "Cultural preservation & education",
+    body: "Preserve artefacts, architecture, and oral histories in accessible formats. Augment classrooms with interactive lessons that connect young people to heritage and STEM pathways.",
+  },
+]
 
 export default function ResearchPage() {
   return (
     <>
       <Navbar />
 
-      <section className="py-20 px-4 bg-background">
-        <div className="max-w-6xl mx-auto">
-          {/* Series Header */}
-          <div className="mb-12">
-            <div className="h-[2px] w-24 bg-orange-500 mb-4" />
-            <div className="flex items-end justify-between pb-5 border-b border-border/70">
-              <div className="flex items-center gap-6">
-                <div className="text-8xl lg:text-9xl font-bold text-foreground/10 leading-none" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>01</div>
-                <div>
-                  <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-[0.14em] mb-2">[01] Research · Doc</div>
-                  <h1 className="text-2xl md:text-3xl font-bold text-foreground" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.25em' }}>RESEARCH</h1>
-                </div>
-              </div>
-              <div className="hidden md:flex flex-col items-end gap-1">
-                <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-muted-foreground">Series / 01 · v1</div>
-                <div className="flex items-center gap-2 text-[10px] text-muted-foreground font-mono">
-                  <span>REV A</span>
-                  <span className="inline-block h-[1px] w-8 bg-border" />
-                  <span>CAT NO · RCH-01</span>
-                </div>
-              </div>
-            </div>
-            {/* Dot-matrix accent */}
-            <div className="mt-4 flex items-center gap-4">
-              <div className="grid grid-cols-8 gap-1">
-                {Array.from({ length: 24 }).map((_, i) => (
-                  <div key={i} className="h-1.5 w-1.5 rounded-full bg-foreground/20" />
-                ))}
-              </div>
-              <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-muted-foreground">Index · R‑01</div>
-            </div>
+      <PageHero
+        eyebrow="Research · Studio notes"
+        title={
+          <>
+            Research is how
+            <br />
+            <span className="text-muted-foreground">the work stays honest.</span>
+          </>
+        }
+        description="We study real-time 3D, spatial computing, and cultural technology — then put what we learn directly into products and stories built in Monrovia."
+        aside={
+          <div className="border-t border-border pt-6 lg:border-t-0 lg:border-l lg:pl-8">
+            <p className={EYEBROW}>Focus</p>
+            <p className="mt-3 text-[15px] leading-relaxed">
+              Real-time systems, heritage, and Liberian language technology.
+            </p>
+            <p className="mt-6 text-[12px] leading-relaxed text-muted-foreground">
+              Working notes, updated as projects move.
+            </p>
           </div>
+        }
+      />
 
-          {/* Overview */}
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-              <h2 className="text-xl font-bold mb-2" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>Mission</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                We conduct research in 3D technology and invention—advancing real‑time visualization, spatial computing,
-                and interactive systems that empower creators across Liberia and beyond.
-              </p>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}>
-              <div className="border border-border rounded-lg p-4 bg-card">
-                <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-muted-foreground mb-2">Focus Areas</div>
-                <ul className="list-disc pl-5 text-sm text-foreground space-y-2">
-                  <li>Real‑time 3D rendering and XR prototyping</li>
-                  <li>Procedural generation and worldbuilding tools</li>
-                  <li>3D pipelines for architecture and cultural visualization</li>
-                  <li>Human‑computer interaction for immersive systems</li>
-                </ul>
-              </div>
-            </motion.div>
+      <section className={`${WRAP} py-14 lg:py-20`}>
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <p className={EYEBROW}>Mission</p>
+            <h2 className={`mt-3 ${H2}`}>
+              Build the tools, then tell the story properly.
+            </h2>
           </div>
+          <div className="lg:col-span-7">
+            <p className="text-[16px] leading-relaxed text-muted-foreground">
+              Our research sits between engineering and culture. We advance real-time visualisation,
+              spatial computing, and interactive systems — with a particular interest in what those
+              tools can do for places that are usually described from the outside.
+            </p>
+            <p className="mt-5 text-[16px] leading-relaxed text-muted-foreground">
+              The output is practical: faster pipelines, more credible worlds, and interfaces that
+              people can actually use. Findings go straight into HUIX-HORIZEN, Virtual Past Liberia,
+              and the Monrovia Hustle series.
+            </p>
+          </div>
+        </div>
+      </section>
 
-          {/* Projects/Initiatives */}
-          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: 'HUIX-HORIZEN', meta: 'Platform · Experimental', desc: 'Modular XR platform for spatial visualization and collaboration.', href: '/huix-horizen' },
-            ].map((item, index) => (
-              <motion.a
-                key={item.title}
-                href={item.href}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.06 }}
-                className="block p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Initiative</div>
-                  <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>
-                    {String(index + 1).padStart(2, '0')}
-                  </div>
-                </div>
-                <div className="h-px w-full bg-border mb-4" />
-                <h3 className="text-xl font-bold text-foreground mb-1" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>{item.title}</h3>
-                <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">{item.meta}</div>
-                <p className="text-muted-foreground leading-relaxed text-sm">{item.desc}</p>
-              </motion.a>
+      <section className="border-y border-border bg-secondary/40">
+        <div className={`${WRAP} py-14 lg:py-20`}>
+          <SectionHead eyebrow="Focus areas" title="What we are looking at." />
+          <div className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+            {focusAreas.map((area) => (
+              <div key={area.id} className="border-t border-border pt-5">
+                <span className="text-[11px] tabular-nums text-muted-foreground/60">{area.id}</span>
+                <h3 className="mt-3 text-[17px] font-semibold tracking-[-0.02em]">{area.title}</h3>
+                <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">{area.desc}</p>
+              </div>
             ))}
+          </div>
+        </div>
+      </section>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.06 }}
-              className="md:col-span-1 lg:col-span-2 p-6 rounded-lg bg-card border border-border hover:border-foreground/30 transition-all"
+      <section className={`${WRAP} py-14 lg:py-20`}>
+        <SectionHead
+          eyebrow="Initiatives"
+          title="Where the research lands."
+          action={
+            <Link
+              href="/products"
+              className="group inline-flex items-center gap-2 text-[13px] font-medium"
             >
-              <div className="flex items-center justify-between mb-3">
-                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">Initiative · Joint Interest</div>
-                <div className="text-sm text-muted-foreground tabular-nums" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>02</div>
-              </div>
-              <div className="h-px w-full bg-border mb-4" />
-              <h3 className="text-xl font-bold text-foreground mb-1" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>
-                Virtual Past Liberia × LLM Liberia
-              </h3>
-              <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-4">Two Projects · One Mission · Concept</div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <a href="/virtual-past-liberia" className="block rounded-md border border-border p-4 hover:border-orange-500/60 transition-colors">
-                  <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-orange-500 mb-1">[A] Heritage · XR</div>
-                  <div className="font-semibold text-foreground mb-1">Virtual Past Liberia</div>
-                  <p className="text-muted-foreground leading-relaxed text-sm">Immersive cultural reconstruction and architectural storytelling.</p>
-                </a>
-                <a
-                  href="https://liberia-language-lm.vercel.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block rounded-md border border-border p-4 hover:border-orange-500/60 transition-colors"
-                >
-                  <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-orange-500 mb-1">[B] Language · AI · KoloquaLBR</div>
-                  <div className="font-semibold text-foreground mb-1">LLM Liberia ↗</div>
-                  <p className="text-muted-foreground leading-relaxed text-sm">A Liberian language model trained on Liberian English and local languages to preserve and power local voices.</p>
-                </a>
-              </div>
-              <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-                Shared interest: preserving Liberian history, culture, and language — and making it accessible through immersive and AI technology.
+              All products
+              <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
+          }
+        />
+
+        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          <div className="flex flex-col justify-between rounded-[28px] border border-border bg-card p-7 sm:p-9">
+            <div>
+              <p className={EYEBROW}>Platform · Experimental</p>
+              <h3 className="mt-3 text-[26px] font-semibold tracking-[-0.03em]">HUIX-HORIZEN</h3>
+              <p className="mt-4 text-[14px] leading-relaxed text-muted-foreground">
+                A modular XR platform for spatial visualisation and collaboration — scenes, avatars, and
+                multi-user sessions, with privacy-first research tooling underneath.
               </p>
-            </motion.div>
+            </div>
+            <ul className="mt-8 space-y-3 text-[13px] text-muted-foreground">
+              <li className="flex gap-3">
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted-foreground/50" />
+                Scalable modules for 3D scenes, avatars, and shared sessions.
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted-foreground/50" />
+                Research dashboards, consent flows, and minimal telemetry.
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted-foreground/50" />
+                Integrations for education partners and local content pipelines.
+              </li>
+            </ul>
           </div>
 
-          {/* Medical Implications — Virtual Past Liberia */}
-          <div className="mt-16">
-            <div className="flex items-center justify-between mb-3">
-              <motion.h2 initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>
-                V i r t u a l  ·  P a s t  ·  L i b e r i a — Medical Implications
-              </motion.h2>
-              <div className="hidden md:block text-[10px] font-mono uppercase tracking-[0.12em] text-orange-500">[02] Health · Review</div>
-            </div>
-            <div className="h-[1px] w-full bg-border mb-6" />
-            <div className="grid md:grid-cols-2 gap-6">
-              <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="border border-border rounded-lg p-5 bg-card">
-                <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">[+ ] Positives</div>
-                <ul className="list-disc pl-5 text-sm text-foreground space-y-2">
-                  <li>Health education via culturally grounded, immersive storytelling to improve retention.</li>
-                  <li>Remote wellness outreach using low-bandwidth XR modules for clinics and schools.</li>
-                  <li>Stress-reduction and mental health support through restorative historical spaces.</li>
-                  <li>Training scenarios for public-health responses and emergency drills.</li>
-                </ul>
-              </motion.div>
-              <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.08 }} className="border border-border rounded-lg p-5 bg-card">
-                <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">[− ] Negatives / Risks</div>
-                <ul className="list-disc pl-5 text-sm text-foreground space-y-2">
-                  <li>Motion sickness/eye strain from prolonged XR use without guidance.</li>
-                  <li>Access inequity if devices and connectivity are limited in rural areas.</li>
-                  <li>Potential cultural misinterpretation if historical content lacks community review.</li>
-                  <li>Data privacy concerns for user biometrics or learning analytics.</li>
-                </ul>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Two Key Impacts on Liberia */}
-          <div className="mt-12">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>Two Key Impacts on Liberia</h2>
-              <div className="hidden md:block text-[10px] font-mono uppercase tracking-[0.12em] text-orange-500">[03] Impact · Brief</div>
-            </div>
-            <div className="h-[1px] w-full bg-border mb-6" />
-            <div className="grid md:grid-cols-2 gap-6">
-              <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="border border-border rounded-lg p-5 bg-card">
-                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>Economic & Creative Industries</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Catalyze local jobs in 3D, XR, and cultural content production. Enable micro-entrepreneurship
-                  around digital heritage, experiential tourism, and education partnerships.
-                </p>
-              </motion.div>
-              <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.08 }} className="border border-border rounded-lg p-5 bg-card">
-                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>Cultural Preservation & Education</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Preserve artifacts, architecture, and oral histories in accessible formats. Augment classrooms
-                  with interactive lessons that connect youth to heritage and STEM pathways.
-                </p>
-              </motion.div>
+          <div className="rounded-[28px] bg-foreground p-7 text-background sm:p-9">
+            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-background/50">
+              Joint interest · Concept
+            </p>
+            <h3 className="mt-3 text-[26px] font-semibold tracking-[-0.03em]">
+              Virtual Past Liberia × LLM Liberia
+            </h3>
+            <p className="mt-4 text-[14px] leading-relaxed text-background/60">
+              Two projects, one mission: reconstruct Liberian history in immersive 3D, and build a
+              language model that understands Liberian English and local languages.
+            </p>
+            <div className="mt-8 grid gap-3">
+              <Link
+                href="/virtual-past-liberia"
+                className="group flex items-center justify-between rounded-2xl bg-background/10 px-4 py-3.5 transition-colors hover:bg-background/15"
+              >
+                <span className="text-[13px] font-medium">Virtual Past Liberia</span>
+                <ArrowUpRight className="h-4 w-4 text-background/60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </Link>
+              <a
+                href="https://liberia-language-lm.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between rounded-2xl bg-background/10 px-4 py-3.5 transition-colors hover:bg-background/15"
+              >
+                <span className="text-[13px] font-medium">LLM Liberia</span>
+                <ArrowUpRight className="h-4 w-4 text-background/60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
             </div>
           </div>
+        </div>
 
-          {/* Platform Perspectives */}
-          <div className="mt-12">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-xl font-bold" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>Platform Perspectives</h2>
-              <div className="hidden md:block text-[10px] font-mono uppercase tracking-[0.12em] text-orange-500">[04] Platforms · Spec</div>
-            </div>
-            <div className="h-[1px] w-full bg-border mb-6" />
-            <div className="grid md:grid-cols-2 gap-6">
-              <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="border border-border rounded-lg p-5 bg-card">
-                <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Platform</div>
-                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.15em' }}>HUIX-HORIZEN</h3>
-                <ul className="list-disc pl-5 text-sm text-foreground space-y-2">
-                  <li>Scalable modules for 3D scenes, avatars, and multi-user sessions.</li>
-                  <li>Supports research dashboards, consent flows, and privacy-first telemetry.</li>
-                  <li>Integrations for education partners and local content pipelines.</li>
-                </ul>
-              </motion.div>
-              <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.08 }} className="border border-border rounded-lg p-5 bg-card">
-                <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-muted-foreground mb-2">Program</div>
-                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'Mohican, sans-serif', letterSpacing: '0.1em' }}>Virtual · Past · Liberia</h3>
-                <ul className="list-disc pl-5 text-sm text-foreground space-y-2">
-                  <li>Focus on historical reconstruction, community curation, and storytelling.</li>
-                  <li>Field-ready experiences optimized for low-spec devices and offline modes.</li>
-                  <li>Partnership model with museums, schools, and cultural custodians.</li>
-                </ul>
-              </motion.div>
-            </div>
-          </div>
+        <div className="mt-5 flex flex-col gap-4 rounded-[24px] border border-border px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-xl text-[13px] leading-relaxed text-muted-foreground">
+            Field sessions across Monrovia — headsets, borrowed laptops, real rooms — shaped this
+            research build.
+          </p>
+          <Link
+            href="/virtual-past-liberia"
+            className="group inline-flex shrink-0 items-center gap-2 text-[13px] font-medium"
+          >
+            Virtual Past Liberia
+            <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </Link>
+        </div>
+      </section>
 
-          {/* ID Footer Strip */}
-          <div className="mt-16 border-t border-border pt-3 text-[10px] font-mono text-muted-foreground flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span> {new Date().getFullYear()}</span>
-              <span className="inline-block h-[1px] w-6 bg-border" />
-              <span>HUIX‑2099 · RCH</span>
+      <section className="border-t border-border">
+        <div className={`${WRAP} py-14 lg:py-20`}>
+          <SectionHead
+            eyebrow="Health review"
+            title="Immersive heritage, considered carefully."
+            description="Virtual Past Liberia is a cultural project, but immersive media has health implications. We keep both sides visible."
+          />
+          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+            <div className="rounded-[24px] border border-border p-6 sm:p-7">
+              <p className={EYEBROW}>Positives</p>
+              <ul className="mt-5 space-y-3.5">
+                {positives.map((item) => (
+                  <li key={item} className="flex gap-3 text-[14px] leading-relaxed text-muted-foreground">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-emerald-500" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="flex items-center gap-3">
-              <span>IDX · 01–04</span>
-              <span className="inline-block h-[1px] w-6 bg-border" />
-              <span>REV A</span>
+            <div className="rounded-[24px] border border-border p-6 sm:p-7">
+              <p className={EYEBROW}>Risks</p>
+              <ul className="mt-5 space-y-3.5">
+                {risks.map((item) => (
+                  <li key={item} className="flex gap-3 text-[14px] leading-relaxed text-muted-foreground">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-amber-500" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
       </section>
+
+      <section className={`${WRAP} py-14 lg:py-20`}>
+        <SectionHead eyebrow="Impact" title="Two things we want this to change." />
+        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          {impacts.map((impact) => (
+            <div key={impact.title} className="rounded-[24px] bg-secondary/60 p-7 sm:p-9">
+              <h3 className="text-[20px] font-semibold tracking-[-0.025em]">{impact.title}</h3>
+              <p className="mt-4 text-[14px] leading-relaxed text-muted-foreground">{impact.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <CTASection
+        eyebrow="Collaborate"
+        title="Research is better with company."
+        body="We are open to research partnerships with universities, museums, clinics, and cultural custodians in Liberia and beyond."
+        primary={{ label: "Start a conversation", href: "/contact" }}
+        secondary={{ label: "See Virtual Past", href: "/virtual-past-liberia" }}
+      />
 
       <Footer />
     </>
