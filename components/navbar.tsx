@@ -16,7 +16,7 @@ import {
 } from "lucide-react"
 import { useTheme } from "./theme-provider"
 import { CommandMenu } from "./command-menu"
-import { HuixBarcode } from "./brand/huix-logo"
+import { HuixBarcode, HuixWordmark } from "./brand/huix-logo"
 
 const WRAP = "mx-auto w-full max-w-[1320px] px-5 sm:px-8 lg:px-16"
 
@@ -236,13 +236,8 @@ export function Navbar() {
               className="group flex shrink-0 items-center gap-2.5"
               aria-label="HUIX-2099 home"
             >
-              <HuixBarcode variant="centre" scan="hover" className="h-[22px] text-foreground" />
-              <span
-                className="text-[15px] font-semibold leading-none text-foreground"
-                style={{ fontFamily: "Mohican, sans-serif" }}
-              >
-                HUIX-2099
-              </span>
+              <HuixBarcode className="h-8 text-foreground" />
+              <HuixWordmark className="h-[18px] text-foreground" />
               <span className="ml-1 hidden text-[11px] font-normal tracking-[0.01em] text-muted-foreground xl:inline">
                 Monrovia · Liberia
               </span>

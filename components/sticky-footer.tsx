@@ -62,13 +62,8 @@ export function StickyFooter({ className, ...props }: StickyFooterProps) {
           {/* Brand */}
           <div className="lg:col-span-5">
             <Link href="/" className="group inline-flex items-center gap-2.5" aria-label="HUIX-2099 home">
-              <HuixBarcode variant="centre" scan="hover" className="h-[22px] text-foreground" />
-              <span
-                className="text-[15px] font-semibold leading-none text-foreground"
-                style={{ fontFamily: "Mohican, sans-serif" }}
-              >
-                HUIX-2099
-              </span>
+              <HuixBarcode className="h-8 text-foreground" />
+              <HuixWordmark className="h-[18px] text-foreground" />
             </Link>
 
             <p className="mt-7 max-w-[22rem] text-[clamp(1.7rem,3vw,2.35rem)] font-semibold leading-[1.12] tracking-[-0.04em] text-foreground">
