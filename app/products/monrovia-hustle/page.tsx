@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react"
 import { FranchiseShell, StatusBadge } from "@/components/monrovia-hustle/franchise-shell"
 import { HustleHero } from "@/components/monrovia-hustle/hustle-hero"
 import { HustleLoop } from "@/components/monrovia-hustle/hustle-loop"
+import { ParticleFilm } from "@/components/monrovia-hustle/particle-film"
 import {
   franchiseMetadata,
   MH_BASE,
@@ -59,6 +60,24 @@ export default function MonroviaHustlePage() {
 
       {/* Identity: the loop, pinned in the middle of the scroll */}
       <HustleLoop />
+
+      {/* The city becomes the game: the map rising into a controller, in big particles */}
+      <section
+        aria-label="A map of Monrovia rising into a game controller, drawn in particles"
+        className="relative z-10 h-[100svh] min-h-[560px] snap-start overflow-hidden bg-[#0c0c0c] text-[#f4f1ea]"
+      >
+        <ParticleFilm className="absolute inset-0 h-full w-full" dotScale={2.2} />
+        <p className="absolute left-[clamp(16px,3.4vw,48px)] top-[clamp(16px,3.4vw,48px)] font-mono text-[10px] uppercase leading-[1.7] tracking-[0.16em]">
+          The city, in particles
+          <br />
+          Monrovia → the game
+        </p>
+        <p className="absolute right-[clamp(16px,3.4vw,48px)] top-[clamp(16px,3.4vw,48px)] hidden text-right font-mono text-[10px] uppercase leading-[1.7] tracking-[0.16em] sm:block">
+          Map → controller
+          <br />
+          Particle study
+        </p>
+      </section>
 
       {/* About the game */}
       <section className="relative z-10 mx-auto max-w-[1320px] px-5 py-12 sm:px-8 sm:py-20 lg:px-16">

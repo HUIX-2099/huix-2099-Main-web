@@ -1,14 +1,91 @@
 
 > my-v0-project@0.1.0 dev
-> next dev --webpack --port 3001
+> next dev --webpack
 
    ▲ Next.js 16.0.7 (webpack)
-   - Local:         http://localhost:3001
-   - Network:       http://192.168.1.25:3001
+   - Local:         http://localhost:3000
+   - Network:       http://10.186.85.67:3000
 
  ✓ Starting...
 [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
- ✓ Ready in 12.4s
- ○ Compiling / ...
- GET / 200 in 393ms (compile: 200ms, render: 193ms)
- GET / 200 in 3.2s (compile: 293ms, render: 2.9s)
+ ✓ Ready in 16.2s
+ ○ Compiling /products/monrovia-hustle ...
+ GET /products/monrovia-hustle 200 in 54s (compile: 50s, render: 4.5s)
+ GET /products/monrovia-hustle 200 in 76s (compile: 72s, render: 4.5s)
+ GET /products/monrovia-hustle 200 in 546ms (compile: 85ms, render: 461ms)
+ ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ GET /products/monrovia-hustle 200 in 12.4s (compile: 12.1s, render: 252ms)
+ GET /products/monrovia-hustle 200 in 337ms (compile: 191ms, render: 146ms)
+ GET /products/monrovia-hustle 200 in 217ms (compile: 41ms, render: 176ms)
+ GET /products/monrovia-hustle 200 in 310ms (compile: 15ms, render: 296ms)
+ GET /products/monrovia-hustle 200 in 224ms (compile: 30ms, render: 194ms)
+ GET /products/monrovia-hustle 200 in 291ms (compile: 105ms, render: 187ms)
+ GET /products/monrovia-hustle/about 200 in 5.8s (compile: 5.3s, render: 463ms)
+ GET /products/monrovia-hustle 200 in 385ms (compile: 63ms, render: 322ms)
+ GET /products/monrovia-hustle 200 in 260ms (compile: 17ms, render: 243ms)
+ GET /products/monrovia-hustle 200 in 193ms (compile: 20ms, render: 173ms)
+ GET /products/monrovia-hustle 200 in 196ms (compile: 22ms, render: 175ms)
+ GET /products/monrovia-hustle 200 in 434ms (compile: 205ms, render: 229ms)
+ GET /products/monrovia-hustle 200 in 436ms (compile: 206ms, render: 229ms)
+ GET /products/monrovia-hustle 200 in 511ms (compile: 47ms, render: 464ms)
+ GET /products/monrovia-hustle 200 in 3.5s (compile: 3.3s, render: 131ms)
+ GET /products/monrovia-hustle 200 in 3.5s (compile: 3.3s, render: 131ms)
+ GET /products/monrovia-hustle 200 in 4.1s (compile: 4.0s, render: 115ms)
+ GET /products/monrovia-hustle 200 in 4.1s (compile: 4.0s, render: 115ms)
+ GET /products/monrovia-hustle 200 in 3.5s (compile: 3.4s, render: 119ms)
+ GET /products/monrovia-hustle 200 in 3.5s (compile: 3.4s, render: 120ms)
+ GET /products/monrovia-hustle 200 in 3.4s (compile: 3.2s, render: 133ms)
+ GET /products/monrovia-hustle 200 in 3.4s (compile: 3.2s, render: 133ms)
+ GET /products/monrovia-hustle 200 in 3.8s (compile: 3.7s, render: 101ms)
+ GET /products/monrovia-hustle 200 in 3.8s (compile: 3.7s, render: 101ms)
+ GET /products/monrovia-hustle 200 in 1326ms (compile: 686ms, render: 640ms)
+ GET /products/monrovia-hustle 200 in 1332ms (compile: 674ms, render: 659ms)
+ GET /products/monrovia-hustle 200 in 3.5s (compile: 3.5s, render: 59ms)
+ GET /products/monrovia-hustle 200 in 3.3s (compile: 3.2s, render: 110ms)
+ GET /products/monrovia-hustle 200 in 11.7s (compile: 9.9s, render: 1791ms)
+ GET /products/monrovia-hustle 200 in 13.0s (compile: 12.6s, render: 438ms)
+ GET /products/monrovia-hustle 200 in 13.0s (compile: 12.6s, render: 438ms)
+ GET /products/monrovia-hustle 200 in 8.8s (compile: 8.4s, render: 369ms)
+ GET /products/monrovia-hustle 200 in 8.8s (compile: 8.4s, render: 369ms)
+ GET /products/monrovia-hustle 200 in 10.3s (compile: 10.1s, render: 179ms)
+ GET /products/monrovia-hustle 200 in 10.3s (compile: 10.1s, render: 179ms)
+ GET /products/monrovia-hustle 200 in 6.6s (compile: 6.4s, render: 141ms)
+ GET /products/monrovia-hustle 200 in 6.6s (compile: 6.4s, render: 141ms)
+ GET /products/monrovia-hustle 200 in 223ms (compile: 21ms, render: 202ms)
+ GET /products/monrovia-hustle 200 in 222ms (compile: 20ms, render: 202ms)
+ GET /products/monrovia-hustle 200 in 692ms (compile: 255ms, render: 437ms)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /products/monrovia-hustle 200 in 5.0s (compile: 4.7s, render: 337ms)
+ GET /products/monrovia-hustle 200 in 5.0s (compile: 4.7s, render: 357ms)
+ GET /products/monrovia-hustle 200 in 6.7s (compile: 6.6s, render: 118ms)
+ GET /products/monrovia-hustle 200 in 6.7s (compile: 6.6s, render: 118ms)
+ GET /products/monrovia-hustle 200 in 153ms (compile: 23ms, render: 130ms)
+ GET /products/monrovia-hustle 200 in 152ms (compile: 22ms, render: 130ms)
+ GET /products/monrovia-hustle 200 in 159ms (compile: 32ms, render: 127ms)
+ GET /products/monrovia-hustle 200 in 229ms (compile: 81ms, render: 148ms)
+ GET /products/monrovia-hustle 200 in 228ms (compile: 80ms, render: 148ms)
+ GET /products/monrovia-hustle 200 in 312ms (compile: 45ms, render: 267ms)
+ GET /products/monrovia-hustle 200 in 303ms (compile: 24ms, render: 280ms)
+ GET /products/monrovia-hustle 200 in 3.0s (compile: 3.0s, render: 61ms)
+ GET /products/monrovia-hustle 200 in 2.9s (compile: 2.9s, render: 55ms)
+ GET /products/monrovia-hustle 200 in 3.3s (compile: 3.2s, render: 60ms)
+ GET /products/monrovia-hustle 200 in 3.0s (compile: 2.9s, render: 54ms)
+ GET /products/monrovia-hustle 200 in 87ms (compile: 15ms, render: 72ms)
+ GET /products/monrovia-hustle 200 in 328ms (compile: 34ms, render: 294ms)
+ GET /products/monrovia-hustle 200 in 6.4s (compile: 6.2s, render: 163ms)
+ GET /products/monrovia-hustle 200 in 6.4s (compile: 6.2s, render: 164ms)
+ GET /products/monrovia-hustle 200 in 6.4s (compile: 6.1s, render: 327ms)
+ GET /products/monrovia-hustle 200 in 6.4s (compile: 6.1s, render: 327ms)
+ GET /products/monrovia-hustle 200 in 1769ms (compile: 130ms, render: 1639ms)
+ GET /products/monrovia-hustle 200 in 395ms (compile: 102ms, render: 293ms)
+ GET /products/monrovia-hustle 200 in 394ms (compile: 101ms, render: 293ms)
+ GET /products/monrovia-hustle 200 in 4.0s (compile: 3.9s, render: 139ms)
+ GET /products/monrovia-hustle 200 in 4.0s (compile: 3.9s, render: 139ms)
+ GET /products/monrovia-hustle 200 in 131ms (compile: 16ms, render: 115ms)
+ GET /products/monrovia-hustle 200 in 130ms (compile: 15ms, render: 115ms)
+ GET /products/monrovia-hustle 200 in 307ms (compile: 22ms, render: 285ms)
+ GET /products/monrovia-hustle 200 in 431ms (compile: 15ms, render: 416ms)
+ GET /products/monrovia-hustle 200 in 959ms (compile: 86ms, render: 873ms)
+ GET /products/monrovia-hustle 200 in 947ms (compile: 75ms, render: 873ms)

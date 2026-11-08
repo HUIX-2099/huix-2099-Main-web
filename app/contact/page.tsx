@@ -38,7 +38,7 @@ const details = [
 
 const socials = [
   { icon: Twitter, label: "X / Twitter", href: "https://x.com/Huix2099" },
-  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/huix.2099/" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/huix2099/" },
   {
     icon: Facebook,
     label: "Facebook",

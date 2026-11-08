@@ -35,13 +35,23 @@ export const MH_NAV = [
 /** The game's own Facebook page — separate from the HUIX-2099 studio page. */
 export const MH_FACEBOOK = "https://www.facebook.com/profile.php?id=61595564057357"
 
+/** A reel from the game's Facebook page, played in the blue step of the loop. */
+export const MH_FACEBOOK_REEL = "https://web.facebook.com/reel/1518310743461186/"
+
 /** The community WhatsApp group for players and followers of the game. */
 export const MH_WHATSAPP = "https://chat.whatsapp.com/IzrsbvLapPLCj48aCzo23O"
 
-/** Placeholder until the game's Discord server exists — swap in the real invite. */
-export const MH_DISCORD = "https://discord.com/"
+/** The Discord server isn't open yet: the loop shows its card as "coming soon"
+ *  until this holds a real invite link. */
+export const MH_DISCORD: string | null = null
+
+export const MH_TIKTOK = "https://www.tiktok.com/@huix2099"
 
 export const MH_YOUTUBE = "https://www.youtube.com/@HUIX-2099"
+
+/** The game on Pinterest, and one of its first pins, shown on the franchise home page. */
+export const MH_PINTEREST = "https://pin.it/OjZlOUCm6"
+export const MH_PINTEREST_FIRST_PIN = "1000080661027458825"
 
 export const MH_TRAILER_YOUTUBE_ID = "GUPVn-m8Dr8"
 export const MH_TRAILER_YOUTUBE_URL = `https://youtu.be/${MH_TRAILER_YOUTUBE_ID}`
@@ -50,7 +60,9 @@ export const MH_SOCIALS = [
   { label: "Facebook", href: MH_FACEBOOK },
   { label: "WhatsApp group", href: MH_WHATSAPP },
   { label: "YouTube", href: MH_YOUTUBE },
-  { label: "Instagram", href: "https://www.instagram.com/huix.2099/" },
+  { label: "Instagram", href: "https://www.instagram.com/huix2099/" },
+  { label: "Pinterest", href: MH_PINTEREST },
+  { label: "TikTok", href: MH_TIKTOK },
   { label: "X / Twitter", href: "https://x.com/Huix2099" },
 ] as const
 

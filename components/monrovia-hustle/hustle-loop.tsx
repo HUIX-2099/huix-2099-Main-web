@@ -3,7 +3,16 @@
 import { useEffect, useRef, useState } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { QRCodeSVG } from "qrcode.react"
-import { MH_DISCORD, MH_FACEBOOK, MH_WHATSAPP, MH_YOUTUBE } from "@/lib/monrovia-hustle/franchise"
+import {
+  MH_DISCORD,
+  MH_FACEBOOK,
+  MH_FACEBOOK_REEL,
+  MH_PINTEREST,
+  MH_PINTEREST_FIRST_PIN,
+  MH_TIKTOK,
+  MH_WHATSAPP,
+  MH_YOUTUBE,
+} from "@/lib/monrovia-hustle/franchise"
 import { BrandLogo, brandLogoSrc, type Brand } from "./brand-icons"
 import { HustleIdentity } from "./hustle-identity"
 import { HustleGlyph, MH_PALETTE, type HustleGlyphName } from "./hustle-brand"
@@ -77,7 +86,8 @@ const COPY = [
 ]
 
 type Follow = {
-  href: string
+  /** Null while the place isn't open yet: the card then says so when tapped. */
+  href: string | null
   brand: Brand
   tone: string
   label: string
@@ -86,41 +96,51 @@ type Follow = {
 }
 
 // Where to follow the game, keyed by the step whose colour it lights up in:
-// Facebook on blue, Discord on purple, the WhatsApp group on green and
-// YouTube on red.
-const FOLLOW: Record<number, Follow> = {
-  0: {
+// Facebook on blue, Discord and TikTok on purple, the WhatsApp group on green
+// and YouTube on red (with Pinterest under it).
+const FOLLOW: Record<number, Follow[]> = {
+  0: [{
     href: MH_FACEBOOK,
     brand: "facebook",
     tone: "#1877f2",
     label: "Facebook",
     title: "Follow Monrovia Hustle",
     body: "Development updates, clips and news from the game, as they happen.",
-  },
-  1: {
-    href: MH_DISCORD,
-    brand: "discord",
-    tone: "#5865f2",
-    label: "Discord",
-    title: "Join the Discord",
-    body: "Chat with players and the team. The server is opening soon.",
-  },
-  2: {
+  }],
+  1: [
+    {
+      href: MH_DISCORD,
+      brand: "discord",
+      tone: "#5865f2",
+      label: "Discord",
+      title: "Join the Discord",
+      body: "Chat with players and the team. The server is opening soon.",
+    },
+    {
+      href: MH_TIKTOK,
+      brand: "tiktok",
+      tone: "#111111",
+      label: "TikTok",
+      title: "Follow on TikTok",
+      body: "Short clips from the streets of the game, and from the studio.",
+    },
+  ],
+  2: [{
     href: MH_WHATSAPP,
     brand: "whatsapp",
     tone: "#25d366",
     label: "WhatsApp",
     title: "Join the WhatsApp group",
     body: "Talk with the team and other players, and hear the news first.",
-  },
-  3: {
+  }],
+  3: [{
     href: MH_YOUTUBE,
     brand: "youtube",
     tone: "#ff0000",
     label: "YouTube",
     title: "Watch on YouTube",
     body: "Trailers, dev logs and gameplay from the studio channel.",
-  },
+  }],
 }
 
 const STEPS = MH_PALETTE.map((paint, i) => ({
@@ -145,7 +165,86 @@ const QR_INK = PAINT.map((rgb) => `rgb(${rgb.map((c) => Math.round(c * 0.6)).joi
 
 const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n))
 
+// Facebook reels play in their own player; the blue step shows one beside
+// the Facebook card. The player is drawn at its native 264×476 and scaled
+// down in CSS to fit shorter screens.
+const REELS: Record<number, string> = {
+  0: MH_FACEBOOK_REEL,
+}
+
+function FacebookReel({ href }: { href: string }) {
+  const src = `https://www.facebook.com/plugins/video.php?height=476&href=${encodeURIComponent(href)}&show_text=false&width=264&t=0`
+  return (
+    <figure className="mh-loop__reel">
+      <span className="mh-loop__reel-frame">
+        <iframe
+          src={src}
+          width={264}
+          height={476}
+          title="Monrovia Hustle reel on Facebook"
+          loading="lazy"
+          scrolling="no"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </span>
+      <figcaption className="mh-loop__status">On Facebook · Reel</figcaption>
+    </figure>
+  )
+}
+
+// The red step carries Pinterest as well as YouTube: one of the game's first
+// pins, in Pinterest's own card, with a link to follow the board.
+const PINS: Record<number, string> = {
+  3: MH_PINTEREST_FIRST_PIN,
+}
+
+function PinterestPin({ id }: { id: string }) {
+  return (
+    <figure className="mh-loop__pin">
+      <iframe
+        src={`https://assets.pinterest.com/ext/embed.html?id=${id}`}
+        title="Monrovia Hustle logo — one of the first pins on Pinterest"
+        loading="lazy"
+        scrolling="no"
+      />
+      <figcaption>
+        <a href={MH_PINTEREST} target="_blank" rel="noopener noreferrer" className="mh-loop__pin-link">
+          <BrandLogo brand="pinterest" className="h-3.5 w-3.5" />
+          Follow on Pinterest
+          <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+        </a>
+      </figcaption>
+    </figure>
+  )
+}
+
+/** A place that isn't open yet (Discord, for now): tapping it says so. */
+function SoonCard({ follow }: { follow: Follow }) {
+  const [told, setTold] = useState(false)
+  return (
+    <button type="button" className="mh-loop__social mh-loop__social--soon" aria-expanded={told} onClick={() => setTold(true)}>
+      <span className="mh-loop__social-copy">
+        <span className="mh-loop__social-head">
+          <span className="mh-loop__social-icon" style={{ color: follow.tone }} aria-hidden>
+            <BrandLogo brand={follow.brand} className="h-4 w-4" />
+          </span>
+          <span className="mh-loop__social-label">{follow.label} · coming soon</span>
+        </span>
+        <span className="mh-loop__social-title">{follow.title}</span>
+        <span className="mh-loop__social-body" aria-live="polite">
+          {told ? "Not available yet — the invite goes up here as soon as the server opens." : follow.body}
+        </span>
+      </span>
+      <span className="mh-loop__social-soon" aria-hidden>
+        Soon
+      </span>
+    </button>
+  )
+}
+
 function FollowCard({ follow, ink }: { follow: Follow; ink: string }) {
+  if (!follow.href) return <SoonCard follow={follow} />
   return (
     <a href={follow.href} target="_blank" rel="noopener noreferrer" className="mh-loop__social">
       <span className="mh-loop__social-copy">
@@ -272,7 +371,9 @@ export function HustleLoop() {
 
       <div className="mh-loop__steps">
         {STEPS.map((step, i) => {
-          const follow = FOLLOW[i]
+          const follows = FOLLOW[i] ?? []
+          const reel = REELS[i]
+          const pin = PINS[i]
           return (
           <article
             key={step.word}
@@ -283,7 +384,8 @@ export function HustleLoop() {
             <div className="mh-loop__card">
               {/* Some steps also carry a way to follow the game, lit with the
                   step's own colour. It always heads the left-hand block. */}
-              {follow && step.side === "left" && <FollowCard follow={follow} ink={QR_INK[i]} />}
+              {step.side === "left" &&
+                follows.map((follow) => <FollowCard key={follow.label} follow={follow} ink={QR_INK[i]} />)}
               <p className="mh-loop__key">
                 <span className="mh-loop__rule" aria-hidden />
                 <span className="mh-loop__num">{step.num}</span>
@@ -309,7 +411,10 @@ export function HustleLoop() {
             </div>
 
             <aside className="mh-loop__aside">
-              {follow && step.side === "right" && <FollowCard follow={follow} ink={QR_INK[i]} />}
+              {step.side === "right" &&
+                follows.map((follow) => <FollowCard key={follow.label} follow={follow} ink={QR_INK[i]} />)}
+              {reel && <FacebookReel href={reel} />}
+              {pin && <PinterestPin id={pin} />}
               <p className="mh-loop__status">{step.status}</p>
               <h4 className="mh-loop__aside-title">{step.asideTitle}</h4>
               {step.aside.map((line) => (

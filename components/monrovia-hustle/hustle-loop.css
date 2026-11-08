@@ -327,6 +327,33 @@ html:has(.mh-loop) {
   color: var(--mh-ink-soft);
 }
 
+/* Discord until it opens: no QR to scan, a "Soon" tile in its place, and the
+   card's last line answers when it is tapped. */
+.mh-loop__social--soon {
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mh-loop__social-soon {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  border: 1px dashed color-mix(in oklab, var(--mh-ink) 40%, transparent);
+  border-radius: 13px;
+  font: 400 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mh-ink-soft);
+}
+
+/* Two places on one step: the second card sits closer to the first. */
+.mh-loop__social + .mh-loop__social {
+  margin-top: calc(clamp(16px, 3svh, 26px) * -0.5);
+}
+
 .mh-loop__social-qr {
   display: block;
   padding: 6px;
@@ -415,6 +442,99 @@ html:has(.mh-loop) {
   font-size: 13px;
   line-height: 1.62;
   color: var(--mh-ink-soft);
+}
+
+/* A Facebook reel at the head of the side note. The player keeps its native
+   264×476 and is scaled as a whole (--mh-reel-s), so it fits the screen
+   height without Facebook cropping it. */
+.mh-loop__reel {
+  --mh-reel-s: 1;
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  margin: 0 0 clamp(16px, 3svh, 26px);
+}
+
+.mh-loop__reel-frame {
+  position: relative;
+  display: block;
+  width: calc(264px * var(--mh-reel-s));
+  height: calc(476px * var(--mh-reel-s));
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--c) 45%, transparent);
+  border-radius: 16px;
+  background: #000;
+  box-shadow: 0 24px 48px -24px color-mix(in oklab, var(--c) 70%, #000);
+}
+
+.mh-loop__reel-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 264px;
+  height: 476px;
+  border: 0;
+  transform: scale(var(--mh-reel-s));
+  transform-origin: top left;
+}
+
+@media (max-height: 940px) {
+  .mh-loop__reel {
+    --mh-reel-s: 0.8;
+  }
+}
+
+@media (max-height: 780px) {
+  .mh-loop__reel {
+    --mh-reel-s: 0.66;
+  }
+}
+
+/* A Pinterest pin under the red step's YouTube card. Pinterest draws its own
+   card, which grows with its width, so the frame keeps that card's shape. */
+.mh-loop__pin {
+  width: min(100%, 290px);
+  margin: 0 0 clamp(14px, 2.6svh, 22px);
+}
+
+.mh-loop__pin iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 345 / 312;
+  border: 0;
+}
+
+.mh-loop__pin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+  font: 400 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mh-ink);
+  text-decoration: none;
+}
+
+.mh-loop__pin-link svg:first-child {
+  color: #e60023;
+}
+
+.mh-loop__pin-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-height: 940px) {
+  .mh-loop__pin {
+    width: min(100%, 240px);
+  }
+}
+
+@media (max-height: 780px) {
+  .mh-loop__pin {
+    width: min(100%, 200px);
+  }
 }
 
 /* The note on the far side: where the stage stands, in plain words. */
@@ -586,6 +706,44 @@ html:has(.mh-loop) {
   }
 
   .mh-loop__rail {
+    display: none;
+  }
+
+  /* Steps carrying extra media (the reel, the pin, a second follow card)
+     still have to fit one screen, so their three fact lines give way here. */
+  .mh-loop__step:has(.mh-loop__reel, .mh-loop__pin, .mh-loop__social + .mh-loop__social) .mh-loop__facts {
+    display: none;
+  }
+
+  /* The reel sits beside the side note's heading instead of above it. */
+  .mh-loop__aside:has(.mh-loop__reel) {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 14px;
+    align-items: center;
+  }
+
+  .mh-loop__reel {
+    --mh-reel-s: 0.52;
+    grid-row: 1 / span 2;
+    margin: 0;
+  }
+
+  /* The pin sits small, its follow link beside it. */
+  .mh-loop__pin {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .mh-loop__pin-link {
+    margin-top: 0;
+    line-height: 1.6;
+  }
+
+  .mh-loop__reel figcaption {
     display: none;
   }
 
