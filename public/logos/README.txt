@@ -5,7 +5,7 @@ svg/         logos as vector files: wordmark, barcode, stacked, horizontal
              in dark, light, white (transparent) and black (transparent)
 png/         the same logos as PNG, 1024 px and 4K (3840 px)
 icon/        app icons 16-1024 px, full-bleed squares, favicon .ico files
-social/      profile pictures, X / Facebook / LinkedIn / YouTube banners, OG image
+social/      profile pictures (circle-safe), TikTok profile + 9:16 cover, X / Facebook / LinkedIn / YouTube banners, OG image
 wallpaper/   4K wallpapers (3840x2160)
 background/  plain backgrounds with a small corner barcode, HD / QHD / 4K / phone
 

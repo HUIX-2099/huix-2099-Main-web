@@ -266,7 +266,10 @@ async function icons() {
 
 async function social() {
 	const dir = path.join(out, 'social');
-	const PROFILE = [['profile-barcode', CODE, 0.7, 0.5], ['profile-stacked', STACK, 0.66, 0.6]];
+	// Profile pictures get cropped to a circle, so size each lockup to the biggest box that still fits inside it.
+	const inCircle = (L, d = 0.9) => { const a = L.w / L.h, fw = d / Math.sqrt(1 + 1 / (a * a)); return [fw, fw / a]; };
+	const PROFILE = [['profile-barcode', CODE, ...inCircle(CODE)], ['profile-stacked', STACK, ...inCircle(STACK)]];
+	const TIKTOK_PROFILE = [['tiktok-profile-barcode', CODE, ...inCircle(CODE, 0.94)], ['tiktok-profile-stacked', STACK, ...inCircle(STACK, 0.94)]];
 	const BANNERS = [
 		// name, w, h, safe width, safe height
 		['x-header', 1500, 500, 1200, 360],
@@ -281,6 +284,18 @@ async function social() {
 			const f = path.join(dir, `huix-2099-${name}-${tn}-${n}.png`);
 			await png(svg(n, n, place(L, n / 2, n / 2, n * fw, n * fh, t), t.bg), f, n, n);
 			note('social', f, { theme: tn, kind: 'png', w: n, h: n, label: name });
+		}
+		// TikTok shows the profile picture as a small circle, so it gets the tightest crop.
+		for (const n of [200, 1080]) for (const [name, L, fw, fh] of TIKTOK_PROFILE) {
+			const f = path.join(dir, `huix-2099-${name}-${tn}-${n}.png`);
+			await png(svg(n, n, place(L, n / 2, n / 2, n * fw, n * fh, t), t.bg), f, n, n);
+			note('social', f, { theme: tn, kind: 'png', w: n, h: n, label: name });
+		}
+		// 9:16 video cover; the logo stays clear of the caption and side buttons.
+		for (const [style, L, fw] of [['barcode', CODE, 0.74], ['stacked', STACK, 0.7]]) {
+			const f = path.join(dir, `huix-2099-tiktok-cover-${style}-${tn}.png`);
+			await png(svg(1080, 1920, place(L, 480, 860, 1080 * fw, 900, t), t.bg), f, 1080, 1920);
+			note('social', f, { theme: tn, kind: 'png', w: 1080, h: 1920, label: `tiktok-cover · ${style}` });
 		}
 		for (const [name, w, h, sw, sh] of BANNERS) {
 			for (const [style, L, fw, fh] of [['wordmark', BANNER_GROUP, 0.62, 0.62], ['barcode', CODE, 0.56, 0.8], ['horizontal', HORIZ, 0.8, 0.6]]) {
@@ -466,7 +481,7 @@ svg/         logos as vector files: wordmark, barcode, stacked, horizontal
              in dark, light, white (transparent) and black (transparent)
 png/         the same logos as PNG, 1024 px and 4K (3840 px)
 icon/        app icons 16-1024 px, full-bleed squares, favicon .ico files
-social/      profile pictures, X / Facebook / LinkedIn / YouTube banners, OG image
+social/      profile pictures (circle-safe), TikTok profile + 9:16 cover, X / Facebook / LinkedIn / YouTube banners, OG image
 wallpaper/   4K wallpapers (3840x2160)
 background/  plain backgrounds with a small corner barcode, HD / QHD / 4K / phone
 
