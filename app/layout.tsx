@@ -104,7 +104,7 @@ export const metadata: Metadata = {
       "Liberia-based next-generation technology company pioneering VR, XR, AR, AI, 3D visualization, and immersive digital engineering. Founded in 2024 in Monrovia, we build innovative solutions that merge creativity, culture, and commerce.",
     images: [
       {
-        url: "/icons/HUIX 2099 dark logo icon version.jpg",
+        url: "/logos/social/huix-2099-og-image-horizontal-dark.png",
         width: 1200,
         height: 630,
         alt: "HUIX-2099 - Building the Digital Future of Africa - Liberia Tech Company",
@@ -118,7 +118,7 @@ export const metadata: Metadata = {
     title: "HUIX-2099 | Building the Digital Future of Africa",
     description:
       "Liberia-based next-generation technology company pioneering VR, XR, AR, AI, 3D visualization, and immersive digital engineering. Founded in 2024 in Monrovia.",
-    images: ["/icons/HUIX 2099 dark logo icon version.jpg"],
+    images: ["/logos/social/huix-2099-og-image-horizontal-dark.png"],
   },
   alternates: {
     canonical: "https://huix2099.com",
@@ -129,12 +129,13 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icons/browser-icon.png", type: "image/png", sizes: "512x512" },
-      { url: "/icons/browser-icon.png", type: "image/png", sizes: "192x192" },
-      { url: "/icons/browser-icon.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/logos/icon/huix-2099-app-icon-dark-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/logos/icon/huix-2099-app-icon-dark-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/logos/icon/huix-2099-app-icon-dark-512.png", type: "image/png", sizes: "512x512" },
     ],
-    shortcut: [{ url: "/icons/browser-icon.png", type: "image/png", sizes: "192x192" }],
-    apple: [{ url: "/icons/browser-icon.png", type: "image/png", sizes: "180x180" }],
+    shortcut: [{ url: "/logos/icon/favicon-dark.ico" }],
+    apple: [{ url: "/logos/icon/huix-2099-app-icon-dark-square-180.png", type: "image/png", sizes: "180x180" }],
   },
   manifest: "/manifest.json",
   verification: {
@@ -163,7 +164,7 @@ const jsonLd = {
   name: "HUIX-2099",
   alternateName: "HUIX 2099",
   url: "https://huix2099.com",
-  logo: "https://huix2099.com/icons/HUIX 2099 dark logo icon version.jpg",
+  logo: "https://huix2099.com/logos/png/huix-2099-stacked-light-1024.png",
   description:
     "Liberia-based next-generation technology company pioneering VR, XR, AR, AI, 3D visualization, and immersive digital engineering.",
   foundingDate: "2024",

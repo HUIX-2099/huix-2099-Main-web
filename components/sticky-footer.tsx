@@ -2,6 +2,7 @@ import React from "react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { ArrowUp, ArrowUpRight, Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react"
+import { HuixBarcode, HuixWordmark } from "./brand/huix-logo"
 
 const STUDIO_EMAIL = "huixtech2099@gmail.com"
 const STUDIO_PHONE = "+231 776 800 064"
@@ -61,13 +62,7 @@ export function StickyFooter({ className, ...props }: StickyFooterProps) {
           {/* Brand */}
           <div className="lg:col-span-5">
             <Link href="/" className="group inline-flex items-center gap-2.5" aria-label="HUIX-2099 home">
-              <img
-                src="/icons/browser-icon.png"
-                alt=""
-                width={26}
-                height={26}
-                className="h-[26px] w-[26px] rounded-[7px] object-contain"
-              />
+              <HuixBarcode variant="centre" scan="hover" className="h-[22px] text-foreground" />
               <span
                 className="text-[15px] font-semibold leading-none text-foreground"
                 style={{ fontFamily: "Mohican, sans-serif" }}
@@ -146,15 +141,15 @@ export function StickyFooter({ className, ...props }: StickyFooterProps) {
           </div>
         </div>
 
-        {/* Wordmark */}
+        {/* Signature: the horizontal lockup, faint until hovered, then scanned */}
         <div className="flex items-end justify-between gap-6 border-t border-border pb-4 pt-7">
-          <span
+          <div
             aria-hidden
-            className="select-none text-[clamp(3.2rem,13vw,9.5rem)] font-semibold leading-[0.76] text-foreground/10"
-            style={{ fontFamily: "Mohican, sans-serif" }}
+            className="group flex min-w-0 flex-1 select-none items-center gap-[clamp(1rem,4.5vw,4.5rem)] text-foreground/10 transition-colors duration-500 hover:text-foreground/25"
           >
-            HUIX-2099
-          </span>
+            <HuixBarcode scan="hover" className="hidden h-[clamp(5rem,14vw,12.5rem)] sm:block" />
+            <HuixWordmark className="w-full max-w-[44rem] sm:h-[clamp(2.1rem,5.8vw,5.2rem)] sm:w-auto" />
+          </div>
           <a
             href="#"
             aria-label="Back to top"

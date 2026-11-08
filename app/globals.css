@@ -625,3 +625,18 @@ html {
 .maplibregl-canvas {
   outline: none;
 }
+
+/* HUIX-2099 barcode — red scanner line (components/brand/huix-logo.tsx) */
+.huix-scan--hover {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.group:hover .huix-scan--hover,
+.group:focus-visible .huix-scan--hover {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .huix-scan {
+    display: none;
+  }
+}

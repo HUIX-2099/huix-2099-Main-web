@@ -5,6 +5,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { HustleBrush } from "./monrovia-hustle/hustle-brand"
 import { VplCover, VplWordmarkCover } from "./vpl-cover"
+import { HuixBarcode } from "./brand/huix-logo"
 
 const WRAP = "mx-auto w-full max-w-[1320px] px-5 sm:px-8 lg:px-16"
 const EYEBROW = "text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground"
@@ -92,8 +93,14 @@ export function HomeClean() {
   return (
     <div className="home-clean bg-background text-foreground">
       {/* Hero */}
-      <section className="border-b border-border">
-        <div className={`${WRAP} pb-14 lg:pb-20`}>
+      <section className="relative overflow-hidden border-b border-border">
+        {/* The studio's barcode, huge and faint, with a scanner passing over it */}
+        <HuixBarcode
+          scan="loop"
+          scanOpacity={0.3}
+          className="pointer-events-none absolute -right-[6%] top-[8%] hidden h-[min(84%,620px)] text-foreground/[0.04] md:block"
+        />
+        <div className={`${WRAP} relative pb-14 lg:pb-20`}>
           <div className="flex flex-wrap items-center justify-between gap-3 pt-9 sm:pt-12 lg:pt-14">
             <p className={EYEBROW}>R&amp;D startup · Monrovia, Liberia</p>
             <p className="inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.16em] text-muted-foreground">

@@ -10,36 +10,39 @@
   "scope": "/",
   "lang": "en",
   "dir": "ltr",
-  "categories": ["technology", "business", "productivity"],
+  "categories": [
+    "technology",
+    "business",
+    "productivity"
+  ],
   "icons": [
     {
-      "src": "/icons/browser-icon.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icons/browser-icon.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "/icons/browser-icon.png",
+      "src": "/logos/icon/huix-2099-app-icon-dark-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "/logos/icon/huix-2099-app-icon-dark-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logos/icon/huix-2099-app-icon-dark-square-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "screenshots": [
     {
-      "src": "/icons/HUIX 2099 dark logo icon version.jpg",
+      "src": "/logos/social/huix-2099-og-image-horizontal-dark.png",
       "sizes": "1200x630",
-      "type": "image/jpeg",
-      "label": "HUIX-2099 Homepage"
+      "type": "image/png",
+      "label": "HUIX-2099"
     }
   ],
   "related_applications": [],
   "prefer_related_applications": false
 }
-

@@ -16,6 +16,7 @@ import {
 } from "lucide-react"
 import { useTheme } from "./theme-provider"
 import { CommandMenu } from "./command-menu"
+import { HuixBarcode } from "./brand/huix-logo"
 
 const WRAP = "mx-auto w-full max-w-[1320px] px-5 sm:px-8 lg:px-16"
 
@@ -235,14 +236,7 @@ export function Navbar() {
               className="group flex shrink-0 items-center gap-2.5"
               aria-label="HUIX-2099 home"
             >
-              <img
-                src="/icons/browser-icon.png"
-                alt=""
-                width={26}
-                height={26}
-                decoding="async"
-                className="h-[26px] w-[26px] rounded-[7px] object-contain"
-              />
+              <HuixBarcode variant="centre" scan="hover" className="h-[22px] text-foreground" />
               <span
                 className="text-[15px] font-semibold leading-none text-foreground"
                 style={{ fontFamily: "Mohican, sans-serif" }}

@@ -3,7 +3,7 @@ import { SITE_URL } from "@/lib/site"
 
 export const ORG_NAME = "HUIX-2099"
 export const ORG_ID = `${SITE_URL}/#organization`
-export const DEFAULT_OG_IMAGE = "/icons/HUIX 2099 dark logo icon version.jpg"
+export const DEFAULT_OG_IMAGE = "/logos/social/huix-2099-og-image-horizontal-dark.png"
 
 export type BreadcrumbItem = { name: string; path: string }
 
