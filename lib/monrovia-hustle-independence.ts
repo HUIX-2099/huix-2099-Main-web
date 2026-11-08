@@ -6,7 +6,7 @@ export const MH_IDE_LOGO = `${BASE}/logo/${encodeURIComponent("MONROVIA hUSTLE L
 export const MH_IDE_TSHIRT_VIDEO = `${BASE}/tshirt.mp4`
 export const MH_IDE_TSHIRT_VIDEO_PORTRAIT = `${BASE}/${encodeURIComponent("tshirt_show case.mp4")}`
 export const MH_IDE_SETTINGS_VIDEO = `${BASE}/settings.mp4`
-export const MH_IDE_PATH = "/products/monrovia-hustle/prototype/independence-day"
+export const MH_IDE_PATH = "/products/monrovia-hustle/prototype#independence-day"
 
 export const MH_IDE_TAGLINE = "BUILD. HUSTLE. RECLAIM."
 export const MH_IDE_SUBTAG = "A Liberian story. A global game."

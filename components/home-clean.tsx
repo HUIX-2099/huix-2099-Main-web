@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { HustleBrush } from "./monrovia-hustle/hustle-brand"
 import { VplCover, VplWordmarkCover } from "./vpl-cover"
 
 const WRAP = "mx-auto w-full max-w-[1320px] px-5 sm:px-8 lg:px-16"
@@ -48,6 +49,7 @@ type WorkItem = {
   cover?: boolean
   wordmark?: "vpl"
   cardBg?: string
+  brush?: boolean
 }
 
 const work: WorkItem[] = [
@@ -67,6 +69,7 @@ const work: WorkItem[] = [
     alt: "Monrovia Hustle wordmark logo",
     fit: "contain",
     cardBg: "bg-[#111111]",
+    brush: true,
   },
   {
     title: "HUIXOR",
@@ -223,6 +226,9 @@ export function HomeClean() {
                         }`}
                       />
                     )}
+                    {item.brush ? (
+                      <HustleBrush className="mh-brush--bleed absolute inset-x-0 bottom-0" />
+                    ) : null}
                     <span className="absolute right-3 top-3 rounded-full bg-background/90 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground backdrop-blur">
                       {item.category}
                     </span>

@@ -12,6 +12,9 @@ export const MH_CAPTURE_RAIN_CRANE = "/products/monrovia-hustle/captures/cinemat
 export const MH_CAPTURE_NIGHT = "/products/monrovia-hustle/captures/cinematic-night-a.jpg"
 export const MH_CAPTURE_IN_GAME = "/products/monrovia-hustle/captures/in-game.jpg"
 export const MH_CAPTURE_IN_GAME_NIGHT = "/products/monrovia-hustle/captures/in-game-night.jpg"
+/** The studio rig — headset on, laptop open. The only photograph the franchise
+ *  hero is allowed to use, because it shows where the game is actually built. */
+export const MH_STUDIO_RIG = "/vpl/field/vr-session.jpg"
 
 export const MH_LOGO_BLACK = "/products/monrovia-hustle/logo/monrovia-hustle-logo-black.png"
 export const MH_LOGO_WHITE = "/products/monrovia-hustle/logo/monrovia-hustle-logo-white.png"
@@ -25,10 +28,28 @@ export const MH_NAV = [
   { label: "World", href: `${MH_BASE}/world` },
   { label: "News", href: `${MH_BASE}/news` },
   { label: "Contact", href: `${MH_BASE}/contact` },
+  /** Early builds (J-Boy 3D, Independence Day) — not the official game. */
+  { label: "Experiment prototype", href: `${MH_BASE}/prototype` },
 ] as const
 
+/** The game's own Facebook page — separate from the HUIX-2099 studio page. */
+export const MH_FACEBOOK = "https://www.facebook.com/profile.php?id=61595564057357"
+
+/** The community WhatsApp group for players and followers of the game. */
+export const MH_WHATSAPP = "https://chat.whatsapp.com/IzrsbvLapPLCj48aCzo23O"
+
+/** Placeholder until the game's Discord server exists — swap in the real invite. */
+export const MH_DISCORD = "https://discord.com/"
+
+export const MH_YOUTUBE = "https://www.youtube.com/@HUIX-2099"
+
+export const MH_TRAILER_YOUTUBE_ID = "GUPVn-m8Dr8"
+export const MH_TRAILER_YOUTUBE_URL = `https://youtu.be/${MH_TRAILER_YOUTUBE_ID}`
+
 export const MH_SOCIALS = [
-  { label: "YouTube", href: "https://www.youtube.com/@HUIX-2099" },
+  { label: "Facebook", href: MH_FACEBOOK },
+  { label: "WhatsApp group", href: MH_WHATSAPP },
+  { label: "YouTube", href: MH_YOUTUBE },
   { label: "Instagram", href: "https://www.instagram.com/huix.2099/" },
   { label: "X / Twitter", href: "https://x.com/Huix2099" },
 ] as const

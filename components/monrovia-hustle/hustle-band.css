@@ -1,0 +1,277 @@
+/* The About page as four painted bands — one per word of the poster. Each
+   band carries its own colour over the whole section, with the picture on one
+   side and the words on the other, so there is no empty space left between
+   them. */
+
+.mh-band {
+  --mh-band-paint: oklch(from var(--c) 0.42 0.26 h);
+  --mh-band-deep: oklch(from var(--c) 0.33 0.22 h);
+  --mh-band-prev-paint: oklch(from var(--mh-band-prev-c, var(--c)) 0.42 0.26 h);
+  --mh-band-base: #0a0a0a;
+  --mh-band-feather: clamp(90px, 14svh, 170px);
+  --mh-ink: #fcf9f3;
+  --mh-ink-soft: rgb(252 249 243 / 84%);
+  --mh-ink-faint: rgb(252 249 243 / 58%);
+  position: relative;
+  isolation: isolate;
+  color: var(--mh-ink);
+}
+
+:root:not(.dark) .mh-band {
+  --mh-band-paint: oklch(from var(--c) 0.85 0.14 h);
+  --mh-band-deep: oklch(from var(--c) 0.79 0.17 h);
+  --mh-band-prev-paint: oklch(from var(--mh-band-prev-c, var(--c)) 0.85 0.14 h);
+  --mh-band-base: #f6f4ef;
+  --mh-ink: #14130f;
+  --mh-ink-soft: rgb(20 19 15 / 80%);
+  --mh-ink-faint: rgb(20 19 15 / 56%);
+}
+
+/* The colour itself: one flat paint field, warmed by a deeper pool at the
+   side the picture sits on. The first layer is the seam with the band above —
+   the previous colour melting into this one, so the change of section reads as
+   a wash of paint rather than a cut edge. */
+.mh-band__fill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--mh-band-paint);
+  background-image:
+    linear-gradient(
+      180deg,
+      var(--mh-band-prev-paint) 0,
+      color-mix(in oklab, var(--mh-band-prev-paint) 45%, var(--mh-band-paint))
+        calc(var(--mh-band-feather) / 2),
+      var(--mh-band-paint) var(--mh-band-feather),
+      transparent var(--mh-band-feather)
+    ),
+    radial-gradient(
+      120% 100% at var(--mh-band-anchor, 12%) 50%,
+      var(--mh-band-deep) 0%,
+      transparent 62%
+    );
+}
+
+.mh-band--media-right .mh-band__fill {
+  --mh-band-anchor: 88%;
+}
+
+.mh-band__inner {
+  display: grid;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(44px, 7svh, 96px) clamp(20px, 5vw, 88px);
+}
+
+@media (min-width: 900px) {
+  .mh-band__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    min-height: 82svh;
+  }
+
+  /* The picture runs to the outer edge of the page — top, bottom and the side
+     it sits on — but never into the column holding the words. */
+  .mh-band__media {
+    min-height: 82svh;
+    margin-block: calc(-1 * clamp(44px, 7svh, 96px));
+    margin-inline-start: calc(-1 * clamp(20px, 5vw, 88px));
+  }
+
+  .mh-band--media-right .mh-band__media {
+    margin-inline-start: 0;
+    margin-inline-end: calc(-1 * clamp(20px, 5vw, 88px));
+  }
+}
+
+.mh-band__media {
+  position: relative;
+  overflow: hidden;
+}
+
+/* A photograph must not cut across the seam either, so it dissolves into its
+   own colour at the top and at the bottom — the edge of one band meeting the
+   next is then colour meeting colour, not a picture meeting a picture. */
+.mh-band__media:not(.mh-band__media--mark) {
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0,
+    #000 var(--mh-band-feather),
+    #000 calc(100% - var(--mh-band-feather)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0,
+    #000 var(--mh-band-feather),
+    #000 calc(100% - var(--mh-band-feather)),
+    transparent 100%
+  );
+}
+
+/* The first band carries the poster instead of a photograph, so it keeps the
+   colour behind it rather than a fade over it. */
+.mh-band__media--mark {
+  display: grid;
+  place-items: center;
+  overflow: visible;
+}
+
+.mh-band__media--mark::after {
+  content: none;
+}
+
+.mh-band__media--mark .mh-id {
+  width: min(38svh, 320px);
+  filter: drop-shadow(0 18px 40px rgb(0 0 0 / 28%));
+}
+
+.mh-band__media img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* The picture dissolves into its own colour on the side the words sit on, so
+   the band reads as one painted field rather than a photo pasted on top. */
+.mh-band__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to var(--mh-band-fade, right),
+    transparent 34%,
+    color-mix(in oklab, var(--mh-band-paint) 72%, transparent) 68%,
+    var(--mh-band-paint) 100%
+  );
+}
+
+.mh-band--media-right .mh-band__media::after {
+  --mh-band-fade: left;
+}
+
+.mh-band__eyebrow {
+  font: 400 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mh-ink-faint);
+}
+
+.mh-band__rule {
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin-top: 18px;
+  border-radius: 2px;
+  background: var(--mh-ink);
+  opacity: 0.8;
+}
+
+.mh-band__title {
+  margin-top: 22px;
+  font-size: clamp(2rem, 4.4vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.mh-band__title--lead {
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+}
+
+/* The second heading inside a band, quieter than the first. */
+.mh-band__title--sub {
+  margin-top: 34px;
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.mh-band__body {
+  margin-top: 20px;
+  max-width: 46ch;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--mh-ink-soft);
+}
+
+.mh-band__body + .mh-band__body {
+  margin-top: 14px;
+}
+
+.mh-band__word {
+  margin-top: 26px;
+  font: 400 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mh-ink-faint);
+}
+
+.mh-band__list {
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 14px;
+}
+
+.mh-band__list li {
+  padding-left: 16px;
+  border-left: 2px solid color-mix(in oklab, var(--mh-ink) 45%, transparent);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--mh-ink-soft);
+}
+
+.mh-band__list strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--mh-ink);
+}
+
+.mh-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.mh-band__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border: 1px solid color-mix(in oklab, var(--mh-ink) 55%, transparent);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--mh-ink);
+  transition: transform 200ms ease;
+}
+
+.mh-band__cta:hover {
+  transform: translateY(-2px);
+}
+
+.mh-band__cta--solid {
+  background: var(--mh-ink);
+  color: var(--mh-band-paint);
+}
+
+.mh-band__mark {
+  width: min(34svh, 300px);
+  margin: 0 auto;
+}
+
+/* The bands sit flush: the colour changes where the section changes. */
+.mh-band + .mh-band {
+  margin-top: -1px;
+}
+
+@media (max-width: 899px) {
+  .mh-band__media {
+    aspect-ratio: 4 / 3;
+  }
+}

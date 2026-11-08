@@ -6,6 +6,7 @@ import { ArrowUpRight, LayoutGrid, List, Plus } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { VplCover, VplWordmarkCover } from "@/components/vpl-cover"
+import { HustleBrush } from "@/components/monrovia-hustle/hustle-brand"
 import { cn } from "@/lib/utils"
 import { CTASection, PageHero, WRAP } from "@/components/clean-ui"
 
@@ -19,6 +20,7 @@ interface Product {
   imageFit?: "cover" | "contain"
   cover?: "vpl"
   cardBg?: string
+  brush?: boolean
   year: string
   status: "Live" | "Development" | "Concept"
   technologies: string[]
@@ -68,6 +70,7 @@ const products: Product[] = [
     image: "/products/monrovia-hustle/logo/monrovia-hustle-logo-white.png",
     imageFit: "contain",
     cardBg: "bg-[#111111]",
+    brush: true,
     year: "2026",
     status: "Development",
     technologies: ["Exploration", "Simulation", "Liberia"],
@@ -274,6 +277,9 @@ export default function ProductsPage() {
                                   : "object-cover"
                               }`}
                             />
+                          ) : null}
+                          {product.brush ? (
+                            <HustleBrush className="mh-brush--bleed absolute inset-x-0 bottom-0" />
                           ) : null}
                           <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-background/90 px-2.5 py-1.5 text-[10px] font-medium text-foreground backdrop-blur">
                             <span className={`h-1.5 w-1.5 rounded-full ${statusTone(product.status)}`} />

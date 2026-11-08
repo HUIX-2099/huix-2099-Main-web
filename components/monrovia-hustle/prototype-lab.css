@@ -1,0 +1,473 @@
+/* The experiment prototypes page. The opening screen and the two experiment
+   title cards are dark in both themes, like the franchise home hero: big
+   type, the small print pinned to the corners, the paints run as a bar. */
+.mh-lab {
+  --mh-lab-ink: #f4f1ea;
+  --mh-lab-dim: rgb(244 241 234 / 58%);
+  --mh-lab-gutter: clamp(16px, 3.4vw, 48px);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(70% 60% at 72% 45%, rgb(255 255 255 / 4%) 0%, transparent 70%),
+    #0c0c0c;
+  color: var(--mh-lab-ink);
+}
+
+.mh-lab--hero {
+  min-height: max(620px, calc(100svh - 117px));
+}
+
+/* ── Small print in the corners ─────────────────────────────────────── */
+.mh-lab__corner {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  font: 500 10px/1.7 var(--font-mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mh-lab-ink);
+  animation: mh-lab-fade 700ms 400ms ease both;
+}
+
+.mh-lab__corner--tl {
+  top: var(--mh-lab-gutter);
+  left: var(--mh-lab-gutter);
+}
+
+.mh-lab__corner--tr {
+  top: var(--mh-lab-gutter);
+  right: var(--mh-lab-gutter);
+  text-align: right;
+}
+
+.mh-lab__corner--bl {
+  bottom: var(--mh-lab-gutter);
+  left: var(--mh-lab-gutter);
+}
+
+.mh-lab__corner--br {
+  bottom: var(--mh-lab-gutter);
+  right: var(--mh-lab-gutter);
+  text-align: right;
+}
+
+/* ── The title ───────────────────────────────────────────────────────── */
+.mh-lab__title-wrap {
+  position: absolute;
+  z-index: 2;
+  left: clamp(16px, 7vw, 140px);
+  top: 50%;
+  width: min(48vw, 760px);
+  translate: 0 -50%;
+}
+
+.mh-lab__eyebrow {
+  margin: 0 0 18px;
+  font: 600 10px/1.6 var(--font-mono);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mh-lab-dim);
+}
+
+.mh-lab__title {
+  margin: 0;
+  font-weight: 600;
+  font-size: clamp(3.4rem, 7.4vw, 8rem);
+  line-height: 0.86;
+  letter-spacing: -0.065em;
+  animation: mh-lab-wipe 1100ms cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+
+.mh-lab__title span {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--mh-lab-ink);
+}
+
+@keyframes mh-lab-wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.mh-lab__bar {
+  display: flex;
+  width: 34%;
+  height: clamp(5px, 0.55vw, 9px);
+  margin-top: clamp(20px, 2.6vw, 34px);
+  transform-origin: left center;
+  animation: mh-lab-bar 900ms 650ms cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+
+.mh-lab__bar i {
+  flex: 1;
+}
+
+@keyframes mh-lab-bar {
+  from {
+    scale: 0 1;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+
+.mh-lab__caption {
+  max-width: 34rem;
+  margin: clamp(22px, 3vw, 36px) 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--mh-lab-dim);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--mh-lab-dim);
+  animation: mh-lab-fade 700ms 900ms ease both;
+}
+
+.mh-lab__caption strong {
+  color: var(--mh-lab-ink);
+  font-weight: 600;
+}
+
+@keyframes mh-lab-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── The two experiments, as tilted cards on the right ──────────────── */
+.mh-lab__cards {
+  position: absolute;
+  z-index: 1;
+  right: clamp(24px, 6vw, 120px);
+  top: 50%;
+  width: min(38vw, 560px);
+  aspect-ratio: 5 / 4;
+  translate: 0 -50%;
+}
+
+.mh-lab__card {
+  position: absolute;
+  display: block;
+  width: 64%;
+  overflow: hidden;
+  border: 1px solid rgb(244 241 234 / 18%);
+  border-radius: 14px;
+  background: #000;
+  color: var(--mh-lab-ink);
+  text-decoration: none;
+  box-shadow: 0 30px 60px -20px rgb(0 0 0 / 80%);
+  transition:
+    rotate 400ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    translate 400ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 300ms ease;
+  animation: mh-lab-rise 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.mh-lab__card:first-child {
+  left: 0;
+  top: 0;
+  rotate: -5deg;
+  animation-delay: 300ms;
+}
+
+.mh-lab__card:last-child {
+  right: 0;
+  bottom: 0;
+  rotate: 4deg;
+  animation-delay: 480ms;
+}
+
+.mh-lab__card:hover,
+.mh-lab__card:focus-visible {
+  z-index: 2;
+  rotate: 0deg;
+  translate: 0 -8px;
+  border-color: var(--c);
+}
+
+.mh-lab__card:focus-visible {
+  outline: 2px solid var(--mh-lab-ink);
+  outline-offset: 4px;
+}
+
+@keyframes mh-lab-rise {
+  from {
+    opacity: 0;
+    translate: 0 40px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.mh-lab__card-art {
+  position: relative;
+  aspect-ratio: 16 / 11;
+}
+
+.mh-lab__card-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(0 0 0 / 85%), transparent 55%);
+}
+
+.mh-lab__card-copy {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  padding: 14px 16px;
+}
+
+.mh-lab__card-copy p {
+  margin: 0;
+  font: 600 9px/1.6 var(--font-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c);
+}
+
+.mh-lab__card-copy h2 {
+  margin: 4px 0 0;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ── The index at the bottom left ───────────────────────────────────── */
+.mh-lab__index {
+  padding: 0;
+  list-style: none;
+}
+
+.mh-lab__index a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.mh-lab__index a::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--c);
+}
+
+.mh-lab__index a:hover {
+  color: var(--c);
+}
+
+.mh-lab__scroll {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  height: clamp(40px, 8svh, 72px);
+  overflow: hidden;
+  background: rgb(244 241 234 / 18%);
+}
+
+.mh-lab__scroll span {
+  position: absolute;
+  inset: 0;
+  background: var(--mh-lab-ink);
+  animation: mh-lab-drop 2.2s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+
+@keyframes mh-lab-drop {
+  from {
+    translate: 0 -100%;
+  }
+  to {
+    translate: 0 100%;
+  }
+}
+
+/* ── An experiment's title card ─────────────────────────────────────── */
+.mh-lab--opener {
+  min-height: min(92svh, 860px);
+  display: flex;
+  align-items: flex-end;
+}
+
+.mh-lab__art {
+  position: absolute;
+  inset: 0 0 0 auto;
+  z-index: -1;
+  width: min(68%, 1100px);
+}
+
+.mh-lab__art img {
+  object-fit: cover;
+  object-position: 50% 15%;
+}
+
+/* The art fades into the dark on its left and bottom edges. */
+.mh-lab__art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, #0c0c0c 0%, rgb(12 12 12 / 70%) 30%, transparent 70%),
+    linear-gradient(to top, #0c0c0c 0%, transparent 45%);
+}
+
+.mh-lab__opener {
+  position: relative;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(96px, 14svh, 160px) clamp(20px, 4vw, 64px) clamp(40px, 7svh, 72px);
+}
+
+.mh-lab__num {
+  display: block;
+  font-size: clamp(6rem, 17vw, 15rem);
+  font-weight: 600;
+  line-height: 0.8;
+  letter-spacing: -0.08em;
+  color: var(--c);
+}
+
+.mh-lab__opener h2 {
+  max-width: 14ch;
+  margin: 18px 0 0;
+  font-size: clamp(2.4rem, 5.6vw, 5rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.mh-lab__kicker {
+  margin: 16px 0 0;
+  font: 600 11px/1.6 var(--font-mono);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mh-lab-dim);
+}
+
+.mh-lab__specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0;
+  max-width: 920px;
+  margin: clamp(28px, 4vw, 44px) 0 0;
+  border-top: 1px solid rgb(244 241 234 / 22%);
+}
+
+.mh-lab__specs div {
+  padding: 12px 16px 0 0;
+}
+
+.mh-lab__specs dt {
+  font: 600 9px/1.6 var(--font-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mh-lab-dim);
+}
+
+.mh-lab__specs dd {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* ── The credits roll ───────────────────────────────────────────────── */
+.mh-lab--credits {
+  padding: clamp(72px, 12svh, 140px) clamp(20px, 4vw, 64px);
+  text-align: center;
+}
+
+.mh-lab__roll {
+  display: grid;
+  gap: clamp(28px, 4vw, 44px);
+  max-width: 720px;
+  margin: clamp(40px, 6vw, 64px) auto 0;
+}
+
+.mh-lab__roll dt {
+  font: 600 10px/1.6 var(--font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mh-lab-dim);
+}
+
+.mh-lab__roll dd {
+  margin: 8px 0 0;
+  font-size: clamp(17px, 1.8vw, 21px);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+}
+
+.mh-lab__roll dd small {
+  display: block;
+  font-size: 12px;
+  color: var(--mh-lab-dim);
+  letter-spacing: 0;
+}
+
+.mh-lab__roll a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mh-lab__roll a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ── Smaller screens ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .mh-lab--hero {
+    min-height: auto;
+    padding: 96px var(--mh-lab-gutter) 120px;
+  }
+
+  .mh-lab__title-wrap,
+  .mh-lab__cards {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: 100%;
+    translate: none;
+  }
+
+  .mh-lab__cards {
+    max-width: 520px;
+    margin-top: 56px;
+  }
+
+  .mh-lab__corner--tr {
+    display: none;
+  }
+
+  .mh-lab__art {
+    width: 100%;
+  }
+
+  .mh-lab__art::after {
+    background:
+      linear-gradient(to top, #0c0c0c 15%, rgb(12 12 12 / 55%) 60%, rgb(12 12 12 / 35%) 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-lab__title,
+  .mh-lab__bar,
+  .mh-lab__caption,
+  .mh-lab__corner,
+  .mh-lab__card,
+  .mh-lab__scroll span {
+    animation: none;
+  }
+}

@@ -1,8 +1,11 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
-import { FranchiseShell, PageHero } from "@/components/monrovia-hustle/franchise-shell"
+import { ArrowUpRight, Play } from "lucide-react"
+import { FranchiseShell } from "@/components/monrovia-hustle/franchise-shell"
+import { PaintBand } from "@/components/monrovia-hustle/hustle-band"
+import { MH_TRAILER_YOUTUBE_URL } from "@/components/monrovia-hustle/concept-hero"
+import { HustleIdentity } from "@/components/monrovia-hustle/hustle-identity"
 import { franchiseMetadata, MH_ASSETS, MH_BASE } from "@/lib/monrovia-hustle/franchise"
 
 export const metadata: Metadata = franchiseMetadata(
@@ -11,132 +14,143 @@ export const metadata: Metadata = franchiseMetadata(
   "/about",
 )
 
+const PHOTO = (name: string) => `${MH_ASSETS}/images/${encodeURIComponent(name)}`
+
 const PRINCIPLES = [
   {
     title: "Start with a place",
-    body: "The setting is part of the experience, not a decorative background. Locations and everyday activity inform how the world feels and functions.",
+    body: "The setting is part of the experience, not a decorative background.",
   },
   {
     title: "Make interaction meaningful",
-    body: "Exploration, activities, and gameplay systems should work together to give players a clear sense of presence and agency.",
+    body: "Exploration, activities and systems give a clear sense of presence and agency.",
   },
   {
     title: "Build with room to grow",
-    body: "The franchise is designed as a flexible identity that can support different game formats without losing its connection to Monrovia.",
+    body: "A flexible identity that can carry different game formats without losing Monrovia.",
   },
 ]
 
 export default function AboutMonroviaHustlePage() {
   return (
     <FranchiseShell>
-      <PageHero
-        eyebrow="About"
-        title="Built in Monrovia. Built to grow."
-        description="Monrovia Hustle combines exploration, interactive environments, and a recognizable urban setting into one game world shaped by home."
-      />
-
-      <section className="mx-auto max-w-[1320px] px-5 py-16 sm:px-8 sm:py-24 lg:px-16">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <figure className="overflow-hidden rounded-2xl border border-border bg-secondary">
-            <div className="relative aspect-[4/3]">
-              <Image
-                src={`${MH_ASSETS}/images/${encodeURIComponent("WhatsApp Image 2026-05-04 at 11.57.51 PM.jpeg")}`}
-                alt="The HUIX-2099 team working on Monrovia Hustle in Monrovia"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
-            <figcaption className="px-5 py-3 text-[11px] text-muted-foreground">
-              HUIX-2099 — developing Monrovia Hustle in Monrovia, Liberia.
-            </figcaption>
-          </figure>
-
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Origin</p>
-            <h2 className="mt-4 text-[clamp(1.7rem,3vw,2.5rem)] font-semibold leading-[1.08] tracking-[-0.04em]">
-              A game identity shaped by home.
-            </h2>
-            <div className="mt-6 space-y-5 text-[15px] leading-7 text-muted-foreground">
-              <p>
-                Monrovia Hustle began with a straightforward idea: build an engaging game experience inspired by the
-                city around us. Its identity draws from Monrovia’s urban atmosphere, local culture, everyday routines,
-                and the ways people move through the city.
-              </p>
-              <p>
-                HUIX-2099 is developing the game in Monrovia with an independent, iterative approach—using playable
-                concepts to test ideas, understand what works, and refine the direction over time.
-              </p>
-            </div>
+      {/* 01 — the page opens on the poster itself */}
+      <PaintBand paint="blue">
+        <div className="mh-band__info">
+          <p className="mh-band__eyebrow">Monrovia Hustle / About</p>
+          <span className="mh-band__rule" aria-hidden />
+          <h1 className="mh-band__title mh-band__title--lead">Built in Monrovia. Built to grow.</h1>
+          <p className="mh-band__body">
+            Monrovia Hustle combines exploration, interactive environments, and a recognizable urban setting into one
+            game world shaped by home.
+          </p>
+          <div className="mh-band__actions">
+            <Link href={`${MH_BASE}/world`} className="mh-band__cta mh-band__cta--solid">
+              Explore the world
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+            <a href={MH_TRAILER_YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="mh-band__cta">
+              <Play className="h-3.5 w-3.5" />
+              Watch trailer
+            </a>
           </div>
+          <p className="mh-band__word">01 — Hustle</p>
         </div>
-      </section>
+        <div className="mh-band__media mh-band__media--mark">
+          <HustleIdentity />
+        </div>
+      </PaintBand>
 
-      <section className="border-y border-border bg-secondary/50">
-        <div className="mx-auto max-w-[1320px] px-5 py-16 sm:px-8 sm:py-24 lg:px-16">
-          <div className="grid gap-10 md:grid-cols-2 md:gap-16">
-            <article>
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Our mission</p>
-              <h2 className="mt-4 text-[clamp(1.4rem,2.2vw,1.9rem)] font-semibold leading-[1.1] tracking-[-0.035em]">
-                Represent an urban setting through play.
-              </h2>
-              <p className="mt-4 text-[14px] leading-7 text-muted-foreground">
-                Create an experience where exploration, environmental interaction, and simulation help players connect
-                with a world inspired by Monrovia.
-              </p>
-            </article>
-            <article>
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Long-term vision</p>
-              <h2 className="mt-4 text-[clamp(1.4rem,2.2vw,1.9rem)] font-semibold leading-[1.1] tracking-[-0.035em]">
-                Grow a recognizable Liberian game franchise.
-              </h2>
-              <p className="mt-4 text-[14px] leading-7 text-muted-foreground">
-                Develop a durable creative identity with room for new experiences, improved systems, and officially
-                confirmed future releases.
-              </p>
-            </article>
+      {/* 02 — where it comes from */}
+      <PaintBand paint="purple" prev="blue">
+        <div className="mh-band__media">
+          <Image
+            src={PHOTO("WhatsApp Image 2026-05-04 at 11.57.51 PM.jpeg")}
+            alt="The HUIX-2099 team working on Monrovia Hustle in Monrovia"
+            fill
+            sizes="(max-width: 899px) 100vw, 50vw"
+            className="object-cover"
+          />
+        </div>
+        <div className="mh-band__info">
+          <p className="mh-band__eyebrow">Origin</p>
+          <span className="mh-band__rule" aria-hidden />
+          <h2 className="mh-band__title">A game identity shaped by home.</h2>
+          <p className="mh-band__body">
+            Monrovia Hustle began with a straightforward idea: build an engaging game experience inspired by the city
+            around us. Its identity draws from Monrovia’s urban atmosphere, local culture, everyday routines, and the
+            ways people move through the city.
+          </p>
+          <p className="mh-band__body">
+            HUIX-2099 is developing the game in Monrovia with an independent, iterative approach—using playable
+            concepts to test ideas, understand what works, and refine the direction over time.
+          </p>
+          <p className="mh-band__word">02 — Grind</p>
+        </div>
+      </PaintBand>
+
+      {/* 03 — what it is for */}
+      <PaintBand paint="green" prev="purple" media="right">
+        <div className="mh-band__info">
+          <p className="mh-band__eyebrow">Mission &amp; vision</p>
+          <span className="mh-band__rule" aria-hidden />
+          <h2 className="mh-band__title">Represent an urban setting through play.</h2>
+          <p className="mh-band__body">
+            Create an experience where exploration, environmental interaction, and simulation help players connect with
+            a world inspired by Monrovia.
+          </p>
+          <h2 className="mh-band__title mh-band__title--sub">Grow a recognizable Liberian game franchise.</h2>
+          <p className="mh-band__body">
+            Develop a durable creative identity with room for new experiences, improved systems, and officially
+            confirmed future releases.
+          </p>
+          <p className="mh-band__word">03 — Earn</p>
+        </div>
+        <div className="mh-band__media">
+          <Image
+            src={PHOTO("WhatsApp Image 2026-05-04 at 11.57.52 PM (1).jpeg")}
+            alt="A HUIX-2099 developer building Monrovia Hustle on a laptop with a controller in hand"
+            fill
+            sizes="(max-width: 899px) 100vw, 50vw"
+            className="object-cover"
+          />
+        </div>
+      </PaintBand>
+
+      {/* 04 — how it is built */}
+      <PaintBand paint="red" prev="green">
+        <div className="mh-band__media">
+          <Image
+            src={PHOTO("WhatsApp Image 2026-05-04 at 11.57.52 PM (2).jpeg")}
+            alt="The team reviewing a Monrovia Hustle build projected on the wall"
+            fill
+            sizes="(max-width: 899px) 100vw, 50vw"
+            className="object-cover"
+          />
+        </div>
+        <div className="mh-band__info">
+          <p className="mh-band__eyebrow">Creative philosophy</p>
+          <span className="mh-band__rule" aria-hidden />
+          <h2 className="mh-band__title">Clear ideas guide the experience.</h2>
+          <ul className="mh-band__list">
+            {PRINCIPLES.map((principle, index) => (
+              <li key={principle.title}>
+                <strong>
+                  {String(index + 1).padStart(2, "0")} {principle.title}
+                </strong>
+                {principle.body}
+              </li>
+            ))}
+          </ul>
+          <div className="mh-band__actions">
+            <Link href={`${MH_BASE}/world`} className="mh-band__cta mh-band__cta--solid">
+              See why Monrovia matters
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </div>
+          <p className="mh-band__word">04 — Repeat</p>
         </div>
-      </section>
-
-      <section className="mx-auto max-w-[1320px] px-5 py-16 sm:px-8 sm:py-24 lg:px-16">
-        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Creative philosophy</p>
-        <h2 className="mt-4 max-w-xl text-[clamp(1.7rem,3vw,2.5rem)] font-semibold leading-[1.08] tracking-[-0.04em]">
-          Clear ideas guide the experience.
-        </h2>
-        <div className="mt-12 grid gap-10 sm:grid-cols-3 sm:gap-8">
-          {PRINCIPLES.map((principle, index) => (
-            <article key={principle.title} className="group">
-              <p
-                aria-hidden
-                className="text-[clamp(3.4rem,6vw,5rem)] font-semibold leading-none tracking-[-0.06em] text-foreground/15 transition-colors duration-300 group-hover:text-foreground/40"
-              >
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mt-5 text-[16px] font-semibold">{principle.title}</h3>
-              <p className="mt-2 max-w-xs text-[13px] leading-6 text-muted-foreground">{principle.body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-[1320px] px-5 pb-16 sm:px-8 sm:pb-24 lg:px-16">
-        <div className="flex flex-col justify-between gap-6 rounded-2xl border border-border p-7 sm:p-10 md:flex-row md:items-center">
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">The foundation</p>
-            <h2 className="mt-3 max-w-xl text-[clamp(1.4rem,2.4vw,2rem)] font-semibold leading-[1.1] tracking-[-0.035em]">
-              See why Monrovia matters to the game.
-            </h2>
-          </div>
-          <Link
-            href={`${MH_BASE}/world`}
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-foreground px-6 py-3 text-[13px] font-medium text-background transition-transform hover:-translate-y-0.5"
-          >
-            Explore the world
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
+      </PaintBand>
     </FranchiseShell>
   )
 }

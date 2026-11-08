@@ -124,7 +124,7 @@ export const SEO_PRODUCTS: SeoProductDef[] = [
   {
     id: "monrovia-hustle-independence-day",
     name: "Monrovia Hustle — Independence Day Edition",
-    path: "/products/monrovia-hustle/prototype/independence-day",
+    path: "/products/monrovia-hustle/prototype#independence-day",
     title:
       "Monrovia Hustle Independence Day Edition 2026 — Liberian keke racing game by Victor Edet Coleman | HUIX-2099",
     description:

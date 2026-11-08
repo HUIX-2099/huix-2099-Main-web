@@ -1,0 +1,107 @@
+/* Monrovia Hustle identity — a live port of the franchise poster
+   (logo/poster.html): brush-painted HUSTLE / GRIND / EARN / REPEAT bars
+   with the chalked controller shapes above them. It sits straight on the
+   site background, and the columns drift at different speeds on scroll.
+   Everything is measured in container units so it scales with its box. */
+
+.mh-id {
+  --mh-blue: #4b8fe2;
+  --mh-purple: #a77bd9;
+  --mh-green: #1cc35c;
+  --mh-red: #e3341f;
+  --mh-ink: #161616;
+  position: relative;
+  aspect-ratio: 78 / 100;
+  container-type: size;
+}
+
+.mh-id > * {
+  position: absolute;
+}
+
+/* The art keeps the poster's tall layout; the stage is cropped to the box
+   the shapes and bars actually occupy, with room for the ragged brush ends. */
+.mh-id__art {
+  left: 0;
+  top: -29.95cqw;
+  width: 100cqw;
+  height: 177.78cqw;
+  container-type: size;
+}
+
+.mh-id__art > * {
+  position: absolute;
+}
+
+/* ------------------------------------------------------------- symbols */
+/* The drift is measured in container units, so the columns separate by the
+   same proportion whether the mark is 190px or 440px wide. */
+.mh-id__symbol {
+  position: absolute;
+  top: 52.5cqw;
+  width: 13cqw;
+  height: 13cqw;
+  margin-left: -6.5cqw;
+  overflow: visible;
+  fill: none;
+  transform: translate3d(0, calc(var(--mh-p, 0) * var(--d, 0) * var(--mh-drift, 1) * 0.34cqw), 0);
+  transition: opacity 420ms ease;
+}
+
+/* ---------------------------------------------------------------- bars */
+.mh-id__bar {
+  position: absolute;
+  display: flex;
+  transition: opacity 420ms ease;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.mh-id__paint {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--c);
+  transform: translate3d(0, calc(var(--mh-p, 0) * var(--d, 0) * var(--mh-drift, 1) * 0.22cqw), 0);
+}
+
+/* The wear sits on a wrapper so it is applied after the word is turned and
+   squeezed; on the word itself it gets cut into slices. */
+.mh-id__wear {
+  display: flex;
+  transform: translate3d(0, calc(var(--mh-p, 0) * var(--d, 0) * var(--mh-drift, 1) * 0.1cqw), 0);
+}
+
+.mh-id__word {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg) scaleY(0.7);
+  color: var(--mh-ink);
+  font: 400 17cqw / 1.15 "Anton", Impact, Haettenschweiler, "Arial Narrow", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------- compact colour strip */
+/* The same four paints, reduced to a rule for cards and section edges. */
+.mh-brush {
+  display: flex;
+  gap: 3px;
+  width: 100%;
+}
+
+.mh-brush > span {
+  height: 4px;
+  border-radius: 2px;
+}
+
+/* Full-bleed version for the bottom edge of a card. */
+.mh-brush--bleed {
+  gap: 0;
+}
+
+.mh-brush--bleed > span {
+  height: 6px;
+  border-radius: 0;
+}

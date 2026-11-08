@@ -35,8 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/products/monrovia-hustle/world", 0.75, "monthly"),
     entry("/products/monrovia-hustle/news", 0.7, "weekly"),
     entry("/products/monrovia-hustle/contact", 0.7, "monthly"),
-    entry("/products/monrovia-hustle/prototype", 0.55, "monthly"),
-    entry("/products/monrovia-hustle/prototype/independence-day", 0.65, "monthly"),
+    entry("/products/monrovia-hustle/prototype", 0.65, "monthly"),
     entry("/products/monrovia-hustle/donate", 0.6, "monthly"),
   ]
 

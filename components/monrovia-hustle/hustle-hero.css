@@ -1,0 +1,318 @@
+/* The opening screen, the same in both themes: the wordmark on the left
+   with the four paints run under it as a bar, the terminal film playing on
+   the right, and the small print pinned to the four corners. */
+.mh-stage {
+  --mh-stage-ink: #f4f1ea;
+  --mh-stage-dim: rgb(244 241 234 / 55%);
+  --mh-stage-gutter: clamp(16px, 3.4vw, 48px);
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+  overflow: hidden;
+  /* Fills the screen under the site bar and the franchise bar above it
+     (their height is measured on load and written to --mh-stage-top). It is
+     a size container so the film can be placed in units of its height. */
+  height: max(560px, calc(100svh - var(--mh-stage-top, 104px)));
+  container-type: size;
+  /* The film's own wall colour, so its edges never show. */
+  background: #1e1e1e;
+  color: var(--mh-stage-ink);
+}
+
+/* The film is 3200×1080 with the computer 70% of the way across. It fills
+   the height, and slides so the computer sits 72% across the hero:
+   72% − 0.70 × (3200 ÷ 1080) × height. */
+.mh-stage__video {
+  position: absolute;
+  top: 0;
+  left: calc(72% - 207.4cqh);
+  z-index: -1;
+  height: 100%;
+  width: auto;
+  aspect-ratio: 3200 / 1080;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* ── The name ─────────────────────────────────────────────────────────── */
+/* The wordmark, large on the left, clear of the controller on the right. */
+.mh-stage__title-wrap {
+  position: absolute;
+  left: clamp(16px, 7vw, 140px);
+  top: 50%;
+  width: min(46vw, 820px);
+  translate: 0 -50%;
+}
+
+.mh-stage__title {
+  margin: 0;
+  line-height: 0;
+}
+
+/* It wipes in from the left on load. */
+.mh-stage__logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: mh-stage-wipe 1100ms cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+
+@keyframes mh-stage-wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* The four paints, run out under the name once it has landed. */
+.mh-stage__bar {
+  display: flex;
+  width: 32%;
+  height: clamp(5px, 0.55vw, 9px);
+  margin-top: clamp(18px, 2.4vw, 32px);
+  transform-origin: left center;
+  animation: mh-stage-bar 900ms 650ms cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+
+.mh-stage__bar i {
+  flex: 1;
+}
+
+@keyframes mh-stage-bar {
+  from {
+    scale: 0 1;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+
+/* The tagline under the bar, with a rule above it. */
+.mh-stage__caption {
+  margin: clamp(22px, 3vw, 40px) 0 0;
+  animation: mh-stage-fade 700ms 900ms ease both;
+}
+
+.mh-stage__caption > span {
+  display: block;
+  width: max-content;
+  padding-top: 12px;
+  border-top: 1px solid var(--mh-stage-dim);
+  font: 600 10px/1.6 var(--font-mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mh-stage-ink);
+}
+
+@keyframes mh-stage-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── The small print in the corners ──────────────────────────────────── */
+.mh-stage__corner {
+  position: absolute;
+  margin: 0;
+  font: 500 10px/1.7 var(--font-mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mh-stage-ink);
+  animation: mh-stage-fade 700ms 500ms ease both;
+}
+
+.mh-stage__corner--tl {
+  top: var(--mh-stage-gutter);
+  left: var(--mh-stage-gutter);
+}
+
+.mh-stage__corner--tr {
+  top: var(--mh-stage-gutter);
+  right: var(--mh-stage-gutter);
+  text-align: right;
+}
+
+.mh-stage__corner--bl {
+  bottom: var(--mh-stage-gutter);
+  left: var(--mh-stage-gutter);
+}
+
+.mh-stage__corner--br {
+  bottom: var(--mh-stage-gutter);
+  right: var(--mh-stage-gutter);
+}
+
+.mh-stage__loop {
+  padding: 0;
+  list-style: none;
+}
+
+.mh-stage__loop li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mh-stage__loop li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--c);
+}
+
+.mh-stage__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--mh-stage-ink);
+  text-decoration: none;
+}
+
+.mh-stage__cta svg {
+  transition: translate 200ms ease;
+}
+
+.mh-stage__cta:hover svg {
+  translate: 3px 0;
+}
+
+.mh-stage__cta:focus-visible,
+.mh-stage__badge:focus-visible {
+  outline: 2px solid var(--mh-stage-ink);
+  outline-offset: 4px;
+}
+
+/* A hairline at the bottom centre with a drop running down it. */
+.mh-stage__scroll {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  height: clamp(40px, 8svh, 72px);
+  overflow: hidden;
+  background: rgb(244 241 234 / 18%);
+}
+
+.mh-stage__scroll span {
+  position: absolute;
+  inset: 0;
+  background: var(--mh-stage-ink);
+  animation: mh-stage-drop 2.2s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+
+@keyframes mh-stage-drop {
+  from {
+    translate: 0 -100%;
+  }
+  to {
+    translate: 0 100%;
+  }
+}
+
+/* ── The badge: the trailer, as a turning seal ───────────────────────── */
+.mh-stage__badge {
+  position: absolute;
+  right: var(--mh-stage-gutter);
+  bottom: calc(var(--mh-stage-gutter) + 48px);
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 999px;
+  color: var(--mh-stage-ink);
+  animation: mh-stage-fade 700ms 800ms ease both;
+}
+
+.mh-stage__badge-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+  font: 600 9.6px var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  animation: mh-stage-spin 18s linear infinite;
+}
+
+@keyframes mh-stage-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+.mh-stage__badge-core {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgb(244 241 234 / 35%);
+  border-radius: 999px;
+  transition:
+    background 220ms ease,
+    color 220ms ease;
+}
+
+.mh-stage__badge:hover .mh-stage__badge-core {
+  background: var(--mh-stage-ink);
+  color: #0c0c0c;
+}
+
+/* ── Smaller screens ─────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .mh-stage {
+    height: max(520px, calc(100svh - var(--mh-stage-top, 104px)));
+  }
+
+  /* On a phone the film shrinks to the lower part of the screen with the
+     computer centred: 50% − 0.70 × (3200 ÷ 1080) × 56% of the height. */
+  .mh-stage__video {
+    top: auto;
+    bottom: 0;
+    height: 56%;
+    left: calc(50% - 116.1cqh);
+  }
+
+  /* The wordmark takes the full width between the gutters, up top above
+     the computer. */
+  .mh-stage__title-wrap {
+    left: var(--mh-stage-gutter);
+    top: 26%;
+    width: calc(100% - var(--mh-stage-gutter) * 2);
+  }
+
+  .mh-stage__bar {
+    width: 40%;
+  }
+
+  .mh-stage__badge {
+    width: 76px;
+    height: 76px;
+    bottom: calc(var(--mh-stage-gutter) + 36px);
+  }
+
+  .mh-stage__corner--tr {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-stage__logo,
+  .mh-stage__bar,
+  .mh-stage__caption,
+  .mh-stage__corner,
+  .mh-stage__badge {
+    animation: none;
+  }
+
+  .mh-stage__badge-ring,
+  .mh-stage__scroll span {
+    animation: none;
+  }
+}

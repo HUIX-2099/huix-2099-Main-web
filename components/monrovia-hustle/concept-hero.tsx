@@ -15,11 +15,13 @@ import {
 } from "@/components/ui/dialog"
 import { VideoAmbientBackdrop } from "@/components/monrovia-hustle/video-ambient-backdrop"
 import { ConceptDownloadButton } from "@/components/monrovia-hustle/concept-download-button"
+import { MH_TRAILER_YOUTUBE_ID, MH_TRAILER_YOUTUBE_URL } from "@/lib/monrovia-hustle/franchise"
 
 const MONO = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace' as const
 
-export const MH_TRAILER_YOUTUBE_ID = "GUPVn-m8Dr8"
-export const MH_TRAILER_YOUTUBE_URL = `https://youtu.be/${MH_TRAILER_YOUTUBE_ID}`
+// The trailer lives with the other franchise links so server components can
+// use it too; re-exported here for the files that already import it from here.
+export { MH_TRAILER_YOUTUBE_ID, MH_TRAILER_YOUTUBE_URL }
 export const MH_TRAILER_EMBED_URL = `https://www.youtube.com/embed/${MH_TRAILER_YOUTUBE_ID}?autoplay=1&rel=0&modestbranding=1&playsinline=1`
 export const MH_TRAILER_HERO_EMBED_URL = `https://www.youtube.com/embed/${MH_TRAILER_YOUTUBE_ID}?autoplay=1&mute=1&loop=1&playlist=${MH_TRAILER_YOUTUBE_ID}&controls=1&rel=0&modestbranding=1&playsinline=1`
 /** Hidden behind hero — same trailer, no chrome, drives ambient color bleed */

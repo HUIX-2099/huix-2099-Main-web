@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ArrowUpRight } from "lucide-react"
 import { MH_BASE, MH_NAV } from "@/lib/monrovia-hustle/franchise"
 
 const LINKS = [{ label: "Overview", href: MH_BASE }, ...MH_NAV]
@@ -33,13 +32,6 @@ export function FranchiseNav() {
             )
           })}
         </ul>
-        <Link
-          href={`${MH_BASE}/prototype`}
-          className="ml-auto inline-flex shrink-0 items-center gap-1.5 py-3 pl-6 text-[12px] text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Prototypes
-          <ArrowUpRight className="h-3 w-3" />
-        </Link>
       </div>
     </nav>
   )

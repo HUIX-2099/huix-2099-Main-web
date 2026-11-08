@@ -1,0 +1,605 @@
+/* The scroll loop — the four paints take over the page. The mark stays
+   pinned in the middle while the information passes down one side then the
+   other, and the colour of whichever step you are on bleeds out past the
+   section into the rest of the page.
+
+   The band is theme-aware: on the dark site the paint is mixed into black
+   and the type is cream; on the light site the same paint is mixed into the
+   paper and the type goes back to ink. */
+
+/* The page shows one paint at a time. Registering the two colours lets the
+   switch from one step to the next ease over a moment instead of cutting,
+   without ever settling on a blend of two paints. */
+@property --mh-glow-a {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #4b8fe2;
+}
+
+@property --mh-glow-b {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #4b8fe2;
+}
+
+:root {
+  transition:
+    --mh-glow-a 380ms ease,
+    --mh-glow-b 380ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    transition: none;
+  }
+}
+
+/* The paints are re-aimed through oklch so the hue keeps real chroma instead
+   of being diluted into the page base: that is what makes the background go
+   genuinely blue / purple / green / red rather than a tint of it. Light mode
+   gets a bright, high-chroma version (dark type sits on it); dark mode gets a
+   deep one at the same chroma (cream type sits on it). */
+.mh-loop {
+  --mh-paint: oklch(from var(--mh-glow-a, #4b8fe2) 0.82 0.16 h);
+  --mh-paint-b: oklch(from var(--mh-glow-b, #4b8fe2) 0.77 0.19 h);
+  --mh-hot: oklch(from var(--mh-glow-a, #4b8fe2) 0.72 0.2 h);
+  --mh-loop-base: #f6f4ef;
+  --mh-loop-tint: 88%;
+  --mh-ink: #14130f;
+  --mh-ink-soft: rgb(20 19 15 / 78%);
+  --mh-ink-faint: rgb(20 19 15 / 54%);
+  position: relative;
+  /* Its own stacking context, so the ambient layer inside it can sit over the
+     site background without covering the page copy. */
+  z-index: 0;
+  color: var(--mh-ink);
+}
+
+.dark .mh-loop {
+  --mh-paint: oklch(from var(--mh-glow-a, #4b8fe2) 0.42 0.26 h);
+  --mh-paint-b: oklch(from var(--mh-glow-b, #4b8fe2) 0.5 0.28 h);
+  --mh-hot: oklch(from var(--mh-glow-a, #4b8fe2) 0.58 0.27 h);
+  --mh-loop-base: #0a0a0a;
+  --mh-loop-tint: 94%;
+  --mh-ink: #fcf9f3;
+  --mh-ink-soft: rgb(252 249 243 / 86%);
+  --mh-ink-faint: rgb(252 249 243 / 60%);
+}
+
+.mh-loop__stage {
+  position: sticky;
+  top: 0;
+  display: grid;
+  place-items: center;
+  height: 100svh;
+}
+
+/* The colour behind the mark: one flat paint per step, with no glows or
+   highlights laid over it, so the page reads as exactly blue, purple, green
+   or red. It is deliberately much taller than the screen: the feather at each
+   end reaches into the sections before and after the loop, so the paint
+   arrives without a hard edge. Those sections sit above it, so their text
+   stays plain. */
+.mh-loop__wash {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -55svh;
+  height: 210svh;
+  background-color: color-mix(in oklab, var(--mh-paint) var(--mh-loop-tint), var(--mh-loop-base));
+  mask-image: linear-gradient(180deg, transparent 0%, #000 26%, #000 74%, transparent 100%);
+}
+
+.mh-loop__mark {
+  position: relative;
+  width: min(30svh, 260px);
+  /* The field is now a saturated colour, so the poster keeps its own shadow
+     to stay separate from it. */
+  filter: drop-shadow(0 16px 38px rgb(0 0 0 / 30%));
+}
+
+:root:not(.dark) .mh-loop__mark {
+  filter: drop-shadow(0 14px 30px rgb(0 0 0 / 16%));
+}
+
+.mh-loop__hint {
+  position: absolute;
+  bottom: clamp(62px, 10svh, 96px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  font: 400 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--mh-ink-faint);
+}
+
+/* The same colour, spread over the whole page as ambient light. It ramps up
+   over the section before the loop and carries on fading over the next one.
+   It sits behind the page content on purpose: the paint lights the background
+   up, it does not stain the type or the poster. */
+.mh-loop__mood {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--mh-mood-strength, 0);
+  background-image:
+    radial-gradient(88% 64% at 50% -8%, color-mix(in oklab, var(--mh-paint) 92%, transparent) 0%, transparent 80%),
+    radial-gradient(80% 60% at 96% 106%, color-mix(in oklab, var(--mh-hot) 78%, transparent) 0%, transparent 82%),
+    radial-gradient(74% 56% at 4% 86%, color-mix(in oklab, var(--mh-paint-b) 70%, transparent) 0%, transparent 84%);
+  mix-blend-mode: normal;
+  opacity: calc(var(--mh-mood-strength, 0) * 0.62);
+}
+
+:root:not(.dark) .mh-loop__mood {
+  opacity: calc(var(--mh-mood-strength, 0) * 0.5);
+}
+
+@media (max-width: 1180px) {
+  /* Narrower screens keep the same three lanes, just tighter, so the poster
+     still has clear space around it. */
+  .mh-loop__step {
+    grid-template-columns: minmax(0, 260px) minmax(0, 1fr) minmax(0, 260px);
+    gap: clamp(14px, 2.4vw, 28px);
+  }
+
+  .mh-loop__mark {
+    width: min(26svh, 220px);
+  }
+
+  .mh-loop__fact dd,
+  .mh-loop__aside-body {
+    font-size: 12.5px;
+  }
+}
+
+/* ------------------------------------------------------------- the steps */
+/* Pulled back over the pinned stage so the text travels past the mark. */
+.mh-loop__steps {
+  position: relative;
+  margin-top: -100svh;
+}
+
+.mh-loop__step {
+  position: relative;
+  display: grid;
+  /* Three columns: the words on one side, the mark's lane in the middle, and
+     the note about the game on the other. Neither half of the screen is left
+     empty while the poster holds the centre. */
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr) minmax(0, 340px);
+  align-items: center;
+  gap: clamp(20px, 3.6vw, 60px);
+  /* Exactly one screen per step, and the page settles on each one, so a
+     step is always seen whole: nothing cut off at the top or the bottom. */
+  min-height: 100svh;
+  padding: clamp(64px, 9svh, 96px) clamp(20px, 5vw, 96px) clamp(48px, 7svh, 88px);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Snap only while the loop is on the page; proximity leaves the rest of
+   the page free to scroll normally. */
+html:has(.mh-loop) {
+  scroll-snap-type: y proximity;
+}
+
+/* Parallax: --mh-d is the step's distance from the centre of the screen
+   (0 when it is settled, ±1 a screen away), written by the scroll handler.
+   The two columns travel at different speeds, so they slide past each
+   other and past the pinned poster instead of moving as one flat page. */
+/* Both blocks share the one row. Without this, a right-hand step (whose
+   left block comes second in the markup) drops that block onto a second
+   row, and the step grows taller than the screen. */
+.mh-loop__card,
+.mh-loop__aside {
+  grid-row: 1;
+}
+
+.mh-loop__step--left .mh-loop__card,
+.mh-loop__step--right .mh-loop__aside {
+  grid-column: 1;
+  --mh-lag: 110px;
+}
+
+.mh-loop__step--left .mh-loop__aside,
+.mh-loop__step--right .mh-loop__card {
+  grid-column: 3;
+  --mh-lag: 36px;
+}
+
+.mh-loop__card {
+  opacity: 0.32;
+  transform: translateY(14px);
+  translate: 0 calc(var(--mh-d, 0) * var(--mh-lag, 0px));
+  transition:
+    opacity 420ms ease,
+    transform 420ms ease;
+}
+
+.mh-loop__aside {
+  opacity: 0.22;
+  transform: translateY(14px);
+  translate: 0 calc(var(--mh-d, 0) * var(--mh-lag, 0px));
+  transition:
+    opacity 420ms ease,
+    transform 420ms ease;
+}
+
+.mh-loop__step[data-on="true"] .mh-loop__card,
+.mh-loop__step[data-on="true"] .mh-loop__aside {
+  opacity: 1;
+  transform: none;
+}
+
+/* A way to follow the game — Facebook on blue, Discord on purple, WhatsApp
+   on green, YouTube on red. One compact frosted row cut from the step's own
+   paint: the words on the left, a QR printed in the step's colour on the
+   right, so it never pushes the step past the height of the screen. It also
+   floats a little faster than its column, which gives the step its depth. */
+.mh-loop__social {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: clamp(16px, 3svh, 26px);
+  padding: 12px 12px 12px 14px;
+  border: 1px solid color-mix(in oklab, var(--mh-ink) 16%, transparent);
+  border-radius: 20px;
+  background: color-mix(in oklab, var(--mh-ink) 8%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  color: var(--mh-ink);
+  text-decoration: none;
+  translate: 0 calc(var(--mh-d, 0) * -38px);
+  transition:
+    background 220ms ease,
+    border-color 220ms ease;
+}
+
+.mh-loop__social:hover {
+  border-color: color-mix(in oklab, var(--mh-ink) 30%, transparent);
+  background: color-mix(in oklab, var(--mh-ink) 14%, transparent);
+}
+
+.mh-loop__social:focus-visible {
+  outline: 2px solid var(--mh-ink);
+  outline-offset: 3px;
+}
+
+.mh-loop__social-copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.mh-loop__social-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+/* The real logo in its brand colour on a white tile, so it reads even on a
+   page painted the same colour (Facebook on blue, WhatsApp on green). */
+.mh-loop__social-icon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 14%);
+}
+
+.mh-loop__social-label {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--mh-ink-faint);
+}
+
+.mh-loop__social-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.mh-loop__social-title svg {
+  flex: none;
+  opacity: 0.7;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.mh-loop__social:hover .mh-loop__social-title svg {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+.mh-loop__social-body {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--mh-ink-soft);
+}
+
+.mh-loop__social-qr {
+  display: block;
+  padding: 6px;
+  border-radius: 13px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 14%);
+  line-height: 0;
+}
+
+.mh-loop__key {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mh-loop__num {
+  font: 400 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.18em;
+  color: var(--mh-ink-soft);
+}
+
+.mh-loop__rule {
+  display: block;
+  width: 34px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--c);
+  box-shadow: 0 0 18px color-mix(in oklab, var(--c) 70%, transparent);
+}
+
+.mh-loop__title {
+  margin-top: 14px;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  color: var(--mh-ink);
+}
+
+.mh-loop__body {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--mh-ink-soft);
+}
+
+.mh-loop__points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.mh-loop__points li {
+  padding: 5px 11px;
+  border: 1px solid color-mix(in oklab, var(--c) 42%, transparent);
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--mh-ink-soft);
+}
+
+/* What each stage actually contains, in the same column as its heading. */
+.mh-loop__facts {
+  display: grid;
+  gap: 13px;
+  margin: 22px 0 0;
+}
+
+.mh-loop__fact {
+  padding-left: 14px;
+  border-left: 2px solid color-mix(in oklab, var(--c) 58%, transparent);
+}
+
+.mh-loop__fact dt {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--mh-ink);
+}
+
+.mh-loop__fact dd {
+  margin: 3px 0 0;
+  font-size: 13px;
+  line-height: 1.62;
+  color: var(--mh-ink-soft);
+}
+
+/* The note on the far side: where the stage stands, in plain words. */
+.mh-loop__status {
+  font: 400 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mh-ink-faint);
+}
+
+.mh-loop__aside-title {
+  margin-top: 14px;
+  font-size: clamp(1.05rem, 1.5vw, 1.32rem);
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: -0.032em;
+  color: var(--mh-ink);
+}
+
+.mh-loop__aside-body {
+  margin-top: 12px;
+  max-width: 36ch;
+  font-size: 13.5px;
+  line-height: 1.72;
+  color: var(--mh-ink-soft);
+}
+
+/* The four words as a rail, so the whole loop is visible while you are inside
+   one step of it. */
+.mh-loop__rail {
+  position: absolute;
+  bottom: clamp(16px, 3.4svh, 34px);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: clamp(12px, 2.6vw, 34px);
+  pointer-events: none;
+}
+
+.mh-loop__rail-item {
+  display: grid;
+  justify-items: center;
+  gap: 9px;
+  opacity: 0.4;
+  transition: opacity 320ms ease;
+}
+
+.mh-loop__rail-item[data-on="true"] {
+  opacity: 1;
+}
+
+.mh-loop__rail-word {
+  font: 400 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mh-ink-soft);
+}
+
+.mh-loop__rail-bar {
+  display: block;
+  width: 36px;
+  height: 2px;
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--mh-ink) 26%, transparent);
+  transition:
+    background 320ms ease,
+    box-shadow 320ms ease;
+}
+
+.mh-loop__rail-item[data-on="true"] .mh-loop__rail-bar {
+  background: var(--c);
+  box-shadow: 0 0 14px color-mix(in oklab, var(--c) 75%, transparent);
+}
+
+/* Shorter laptop screens: tighten the step so it still fits one screen.
+   The extras go first (tags, the card's second line), the content stays. */
+@media (min-width: 901px) and (max-height: 820px) {
+  .mh-loop__points,
+  .mh-loop__social-body {
+    display: none;
+  }
+
+  .mh-loop__title {
+    margin-top: 10px;
+  }
+
+  .mh-loop__body {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .mh-loop__facts {
+    gap: 9px;
+    margin-top: 14px;
+  }
+
+  .mh-loop__fact dd,
+  .mh-loop__aside-body {
+    font-size: 12.5px;
+    line-height: 1.52;
+  }
+}
+
+/* Small screens: the mark keeps the top of the screen and the steps read
+   underneath it, always on the left. */
+@media (max-width: 900px) {
+  /* One column here, so the two blocks only drift a little apart. */
+  .mh-loop__step .mh-loop__card,
+  .mh-loop__step .mh-loop__aside {
+    grid-row: auto;
+    --mh-lag: 28px;
+  }
+
+  .mh-loop__stage {
+    align-items: start;
+    /* Pack the mark and the hint at the top instead of stretching the two
+       rows over the whole screen. */
+    align-content: start;
+    padding-top: 6svh;
+  }
+
+  .mh-loop__mark {
+    --mh-drift: 0.34;
+    width: min(20svh, 170px);
+    /* The mark steps back while a card is passing through it and comes
+       forward again when the step settles. */
+    opacity: calc(1 - abs(var(--mh-p, 0)) * 0.55);
+  }
+
+  .mh-loop__step {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: end;
+    gap: 12px;
+    padding: 0 16px clamp(20px, 4svh, 36px);
+    text-align: left;
+  }
+
+  /* A phone screen holds one step only if the extras step aside: the tags,
+     the follow card's second line and the side note's paragraphs (its
+     heading stays). */
+  .mh-loop__points,
+  .mh-loop__social-body,
+  .mh-loop__aside-body {
+    display: none;
+  }
+
+  /* One column, and both blocks read on the left again. */
+  .mh-loop__card,
+  .mh-loop__aside,
+  .mh-loop__step--left .mh-loop__card,
+  .mh-loop__step--left .mh-loop__aside,
+  .mh-loop__step--right .mh-loop__card,
+  .mh-loop__step--right .mh-loop__aside {
+    grid-column: 1;
+    max-width: none;
+  }
+
+  /* On small screens the text passes straight through the mark, so each block
+     carries its own plate to stay readable. */
+  .mh-loop__card,
+  .mh-loop__aside {
+    padding: 18px 18px 20px;
+    border: 1px solid color-mix(in oklab, var(--c) 30%, transparent);
+    border-radius: 18px;
+    background: color-mix(in oklab, var(--mh-loop-base) 84%, transparent);
+    backdrop-filter: blur(7px);
+  }
+
+  .mh-loop__rail {
+    display: none;
+  }
+
+  /* The hint belongs under the mark here, not at the bottom of the screen,
+     where the cards are. */
+  .mh-loop__hint {
+    position: static;
+    margin-top: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-loop__card {
+    transform: none;
+    transition: opacity 200ms linear;
+  }
+}
