@@ -195,7 +195,8 @@ const jsonLd = {
   },
   sameAs: [
     "https://x.com/Huix2099",
-    "https://www.instagram.com/huix.2099/",
+    "https://www.instagram.com/huix2099/",
+    "https://www.tiktok.com/@huix2099",
     "https://www.facebook.com/profile.php?id=61572485499528",
     "https://www.youtube.com/@HUIX-2099",
     "https://www.linkedin.com/in/victor-coleman-4731701a5/",
