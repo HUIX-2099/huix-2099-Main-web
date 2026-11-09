@@ -15,7 +15,7 @@
   height: max(560px, calc(100svh - var(--mh-stage-top, 104px)));
   container-type: size;
   /* The film's own wall colour, so its edges never show. */
-  background: #1e1e1e;
+  background: #1d1d1d;
   color: var(--mh-stage-ink);
 }
 
