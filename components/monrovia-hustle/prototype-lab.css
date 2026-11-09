@@ -429,7 +429,8 @@
 @media (max-width: 900px) {
   .mh-lab--hero {
     min-height: auto;
-    padding: 96px var(--mh-lab-gutter) 120px;
+    /* Room under the cards for the index and the link pinned to the corners. */
+    padding: 96px var(--mh-lab-gutter) 168px;
   }
 
   .mh-lab__title-wrap,
@@ -442,9 +443,45 @@
     translate: none;
   }
 
+  /* The two cards sit side by side here instead of overlapping, so neither
+     title is covered. */
   .mh-lab__cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
     max-width: 520px;
-    margin-top: 56px;
+    margin-top: 48px;
+    aspect-ratio: auto;
+  }
+
+  .mh-lab__card,
+  .mh-lab__card:first-child,
+  .mh-lab__card:last-child {
+    position: relative;
+    inset: auto;
+    width: auto;
+  }
+
+  .mh-lab__card:first-child {
+    rotate: -2deg;
+  }
+
+  .mh-lab__card:last-child {
+    rotate: 2deg;
+    margin-top: 18px;
+  }
+
+  .mh-lab__card-art {
+    aspect-ratio: 4 / 5;
+  }
+
+  .mh-lab__card-copy {
+    padding: 10px 12px;
+  }
+
+  .mh-lab__card-copy h2 {
+    font-size: 15px;
+    line-height: 1.15;
   }
 
   .mh-lab__corner--tr {

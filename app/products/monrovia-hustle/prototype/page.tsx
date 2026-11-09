@@ -47,7 +47,6 @@ import "@/components/monrovia-hustle/prototype-lab.css"
 
 const [BLUE, PURPLE, GREEN, RED] = MH_PALETTE.map((paint) => paint.color)
 const ASSETS = "/products/Monrovia_hustle_Demo_Campane"
-const JBOY_ART = `${ASSETS}/${encodeURIComponent("Monrovia Hustle 3D playable concept — 1 GAME JAY BOY.jpg")}`
 const JBOY_RENDER = `${ASSETS}/cast_concept/CHARACTERS/JAYBOY.jpeg`
 /** The mobile field-test capture with the voice cast (same video as the old concept page). */
 const VOICE_CAST_VIDEO_ID = "tSBJfEjlklk"
@@ -264,7 +263,7 @@ export default function MonroviaHustlePrototypePage() {
         <div className="mh-lab__cards">
           <a href="#monrovia-hustle-3d" className="mh-lab__card" style={{ ["--c" as string]: BLUE }}>
             <div className="mh-lab__card-art">
-              <Image src={JBOY_ART} alt="Jayboy, the lead of Monrovia Hustle 3D" fill sizes="(max-width: 900px) 70vw, 25vw" className="object-cover object-top" />
+              <Image src={JBOY_RENDER} alt="Jayboy, the lead of Monrovia Hustle 3D" fill sizes="(max-width: 900px) 70vw, 25vw" className="object-cover object-top" />
             </div>
             <div className="mh-lab__card-copy">
               <p>Experiment 01</p>
